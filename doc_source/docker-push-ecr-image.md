@@ -1,0 +1,36 @@
+# Pushing an Image<a name="docker-push-ecr-image"></a>
+
+If you have a Docker image available in your development environment, you can push it to an Amazon ECR repository with the docker push command\.
+
+**Important**  
+Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed policies to control user access at varying levels; for more information, see [Amazon ECR Managed Policies](ecr_managed_policies.md)\.
+
+**To push a Docker image to an Amazon ECR repository**
+
+1. Authenticate your Docker client to the Amazon ECR registry you intend to push your image to\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry Authentication](Registries.md#registry_auth)\.
+
+1. If your image repository does not exist in the registry you intend to push to yet, create it\. For more information, see [Creating a Repository](repository-create.md)\.
+
+1. Identify the image to push\. Run the docker images command to list the images on your system\.
+
+   ```
+   docker images
+   ```
+
+   You can identify an image with the *repository:tag* or the image ID in the resulting command output\.
+
+1. Tag your image with the Amazon ECR registry, repository, and optional image tag name combination to use\. The registry format is `aws_account_id.dkr.ecr.region.amazonaws.com`\. The repository name should match the repository that you created for your image\. If you omit the image tag, we assume the tag is `latest`\.
+
+   The following example tags an image with the ID *e9ae3c220b23* as `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app`\.
+
+   ```
+   docker tag e9ae3c220b23 aws_account_id.dkr.ecr.region.amazonaws.com/my-web-app
+   ```
+
+1. Push the image using the docker push command\.
+
+   ```
+   docker push aws_account_id.dkr.ecr.region.amazonaws.com/my-web-app
+   ```
+
+1. \(Optional\) Apply any additional tags to your image and push those tags to Amazon ECR by repeating [[ERROR] BAD/MISSING LINK TEXT](#image-tag-step) and [[ERROR] BAD/MISSING LINK TEXT](#image-push-step)\. You can apply up to 100 tags per image in Amazon ECR\.
