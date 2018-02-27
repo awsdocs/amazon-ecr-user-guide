@@ -1,4 +1,4 @@
-## Amazon Ecr User Guide
+## Amazon ECR User Guide
 
 The open source version of the Amazon ECR user guide. You can submit feedback & requests for changes by submitting issues in this repo or by making proposed changes & submitting a pull request.
 
