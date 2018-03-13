@@ -22,7 +22,7 @@ Because the Docker CLI does not support the standard AWS authentication methods,
 **Note**  
 The get\-login command is available in the AWS CLI starting with version 1\.9\.15; however, we recommend version 1\.11\.91 or later for recent versions of Docker \(17\.06 or later\)\. You can check your AWS CLI version with the aws \-\-version command\.
 
-1. Run the aws ecr get\-login command\. The example below is for the default registry associated with the account making the request\. To access other account registries, use the `--registry-ids aws_account_id` option\. For more information, see [get\-login](http://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html) in the *AWS Command Line Interface Reference*\.
+1. Run the aws ecr get\-login command\. The example below is for the default registry associated with the account making the request\. To access other account registries, use the `--registry-ids aws_account_id` option\. For more information, see [get\-login](http://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html) in the *AWS CLI Command Reference*\.
 
    ```
    aws ecr get-login --no-include-email

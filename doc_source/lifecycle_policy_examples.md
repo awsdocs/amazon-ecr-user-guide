@@ -173,7 +173,7 @@ The following lifecycle policy examples specify multiple tag prefixes in a singl
 
 ### Example A<a name="lp_example_difftype_a"></a>
 
-When multiple tag prefixes are specified on a single rule, images much match all listed tag prefixes\.
+When multiple tag prefixes are specified on a single rule, images must match all listed tag prefixes\.
 
 Repository contents:
 

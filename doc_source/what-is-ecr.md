@@ -23,6 +23,6 @@ You can push and pull Docker images to your repositories\. You can use these ima
 
 ## How to Get Started with Amazon ECR<a name="w3ab1b7b9"></a>
 
-To use Amazon ECR, you need to be set up to install the AWS Command Line Interface and Docker\. For more information, see [Setting Up with Amazon ECR](get-set-up-for-amazon-ecr.md) and [Docker Basics](docker-basics.md)\.
+To use Amazon ECR, you need to be set up to install the AWS Command Line Interface and Docker\. For more information, see [Setting Up with Amazon ECR](get-set-up-for-amazon-ecr.md) and [Docker Basics for Amazon ECR](docker-basics.md)\.
 
 After you are set up, you are ready to complete the [Getting Started with Amazon ECR](ECR_GetStarted.md) tutorial\. 

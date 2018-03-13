@@ -19,7 +19,7 @@ Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before 
 
    You can identify an image with the *repository:tag* or the image ID in the resulting command output\.
 
-1. Tag your image with the Amazon ECR registry, repository, and optional image tag name combination to use\. The registry format is `aws_account_id.dkr.ecr.region.amazonaws.com`\. The repository name should match the repository that you created for your image\. If you omit the image tag, we assume the tag is `latest`\.
+1. <a name="image-tag-step"></a>Tag your image with the Amazon ECR registry, repository, and optional image tag name combination to use\. The registry format is `aws_account_id.dkr.ecr.region.amazonaws.com`\. The repository name should match the repository that you created for your image\. If you omit the image tag, we assume the tag is `latest`\.
 
    The following example tags an image with the ID *e9ae3c220b23* as `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app`\.
 
@@ -27,10 +27,10 @@ Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before 
    docker tag e9ae3c220b23 aws_account_id.dkr.ecr.region.amazonaws.com/my-web-app
    ```
 
-1. Push the image using the docker push command\.
+1. <a name="image-push-step"></a>Push the image using the docker push command\.
 
    ```
    docker push aws_account_id.dkr.ecr.region.amazonaws.com/my-web-app
    ```
 
-1. \(Optional\) Apply any additional tags to your image and push those tags to Amazon ECR by repeating [[ERROR] BAD/MISSING LINK TEXT](#image-tag-step) and [[ERROR] BAD/MISSING LINK TEXT](#image-push-step)\. You can apply up to 100 tags per image in Amazon ECR\.
+1. \(Optional\) Apply any additional tags to your image and push those tags to Amazon ECR by repeating [Step 4](#image-tag-step) and [Step 5](#image-push-step)\. You can apply up to 100 tags per image in Amazon ECR\.

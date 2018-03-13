@@ -23,7 +23,7 @@ After you have installed and configured the AWS CLI, you can authenticate the Do
 **Note**  
 The get\-login command is available in the AWS CLI starting with version 1\.9\.15; however, we recommend version 1\.11\.91 or later for recent versions of Docker \(17\.06 or later\)\. You can check your AWS CLI version with the aws \-\-version command\.
 
-1. Run the aws ecr get\-login command\. The example below is for the default registry associated with the account making the request\. To access other account registries, use the `--registry-ids aws_account_id` option\. For more information, see [get\-login](http://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html) in the *AWS Command Line Interface Reference*\.
+1. Run the aws ecr get\-login command\. The example below is for the default registry associated with the account making the request\. To access other account registries, use the `--registry-ids aws_account_id` option\. For more information, see [get\-login](http://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html) in the *AWS CLI Command Reference*\.
 
    ```
    aws ecr get-login --no-include-email
@@ -51,7 +51,7 @@ When you execute this docker login command, the command string can be visible by
 
 ## Step 2: Get a Docker Image<a name="AWSCLI_get_docker_image"></a>
 
-Before you can push an image to Amazon ECR, you need to have one to push\. If you do not already have an image to use, you can create one by following the steps in [Docker Basics](docker-basics.md), or you can simply pull an image from Docker Hub that you would like to have in your Amazon ECR registry\. To pull the `ubuntu:trusty` image from Docker hub to your local system, run the following command:
+Before you can push an image to Amazon ECR, you need to have one to push\. If you do not already have an image to use, you can create one by following the steps in [Docker Basics for Amazon ECR](docker-basics.md), or you can simply pull an image from Docker Hub that you would like to have in your Amazon ECR registry\. To pull the `ubuntu:trusty` image from Docker hub to your local system, run the following command:
 
 ```
 $ docker pull ubuntu:trusty

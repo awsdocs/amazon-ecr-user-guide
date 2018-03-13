@@ -1,8 +1,8 @@
-# Docker Basics<a name="docker-basics"></a>
+# Docker Basics for Amazon ECR<a name="docker-basics"></a>
 
 Docker is a technology that allows you to build, run, test, and deploy distributed applications that are based on Linux containers\. Amazon ECR is a managed AWS Docker registry service\. Customers can use the familiar Docker CLI to push, pull, and manage images\. For Amazon ECR product details, featured customer case studies, and FAQs, see the [Amazon Elastic Container Registry product detail pages](http://aws.amazon.com/ecr)\.
 
-The documentation in this guide assumes that readers possess a basic understanding of what Docker is and how it works\. For more information about Docker, see [What is Docker?](http://aws.amazon.com/docker/) and the [Docker User Guide](https://docs.docker.com/engine/userguide/)\. 
+The documentation in this guide assumes that readers possess a basic understanding of what Docker is and how it works\. For more information about Docker, see [What is Docker?](http://aws.amazon.com/docker/) and the [Docker overview](https://docs.docker.com/engine/docker-overview/)\.
 
 
 + [Installing Docker](#install_docker)
@@ -49,7 +49,7 @@ You don't even need a local development system to use Docker\. If you are using 
    sudo usermod -a -G docker ec2-user
    ```
 
-1. Log out and log back in again to pick up the new `docker` group permissions\.
+1. Log out and log back in again to pick up the new `docker` group permissions\. You can accomplish this by closing your current SSH terminal window and reconnecting to your instance in a new one\. Your new SSH session will have the appropriate `docker` group permissions\.
 
 1. Verify that the `ec2-user` can run Docker commands without `sudo`\.
 
@@ -101,7 +101,7 @@ In this section, you create a Docker image of a simple web application, and test
 
    This Dockerfile uses the Ubuntu 12\.04 image\. The `RUN` instructions update the package caches, install some software packages for the web server, and then write the "Hello World\!" content to the web server's document root\. The `EXPOSE` instruction exposes port 80 on the container, and the `CMD` instruction starts the web server\.
 
-1. Build the Docker image from your Dockerfile\.
+1. <a name="sample-docker-build-step"></a>Build the Docker image from your Dockerfile\.
 **Note**  
 Some versions of Docker may require the full path to your Dockerfile in the following command, instead of the relative path shown below\.
 
