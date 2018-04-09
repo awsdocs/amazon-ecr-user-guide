@@ -6,7 +6,7 @@ The AWS Command Line Interface \(CLI\) is a unified tool to manage your AWS serv
 
 For more information on the other tools available for managing your AWS resources, including the different AWS SDKs, IDE toolkits, and the Windows PowerShell command line tools, see [http://aws\.amazon\.com/tools/](http://aws.amazon.com/tools/)\.
 
-
+**Topics**
 + [Step 1: Authenticate Docker to your Default Registry](#AWSCLI_get-login)
 + [Step 2: Get a Docker Image](#AWSCLI_get_docker_image)
 + [Step 3: Create a Repository](#AWSCLI_create_repository)
@@ -41,7 +41,7 @@ If you receive an `Unknown options: --no-include-email` error, install the lates
 
 1. Copy and paste the docker login command into a terminal to authenticate your Docker CLI to the registry\. This command provides an authorization token that is valid for the specified registry for 12 hours\. 
 **Note**  
-If you are using Windows PowerShell, copying and pasting long strings like this will not work\. Use the following command instead\.  
+If you are using Windows PowerShell, copying and pasting long strings like this does not work\. Use the following command instead\.  
 
    ```
    Invoke-Expression -Command (aws ecr get-login --no-include-email)
@@ -82,11 +82,8 @@ $ aws ecr create-repository --repository-name ubuntu
 ## Step 4: Push an Image to Amazon ECR<a name="AWSCLI_push_image"></a>
 
 Now you can push your image to the Amazon ECR repository you created in the previous section\. You use the docker CLI to push images, but there are a few prerequisites that must be satisfied for this to work properly:
-
 + The minimum version of docker is installed: 1\.7
-
 + The Amazon ECR authorization token has been configured with docker login\.
-
 + The Amazon ECR repository exists and the user has access to push to the repository\.
 
 After those prerequisites are met, you can push your image to your newly created repository in the default registry for your account\.
@@ -122,11 +119,8 @@ After those prerequisites are met, you can push your image to your newly created
 ## Step 5: Pull an Image from Amazon ECR<a name="AWSCLI_pull_image"></a>
 
 After your image has been pushed to your Amazon ECR repository, you can pull it from other locations\. We will use the docker CLI to pull images, but there are a few prerequisites that must be satisfied for this to work properly:
-
 + The minimum version of docker is installed: 1\.7
-
 + The Amazon ECR authorization token has been configured with docker login\.
-
 + The Amazon ECR repository exists and the user has access to pull from the repository\.
 
 After those prerequisites are met, you can pull your image\. To pull your example image from Amazon ECR, run the following command:

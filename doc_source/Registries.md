@@ -3,13 +3,9 @@
 You can use Amazon ECR registries to host your images in a highly available and scalable architecture, allowing you to deploy containers reliably for your applications\. You can use your registry to manage image repositories and Docker images\. Each AWS account is provided with a single \(default\) Amazon ECR registry\.
 
 ## Registry Concepts<a name="registry_concepts"></a>
-
 + The URL for your default registry is `https://``aws_account_id.dkr.ecr.region.amazonaws.com`\.
-
 + By default, you have read and write access to the repositories and images you create in your default registry\.
-
 + You must authenticate your Docker client to a registry so that you can use the docker push and docker pull commands to push and pull images to and from the repositories in that registry\. For more information, see [Registry Authentication](#registry_auth)\.
-
 + Repositories can be controlled with both IAM user access policies and repository policies\.
 
 ## Registry Authentication<a name="registry_auth"></a>
@@ -40,7 +36,7 @@ If you receive an `Unknown options: --no-include-email` error, install the lates
 
 1. Copy and paste the docker login command into a terminal to authenticate your Docker CLI to the registry\. This command provides an authorization token that is valid for the specified registry for 12 hours\. 
 **Note**  
-If you are using Windows PowerShell, copying and pasting long strings like this will not work\. Use the following command instead\.  
+If you are using Windows PowerShell, copying and pasting long strings like this does not work\. Use the following command instead\.  
 
    ```
    Invoke-Expression -Command (aws ecr get-login --no-include-email)

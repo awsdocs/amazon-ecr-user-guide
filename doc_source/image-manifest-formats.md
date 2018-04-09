@@ -1,17 +1,12 @@
 # Container Image Manifest Formats<a name="image-manifest-formats"></a>
 
 Amazon ECR supports the following container image manifest formats:
-
 + Docker Image Manifest V2 Schema 1 \(used with Docker version 1\.9 and older\)
-
 + Docker Image Manifest V2 Schema 2 \(used with Docker version 1\.10 and newer\)
-
 + Open Container Initiative \(OCI\) Specifications \(v1\.0 and up\)
 
 Support for Docker Image Manifest V2 Schema 2 provides the following functionality:
-
 + The ability to use multiple tags per image\.
-
 + Support for storing Windows container images\. For more information, see [Pushing Windows Images to Amazon ECR](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/windows_ecr.html) in the *Amazon Elastic Container Service Developer Guide*\.
 
 ## Amazon ECR Image Manifest Conversion<a name="image-manifest-conversion"></a>

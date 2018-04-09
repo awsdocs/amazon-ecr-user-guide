@@ -12,7 +12,7 @@ An IAM policy must grant or deny permission to use one or more Amazon ECR operat
 
 Amazon ECR partially supports resource\-level permissions\. This means that for some Amazon ECS API operations, you cannot specify which resource a user is allowed to work with for that operation; instead, you have to allow users to work with all resources for that operation\. 
 
-
+**Topics**
 + [Policy Structure](iam-policy-structure.md)
 + [Amazon ECR Managed Policies](ecr_managed_policies.md)
 + [Supported Resource\-Level Permissions for Amazon ECR API Actions](ecr-supported-iam-actions-resources.md)

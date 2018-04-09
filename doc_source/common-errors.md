@@ -1,6 +1,6 @@
 # Troubleshooting Amazon ECR Error Messages<a name="common-errors"></a>
 
-
+**Topics**
 + [Error: "Error Response from Daemon: Invalid Registry Endpoint" When Running aws ecr get\-login](#error-invalid-registry-endpoint)
 + [HTTP 429: Too Many Requests or ThrottleException](#error-429-too-many-requests)
 + [HTTP 403: "User \[arn\] is not authorized to perform \[operation\]"](#error-unauthorized)

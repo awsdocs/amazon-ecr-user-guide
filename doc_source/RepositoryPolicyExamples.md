@@ -5,7 +5,7 @@ The following examples show policy statements that you could use to control the 
 **Important**  
 Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed policies to control user access at varying levels; for more information, see [Amazon ECR Managed Policies](ecr_managed_policies.md)\.
 
-
+**Topics**
 + [Example: Allow IAM Users Within Your Account](#IAM_within_account)
 + [Example: Allow Other Accounts](#IAM_allow_other_accounts)
 + [Example: Deny All](#IAM_deny_all)

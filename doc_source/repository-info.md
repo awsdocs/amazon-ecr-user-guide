@@ -20,7 +20,5 @@ You can also view the repository policies that are applied to the repository\.
 1. On the **Repositories** page, choose the repository to view\.
 
 1. On the **All repositories : *repository\_name*** page, choose the tab which corresponds to the information you would like to view\.
-
    + Choose the **Images** tab to view information about the images in the repository\. If there are untagged images that you would like to delete, you can select the box to the left of the repositories to delete and choose **Delete**\. For more information, see [Deleting an Image](delete_image.md)\.
-
    + Choose the **Permissions** tab to view the repository policies that are applied to the repository\. For more information, see [Amazon ECR Repository Policies](RepositoryPolicies.md)\.

@@ -2,7 +2,7 @@
 
 Amazon ECR lifecycle policies enable you to specify the lifecycle management of images in a repository\. A lifecycle policy is a set of one or more rules, where each rule defines an action for Amazon ECR\. The actions apply to images that contain tags prefixed with the given strings\. This allows the automation of cleaning up unused images, for example expiring images based on age or count\. You should expect that after creating a lifecycle policy the affected images will be expired within 24 hours\.
 
-
+**Topics**
 + [Lifecycle Policy Template](#lifecycle_policy_syntax)
 + [Lifecycle Policy Parameters](#lifecycle_policy_parameters)
 + [Lifecycle Policy Evaluation Rules](#lp_evaluation_rules)
@@ -42,7 +42,7 @@ The `tagPrefixList` parameter is only used if `tagStatus` is `tagged`\. The `cou
 
 Lifecycle policies are split into the following parts\.
 
-
+**Topics**
 + [Rule Priority](#lp_rule_priority)
 + [Description](#lp_description)
 + [Tag Status](#lp_tag_status)
@@ -111,21 +111,12 @@ When you create a lifecycle policy, you specify an action type\. The supported v
 ## Lifecycle Policy Evaluation Rules<a name="lp_evaluation_rules"></a>
 
 The lifecycle policy evaluator is responsible for parsing the plaintext JSON and applying it to the images in the specified repository\. The following rules should be noted when creating a lifecycle policy:
-
 + An image is expired by exactly one or zero rules\.
-
 + An image that matches the tagging requirements of a rule cannot be expired by a rule with a lower priority\.
-
 + Rules can never mark images matched by higher priority rules, but can still view them as if they haven't been expired\.
-
 + The set of rules must contain a unique set of tag prefixes\.
-
 + Only one rule is allowed to select untagged images\.
-
 + Expiration is always ordered by `pushed_at_time`, and always expires older images before newer ones\.
-
 + When using the `tagPrefixList`, an image is successfully matched if *all* of the tags in the `tagPrefixList` are matched against any of the image's tags\.
-
 + With `countType = imageCountMoreThan`, images are sorted from youngest to oldest based on `pushed_at_time` and then all images greater than the specified count are expired\.
-
 + With `countType = sinceImagePushed`, all images whose `pushed_at_time` is older than the specified number of days based on `countNumber` are expired\.

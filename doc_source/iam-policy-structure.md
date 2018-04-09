@@ -2,7 +2,7 @@
 
 The following topics explain the structure of an IAM policy\.
 
-
+**Topics**
 + [Policy Syntax](#policy-syntax)
 + [Actions for Amazon ECR](#UsingWithECR_Actions)
 + [Amazon Resource Names for Amazon ECR](#ECR_ARN_Format)
@@ -30,13 +30,9 @@ An IAM policy is a JSON document that consists of one or more statements\. Each 
 ```
 
 There are various elements that make up a statement:
-
 + **Effect:** The *effect* can be `Allow` or `Deny`\. By default, IAM users don't have permission to use resources and API operations, so all requests are denied\. An explicit allow overrides the default\. An explicit deny overrides any allows\.
-
 + **Action**: The *action* is the specific API operation for which you are granting or denying permission\. To learn about specifying *action*, see [Actions for Amazon ECR](#UsingWithECR_Actions)\. 
-
 + **Resource**: The resource that's affected by the action\. Some Amazon ECR API operations allow you to include specific resources in your policy that can be created or modified by the operation\. To specify a resource in the statement, you need to use its Amazon Resource Name \(ARN\)\. For more information about specifying the *arn* value, see [Amazon Resource Names for Amazon ECR](#ECR_ARN_Format)\. For more information about which API operations support which ARNs, see [Supported Resource\-Level Permissions for Amazon ECR API Actions](ecr-supported-iam-actions-resources.md)\. If the API operation does not support ARNs, use the \* \(asterisk\) wildcard to specify that all resources can be affected by the operation\. 
-
 + **Condition**: Conditions are optional and can control when your policy will be in effect\. For more information about specifying conditions for Amazon ECR, see [Condition Keys for Amazon ECR](#amazon-ecr-keys)\.
 
 ## Actions for Amazon ECR<a name="UsingWithECR_Actions"></a>

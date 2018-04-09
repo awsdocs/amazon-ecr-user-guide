@@ -1,9 +1,7 @@
 # Document History<a name="doc-history"></a>
 
 The following table describes the important changes to the documentation since the last release of Amazon ECR\. We also update the documentation frequently to address the feedback that you send us\.
-
 +  **Current API version:** 2015\-09\-21 
-
 +  **Latest documentation update:** November 21, 2017 
 
 

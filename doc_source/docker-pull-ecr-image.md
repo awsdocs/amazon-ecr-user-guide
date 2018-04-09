@@ -10,7 +10,6 @@ Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before 
 1. Authenticate your Docker client to the Amazon ECR registry that you intend to pull your image from\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry Authentication](Registries.md#registry_auth)\.
 
 1. \(Optional\) Identify the image to pull\.
-
    + You can list the repositories in a registry with the aws ecr describe\-repositories command\.
 
      ```
@@ -18,7 +17,6 @@ Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before 
      ```
 
      The example registry above has a repository called `amazonlinux`\.
-
    + You can describe the images within a repository with the aws ecr describe\-images command\.
 
      ```

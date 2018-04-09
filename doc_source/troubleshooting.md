@@ -2,7 +2,7 @@
 
 This chapter helps you find diagnostic information for Amazon ECR, and provides troubleshooting steps for common issues and error messages\.
 
-
+**Topics**
 + [Enabling Docker Debug Output](#debug)
 + [Enabling AWS CloudTrail](#cloudtrail)
 + [Optimizing Performance for Amazon ECR](#performance)

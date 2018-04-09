@@ -5,7 +5,7 @@ Amazon ECR uses resource\-based permissions to control access\. Resource\-based 
 **Important**  
 Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed policies to control user access at varying levels; for more information, see [Amazon ECR Managed Policies](ecr_managed_policies.md)\.
 
-
+**Topics**
 + [Setting a Repository Policy Statement](set-repository-policy.md)
 + [Deleting a Repository Policy Statement](delete-repository-policy.md)
 + [Amazon ECR Repository Policy Examples](RepositoryPolicyExamples.md)

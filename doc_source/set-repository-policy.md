@@ -22,21 +22,15 @@ Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before 
 1. For **Effect**, choose whether the policy statement should allow access or deny it\.
 
 1. For **Principal**, choose the scope of users to apply the policy statement to\.
-
    + You can apply the statement to all authenticated AWS users by selecting the **Everybody** check box\.
-
    + You can apply the statement to all users under specific AWS accounts by listing those accounts in the **AWS account number\(s\)** field\.
-
    + You can apply the statement to roles or users under your AWS account by checking the roles or users under the **All IAM entities** list and choosing **>> Add** to move them to the **Selected IAM entities** list\.
 **Note**  
 For more complicated repository policies that are not currently supported in the AWS Management Console, you can apply the policy with the [set\-repository\-policy](http://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html) AWS CLI command\.
 
 1. For **Action**, choose the scope of the Amazon ECR API operations that the policy statement should apply to\. You can choose individual API operations, or you can choose from the preset task\-based options\.
-
    + **All actions** sets the scope to all Amazon ECR API operations\.
-
    + **Push/Pull actions** sets the scope to Amazon ECR API operations required to push or pull images in this repository with the Docker CLI\.
-
    + **Pull only actions** sets the scope to Amazon ECR API operations required only to pull images from this repository with the Docker CLI\.
 
 1. When you are finished, choose **Save** to set the policy\.
