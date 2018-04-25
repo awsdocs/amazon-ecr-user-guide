@@ -96,7 +96,7 @@ For example, you can indicate a specific repository \(`my-repo`\) in your statem
 You can also specify all repositories that belong to a specific account by using the \* wildcard as follows:
 
 ```
-"Resource": "arn:aws:ecs:us-east-1:123456789012:repository/*"
+"Resource": "arn:aws:ecr:us-east-1:123456789012:repository/*"
 ```
 
 To specify all resources, or if a specific API operation does not support ARNs, use the \* wildcard in the `Resource` element as follows:
