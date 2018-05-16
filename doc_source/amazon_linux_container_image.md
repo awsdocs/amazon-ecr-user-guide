@@ -28,7 +28,7 @@ If you receive an `Unknown options: --no-include-email` error, install the lates
 
 1. Copy and paste the docker login command into a terminal to authenticate your Docker CLI to the registry\.
 **Important**  
-When you execute this docker login command, the command string can be visible by other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way and use them to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
+When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way and use them to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
 
 1. \(Optional\) You can list the images within the Amazon Linux repository with the aws ecr list\-images command\. The `latest` tag always corresponds with the latest Amazon Linux container image that is available\.
 

@@ -23,7 +23,7 @@ Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before 
 
 1. For **Principal**, choose the scope of users to apply the policy statement to\.
    + You can apply the statement to all authenticated AWS users by selecting the **Everybody** check box\.
-   + You can apply the statement to all users under specific AWS accounts by listing those accounts in the **AWS account number\(s\)** field\.
+   + You can apply the statement to all users under specific AWS accounts by listing those account numbers \(for example, 111122223333\) in the **AWS account number\(s\)** field\.
    + You can apply the statement to roles or users under your AWS account by checking the roles or users under the **All IAM entities** list and choosing **>> Add** to move them to the **Selected IAM entities** list\.
 **Note**  
 For more complicated repository policies that are not currently supported in the AWS Management Console, you can apply the policy with the [set\-repository\-policy](http://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html) AWS CLI command\.

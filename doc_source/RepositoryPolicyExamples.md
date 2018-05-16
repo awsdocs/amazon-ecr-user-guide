@@ -57,6 +57,7 @@ The following repository policy allows a specific account to push images\.
       },
       "Action": [
         "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchCheckLayerAvailability",
         "ecr:PutImage",
         "ecr:InitiateLayerUpload",
         "ecr:UploadLayerPart",
