@@ -24,7 +24,7 @@ The contents of your lifecycle policy is evaluated before being associated with 
                 "tagStatus": "tagged"|"untagged",
                 "tagPrefixList": list<string>,
                 "countType": "imageCountMoreThan"|"sinceImagePushed",
-                "countUnit": "integer",
+                "countUnit": string,
                 "countNumber": "integer"
             },
             "action": {
