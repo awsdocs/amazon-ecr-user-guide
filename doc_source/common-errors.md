@@ -31,10 +31,7 @@ This indicates that you are calling a single endpoint in Amazon ECR repeatedly o
 
 Various API operations in Amazon ECR have different throttles\.
 
-For example, the throttle for the [http://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html](http://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) action is 4 transaction per second \(TPS\), with up to a 200 TPS burst allowed\. In each region, each account receives a bucket that can store up to 200 `GetAuthorizationToken` credits\. These credits are replenished at a rate of 4 per second\. If your bucket has 200 credits, you could achieve 200 `GetAuthorizationToken` API transactions per second for one second, and then sustain 4 transactions per second indefinitely\.
-
-**Note**  
-Currently, the throttle on the `GetAuthorizationToken` operation cannot be increased on a per\-account basis\.
+For example, the throttle for the [http://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html](http://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) action is 20 transaction per second \(TPS\), with up to a 200 TPS burst allowed\. In each region, each account receives a bucket that can store up to 200 `GetAuthorizationToken` credits\. These credits are replenished at a rate of 20 per second\. If your bucket has 200 credits, you could achieve 200 `GetAuthorizationToken` API transactions per second for one second, and then sustain 20 transactions per second indefinitely\.
 
 To handle throttling errors, implement a retry function with incremental backoff into your code\. For more information, see [Error Retries and Exponential Backoff in AWS](http://docs.aws.amazon.com/general/latest/gr/api-retries.html) in the [Amazon Web Services General Reference](http://docs.aws.amazon.com/general/latest/gr/)\.
 
