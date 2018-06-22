@@ -44,6 +44,9 @@ There are times when you may receive an HTTP 403 \(Forbidden\) error, or the err
 You have authenticated to a different region   
 Authentication requests are tied to specific regions, and cannot be used across regions\. For example, if you obtain an authorization token from US West \(Oregon\), you cannot use it to authenticate against your repositories in US East \(N\. Virginia\)\. To resolve the issue, ensure that you are using the same region for both authentication and docker push command calls\.
 
+You have authenticated to push to a repository on the wrong AWS account
+If you are using an IAM user from one AWS account, but pushing to a repository hosted in another account you will need to explictly specify the `--registry-ids` parameter when you call `aws ecr get-login`. Otherwise you will by default get a Docker login command which only authorizes you to push to repositories on the same account that hosts your IAM user, not the account that hosts your repository. Always ensure that the repository URL in the response from `aws ecr get-login` matches the repository URL that you are pushing to, including the account ID portion of the URL.
+
 Your token has expired   
 The default token expiration period for tokens obtained using the `GetAuthorizationToken` operation is 12 hours\. However, if you use a temporary security credential mechanism such as multi\-factor authentication \(MFA\) or AWS Security Token Service to authenticate and receive your token, the expiration period of the Amazon ECR authorization token is equal to the duration of these temporary security credentials\. For example, if you call the aws ecr get\-login command by assuming a role, the authorization token expires within 15 minutes to 1 hour, depending on the settings you use when calling the aws sts assume\-role command\. 
 
