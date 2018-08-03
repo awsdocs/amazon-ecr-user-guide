@@ -10,7 +10,7 @@ This procedure does not work for Windows clients because of the way the AWS CLI 
 1. Use the batch\-get\-image command to get the image manifest for the image to retag and write it to an environment variable\. In this example, the manifest for an image with the tag, *latest*, in the repository, *amazonlinux*, is written to the environment variable, *MANIFEST*\.
 
    ```
-   MANIFEST=$(aws ecr batch-get-image --repository-name amazonlinux --image-ids imageTag=latest --query images[].imageManifest --output text)
+   MANIFEST=$(aws ecr batch-get-image --repository-name amazonlinux --image-ids imageTag=latest --query 'images[].imageManifest' --output text)
    ```
 
 1. Use the `--image-tag` option of the put\-image command to put the image manifest to Amazon ECR with a new tag\. In this example, the image is tagged as *2017\.03*\.
