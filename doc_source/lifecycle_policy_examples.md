@@ -7,10 +7,11 @@ The following are example lifecycle policies, showing the syntax\.
 + [Filtering on Image Count](#lifecycle_policy_example_number)
 + [Filtering on Multiple Rules](#lp_example_multiple)
 + [Filtering on Multiple Tags in a Single Rule](#lp_example_difftype)
++ [Filtering on All Images](#lp_example_allimages)
 
 ## Filtering on Image Age<a name="lifecycle_policy_example_age"></a>
 
-The following shows the lifecycle policy syntax for a policy that expires untagged images older than `14` days:
+The following example shows the lifecycle policy syntax for a policy that expires untagged images older than `14` days:
 
 ```
 {
@@ -34,7 +35,7 @@ The following shows the lifecycle policy syntax for a policy that expires untagg
 
 ## Filtering on Image Count<a name="lifecycle_policy_example_number"></a>
 
-The following shows the lifecycle policy syntax for a policy that keeps only one untagged image and expires all others:
+The following example shows the lifecycle policy syntax for a policy that keeps only one untagged image and expires all others:
 
 ```
 {
@@ -157,7 +158,7 @@ The logic of this lifecycle policy would be:
 
 ## Filtering on Multiple Tags in a Single Rule<a name="lp_example_difftype"></a>
 
-The following lifecycle policy examples specify multiple tag prefixes in a single rule\. An example repository and lifecycle policy are given along with an explanation of the outcome\.
+The following examples specify the lifecycle policy syntax for multiple tag prefixes in a single rule\. An example repository and lifecycle policy are given along with an explanation of the outcome\.
 
 ### Example A<a name="lp_example_difftype_a"></a>
 
@@ -228,3 +229,102 @@ Repository contents:
 The logic of this lifecycle policy would be:
 + Rule 1 identifies images tagged with `alpha` and `beta`\. It sees all images\. It should mark images, starting with the oldest, until there is one or fewer images remaining that match\. It marks image A and B for expiration\.
 + Result: Images A and B are expired\.
+
+## Filtering on All Images<a name="lp_example_allimages"></a>
+
+The following lifecycle policy examples specify all images with different filters\. An example repository and lifecycle policy are given along with an explanation of the outcome\.
+
+### Example A<a name="lp_example_difftype_a"></a>
+
+The following shows the lifecycle policy syntax for a policy that applies to all rules but keeps only one image and expires all others\.
+
+Repository contents:
++ Image A, Taglist: \["alpha\-1"\], Pushed: 4 days ago
++ Image B, Taglist: \["beta\-1"\], Pushed: 3 days ago
++ Image C, Taglist: \[\], Pushed: 2 days ago
++ Image D, Taglist: \["alpha\-2"\], Pushed: 1 day ago
+
+```
+{
+    "rules": [
+        {
+            "rulePriority": 1,
+            "description": "Rule 1",
+            "selection": {
+                "tagStatus": "any",
+                "countType": "imageCountMoreThan",
+                "countNumber": 1
+            },
+            "action": {
+                "type": "expire"
+            }
+        }
+    ]
+}
+```
+
+The logic of this lifecycle policy would be:
++ Rule 1 identifies all images\. It sees images A, B, C, and D\. It should expire all images other than the newest one\. It marks images A, B, and C for expiration\.
++ Result: Images A, B, and C are expired\.
+
+### Example B<a name="lp_example_difftype_b"></a>
+
+The following example illustrates a lifecycle policy that combines all the rule types in a single policy\.
+
+Repository contents:
++ Image A, Taglist: \["alpha\-1", "beta\-1"\], Pushed: 4 days ago
++ Image B, Taglist: \[\], Pushed: 3 days ago
++ Image C, Taglist: \["alpha\-2"\], Pushed: 2 days ago
++ Image D, Taglist: \["git hash"\], Pushed: 1 day ago
++ Image E, Taglist: \[\], Pushed: 1 hour ago
+
+```
+{
+    "rules": [
+        {
+            "rulePriority": 1,
+            "description": "Rule 1",
+            "selection": {
+                "tagStatus": "tagged",
+                "tagPrefixList": ["alpha"],
+                "countType": "imageCountMoreThan",
+                "countNumber": 1
+            },
+            "action": {
+                "type": "expire"
+            }
+        },
+        {
+            "rulePriority": 2,
+            "description": "Rule 2",
+            "selection": {
+                "tagStatus": "untagged",
+                "countType": "sinceImagePushed",
+                "countUnit": "hours",
+                "countNumber": 1
+            },
+            "action": {
+                "type": "expire"
+            }
+        },
+        {
+            "rulePriority": 3,
+            "description": "Rule 3",
+            "selection": {
+                "tagStatus": "any",
+                "countType": "imageCountMoreThan",
+                "countNumber": 1
+            },
+            "action": {
+                "type": "expire"
+            }
+        }
+    ]
+}
+```
+
+The logic of this lifecycle policy would be:
++ Rule 1 identifies images tagged with `alpha`\. It identifies images A and C\. It should keep the newest image and mark the rest for expiration\. It marks image A for expiration\.
++ Rule 2 identifies untagged images\. It identifies images B and E\. It should mark all images older than one hour for expiration\. It marks image B for expiration\.
++ Rule 3 identifies all images\. It identifies images A, B, C, D, and E\. It should keep the newest image and mark the rest for expiration\. However, it can't mark images A, B, or C because they were identified by higher priority rules\. It marks image D for expiration\. 
++ Result: Images A, B, and D are expired\.

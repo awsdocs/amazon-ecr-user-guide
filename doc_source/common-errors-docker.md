@@ -54,5 +54,5 @@ Bug in `wincred` credential manager
 Some versions of Docker for Windows use a credential manager called `wincred`, which does not properly handle the Docker login command produced by aws ecr get\-login \(for more information, see [https://github\.com/docker/docker/issues/22910](https://github.com/docker/docker/issues/22910)\)\. You can run the Docker login command that is output, but when you try to push or pull images, those commands will fail\. You can work around this bug by removing the `https://` scheme from the registry argument in the Docker login command that is output from aws ecr get\-login\. An example Docker login command without the HTTPS scheme is shown below\.  
 
 ```
-docker login -u AWS -p <password> -e none <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+docker login -u AWS -p <password> <aws_account_id>.dkr.ecr.<region>.amazonaws.com
 ```

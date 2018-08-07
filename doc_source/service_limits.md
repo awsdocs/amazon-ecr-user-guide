@@ -26,5 +26,8 @@ We recommend that you use the docker CLI to pull, tag, and push images\.
 | Maximum layer part size | 10 MiB | 
 | Minimum layer part size | 5 MiB \(except the final layer part in an upload\) | 
 | Maximum number of layer parts | 1,000 | 
+| Maximum number of rules in a lifecycle policy | 50 | 
+| Maximum length of a lifecycle policy | 30720 | 
+| Maximum [http://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html](http://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) API transactions per second, per account, per region | 4 sustained, with the ability to burst up to 200 \*\* | 
 
 \*\* The maximum layer size listed here is calculated by multiplying the maximum layer part size \(10 MiB\) by the maximum number of layer parts \(1,000\)\.
