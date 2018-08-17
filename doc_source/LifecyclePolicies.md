@@ -18,14 +18,14 @@ The contents of your lifecycle policy is evaluated before being associated with 
 {
     "rules": [
         {
-            "rulePriority": "integer",
+            "rulePriority": integer,
             "description": string,
             "selection": {
                 "tagStatus": "tagged"|"untagged"|"any",
                 "tagPrefixList": list<string>,
                 "countType": "imageCountMoreThan"|"sinceImagePushed",
-                "countUnit": "string",
-                "countNumber": "integer"
+                "countUnit": string,
+                "countNumber": integer
             },
             "action": {
                 "type": "expire"
