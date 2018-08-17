@@ -53,7 +53,7 @@ Amazon ECR supports the [Docker Registry HTTP API](https://docs.docker.com/regis
 1. Retrieve an authorization token with the AWS CLI and set it to an environment variable\.
 
    ```
-   TOKEN=$(aws ecr get-authorization-token --output text --query authorizationData[].authorizationToken)
+   TOKEN=$(aws ecr get-authorization-token --output text --query 'authorizationData[].authorizationToken')
    ```
 
 1. Pass the `$TOKEN` variable to the `-H` option of curl to authenticate to the API\. For example, the following command lists the image tags in an Amazon ECR repository\. For more information, see the [Docker Registry HTTP API](https://docs.docker.com/registry/spec/api/) reference documentation\.

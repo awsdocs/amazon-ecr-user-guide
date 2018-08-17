@@ -47,7 +47,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Creating Amazon ECR IAM Policies](ECR_IAM_user_policies.md)
 + [Using the AWS CLI with Amazon ECR](ECR_AWSCLI.md)
 + [Amazon ECR Service Limits](service_limits.md)
-+ [Logging Amazon ECR API Calls By Using AWS CloudTrail](logging-using-cloudtrail.md)
++ [Logging Amazon ECR API Calls with AWS CloudTrail](logging-using-cloudtrail.md)
 + [Amazon ECR Troubleshooting](troubleshooting.md)
    + [Troubleshooting Errors with Docker Commands When Using Amazon ECR](common-errors-docker.md)
    + [Troubleshooting Amazon ECR Error Messages](common-errors.md)
