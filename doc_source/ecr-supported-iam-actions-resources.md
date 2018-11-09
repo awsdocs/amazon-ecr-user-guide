@@ -6,9 +6,6 @@ The following table describes the Amazon ECR API operations that currently suppo
 
 For a list of Amazon ECR operations, see [Actions](http://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_Operations.html) in the *Amazon Elastic Container Registry API Reference*\.
 
-**Important**  
-If an Amazon ECR API operation is not listed in this table, then it does not support resource\-level permissions\. If an API operation does not support resource\-level permissions, you can grant users permission to use the operation, but you have to specify the \* \(asterisk\) wildcard for the resource element of your policy statement\.
-
 
 | API action | Resource | 
 | --- | --- | 
@@ -16,11 +13,13 @@ If an Amazon ECR API operation is not listed in this table, then it does not sup
 | BatchDeleteImage |  Repository arn:aws:ecr:*region*:*account*:repository/*my\-repo*  | 
 | BatchGetImage |  Repository arn:aws:ecr:*region*:*account*:repository/*my\-repo*  | 
 | CompleteLayerUpload |  Repository arn:aws:ecr:*region*:*account*:repository/*my\-repo*  | 
+| CreateRepository |  *  | 
 | DeleteLifecyclePolicy |  Repository arn:aws:ecr:*region*:*account*:repository/*my\-repo*  | 
 | DeleteRepository |  Repository arn:aws:ecr:*region*:*account*:repository/*my\-repo*  | 
 | DeleteRepositoryPolicy |  Repository arn:aws:ecr:*region*:*account*:repository/*my\-repo*  | 
 | DescribeImages |  Repository arn:aws:ecr:*region*:*account*:repository/*my\-repo*  | 
 | DescribeRepositories |  Repository arn:aws:ecr:*region*:*account*:repository/*my\-repo*  | 
+| GetAuthorizationToken |  *  | 
 | GetDownloadUrlForLayer |  Repository arn:aws:ecr:*region*:*account*:repository/*my\-repo*  | 
 | GetLifecyclePolicy |  Repository arn:aws:ecr:*region*:*account*:repository/*my\-repo*  | 
 | GetLifecyclePolicyPreview |  Repository arn:aws:ecr:*region*:*account*:repository/*my\-repo*  | 
