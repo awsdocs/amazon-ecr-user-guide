@@ -4,7 +4,7 @@ You can use Amazon ECR registries to host your images in a highly available and 
 
 ## Registry Concepts<a name="registry_concepts"></a>
 + The URL for your default registry is `https://``aws_account_id.dkr.ecr.region.amazonaws.com`\.
-+ By default, you have read and write access to the repositories and images you create in your default registry\.
++ By default, your account has read and write access to the repositories in your default registry\. However, IAM users require permissions to make calls to the Amazon ECR APIs and to push or pull images from your repositories\. Amazon ECR provides several managed policies to control user access at varying levels; for more information, see [Amazon ECR Managed Policies](ecr_managed_policies.md)\.
 + You must authenticate your Docker client to a registry so that you can use the docker push and docker pull commands to push and pull images to and from the repositories in that registry\. For more information, see [Registry Authentication](#registry_auth)\.
 + Repositories can be controlled with both IAM user access policies and repository policies\.
 
