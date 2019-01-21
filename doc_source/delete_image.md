@@ -7,15 +7,15 @@ If you are done with a repository, you can delete the entire repository and all 
 
 **To delete an image with the AWS Management Console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
-1. From the navigation bar, choose the region that contains the image to delete\.
+1. From the navigation bar, choose the Region that contains the image to delete\.
 
 1. In the navigation pane, choose **Repositories**\.
 
 1. On the **Repositories** page, choose the repository that contains the image to delete\.
 
-1. On the **All repositories: *repository\_name*** page, select the box to the left of the images to delete and choose **Delete**\.
+1. On the **Repositories: *repository\_name*** page, select the box to the left of the image to delete and choose **Delete**\.
 
 1. In the **Delete image\(s\)** dialog box, verify that the selected images should be deleted and choose **Delete**\.
 

@@ -18,26 +18,26 @@ A lifecycle policy allows you to create a set of rules that expire unused reposi
 
 **To create a lifecycle policy using the console**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
 1. From the navigation bar, choose the Region that contains the repository for which to create a lifecycle policy\.
 
 1. In the navigation pane, choose **Repositories** and select a repository\.
 
-1. On the **All repositories: *repository\_name*** page, choose **Lifecycle Policy**, **Add**\.
+1. On the **Repositories: *repository\_name*** page, in the navigation pane choose **Lifecycle Policy**\.
+
+1. On the **Repositories: *repository\_name*: Lifecycle policy** page, choose **Create rule**\.
 
 1. Enter the following details for your lifecycle policy rule:
 
-   1. For **Rule Priority**, type a number for the rule priority\.
+   1. For **Rule priority**, type a number for the rule priority\.
 
-   1. For **Rule Description**, type a description for the lifecycle policy rule\.
+   1. For **Rule description**, type a description for the lifecycle policy rule\.
 
-   1. For **Image Status**, choose **Tagged**, **Untagged**, or **Any**\.
+   1. For **Image status**, choose **Tagged**, **Untagged**, or **Any**\.
 
-   1. If you specified `Tagged` for **Image Status**, for **Tag Prefix List**, you can optionally specify a list of image tags on which to take action with your lifecycle policy\. If you specified `Untagged`, this field must be empty\.
+   1. If you specified `Tagged` for **Image status**, then for **Tag prefixes**, you can optionally specify a list of image tags on which to take action with your lifecycle policy\. If you specified `Untagged`, this field must be empty\.
 
-   1. For **Match criteria**, choose values for **Count Type**, **Count Number**, and **Count Unit** \(if applicable\)\.
+   1. For **Match criteria**, choose values for **Since image pushed** or **Image count more than** \(if applicable\)\.
 
-1. Choose **Apply as lifecycle policy**\.
-**Note**  
-If you choose **Dry Run**, it creates a lifecycle policy preview\.
+1. Choose **Save**\.

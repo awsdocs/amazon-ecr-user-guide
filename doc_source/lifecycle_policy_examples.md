@@ -276,7 +276,7 @@ Repository contents:
 + Image B, Taglist: \[\], Pushed: 3 days ago
 + Image C, Taglist: \["alpha\-2"\], Pushed: 2 days ago
 + Image D, Taglist: \["git hash"\], Pushed: 1 day ago
-+ Image E, Taglist: \[\], Pushed: 1 hour ago
++ Image E, Taglist: \[\], Pushed: 1 day ago
 
 ```
 {
@@ -300,7 +300,7 @@ Repository contents:
             "selection": {
                 "tagStatus": "untagged",
                 "countType": "sinceImagePushed",
-                "countUnit": "hours",
+                "countUnit": "day",
                 "countNumber": 1
             },
             "action": {
@@ -325,6 +325,6 @@ Repository contents:
 
 The logic of this lifecycle policy would be:
 + Rule 1 identifies images tagged with `alpha`\. It identifies images A and C\. It should keep the newest image and mark the rest for expiration\. It marks image A for expiration\.
-+ Rule 2 identifies untagged images\. It identifies images B and E\. It should mark all images older than one hour for expiration\. It marks image B for expiration\.
++ Rule 2 identifies untagged images\. It identifies images B and E\. It should mark all images older than one day for expiration\. It marks image B for expiration\.
 + Rule 3 identifies all images\. It identifies images A, B, C, D, and E\. It should keep the newest image and mark the rest for expiration\. However, it can't mark images A, B, or C because they were identified by higher priority rules\. It marks image D for expiration\. 
 + Result: Images A, B, and D are expired\.

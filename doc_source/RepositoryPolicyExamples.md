@@ -91,7 +91,7 @@ The following repository policy allows all AWS accounts to pull images\.
 The following repository policy allows some IAM users to pull images \(*pull\-user\-1* and *pull\-user\-2*\) while providing full access to another \(*admin\-user*\)\.
 
 **Note**  
-For more complicated repository policies that are not currently supported in the AWS Management Console, you can apply the policy with the [set\-repository\-policy](http://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html) AWS CLI command\.
+For more complicated repository policies that are not currently supported in the AWS Management Console, you can apply the policy with the [https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html](https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html) AWS CLI command\.
 
 ```
 {

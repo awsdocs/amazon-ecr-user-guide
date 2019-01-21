@@ -17,13 +17,13 @@ If you already have Docker installed, skip to [Create a Docker Image](#docker-ba
 
 Docker is available on many different operating systems, including most modern Linux distributions, like Ubuntu, and even Mac OSX and Windows\. For more information about how to install Docker on your particular operating system, go to the [Docker installation guide](https://docs.docker.com/engine/installation/#installation)\.
 
-You don't even need a local development system to use Docker\. If you are using Amazon EC2 already, you can launch an Amazon Linux instance and install Docker to get started\.
+You don't even need a local development system to use Docker\. If you are using Amazon EC2 already, you can launch an instance and install Docker to get started\.
 
-**To install Docker on an Amazon Linux instance**
+**To install Docker on an Amazon EC2 instance**
 
-1. Launch an instance with the Amazon Linux AMI\. For more information, see [Launching an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. Launch an instance with either the Amazon Linux 2 or Amazon Linux AMI\. For more information, see [Launching an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-1. Connect to your instance\. For more information, see [Connect to Your Linux Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. Connect to your instance\. For more information, see [Connect to Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. Update the installed packages and package cache on your instance\.
 
@@ -32,10 +32,16 @@ You don't even need a local development system to use Docker\. If you are using 
    ```
 
 1. Install the most recent Docker Community Edition package\.
+   + Amazon Linux 2\.
 
-   ```
-   sudo yum install -y docker
-   ```
+     ```
+     sudo amazon-linux-extras install docker
+     ```
+   + Amazon Linux\.
+
+     ```
+     sudo yum install docker
+     ```
 
 1. Start the Docker service\.
 
@@ -78,28 +84,28 @@ In this section, you create a Docker image of a simple web application, and test
 1. Edit the `Dockerfile` you just created and add the following content\.
 
    ```
-   FROM ubuntu:12.04
+   FROM ubuntu:16.04
    
    # Install dependencies
-   RUN apt-get update -y
-   RUN apt-get install -y apache2
+   RUN apt-get update
+   RUN apt-get -y install apache2
    
    # Install apache and write hello world message
-   RUN echo "Hello World!" > /var/www/index.html
+   RUN echo 'Hello World!' > /var/www/html/index.html
    
    # Configure apache
-   RUN a2enmod rewrite
-   RUN chown -R www-data:www-data /var/www
-   ENV APACHE_RUN_USER www-data
-   ENV APACHE_RUN_GROUP www-data
-   ENV APACHE_LOG_DIR /var/log/apache2
+   RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh
+   RUN echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh
+   RUN echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh
+   RUN echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh
+   RUN chmod 755 /root/run_apache.sh
    
    EXPOSE 80
    
-   CMD ["/usr/sbin/apache2", "-D",  "FOREGROUND"]
+   CMD /root/run_apache.sh
    ```
 
-   This Dockerfile uses the Ubuntu 12\.04 image\. The `RUN` instructions update the package caches, install some software packages for the web server, and then write the "Hello World\!" content to the web server's document root\. The `EXPOSE` instruction exposes port 80 on the container, and the `CMD` instruction starts the web server\.
+   This Dockerfile uses the Ubuntu 16\.04 image\. The `RUN` instructions update the package caches, install some software packages for the web server, and then write the "Hello World\!" content to the web server's document root\. The `EXPOSE` instruction exposes port 80 on the container, and the `CMD` instruction starts the web server\.
 
 1. <a name="sample-docker-build-step"></a>Build the Docker image from your Dockerfile\.
 **Note**  
@@ -147,15 +153,16 @@ Output from the Apache web server is displayed in the terminal window\. You can 
 
 Amazon ECR is a managed AWS Docker registry service\. Customers can use the familiar Docker CLI to push, pull, and manage images\. For Amazon ECR product details, featured customer case studies, and FAQs, see the [Amazon Elastic Container Registry product detail pages](http://aws.amazon.com/ecr)\.
 
-**Note**  
-This section requires the AWS CLI\. If you do not have the AWS CLI installed on your system, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+This section requires the following:
++ You have the AWS CLI installed and configured\. If you do not have the AWS CLI installed on your system, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
++ Your user has the required IAM permissions to access the Amazon ECR service\. For more information, see [Amazon ECR Managed Policies](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html)\.
 
 **To tag your image and push it to Amazon ECR**
 
 1. Create an Amazon ECR repository to store your `hello-world` image\. Note the `repositoryUri` in the output\.
 
    ```
-   aws ecr create-repository --repository-name hello-world
+   aws ecr create-repository --repository-name hello-repository
    ```
 
    Output:
@@ -165,9 +172,9 @@ This section requires the AWS CLI\. If you do not have the AWS CLI installed on 
        "repository": {
            "registryId": "aws_account_id",
            "repositoryName": "hello-world",
-           "repositoryArn": "arn:aws:ecr:us-east-1:aws_account_id:repository/hello-world",
+           "repositoryArn": "arn:aws:ecr:us-east-1:aws_account_id:repository/hello-repository",
            "createdAt": 1505337806.0,
-           "repositoryUri": "aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world"
+           "repositoryUri": "aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-repository"
        }
    }
    ```
@@ -175,12 +182,12 @@ This section requires the AWS CLI\. If you do not have the AWS CLI installed on 
 1. Tag the `hello-world` image with the `repositoryUri` value from the previous step\.
 
    ```
-   docker tag hello-world aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world
+   docker tag hello-world aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-repository
    ```
 
 1. Run the aws ecr get\-login \-\-no\-include\-email command to get the docker login authentication command string for your registry\. 
 **Note**  
-The get\-login command is available in the AWS CLI starting with version 1\.9\.15; however, we recommend version 1\.11\.91 or later for recent versions of Docker \(17\.06 or later\)\. You can check your AWS CLI version with the aws \-\-version command\. If you are using Docker version 17\.06 or later, include the `--no-include-email` option after `get-login`\. If you receive an `Unknown options: --no-include-email` error, install the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+The get\-login command is available in the AWS CLI starting with version 1\.9\.15; however, we recommend version 1\.11\.91 or later for recent versions of Docker \(17\.06 or later\)\. You can check your AWS CLI version with the aws \-\-version command\. If you are using Docker version 17\.06 or later, include the `--no-include-email` option after `get-login`\. If you receive an `Unknown options: --no-include-email` error, install the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
    ```
    aws ecr get-login --no-include-email
@@ -188,12 +195,12 @@ The get\-login command is available in the AWS CLI starting with version 1\.9\.1
 
 1. Run the docker login command that was returned in the previous step\. This command provides an authorization token that is valid for 12 hours\.
 **Important**  
-When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way and use them to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
+When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way\. They could use the credentials to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
 
 1. Push the image to Amazon ECR with the `repositoryUri` value from the earlier step\.
 
    ```
-   docker push aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world
+   docker push aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-repository
    ```
 
 ## Next Steps<a name="docker_next_steps"></a>
@@ -201,8 +208,8 @@ When you execute this docker login command, the command string can be visible to
 When you are done experimenting with your Amazon ECR image, you can delete the repository so you are not charged for image storage\.
 
 **Note**  
-This section requires the AWS CLI\. If you do not have the AWS CLI installed on your system, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+This section requires the AWS CLI\. If you do not have the AWS CLI installed on your system, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
 ```
-aws ecr delete-repository --repository-name hello-world --force
+aws ecr delete-repository --repository-name hello-repository --force
 ```

@@ -10,18 +10,18 @@ You can use Amazon ECR registries to host your images in a highly available and 
 
 ## Registry Authentication<a name="registry_auth"></a>
 
-You can use the AWS Management Console, the AWS CLI, or the AWS SDKs to create and manage repositories, and to perform some actions on images, such as listing or deleting them\. These clients use standard AWS authentication methods\. Although technically you can use the Amazon ECR API to push and pull images, you are much more likely to use Docker CLI \(or a language\-specific Docker library\) for these purposes\.
+You can use the AWS Management Console, the AWS CLI, or the AWS SDKs to create and manage repositories\. You can also use those methods to perform some actions on images, such as listing or deleting them\. These clients use standard AWS authentication methods\. Although technically you can use the Amazon ECR API to push and pull images, you are much more likely to use Docker CLI \(or a language\-specific Docker library\)\.
 
-Because the Docker CLI does not support the standard AWS authentication methods, you must authenticate your Docker client another way so that Amazon ECR knows who is requesting to push or pull an image\. If you are using the Docker CLI, then use the docker login command to authenticate to an Amazon ECR registry with an authorization token that is provided by Amazon ECR and is valid for 12 hours\. The [GetAuthorizationToken](http://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) API operation provides a base64\-encoded authorization token that contains a user name \(`AWS`\) and a password that you can decode and use in a docker login command\. However, a much simpler get\-login command \(which retrieves the token, decodes it, and converts it to a docker login command for you\) is available in the AWS CLI\.
+Because the Docker CLI does not support the standard AWS authentication methods, you must authenticate your Docker client another way\. That way, Amazon ECR knows who is requesting to push or pull an image\. If you are using the Docker CLI, then use the docker login command to authenticate to an Amazon ECR registry\. Use an authorization token that is provided by Amazon ECR and is valid for 12 hours\. The [GetAuthorizationToken](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) API operation provides a base64\-encoded authorization token that contains a user name \(`AWS`\) and a password that you can decode and use in a docker login command\. However, a much simpler get\-login command \(which retrieves the token, decodes it, and converts it to a docker login command for you\) is available in the AWS CLI\.
 
 **To authenticate Docker to an Amazon ECR registry with get\-login**
 **Note**  
 The get\-login command is available in the AWS CLI starting with version 1\.9\.15; however, we recommend version 1\.11\.91 or later for recent versions of Docker \(17\.06 or later\)\. You can check your AWS CLI version with the aws \-\-version command\.
 
-1. Run the aws ecr get\-login command\. The example below is for the default registry associated with the account making the request\. To access other account registries, use the `--registry-ids aws_account_id` option\. For more information, see [get\-login](http://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html) in the *AWS CLI Command Reference*\.
+1. Run the aws ecr get\-login command\. The example below is for the default registry associated with the account making the request\. To access other account registries, use the `--registry-ids aws_account_id` option\. For more information, see [get\-login](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html) in the *AWS CLI Command Reference*\.
 
    ```
-   aws ecr get-login --no-include-email
+   aws ecr get-login --region region --no-include-email
    ```
 
    Output:
@@ -30,7 +30,7 @@ The get\-login command is available in the AWS CLI starting with version 1\.9\.1
    docker login -u AWS -p password https://aws_account_id.dkr.ecr.us-east-1.amazonaws.com
    ```
 **Important**  
-If you receive an `Unknown options: --no-include-email` error, install the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+If you receive an `Unknown options: --no-include-email` error, install the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
    The resulting output is a docker login command that you use to authenticate your Docker client to your Amazon ECR registry\.
 
@@ -42,7 +42,7 @@ If you are using Windows PowerShell, copying and pasting long strings like this 
    Invoke-Expression -Command (aws ecr get-login --no-include-email)
    ```
 **Important**  
-When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way and use them to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
+When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way\. They could use the credentials to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
 
 ## HTTP API Authentication<a name="registry_auth_http"></a>
 
@@ -56,7 +56,7 @@ Amazon ECR supports the [Docker Registry HTTP API](https://docs.docker.com/regis
    TOKEN=$(aws ecr get-authorization-token --output text --query 'authorizationData[].authorizationToken')
    ```
 
-1. Pass the `$TOKEN` variable to the `-H` option of curl to authenticate to the API\. For example, the following command lists the image tags in an Amazon ECR repository\. For more information, see the [Docker Registry HTTP API](https://docs.docker.com/registry/spec/api/) reference documentation\.
+1. To authenticate to the API, pass the `$TOKEN` variable to the `-H` option of curl\. For example, the following command lists the image tags in an Amazon ECR repository\. For more information, see the [Docker Registry HTTP API](https://docs.docker.com/registry/spec/api/) reference documentation\.
 
    ```
    curl -i -H "Authorization: Basic $TOKEN" https://012345678910.dkr.ecr.us-east-1.amazonaws.com/v2/amazonlinux/tags/list

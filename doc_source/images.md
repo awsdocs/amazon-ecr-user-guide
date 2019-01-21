@@ -1,6 +1,6 @@
 # Images<a name="images"></a>
 
-Amazon ECR stores Docker images in image repositories\. You can use the Docker CLI to push and pull images from your repositories\.
+Amazon Elastic Container Registry \(Amazon ECR\) stores Docker images in image repositories\. You can use the Docker CLI to push and pull images from your repositories\.
 
 **Important**  
 Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed policies to control user access at varying levels; for more information, see [Amazon ECR Managed Policies](ecr_managed_policies.md)\.

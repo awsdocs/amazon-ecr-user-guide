@@ -19,12 +19,12 @@ The contents of your lifecycle policy is evaluated before being associated with 
     "rules": [
         {
             "rulePriority": integer,
-            "description": string,
+            "description": "string",
             "selection": {
                 "tagStatus": "tagged"|"untagged"|"any",
                 "tagPrefixList": list<string>,
                 "countType": "imageCountMoreThan"|"sinceImagePushed",
-                "countUnit": string,
+                "countUnit": "string",
                 "countNumber": integer
             },
             "action": {
@@ -78,7 +78,7 @@ Determines whether the lifecycle policy rule that you are adding specifies a tag
 `tagPrefixList`  
 Type: list\[string\]  
 Required: yes, only if `tagStatus` is set to tagged  
-Only used if you specified `"tagStatus": "tagged"`\. You must specify a comma\-separated list of image tag prefixes on which to take action with your lifecycle policy\. For example, if your images are tagged as `prod`, `prod1`, `prod2`, and so on, you would use the tag prefix `prod` to specify all of them\. If you specify multiple tags, only images with all specified tags are selected\.
+Only used if you specified `"tagStatus": "tagged"`\. You must specify a comma\-separated list of image tag prefixes on which to take action with your lifecycle policy\. For example, if your images are tagged as `prod`, `prod1`, `prod2`, and so on, you would use the tag prefix `prod` to specify all of them\. If you specify multiple tags, only the images with all specified tags are selected\.
 
 ### Count Type<a name="lp_count_type"></a>
 

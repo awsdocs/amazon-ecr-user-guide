@@ -1,8 +1,8 @@
 # Using the AWS CLI with Amazon ECR<a name="ECR_AWSCLI"></a>
 
-The following steps will help you install the AWS CLI and then log in to Amazon ECR, create an image repository, push an image to that repository, and perform other common scenarios in Amazon ECR with the AWS CLI\.
+The following steps help you install the AWS Command Line Interface and then log in to Amazon ECR\. From there, you can create an image repository, push an image to that repository, and perform other common scenarios in Amazon ECR\.
 
-The AWS Command Line Interface \(CLI\) is a unified tool to manage your AWS services\. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts\. For more information on the AWS CLI, see [http://aws\.amazon\.com/cli/](http://aws.amazon.com/cli/)\.
+The AWS CLI is a unified tool to manage your AWS services\. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts\. For more information, see [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\.
 
 For more information on the other tools available for managing your AWS resources, including the different AWS SDKs, IDE toolkits, and the Windows PowerShell command line tools, see [http://aws\.amazon\.com/tools/](http://aws.amazon.com/tools/)\.
 
@@ -17,16 +17,16 @@ For more information on the other tools available for managing your AWS resource
 
 ## Step 1: Authenticate Docker to your Default Registry<a name="AWSCLI_get-login"></a>
 
-After you have installed and configured the AWS CLI, you can authenticate the Docker CLI to your default registry so that the docker command can push and pull images with Amazon ECR\. The AWS CLI provides a get\-login command to simplify the authentication process\.
+After you have installed and configured the AWS CLI, authenticate the Docker CLI to your default registry\. That way, the docker command can push and pull images with Amazon ECR\. The AWS CLI provides a get\-login command to simplify the authentication process\.
 
 **To authenticate Docker to an Amazon ECR registry with get\-login**
 **Note**  
 The get\-login command is available in the AWS CLI starting with version 1\.9\.15; however, we recommend version 1\.11\.91 or later for recent versions of Docker \(17\.06 or later\)\. You can check your AWS CLI version with the aws \-\-version command\.
 
-1. Run the aws ecr get\-login command\. The example below is for the default registry associated with the account making the request\. To access other account registries, use the `--registry-ids aws_account_id` option\. For more information, see [get\-login](http://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html) in the *AWS CLI Command Reference*\.
+1. Run the aws ecr get\-login command\. The example below is for the default registry associated with the account making the request\. To access other account registries, use the `--registry-ids aws_account_id` option\. For more information, see [get\-login](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html) in the *AWS CLI Command Reference*\.
 
    ```
-   aws ecr get-login --no-include-email
+   aws ecr get-login --region region --no-include-email
    ```
 
    Output:
@@ -35,7 +35,7 @@ The get\-login command is available in the AWS CLI starting with version 1\.9\.1
    docker login -u AWS -p password https://aws_account_id.dkr.ecr.us-east-1.amazonaws.com
    ```
 **Important**  
-If you receive an `Unknown options: --no-include-email` error, install the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+If you receive an `Unknown options: --no-include-email` error, install the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
    The resulting output is a docker login command that you use to authenticate your Docker client to your Amazon ECR registry\.
 
@@ -47,11 +47,11 @@ If you are using Windows PowerShell, copying and pasting long strings like this 
    Invoke-Expression -Command (aws ecr get-login --no-include-email)
    ```
 **Important**  
-When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way and use them to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
+When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way\. They could use the credentials to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
 
 ## Step 2: Get a Docker Image<a name="AWSCLI_get_docker_image"></a>
 
-Before you can push an image to Amazon ECR, you need to have one to push\. If you do not already have an image to use, you can create one by following the steps in [Docker Basics for Amazon ECR](docker-basics.md), or you can simply pull an image from Docker Hub that you would like to have in your Amazon ECR registry\. To pull the `ubuntu:trusty` image from Docker hub to your local system, run the following command:
+Before you can push an image to Amazon ECR, you must have one to push\. If you do not already have an image to use, you can create one by following the steps in [Docker Basics for Amazon ECR](docker-basics.md)\. Or, pull an image from Docker Hub that you would like to have in your Amazon ECR registry\. To pull the `ubuntu:trusty` image from Docker Hub to your local system, run the following command:
 
 ```
 $ docker pull ubuntu:trusty
@@ -66,7 +66,7 @@ Status: Downloaded newer image for ubuntu:trusty
 
 ## Step 3: Create a Repository<a name="AWSCLI_create_repository"></a>
 
-Now that you have an image to push to Amazon ECR, you need to create a repository to hold it\. In this example, you create a repository called `ubuntu` to which you later push the `ubuntu:trusty` image\. To create a repository, run the following command:
+Now that you have an image to push to Amazon ECR, you must create a repository to hold it\. In this example, you create a repository called `ubuntu` to which you later push the `ubuntu:trusty` image\. To create a repository, run the following command:
 
 ```
 $ aws ecr create-repository --repository-name ubuntu
@@ -118,7 +118,7 @@ After those prerequisites are met, you can push your image to your newly created
 
 ## Step 5: Pull an Image from Amazon ECR<a name="AWSCLI_pull_image"></a>
 
-After your image has been pushed to your Amazon ECR repository, you can pull it from other locations\. We will use the docker CLI to pull images, but there are a few prerequisites that must be satisfied for this to work properly:
+After your image has been pushed to your Amazon ECR repository, you can pull it from other locations\. Use the docker CLI to pull images, but there are a few prerequisites that must be satisfied for this to work properly:
 + The minimum version of docker is installed: 1\.7
 + The Amazon ECR authorization token has been configured with docker login\.
 + The Amazon ECR repository exists and the user has access to pull from the repository\.

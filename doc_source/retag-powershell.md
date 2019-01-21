@@ -1,12 +1,12 @@
 # Retagging an Image with the AWS Tools for Windows PowerShell<a name="retag-powershell"></a>
 
-With Docker Image Manifest V2 Schema 2 images, you can use the `-ImageTag` option of the AWS Tools for Windows PowerShell Get\-ECRImage cmdlet to retag an existing image, without pulling or pushing the image with Docker\. For larger images, this process saves a considerable amount of network bandwidth and time required to retag an image\.
+With Docker Image Manifest V2 Schema 2 images, you can use the `-ImageTag` option of the AWS Tools for Windows PowerShell Get\-ECRImage cmdlet to retag an existing image\. You can retag without pulling or pushing the image with Docker\. For larger images, this process saves a considerable amount of network bandwidth and time required to retag an image\.
 
 **To retag an image with the AWS Tools for Windows PowerShell**
 
 1. Use the Get\-ECRImageBatch cmdlet to get the description of the image to retag and write it to an environment variable\. In this example, an image with the tag, *latest*, in the repository, *amazonlinux*, is written to the environment variable, *$Image*\.
 **Note**  
-If you don't have the Get\-ECRImageBatch cmdlet available on your system, see [Setting up the AWS Tools for Windows PowerShell](http://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-set-up.html) in the *AWS Tools for Windows PowerShell User Guide*\.
+If you don't have the Get\-ECRImageBatch cmdlet available on your system, see [Setting up the AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-set-up.html) in the *AWS Tools for Windows PowerShell User Guide*\.
 
    ```
    $Image = Get-ECRImageBatch -ImageId @{ imageTag="latest" } -RepositoryName amazonlinux

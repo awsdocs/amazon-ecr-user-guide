@@ -1,6 +1,6 @@
 # Pulling an Image<a name="docker-pull-ecr-image"></a>
 
-If you would like to run a Docker image that is available in Amazon ECR \(either in your default registry or from a registry associated with another AWS account\), you can pull it to your local environment with the docker pull command\. If you want to use an Amazon ECR image in an Amazon ECS task definition, see [Using Amazon ECR Images with Amazon ECS](ECR_on_ECS.md)\.
+If you would like to run a Docker image that is available in Amazon ECR, you can pull it to your local environment with the docker pull command\. You can do this from either your default registry or from a registry associated with another AWS account\. To use an Amazon ECR image in an Amazon ECS task definition, see [Using Amazon ECR Images with Amazon ECS](ECR_on_ECS.md)\.
 
 **Important**  
 Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed policies to control user access at varying levels; for more information, see [Amazon ECR Managed Policies](ecr_managed_policies.md)\.
@@ -10,14 +10,14 @@ Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before 
 1. Authenticate your Docker client to the Amazon ECR registry that you intend to pull your image from\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry Authentication](Registries.md#registry_auth)\.
 
 1. \(Optional\) Identify the image to pull\.
-   + You can list the repositories in a registry with the aws ecr describe\-repositories command\.
+   + You can list the repositories in a registry with the aws ecr describe\-repositories command:
 
      ```
      aws ecr describe-repositories
      ```
 
      The example registry above has a repository called `amazonlinux`\.
-   + You can describe the images within a repository with the aws ecr describe\-images command\.
+   + You can describe the images within a repository with the aws ecr describe\-images command:
 
      ```
      aws ecr describe-images --repository-name amazonlinux

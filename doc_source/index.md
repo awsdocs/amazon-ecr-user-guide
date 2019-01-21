@@ -1,7 +1,7 @@
 # Amazon ECR User Guide
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -27,6 +27,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Setting a Repository Policy Statement](set-repository-policy.md)
       + [Deleting a Repository Policy Statement](delete-repository-policy.md)
       + [Amazon ECR Repository Policy Examples](RepositoryPolicyExamples.md)
+   + [Tagging an Amazon ECR Repository](ecr-using-tags.md)
 + [Images](images.md)
    + [Pushing an Image](docker-push-ecr-image.md)
    + [Retagging an Image with the AWS CLI](retag-aws-cli.md)
@@ -44,9 +45,11 @@ Amazon's trademarks and trade dress may not be used in
    + [Policy Structure](iam-policy-structure.md)
    + [Amazon ECR Managed Policies](ecr_managed_policies.md)
    + [Supported Resource-Level Permissions for Amazon ECR API Actions](ecr-supported-iam-actions-resources.md)
+   + [Using Tag-Based Access Control](ecr-supported-iam-actions-tagging.md)
    + [Creating Amazon ECR IAM Policies](ECR_IAM_user_policies.md)
 + [Using the AWS CLI with Amazon ECR](ECR_AWSCLI.md)
 + [Amazon ECR Service Limits](service_limits.md)
++ [Amazon ECR Usage Reports](usage-reports.md)
 + [Logging Amazon ECR API Calls with AWS CloudTrail](logging-using-cloudtrail.md)
 + [Amazon ECR Troubleshooting](troubleshooting.md)
    + [Troubleshooting Errors with Docker Commands When Using Amazon ECR](common-errors-docker.md)

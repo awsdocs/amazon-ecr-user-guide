@@ -4,14 +4,14 @@ If you are done using a repository, you can delete it\. When you delete a reposi
 
 **To delete a repository**
 
-1. Open the Amazon ECS console at [https://console\.aws\.amazon\.com/ecs/](https://console.aws.amazon.com/ecs/)\.
+1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
 1. From the navigation bar, choose the region that contains the repository to delete\.
 
 1. In the navigation pane, choose **Repositories**\.
 
-1. On the **Repositories** page, select the box to the left of the repositories to delete and choose **Delete repository**\.
+1. On the **Repositories** page, select the repository to delete and choose **Delete**\.
 
-1. In the **Delete repository** window, verify that the selected repositories should be deleted and choose **Delete**\.
+1. In the **Delete *repository\_name*** window, verify that the selected repositories should be deleted and choose **Delete**\.
 **Important**  
-Any images in the selected repositories is also deleted\.
+Any images in the selected repositories are also deleted\.

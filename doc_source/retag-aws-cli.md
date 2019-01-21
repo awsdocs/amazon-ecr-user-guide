@@ -1,6 +1,6 @@
 # Retagging an Image with the AWS CLI<a name="retag-aws-cli"></a>
 
-With Docker Image Manifest V2 Schema 2 images, you can use the `--image-tag` option of the put\-image command to retag an existing image, without pulling or pushing the image with Docker\. For larger images, this process saves a considerable amount of network bandwidth and time required to retag an image\.
+With Docker Image Manifest V2 Schema 2 images, you can use the `--image-tag` option of the put\-image command to retag an existing image\. You can retag without pulling or pushing the image with Docker\. For larger images, this process saves a considerable amount of network bandwidth and time required to retag an image\.
 
 **Note**  
 This procedure does not work for Windows clients because of the way the AWS CLI output text is interpreted by the shell\. To retag an image on Windows clients, see [Retagging an Image with the AWS Tools for Windows PowerShell](retag-powershell.md)\.
@@ -15,7 +15,7 @@ This procedure does not work for Windows clients because of the way the AWS CLI 
 
 1. Use the `--image-tag` option of the put\-image command to put the image manifest to Amazon ECR with a new tag\. In this example, the image is tagged as *2017\.03*\.
 **Note**  
-If the `--image-tag` option is not available in your version of the AWS CLI, upgrade to the latest version\. For more information, see [Installing the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/) in the *AWS Command Line Interface User Guide*\.
+If the `--image-tag` option is not available in your version of the AWS CLI, upgrade to the latest version\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/) in the *AWS Command Line Interface User Guide*\.
 
    ```
    aws ecr put-image --repository-name amazonlinux --image-tag 2017.03 --image-manifest "$MANIFEST"
