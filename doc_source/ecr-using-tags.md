@@ -51,7 +51,7 @@ The tags you add to your Amazon ECR repositories are helpful when reviewing cost
 
 To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information about setting up a cost allocation report with tags, see [The Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in the *AWS Billing and Cost Management User Guide*\.
 
-**Note**  
+**Note**
 If you've just enabled reporting, data for the current month is available for viewing after 24 hours\.
 
 ## Working with Tags Using the Console<a name="tag-resources-console"></a>
@@ -95,37 +95,37 @@ When you select a specific repository in the Amazon ECR console, you can view th
 Use the following to add, update, list, and delete the tags for your resources\. The corresponding documentation provides examples\.
 
 
-**Tagging Support for Amazon ECR Resources**  
+**Tagging Support for Amazon ECR Resources**
 
-| Task | AWS CLI | API Action | 
-| --- | --- | --- | 
-|  Add or overwrite one or more tags\.  |  [tag\-resource](https://docs.aws.amazon.com/cli/latest/reference/ecr/tag-resource.html)  |  [TagResource](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_TagResource.html)  | 
-|  Delete one or more tags\.  |  [untag\-resource](https://docs.aws.amazon.com/cli/latest/reference/ecr/untag-resource.html)  |  [UntagResource](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_UntagResource.html)  | 
+| Task | AWS CLI | API Action |
+| --- | --- | --- |
+|  Add or overwrite one or more tags\.  |  [tag\-resource](https://docs.aws.amazon.com/cli/latest/reference/ecr/tag-resource.html)  |  [TagResource](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_TagResource.html)  |
+|  Delete one or more tags\.  |  [untag\-resource](https://docs.aws.amazon.com/cli/latest/reference/ecr/untag-resource.html)  |  [UntagResource](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_UntagResource.html)  |
 
 The following examples show how to manage tags using the AWS CLI\.
 
-**Example 1: Tag an existing repository**  
+**Example 1: Tag an existing repository**
 The following command tags an existing repository\.
 
 ```
-aws ecr tag-resource --resource-arn arn:aws:ecr:region:account_id:repository:repository_name --tags Key=stack,Value=dev
+aws ecr tag-resource --resource-arn arn:aws:ecr:region:account_id:repository/repository_name --tags Key=stack,Value=dev
 ```
 
-**Example 2: Untag an existing repository**  
+**Example 2: Untag an existing repository**
 The following command deletes a tag from an existing repository\.
 
 ```
-aws ecr untag-resource --resource-arn arn:aws:ecr:region:account_id:repository:repository_name --tag-keys tag_key
+aws ecr untag-resource --resource-arn arn:aws:ecr:region:account_id:repository/repository_name --tag-keys tag_key
 ```
 
-**Example 3: List tags for a repository**  
+**Example 3: List tags for a repository**
 The following command lists the tags associated with an existing repository\.
 
 ```
-aws ecr list-tags-for-resource --resource-arn arn:aws:ecr:region:account_id:repository:repository_name
+aws ecr list-tags-for-resource --resource-arn arn:aws:ecr:region:account_id:repository/repository_name
 ```
 
-**Example 4: Create a repository and apply a tag**  
+**Example 4: Create a repository and apply a tag**
 The following command creates a repository named `test-repo` and adds a tag with key `team` and value `devs`\.
 
 ```
