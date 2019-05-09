@@ -92,7 +92,7 @@ Specify a count type to apply to the images\. If `countType` is set to `imageCou
 `countUnit`  
 Type: string  
 Required: yes, only if `countType` is set to `sinceImagePushed`  
-Specify a count unit of `days` to indicate that as the unit of time, in addition to `countNumber`, which is the number of days\. 
+Specify a count unit of `days` to indicate that as the unit of time, in addition to `countNumber`, which is the number of days\. This should only be specified when `countType` is `sinceImagePushed`; an error will occur if you specify a count unit when `countType` is any other value\.
 
 ### Count Number<a name="lp_count_number"></a>
 

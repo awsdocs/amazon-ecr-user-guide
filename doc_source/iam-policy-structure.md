@@ -130,7 +130,7 @@ If you specify multiple conditions or multiple keys in a single condition, we ev
 
 You can also use placeholders when you specify conditions\. For more information, see [Policy Variables](https://docs.aws.amazon.com/IAM/latest/UserGuide/PolicyVariables.html) in the *IAM User Guide*\.
 
-Amazon ECR implements the AWS\-wide condition keys \(see [Available Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/AccessPolicyLanguage_ElementDescriptions.html#AvailableKeys)\), with the exception of the `aws:SecureTransport` condition key which is currently not supported\.
+Amazon ECR implements the AWS global condition context keys, with the exception of the `aws:SourceVpc` and `aws:SourceVpce` condition keys which are currently not supported\. For more information, see [AWS Global Condition Context Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html) in the *IAM User Guide*\.
 
 For example repository policy statements for Amazon ECR, see [Amazon ECR Repository Policies](RepositoryPolicies.md)\.
 

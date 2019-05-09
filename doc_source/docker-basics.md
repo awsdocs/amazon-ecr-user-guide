@@ -8,7 +8,7 @@ The documentation in this guide assumes that readers possess a basic understandi
 + [Installing Docker](#install_docker)
 + [Create a Docker Image](#docker-basics-create-image)
 + [\(Optional\) Push your image to Amazon Elastic Container Registry](#use-ecr)
-+ [Next Steps](#docker_next_steps)
++ [\(Optional\) Clean up](#docker_cleanup)
 
 ## Installing Docker<a name="install_docker"></a>
 
@@ -21,7 +21,7 @@ You don't even need a local development system to use Docker\. If you are using 
 
 **To install Docker on an Amazon EC2 instance**
 
-1. Launch an instance with either the Amazon Linux 2 or Amazon Linux AMI\. For more information, see [Launching an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. Launch an instance with the Amazon Linux 2 AMI\. For more information, see [Launching an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. Connect to your instance\. For more information, see [Connect to Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
@@ -32,16 +32,10 @@ You don't even need a local development system to use Docker\. If you are using 
    ```
 
 1. Install the most recent Docker Community Edition package\.
-   + Amazon Linux 2\.
 
-     ```
-     sudo amazon-linux-extras install docker
-     ```
-   + Amazon Linux\.
-
-     ```
-     sudo yum install docker
-     ```
+   ```
+   sudo amazon-linux-extras install docker
+   ```
 
 1. Start the Docker service\.
 
@@ -125,13 +119,13 @@ Some versions of Docker may require the full path to your Dockerfile in the foll
 
    ```
    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-   hello-world         latest              e9ffedc8c286        4 minutes ago       258MB
+   hello-world         latest              e9ffedc8c286        4 minutes ago       241MB
    ```
 
 1. Run the newly built image\. The `-p 80:80` option maps the exposed port 80 on the container to port 80 on the host system\. For more information about docker run, go to the [Docker run reference](https://docs.docker.com/engine/reference/run/)\.
 
    ```
-   docker run -p 80:80 hello-world
+   docker run -t -i -p 80:80 hello-world
    ```
 **Note**  
 Output from the Apache web server is displayed in the terminal window\. You can ignore the "`Could not reliably determine the server's fully qualified domain name`" message\.
@@ -162,7 +156,7 @@ This section requires the following:
 1. Create an Amazon ECR repository to store your `hello-world` image\. Note the `repositoryUri` in the output\.
 
    ```
-   aws ecr create-repository --repository-name hello-repository
+   aws ecr create-repository --repository-name hello-repository --region region
    ```
 
    Output:
@@ -171,10 +165,10 @@ This section requires the following:
    {
        "repository": {
            "registryId": "aws_account_id",
-           "repositoryName": "hello-world",
-           "repositoryArn": "arn:aws:ecr:us-east-1:aws_account_id:repository/hello-repository",
+           "repositoryName": "hello-repository",
+           "repositoryArn": "arn:aws:ecr:region:aws_account_id:repository/hello-repository",
            "createdAt": 1505337806.0,
-           "repositoryUri": "aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-repository"
+           "repositoryUri": "aws_account_id.dkr.ecr.region.amazonaws.com/hello-repository"
        }
    }
    ```
@@ -182,7 +176,7 @@ This section requires the following:
 1. Tag the `hello-world` image with the `repositoryUri` value from the previous step\.
 
    ```
-   docker tag hello-world aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-repository
+   docker tag hello-world aws_account_id.dkr.ecr.region.amazonaws.com/hello-repository
    ```
 
 1. Run the aws ecr get\-login \-\-no\-include\-email command to get the docker login authentication command string for your registry\. 
@@ -190,7 +184,7 @@ This section requires the following:
 The get\-login command is available in the AWS CLI starting with version 1\.9\.15; however, we recommend version 1\.11\.91 or later for recent versions of Docker \(17\.06 or later\)\. You can check your AWS CLI version with the aws \-\-version command\. If you are using Docker version 17\.06 or later, include the `--no-include-email` option after `get-login`\. If you receive an `Unknown options: --no-include-email` error, install the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
    ```
-   aws ecr get-login --no-include-email
+   aws ecr get-login --no-include-email --region region
    ```
 
 1. Run the docker login command that was returned in the previous step\. This command provides an authorization token that is valid for 12 hours\.
@@ -200,16 +194,13 @@ When you execute this docker login command, the command string can be visible to
 1. Push the image to Amazon ECR with the `repositoryUri` value from the earlier step\.
 
    ```
-   docker push aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-repository
+   docker push aws_account_id.dkr.ecr.region.amazonaws.com/hello-repository
    ```
 
-## Next Steps<a name="docker_next_steps"></a>
+## \(Optional\) Clean up<a name="docker_cleanup"></a>
 
 When you are done experimenting with your Amazon ECR image, you can delete the repository so you are not charged for image storage\.
 
-**Note**  
-This section requires the AWS CLI\. If you do not have the AWS CLI installed on your system, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
-
 ```
-aws ecr delete-repository --repository-name hello-repository --force
+aws ecr delete-repository --repository-name hello-repository --region region --force
 ```
