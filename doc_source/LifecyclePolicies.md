@@ -111,7 +111,7 @@ Specify an action type\. The supported value is `expire`\.
 ## Lifecycle Policy Evaluation Rules<a name="lp_evaluation_rules"></a>
 
 The lifecycle policy evaluator is responsible for parsing the plaintext JSON and applying it to the images in the specified repository\. The following rules should be noted when creating a lifecycle policy:
-+ An image is expired by exactly one or zero rules\.
++ An image is expired by exactly one rule\.
 + An image that matches the tagging requirements of a rule cannot be expired by a rule with a lower priority\.
 + Rules can never mark images that are marked by higher priority rules, but can still identify them as if they haven't been expired\.
 + The set of rules must contain a unique set of tag prefixes\.
