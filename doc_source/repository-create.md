@@ -6,13 +6,17 @@ Before you can push your Docker images to Amazon ECR, you must create a reposito
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
-1. From the navigation bar, choose the region to create your repository in\.
+1. From the navigation bar, choose the Region to create your repository in\.
 
 1. In the navigation pane, choose **Repositories**\.
 
 1. On the **Repositories** page, choose **Create repository**\.
 
-1. For **Repository configuration**, enter a unique name for your repository and choose **Create repository**\.
+1. For **Repository configuration**, enter a unique name for your repository\.
+
+1. For **Image tag mutability**, choose the tag mutability setting for the repository\. Repositories configured with immutable tags will prevent image tags from being overwritten\. For more information, see [Image Tag Mutability](image-tag-mutability.md)\.
+
+1. Choose **Create repository**\.
 
 1. \(Optional\) Select the repository you created and choose **View push commands** to view the steps to push an image to your new repository\.
 

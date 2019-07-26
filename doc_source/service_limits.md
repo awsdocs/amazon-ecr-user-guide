@@ -5,8 +5,8 @@ The following table provides the default limits for Amazon Elastic Container Reg
 
 | Resource | Default Limit | 
 | --- | --- | 
-| Maximum number of repositories per region | 1,000 | 
-| Maximum number of images per repository | 1,000 | 
+| Maximum number of repositories per region | 10,000 | 
+| Maximum number of images per repository | 10,000 | 
 | Number of [https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) API transactions per second, per region, per account | 20 sustained, with the ability to burst up to 200 \* | 
 | Number of docker pull transactions to a repository per second, per region, per account | 200 sustained, with the ability to burst up to 400 \*  | 
 | Number of docker pull layer transactions to a repository per second, per region, per account | 200 sustained, with the ability to burst up to 400 \* | 
@@ -23,7 +23,6 @@ We recommend that you use the docker CLI to pull, tag, and push images\.
 
 | Resource | Default Limit | 
 | --- | --- | 
-| Maximum number of layers per image | 127 \(this is the current Docker limit\) | 
 | Maximum number of tags per image | 100 | 
 | Maximum layer size \*\* | 10,000 MiB | 
 | Maximum layer part size | 10 MiB | 

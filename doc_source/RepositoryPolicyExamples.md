@@ -3,14 +3,31 @@
 The following examples show policy statements that you could use to control the permissions that users have to Amazon ECR repositories\.
 
 **Important**  
-Amazon ECR users require permissions to call `ecr:GetAuthorizationToken` before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed policies to control user access at varying levels; for more information, see [Amazon ECR Managed Policies](ecr_managed_policies.md)\.
+Amazon ECR requires that users have allow permissions to the `ecr:GetAuthorizationToken` API through an IAM policy before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed IAM policies to control user access at varying levels; for more information, see [Amazon ECR Managed Policies](ecr_managed_policies.md)\.
 
-**Topics**
-+ [Example: Allow IAM Users Within Your Account](#IAM_within_account)
-+ [Example: Allow Other Accounts](#IAM_allow_other_accounts)
-+ [Example: Deny All](#IAM_deny_all)
+## Example: Allow All AWS Accounts To Pull Images<a name="IAM_all_accounts"></a>
 
-## Example: Allow IAM Users Within Your Account<a name="IAM_within_account"></a>
+The following repository policy allows all AWS accounts to pull images\.
+
+```
+{
+  "Version": "2008-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowPull",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": [
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage",
+        "ecr:BatchCheckLayerAvailability"
+      ]
+    }
+  ]
+}
+```
+
+## Example: Allow Specific IAM Users Within Your Account<a name="IAM_within_account"></a>
 
 The following repository policy allows IAM users within your account to push and pull images\.
 
@@ -23,8 +40,8 @@ The following repository policy allows IAM users within your account to push and
       "Effect": "Allow",
       "Principal": {
         "AWS": [
-          "arn:aws:iam::aws_account_id:user/push-pull-user-1",
-          "arn:aws:iam::aws_account_id:user/push-pull-user-2"
+          "arn:aws:iam::123456789012:user/push-pull-user-1",
+          "arn:aws:iam::123456789012:user/push-pull-user-2"
         ]
       },
       "Action": [
@@ -53,7 +70,7 @@ The following repository policy allows a specific account to push images\.
       "Sid": "AllowCrossAccountPush",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::aws_account_id:root"
+        "AWS": "arn:aws:iam::123456789012:root"
       },
       "Action": [
         "ecr:GetDownloadUrlForLayer",
@@ -62,26 +79,6 @@ The following repository policy allows a specific account to push images\.
         "ecr:InitiateLayerUpload",
         "ecr:UploadLayerPart",
         "ecr:CompleteLayerUpload"
-      ]
-    }
-  ]
-}
-```
-
-The following repository policy allows all AWS accounts to pull images\.
-
-```
-{
-  "Version": "2008-10-17",
-  "Statement": [
-    {
-      "Sid": "AllowPull",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": [
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:BatchGetImage",
-        "ecr:BatchCheckLayerAvailability"
       ]
     }
   ]
@@ -102,8 +99,8 @@ For more complicated repository policies that are not currently supported in the
       "Effect": "Allow",
       "Principal": {
         "AWS": [
-          "arn:aws:iam::aws_account_id:user/pull-user-1",
-          "arn:aws:iam::aws_account_id:user/pull-user-2"
+          "arn:aws:iam::123456789012:user/pull-user-1",
+          "arn:aws:iam::123456789012:user/pull-user-2"
         ]
       },
       "Action": [
@@ -116,7 +113,7 @@ For more complicated repository policies that are not currently supported in the
       "Sid": "AllowAll",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::aws_account_id:user/admin-user"
+        "AWS": "arn:aws:iam::123456789012:user/admin-user"
       },
       "Action": [
         "ecr:*"
@@ -142,6 +139,30 @@ The following repository policy denies all users the ability to pull images\.
         "ecr:GetDownloadUrlForLayer",
         "ecr:BatchGetImage",
         "ecr:BatchCheckLayerAvailability"
+      ]
+    }
+  ]
+}
+```
+
+## Example: Service\-Linked Role<a name="IAM_service_linked"></a>
+
+The following repository policy allows AWS CodeBuild access to the Amazon ECR API actions necessary for integration with that service\. For more information, see [Amazon ECR Sample for CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-ecr.html) in the *AWS CodeBuild User Guide*\.
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CodeBuildAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "codebuild.amazonaws.com"
+      },
+      "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchGetImage",
+        "ecr:GetDownloadUrlForLayer"
       ]
     }
   ]

@@ -8,8 +8,8 @@ For more information about PrivateLink and VPC endpoints, see [Accessing AWS Ser
 + [Considerations for Amazon ECR VPC Endpoints](#ecr-vpc-endpoint-considerations)
 + [Creating the VPC Endpoint for Amazon ECR](#ecr-setting-up-vpc-create)
 + [Creating the Amazon S3 Gateway Endpoint](#ecr-setting-up-s3-gateway)
++ [Creating the CloudWatch Logs Endpoint](#ecr-setting-up-cloudwatch-logs)
 + [Minimum Amazon S3 Bucket Permissions for Amazon ECR](ecr-minimum-s3-perms.md)
-+ [Creating the VPC Endpoint for Amazon CloudWatch Logs](#cwlogs-setting-up-vpc-create)
 
 ## Considerations for Amazon ECR VPC Endpoints<a name="ecr-vpc-endpoint-considerations"></a>
 
@@ -17,12 +17,12 @@ Before you configure VPC endpoints for Amazon ECR, be aware of the following con
 + To allow your Amazon ECS tasks that use the EC2 launch type to pull private images from Amazon ECR, ensure that you also create the interface VPC endpoints for Amazon ECS\. For more information, see [Interface VPC Endpoints \(AWS PrivateLink\)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/vpc-endpoints.html) in the *Amazon Elastic Container Service Developer Guide*\.
 **Important**  
 Amazon ECS tasks that use the Fargate launch type don't require the Amazon ECS interface VPC endpoints\.
-+ Tasks using the Fargate launch type only require the **com\.amazonaws\.*region*\.ecr\.dkr** Amazon ECR VPC endpoint and the Amazon S3 gateway endpoint to take advantage of this feature\. If you enabled logging to CloudWatch, make sure to also add the Amazon CloudWatch Logs endpoint.
++ Tasks using the Fargate launch type only require the **com\.amazonaws\.*region*\.ecr\.dkr** Amazon ECR VPC endpoint and the Amazon S3 gateway endpoint to take advantage of this feature\.
++ Tasks using the Fargate launch type that pull container images from Amazon ECR can restrict access to the specific VPC their tasks use and the VPC endpoint the service uses by adding condition keys to their task execution role\. For more information, see [Amazon ECS Task Execution IAM Role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html) in the *Amazon Elastic Container Service Developer Guide*\.
 + VPC endpoints currently don't support cross\-Region requests\. Ensure that you create your endpoint in the same Region where you plan to issue your API calls to Amazon ECR\.
 + VPC endpoints only support Amazon\-provided DNS through Amazon Route 53\. If you want to use your own DNS, you can use conditional DNS forwarding\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
 + The security group attached to the VPC endpoint must allow incoming connections on port 443 from the private subnet of the VPC\.
 + When you create the Amazon S3 gateway endpoint, if your containers have existing connections to Amazon S3, their connections might be briefly interrupted while the gateway is being added\. If you want to avoid this interruption, create a new VPC that uses the Amazon S3 gateway endpoint and then migrate your Amazon ECS cluster and its containers into the new VPC\.
-+ Remember to add the CloudWatch Logs interface endpoint. This is a must, given that all tasks at the service level are going to be using CloudWatch Logs as a log repository.
 
 ## Creating the VPC Endpoint for Amazon ECR<a name="ecr-setting-up-vpc-create"></a>
 
@@ -60,11 +60,6 @@ To create the Amazon S3 gateway endpoint for the Amazon ECR service, use the [Cr
 **com\.amazonaws\.*region*\.s3**  
 The Amazon S3 gateway endpoint uses an IAM policy document to limit access to the service\. The **Full Access** policy can be used because any restrictions that you have put in your task IAM roles or other IAM user policies still apply on top of this policy\. If you want to limit Amazon S3 bucket access to the minimum required permissions required to use Amazon ECR, see [Minimum Amazon S3 Bucket Permissions for Amazon ECR](ecr-minimum-s3-perms.md)\.
 
-## Creating the VPC Endpoint for Amazon CloudWatch Logs<a name="cwlogs-vpc-endpoint-considerations"></a>
+## Creating the CloudWatch Logs Endpoint<a name="ecr-setting-up-cloudwatch-logs"></a>
 
-This interface endpoint is required for all ECS tasks to insert logs on a CloudWatch Logs stream. When your container initializes, the task puts logs on a CloudWatch Logs and not having this endpoint is going to result on ECS to not be able to move the task from provisioning to running.
-
-To create the VPC endpoint for the Amazon Cloudwatch Logs service, use the [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint) procedure in the *Amazon VPC User Guide* to create the endpoints described here\.
-
-The required endpoint to accomplish connection from your VPC to CloudWatch Logs is **com\.amazonaws\.*region*\.logs**   
-
+For tasks using the Fargate launch type, if your VPC doesn't have an internet gateway and your tasks use the `awslogs` log driver to send log information to CloudWatch Logs, you must create the **com\.amazonaws\.*region*\.logs interface** VPC endpoint for CloudWatch Logs\. For more information, see [Using CloudWatch Logs with Interface VPC Endpoints](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html) in the *Amazon CloudWatch Logs User Guide*\.

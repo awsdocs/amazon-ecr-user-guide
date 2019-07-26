@@ -10,27 +10,30 @@ For a list of Amazon ECR operations, see [Actions](https://docs.aws.amazon.com/A
 For the Amazon ECR API operations that do not support resource\-level permissions, you can grant users permission to use the operation\. You have to specify the \* \(asterisk\) wildcard for the resource element of your policy statement\.
 
 
-| API action | Resource Repository | 
-| --- | --- | 
-| BatchCheckLayerAvailability |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| BatchDeleteImage |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| BatchGetImage |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| CompleteLayerUpload |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| CreateRepository |  This action does not support resource\-level permissions\.  | 
-| DeleteLifecyclePolicy |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| DeleteRepository |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| DeleteRepositoryPolicy |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| DescribeImages |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| DescribeRepositories |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| GetAuthorizationToken |  This action does not support resource\-level permissions\.  | 
-| GetDownloadUrlForLayer |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| GetLifecyclePolicy |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| GetLifecyclePolicyPreview |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| GetRepositoryPolicy |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| InitiateLayerUpload |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| ListImages |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| PutImage |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| PutLifecyclePolicy |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| SetRepositoryPolicy |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| StartLifecyclePolicyPreview |  `arn:aws:ecr:region:account:repository/my-repo`  | 
-| UploadLayerPart |  `arn:aws:ecr:region:account:repository/my-repo`  | 
+| API action | Resource Types | Condition Keys | 
+| --- | --- | --- | 
+|  `BatchCheckLayerAvailability`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `BatchDeleteImage`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `BatchGetImage`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `CompleteLayerUpload`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `CreateRepository`  |  N/A  |  aws:RequestTag  | 
+|  `DeleteLifecyclePolicy`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `DeleteRepository`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `DeleteRepositoryPolicy`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `DescribeImages`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `DescribeRepositories`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `GetAuthorizationToken`  |  N/A  |  | 
+|  `GetDownloadUrlForLayer`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `GetLifecyclePolicy`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `GetLifecyclePolicyPreview`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `GetRepositoryPolicy`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `InitiateLayerUpload`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `ListImages`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `ListTagsForResource`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `PutImage`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `PutLifecyclePolicy`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `SetRepositoryPolicy`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `StartLifecyclePolicyPreview`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `TagResource`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:RequestTag aws:ResourceTag ecr:ResourceTag  | 
+|  `UntagResource`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 
+|  `UploadLayerPart`  |  Repository `arn:aws:ecr:region:account:repository/my-repo`  |  aws:ResourceTag ecr:ResourceTag  | 

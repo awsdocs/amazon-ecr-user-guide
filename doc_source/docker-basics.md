@@ -4,12 +4,6 @@ Docker is a technology that allows you to build, run, test, and deploy distribut
 
 The documentation in this guide assumes that readers possess a basic understanding of what Docker is and how it works\. For more information about Docker, see [What is Docker?](http://aws.amazon.com/docker/) and the [Docker overview](https://docs.docker.com/engine/docker-overview/)\.
 
-**Topics**
-+ [Installing Docker](#install_docker)
-+ [Create a Docker Image](#docker-basics-create-image)
-+ [\(Optional\) Push your image to Amazon Elastic Container Registry](#use-ecr)
-+ [\(Optional\) Clean up](#docker_cleanup)
-
 ## Installing Docker<a name="install_docker"></a>
 
 **Note**  

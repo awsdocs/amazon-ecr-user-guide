@@ -115,7 +115,7 @@ aws ecr tag-resource --resource-arn arn:aws:ecr:region:account_id:repository/rep
 The following command tags an existing repository\.
 
 ```
-aws ecr tag-resource --resource-arn arn:aws:ecr:region:account_id:repository/repository_name --tags key=key1,value=value1 key=key2,value=value2 key=key3,value=value3
+aws ecr tag-resource --resource-arn arn:aws:ecr:region:account_id:repository/repository_name --tags Key=key1,Value=value1 key=key2,value=value2 key=key3,value=value3
 ```
 
 **Example 3: Untag an existing repository**  
