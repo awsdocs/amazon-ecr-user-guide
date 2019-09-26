@@ -1,14 +1,15 @@
 # Amazon ECR Interface VPC Endpoints \(AWS PrivateLink\)<a name="vpc-endpoints"></a>
 
-You can improve the security posture of your VPC by configuring Amazon ECR to use an interface VPC endpoint\. Interface endpoints are powered by AWS PrivateLink, a technology that enables you to privately access Amazon ECR APIs by using private IP addresses\. PrivateLink restricts all network traffic between your VPC and Amazon ECR to the Amazon network\. Also, you don't need an internet gateway, a NAT device, or a virtual private gateway\. For Amazon ECS tasks using the Fargate launch type, this enables the task to pull private images from Amazon ECR without the need to assign a public IP address to the task\.
+You can improve the security posture of your VPC by configuring Amazon ECR to use an interface VPC endpoint\. VPC endpoints are powered by AWS PrivateLink, a technology that enables you to privately access Amazon ECR APIs by using private IP addresses\. PrivateLink restricts all network traffic between your VPC and Amazon ECR to the Amazon network\. Also, you don't need an internet gateway, a NAT device, or a virtual private gateway\. For Amazon ECS tasks using the Fargate launch type, this enables the task to pull private images from Amazon ECR without the need to assign a public IP address to the task\.
 
 For more information about PrivateLink and VPC endpoints, see [Accessing AWS Services Through PrivateLink](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Introduction.html#what-is-privatelink)\.
 
 **Topics**
 + [Considerations for Amazon ECR VPC Endpoints](#ecr-vpc-endpoint-considerations)
-+ [Creating the VPC Endpoint for Amazon ECR](#ecr-setting-up-vpc-create)
-+ [Creating the Amazon S3 Gateway Endpoint](#ecr-setting-up-s3-gateway)
-+ [Creating the CloudWatch Logs Endpoint](#ecr-setting-up-cloudwatch-logs)
++ [Create the VPC Endpoint for Amazon ECR](#ecr-setting-up-vpc-create)
++ [Create the Amazon S3 Gateway Endpoint](#ecr-setting-up-s3-gateway)
++ [Create the CloudWatch Logs Endpoint](#ecr-setting-up-cloudwatch-logs)
++ [Create an Endpoint Policy for your Amazon ECR VPC Endpoint](#ecr-vpc-endpoint-policy)
 + [Minimum Amazon S3 Bucket Permissions for Amazon ECR](ecr-minimum-s3-perms.md)
 
 ## Considerations for Amazon ECR VPC Endpoints<a name="ecr-vpc-endpoint-considerations"></a>
@@ -24,14 +25,15 @@ Amazon ECS tasks that use the Fargate launch type don't require the Amazon ECS i
 + The security group attached to the VPC endpoint must allow incoming connections on port 443 from the private subnet of the VPC\.
 + When you create the Amazon S3 gateway endpoint, if your containers have existing connections to Amazon S3, their connections might be briefly interrupted while the gateway is being added\. If you want to avoid this interruption, create a new VPC that uses the Amazon S3 gateway endpoint and then migrate your Amazon ECS cluster and its containers into the new VPC\.
 
-## Creating the VPC Endpoint for Amazon ECR<a name="ecr-setting-up-vpc-create"></a>
+## Create the VPC Endpoint for Amazon ECR<a name="ecr-setting-up-vpc-create"></a>
 
-To create the VPC endpoint for the Amazon ECR service, use the [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint) procedure in the *Amazon VPC User Guide* to create the endpoints described here\.
+To create the VPC endpoints for the Amazon ECR service, use the [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint) procedure in the *Amazon VPC User Guide*\.
 
 If your Amazon ECS tasks are using the EC2 launch type, both endpoints are required, and the order that they are created in doesn't matter\. If your tasks are using the Fargate launch type, only the **com\.amazonaws\.*region*\.ecr\.dkr** endpoint is required\.
 
 **com\.amazonaws\.*region*\.ecr\.api**  
 *region* represents the Region identifier for an AWS Region supported by Amazon ECR, such as `us-east-2` for the US East \(Ohio\) Region\.
+This endpoint is used for calls to the Amazon ECR API\. API actions such as DescribeImages and CreateRepositories go to this endpoint\.  
 When the `com.amazonaws.region.ecr.api` endpoint is created, enabling a private DNS hostname is optional\. Enabling a private DNS hostname is done by ensuring that the **Enable Private DNS Name** option is selected in the VPC console when you create the VPC endpoint\. If you enable a private DNS hostname for the VPC endpoint, update your SDK or AWS CLI to the latest version so that specifying an endpoint URL when using the SDK or AWS CLI isn't necessary\.  
 If you enable a private DNS hostname and are using an SDK or AWS CLI version before January 24, 2019, you must use the `--endpoint-url` parameter to specify the interface endpoints\. The following example CLI command shows the format of the endpoint URL:  
 
@@ -45,9 +47,10 @@ aws ecr create-repository --repository-name name --endpoint-url https://VPC_endp
 ```
 
 **com\.amazonaws\.*region*\.ecr\.dkr**  
+This endpoint is used for the Docker Registry APIs\. Docker client commands such as push and pull use this endpoint\.  
 When you create the `com.amazonaws.region.ecr.dkr` endpoint, you must enable a private DNS hostname\. To do this, ensure that the **Enable Private DNS Name** option is selected in the VPC console when you create the VPC endpoint\.
 
-## Creating the Amazon S3 Gateway Endpoint<a name="ecr-setting-up-s3-gateway"></a>
+## Create the Amazon S3 Gateway Endpoint<a name="ecr-setting-up-s3-gateway"></a>
 
 A gateway endpoint for Amazon S3 is required for all Amazon ECS tasks to pull private images from Amazon ECR because Amazon ECR uses Amazon S3 to store Docker image layers\. When your containers download Docker images from Amazon ECR, they must access Amazon ECR to get the image manifest and Amazon S3 to download the actual image layers\. The following is the Amazon Resource Name \(ARN\) of the Amazon S3 bucket containing the layers for each Docker image:
 
@@ -60,6 +63,99 @@ To create the Amazon S3 gateway endpoint for the Amazon ECR service, use the [Cr
 **com\.amazonaws\.*region*\.s3**  
 The Amazon S3 gateway endpoint uses an IAM policy document to limit access to the service\. The **Full Access** policy can be used because any restrictions that you have put in your task IAM roles or other IAM user policies still apply on top of this policy\. If you want to limit Amazon S3 bucket access to the minimum required permissions required to use Amazon ECR, see [Minimum Amazon S3 Bucket Permissions for Amazon ECR](ecr-minimum-s3-perms.md)\.
 
-## Creating the CloudWatch Logs Endpoint<a name="ecr-setting-up-cloudwatch-logs"></a>
+## Create the CloudWatch Logs Endpoint<a name="ecr-setting-up-cloudwatch-logs"></a>
 
 For tasks using the Fargate launch type, if your VPC doesn't have an internet gateway and your tasks use the `awslogs` log driver to send log information to CloudWatch Logs, you must create the **com\.amazonaws\.*region*\.logs interface** VPC endpoint for CloudWatch Logs\. For more information, see [Using CloudWatch Logs with Interface VPC Endpoints](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html) in the *Amazon CloudWatch Logs User Guide*\.
+
+## Create an Endpoint Policy for your Amazon ECR VPC Endpoint<a name="ecr-vpc-endpoint-policy"></a>
+
+A VPC endpoint policy is an IAM resource policy that you attach to an endpoint when you create or modify the endpoint\. If you don't attach a policy when you create an endpoint, we attach a default policy for you that allows full access to the service\. An endpoint policy doesn't override or replace IAM user policies or service\-specific policies\. It's a separate policy for controlling access from the endpoint to the specified service\. Endpoint policies must be written in JSON format\. For more information, see [Controlling Access to Services with VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html) in the *Amazon VPC User Guide*\.
+
+We recommend creating a single IAM resource policy and attaching it to both of the Amazon ECR VPC endpoints\.
+
+The following is an example of an endpoint policy for Amazon ECR\. This policy enables a specific IAM role to pull images from Amazon ECR\.
+
+```
+{
+	"Statement": [{
+		"Sid": "AllowPull",
+		"Principal": {
+			"AWS": "arn:aws:iam::1234567890:role/role_name"
+		},
+		"Action": [
+			"ecr:BatchGetImage",
+			"ecr:GetDownloadUrlForLayer"
+		],
+		"Effect": "Allow",
+		"Resource": "*"
+	}]
+}
+```
+
+The following endpoint policy example would prevent a specified repository from being deleted\.
+
+```
+{
+	"Statement": [{
+			"Sid": "AllowAll",
+			"Principal": "*",
+			"Action": "*",
+			"Effect": "Allow",
+			"Resource": "*"
+		},
+		{
+			"Sid": "PreventDelete",
+			"Principal": "*",
+			"Action": "ecr:DeleteRepository",
+			"Effect": "Deny",
+			"Resource": "arn:aws:ecr:region:1234567890:repository/repository_name"
+		}
+	]
+}
+```
+
+The following endpoint policy example combines the two examples above into a single policy\.
+
+```
+{
+	"Statement": [{
+			"Sid": "AllowAll",
+			"Effect": "Allow",
+			"Principal": "*",
+			"Action": "*",
+			"Resource": "*"
+		},
+		{
+			"Sid": "PreventDelete",
+			"Effect": "Deny",
+			"Principal": "*",
+			"Action": "ecr:DeleteRepository",
+			"Resource": "arn:aws:ecr:region:1234567890:repository/repository_name"
+		},
+		{
+			"Sid": "AllowPull",
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "arn:aws:iam::1234567890:role/role_name"
+			},
+			"Action": [
+				"ecr:BatchGetImage",
+				"ecr:GetDownloadUrlForLayer"
+			],
+			"Resource": "*"
+		}
+	]
+}
+```
+
+**To modify the VPC endpoint policy for Amazon ECR**
+
+1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
+
+1. In the navigation pane, choose **Endpoints**\.
+
+1. If you have not already created the VPC endpoints for Amazon ECR, see [Create the VPC Endpoint for Amazon ECR](#ecr-setting-up-vpc-create)\.
+
+1. Select the Amazon ECR VPC endpoint to add a policy to, and choose the **Policy** tab in the lower half of the screen\.
+
+1. Choose **Edit Policy** and make the changes to the policy\.

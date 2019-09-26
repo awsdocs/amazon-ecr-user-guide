@@ -5,6 +5,7 @@ The following table describes the important changes to the documentation since t
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+|  VPC Endpoint Policy  |  Added support for setting an IAM policy on the Amazon ECR interface VPC endpoints\. For more information, see [Create an Endpoint Policy for your Amazon ECR VPC Endpoint](vpc-endpoints.md#ecr-vpc-endpoint-policy)\.  |  26 Sept 2019  | 
 |  Image Tag Mutability  |  Added support for configuring a repository to be immutable to prevent image tags from being overwritten\. For more information, see [Image Tag Mutability](image-tag-mutability.md)\.  |  25 July 2019  | 
 |  Interface VPC Endpoints \(AWS PrivateLink\)  |  Added support for configuring interface VPC endpoints powered by AWS PrivateLink\. This allows you to create a private connection between your VPC and Amazon ECR without requiring access over the Internet, through a NAT instance, a VPN connection, or AWS Direct Connect\. For more information, see [Amazon ECR Interface VPC Endpoints \(AWS PrivateLink\)](vpc-endpoints.md)\.  |  25 Jan 2019  | 
 |  Resource tagging  |  Amazon ECR added support for adding metadata tags to your repositories\. For more information, see [Tagging an Amazon ECR Repository](ecr-using-tags.md)\.  |  18 Dec 2018  | 

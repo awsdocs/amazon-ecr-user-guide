@@ -1,11 +1,5 @@
 # Troubleshooting Amazon ECR Error Messages<a name="common-errors"></a>
 
-**Topics**
-+ [Error: "Error Response from Daemon: Invalid Registry Endpoint" When Running aws ecr get\-login](#error-invalid-registry-endpoint)
-+ [HTTP 429: Too Many Requests or ThrottleException](#error-429-too-many-requests)
-+ [HTTP 403: "User \[arn\] is not authorized to perform \[operation\]"](#error-unauthorized)
-+ [HTTP 404: "Repository Does Not Exist" Error](#repo-does-not-exist-error)
-
 In some cases, an API call that you have triggered through the Amazon ECS console or the AWS CLI exits with an error message\. Some common error messages and potential solutions are explained below\. 
 
 ## Error: "Error Response from Daemon: Invalid Registry Endpoint" When Running aws ecr get\-login<a name="error-invalid-registry-endpoint"></a>

@@ -7,12 +7,12 @@ Amazon ECR requires that users have allow permissions to the `ecr:GetAuthorizati
 
 **Topics**
 + [Pushing an Image](docker-push-ecr-image.md)
-+ [Retagging an Image with the AWS CLI](retag-aws-cli.md)
-+ [Retagging an Image with the AWS Tools for Windows PowerShell](retag-powershell.md)
-+ [Image Tag Mutability](image-tag-mutability.md)
 + [Pulling an Image](docker-pull-ecr-image.md)
++ [Deleting an Image](delete_image.md)
++ [Retagging an Image](image-retag.md)
++ [Amazon ECR Lifecycle Policies](LifecyclePolicies.md)
++ [Image Tag Mutability](image-tag-mutability.md)
 + [Container Image Manifest Formats](image-manifest-formats.md)
 + [Using Amazon ECR Images with Amazon ECS](ECR_on_ECS.md)
-+ [Deleting an Image](delete_image.md)
++ [Using Amazon ECR Images with Amazon EKS](ECR_on_EKS.md)
 + [Amazon Linux Container Image](amazon_linux_container_image.md)
-+ [Amazon ECR Lifecycle Policies](LifecyclePolicies.md)
