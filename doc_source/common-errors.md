@@ -40,7 +40,7 @@ A client error (AccessDeniedException) occurred when calling the GetAuthorizatio
     ecr:GetAuthorizationToken on resource: *
 ```
 
-This indicates that your user does not have permissions granted to use Amazon ECR, or that those permissions are not set up correctly\. In particular, if you are performing actions against an Amazon ECR repository, verify that the user has been granted permissions to access that repository\. For more information about creating and verifying permissions for Amazon ECR, see [Amazon ECR IAM Policies and Roles](ECR_IAM_policies.md)\.
+This indicates that your user does not have permissions granted to use Amazon ECR, or that those permissions are not set up correctly\. In particular, if you are performing actions against an Amazon ECR repository, verify that the user has been granted permissions to access that repository\. For more information about creating and verifying permissions for Amazon ECR, see [Identity and Access Management for Amazon Elastic Container Registry](security-iam.md)\.
 
 ## HTTP 404: "Repository Does Not Exist" Error<a name="repo-does-not-exist-error"></a>
 

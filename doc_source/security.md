@@ -9,5 +9,6 @@ Security is a shared responsibility between AWS and you\. The [shared responsibi
 This documentation helps you understand how to apply the shared responsibility model when using Amazon ECR\. The following topics show you how to configure Amazon ECR to meet your security and compliance objectives\. You also learn how to use other AWS services that help you to monitor and secure your Amazon ECR resources\. 
 
 **Topics**
-+ [Amazon ECR IAM Policies and Roles](ECR_IAM_policies.md)
-+ [Amazon ECR Interface VPC Endpoints \(AWS PrivateLink\)](vpc-endpoints.md)
++ [Identity and Access Management for Amazon Elastic Container Registry](security-iam.md)
++ [Compliance Validation for Amazon Elastic Container Registry](ecr-compliance.md)
++ [Infrastructure Security in Amazon Elastic Container Registry](infrastructure-security.md)

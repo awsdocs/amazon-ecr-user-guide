@@ -1,10 +1,10 @@
-# Amazon ECR Registries<a name="Registries"></a>
+# Amazon ECR Registries<a name="registries"></a>
 
 You can use Amazon ECR registries to host your images in a highly available and scalable architecture, allowing you to deploy containers reliably for your applications\. You can use your registry to manage image repositories and Docker images\. Each AWS account is provided with a single \(default\) Amazon ECR registry\.
 
 ## Registry Concepts<a name="registry_concepts"></a>
 + The URL for your default registry is `https://``aws_account_id.dkr.ecr.region.amazonaws.com`\.
-+ By default, your account has read and write access to the repositories in your default registry\. However, IAM users require permissions to make calls to the Amazon ECR APIs and to push or pull images from your repositories\. Amazon ECR provides several managed policies to control user access at varying levels\. For more information, see [Amazon ECR Managed Policies](ecr_managed_policies.md)\.
++ By default, your account has read and write access to the repositories in your default registry\. However, IAM users require permissions to make calls to the Amazon ECR APIs and to push or pull images from your repositories\. Amazon ECR provides several managed policies to control user access at varying levels\. For more information, see [Amazon Elastic Container Registry Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
 + You must authenticate your Docker client to a registry so that you can use the docker push and docker pull commands to push and pull images to and from the repositories in that registry\. For more information, see [Registry Authentication](#registry_auth)\.
 + Repositories can be controlled with both IAM user access policies and repository policies\.
 
@@ -12,7 +12,7 @@ You can use Amazon ECR registries to host your images in a highly available and 
 
 You can use the AWS Management Console, the AWS CLI, or the AWS SDKs to create and manage repositories\. You can also use those methods to perform some actions on images, such as listing or deleting them\. These clients use standard AWS authentication methods\. Although technically you can use the Amazon ECR API to push and pull images, you are much more likely to use Docker CLI \(or a language\-specific Docker library\)\.
 
-Because the Docker CLI does not support the standard AWS authentication methods, you must authenticate your Docker client another way\. That way, Amazon ECR knows who is requesting to push or pull an image\. If you are using the Docker CLI, then use the docker login command to authenticate to an Amazon ECR registry\. Use an authorization token that is provided by Amazon ECR and is valid for 12 hours\. The [GetAuthorizationToken](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) API operation provides a base64\-encoded authorization token that contains a user name \(`AWS`\) and a password that you can decode and use in a docker login command\. However, a much simpler get\-login command \(which retrieves the token, decodes it, and converts it to a docker login command for you\) is available in the AWS CLI\.
+The Docker CLI does not support native IAM authentication methods\. Additional steps must be taken so that Amazon ECR can authenticate and authorize Docker push and pull requests\. You must use the [GetAuthorizationToken](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) API operation to retrieve a base64\-encoded authorization token containing the username `AWS` and an encoded password\. The AWS CLI `get-login` command simplifies this by retrieving, decoding, and converting the authorization token into a pre\-generated docker login command\.
 
 **To authenticate Docker to an Amazon ECR registry with get\-login**
 **Note**  

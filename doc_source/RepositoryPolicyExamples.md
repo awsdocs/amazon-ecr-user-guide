@@ -3,7 +3,7 @@
 The following examples show policy statements that you could use to control the permissions that users have to Amazon ECR repositories\.
 
 **Important**  
-Amazon ECR requires that users have allow permissions to the `ecr:GetAuthorizationToken` API through an IAM policy before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed IAM policies to control user access at varying levels; for more information, see [Amazon ECR Managed Policies](ecr_managed_policies.md)\.
+Amazon ECR requires that users have allow permissions to the `ecr:GetAuthorizationToken` API through an IAM policy before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed IAM policies to control user access at varying levels; for more information, see [Amazon Elastic Container Registry Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
 
 ## Example: Allow All AWS Accounts To Pull Images<a name="IAM_all_accounts"></a>
 
@@ -141,6 +141,38 @@ The following repository policy denies all users the ability to pull images\.
         "ecr:BatchCheckLayerAvailability"
       ]
     }
+  ]
+}
+```
+
+## Example: Restricting Access to Specific IP Addresses<a name="IAM_restrict_ip"></a>
+
+The following example grants permissions to any user to perform any Amazon ECR operations on the specified repository\. However, the request must originate from the range of IP addresses specified in the condition\.
+
+The condition in this statement identifies the `54.240.143.*` range of allowed Internet Protocol version 4 \(IPv4\) IP addresses, with one exception: `54.240.143.188`\.
+
+The `Condition` block uses the `IpAddress` and `NotIpAddress` conditions and the `aws:SourceIp` condition key, which is an AWS\-wide condition key\. For more information about these condition keys, see [AWS Global Condition Context Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html)\. The`aws:sourceIp` IPv4 values use the standard CIDR notation\. For more information, see [IP Address Condition Operators](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html#Conditions_IPAddress) in the *IAM User Guide*\.
+
+```
+{
+  "Version": "2012-10-17",
+  "Id": "ECRPolicyId1",
+  "Statement": [
+    {
+      "Sid": "IPAllow",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "ecr:*",
+      "Resource": "arn:aws:ecr:us-east-1:123456789012:repository/my-repo",
+      "Condition": {
+                "NotIpAddress": {
+                    "aws:SourceIp": "54.240.143.188/32"
+                },
+                "IpAddress": {
+                    "aws:SourceIp": "54.240.143.0/24"
+                }
+       } 
+    } 
   ]
 }
 ```
