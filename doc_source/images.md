@@ -12,6 +12,7 @@ Amazon ECR requires that users have allow permissions to the `ecr:GetAuthorizati
 + [Retagging an Image](image-retag.md)
 + [Amazon ECR Lifecycle Policies](LifecyclePolicies.md)
 + [Image Tag Mutability](image-tag-mutability.md)
++ [Image Scanning](image-scanning.md)
 + [Container Image Manifest Formats](image-manifest-formats.md)
 + [Using Amazon ECR Images with Amazon ECS](ECR_on_ECS.md)
 + [Using Amazon ECR Images with Amazon EKS](ECR_on_EKS.md)
