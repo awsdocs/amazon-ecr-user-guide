@@ -147,7 +147,7 @@ The following repository policy denies all users the ability to pull images\.
 
 ## Example: Restricting Access to Specific IP Addresses<a name="IAM_restrict_ip"></a>
 
-The following example grants permissions to any user to perform any Amazon ECR operations on the specified repository\. However, the request must originate from the range of IP addresses specified in the condition\.
+The following example grants permissions to any user to perform any Amazon ECR operations when applied to a repository\. However, the request must originate from the range of IP addresses specified in the condition\.
 
 The condition in this statement identifies the `54.240.143.*` range of allowed Internet Protocol version 4 \(IPv4\) IP addresses, with one exception: `54.240.143.188`\.
 
@@ -163,7 +163,6 @@ The `Condition` block uses the `IpAddress` and `NotIpAddress` conditions and the
       "Effect": "Allow",
       "Principal": "*",
       "Action": "ecr:*",
-      "Resource": "arn:aws:ecr:us-east-1:123456789012:repository/my-repo",
       "Condition": {
                 "NotIpAddress": {
                     "aws:SourceIp": "54.240.143.188/32"
