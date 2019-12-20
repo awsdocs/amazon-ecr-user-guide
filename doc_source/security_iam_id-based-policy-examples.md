@@ -38,7 +38,11 @@ To ensure that those entities can still use the Amazon ECR console, add the `Ama
                 "ecr:DescribeRepositories",
                 "ecr:ListImages",
                 "ecr:DescribeImages",
-                "ecr:BatchGetImage"
+                "ecr:BatchGetImage",
+                "ecr:GetLifecyclePolicy",
+                "ecr:GetLifecyclePolicyPreview",
+                "ecr:ListTagsForResource",
+                "ecr:DescribeImageScanFindings"
             ],
             "Resource": "*"
         }
@@ -106,9 +110,18 @@ In this example, you want to grant an IAM user in your AWS account access to one
          "Resource":"arn:aws:ecr:us-east-1:123456789012:repository/my-repo"
       },
       {
+         "Sid":"GetAuthorizationToken",
+         "Effect":"Allow",
+         "Action":[
+            "ecr:GetAuthorizationToken"
+         ],
+         "Resource":"*"
+      },
+      {
          "Sid":"ManageRepositoryContents",
          "Effect":"Allow",
          "Action":[
+                "ecr:GetAuthorizationToken",
                 "ecr:BatchCheckLayerAvailability",
                 "ecr:GetDownloadUrlForLayer",
                 "ecr:GetRepositoryPolicy",
@@ -122,14 +135,6 @@ In this example, you want to grant an IAM user in your AWS account access to one
                 "ecr:PutImage"
          ],
          "Resource":"arn:aws:ecr:us-east-1:123456789012:repository/my-repo"
-      },
-      {
-        "Sid":"GetAuthorizationToken",
-        "Effect": "Allow",
-        "Action": [
-            "ecr:GetAuthorizationToken"
-        ],
-        "Resource": "*"
       }
    ]
 }

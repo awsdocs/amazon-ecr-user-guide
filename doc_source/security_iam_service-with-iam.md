@@ -108,7 +108,7 @@ To learn how to attach a resource\-based policy to a repository, see [Amazon ECR
 
 
 
-To view examples of Amazon ECR resource\-based policies, see [Amazon ECR Repository Policy Examples](RepositoryPolicyExamples.md),
+To view examples of Amazon ECR resource\-based policies, see [Amazon ECR Repository Policy Examples](repository-policy-examples.md),
 
 ## Authorization Based on Amazon ECR Tags<a name="security_iam_service-with-iam-tags"></a>
 

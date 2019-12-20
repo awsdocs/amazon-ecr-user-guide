@@ -58,4 +58,4 @@ This example shows an IAM policy that achieves the same goal as above, by scopin
 + [Repository Policies vs IAM Policies](#repository-policy-vs-iam-policy)
 + [Setting a Repository Policy Statement](set-repository-policy.md)
 + [Deleting a Repository Policy Statement](delete-repository-policy.md)
-+ [Amazon ECR Repository Policy Examples](RepositoryPolicyExamples.md)
++ [Amazon ECR Repository Policy Examples](repository-policy-examples.md)

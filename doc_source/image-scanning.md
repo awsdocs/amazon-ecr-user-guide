@@ -2,13 +2,16 @@
 
 Amazon ECR image scanning helps in identifying software vulnerabilities in your container images\. Amazon ECR uses the Common Vulnerabilities and Exposures \(CVEs\) database from the open source CoreOS Clair project and provides you with a list of scan findings\. You can review the scan findings for information about the security of the container images that are being deployed\. For more information about CoreOS Clair, see [CoreOS Clair](https://github.com/coreos/clair)\.
 
-You can manually scan container images stored in Amazon ECR, or you can configure your repositories to scan images when you push them to a repository\. The last completed image scan findings can be retrieved for each image\. Amazon ECR sends an event to Amazon EventBridge \(formerly called CloudWatch Events\) when an image scan is completed\. For more information, see [Events and EventBridge](ecr-eventbridge.md)\.
+Amazon ECR uses the severity for a CVE from the upstream distribution source if available, otherwise we use the Common Vulnerability Scoring System \(CVSS\) score\. The CVSS score can be used to obtain the NVD vulnerability severity rating\. For more information, see [NVD Vulnerability Severity Ratings](https://nvd.nist.gov/vuln-metrics/cvss)\. 
+
+You can manually scan container images stored in Amazon ECR, or you can configure your repositories to scan images when you push them to a repository\. The last completed image scan findings can be retrieved for each image\. Amazon ECR sends an event to Amazon EventBridge \(formerly called CloudWatch Events\) when an image scan is completed\. For more information, see [Amazon ECR Events and EventBridge](ecr-eventbridge.md)\.
+
+For troubleshooting details for some common issues when scanning images, see [Troubleshooting Image Scanning Issues](image-scanning-troubleshooting.md)\.
 
 **Topics**
 + [Configuring a Repository to Scan on Push](#scanning-repository)
 + [Manually Scanning an Image](#manual-scan)
 + [Retrieving Scan Findings](#describe-scan-findings)
-+ [Troubleshooting](#image-scanning-troubleshooting)
 
 ## Configuring a Repository to Scan on Push<a name="scanning-repository"></a>
 
@@ -39,7 +42,7 @@ Use the following command to create a new repository with image **scan on push**
 + [New\-ECRRepository](https://docs.aws.amazon.com/powershell/latest/reference/items/New-ECRRepository.html) \(AWS Tools for Windows PowerShell\)
 
   ```
-  New-ECRRepository -RepositoryName name -ImageScanningConfiguration scanOnPush=true -Region us-east-2 -Force
+  New-ECRRepository -RepositoryName name -ImageScanningConfiguration_ScanOnPush true -Region us-east-2 -Force
   ```
 
 ### Configure an Existing Repository to Scan on Push<a name="scanning-existing-repository"></a>
@@ -62,15 +65,17 @@ To disable image **scan on push** for a repository, specify `scanOnPush=false`\.
 #### To edit the settings of an existing repository \(AWS Tools for Windows PowerShell\)<a name="scanning-existing-repo-powershell"></a>
 
 Use the following command to edit the image scanning settings of an existing repository\.
-+ [New\-ECRRepository](https://docs.aws.amazon.com/powershell/latest/reference/items/New-ECRRepository.html) \(AWS Tools for Windows PowerShell\)
++ [New\-ECRRepository](https://docs.aws.amazon.com/powershell/latest/reference/items/Write-ECRImageScanningConfiguration.html) \(AWS Tools for Windows PowerShell\)
 
   ```
-  New-ECRRepository -RepositoryName name -ImageScanningConfiguration scanOnPush=true -Region us-east-2 -Force
+  Write-ECRImageScanningConfiguration -RepositoryName name -ImageScanningConfiguration_ScanOnPush true -Region us-east-2 -Force
   ```
 
 ## Manually Scanning an Image<a name="manual-scan"></a>
 
 You can start image scans manually when you want to scan images in repositories that are not configured to **scan on push**\. An image can only be scanned once per day\. This limit includes the initial **scan on push**, if enabled, and any manual scans\.
+
+For troubleshooting details for some common issues when scanning images, see [Troubleshooting Image Scanning Issues](image-scanning-troubleshooting.md)\.
 
 ### To start a manual scan of an image \(console\)<a name="manual-scan-console"></a>
 
@@ -105,16 +110,26 @@ Use the following AWS CLI command to start a manual scan of an image\. You can s
 
 ### To start a manual scan of an image \(AWS Tools for Windows PowerShell\)<a name="manual-scan-powershell"></a>
 
-Use the following AWS Tools for Windows PowerShell command to start a manual scan of an image\. You can specify an image using the `imageTag` or `imageDigest`, both of which can be obtained using the [list\-images](https://docs.aws.amazon.com/cli/latest/reference/ecr/list-images.html) CLI command\.
-+ [New\-ECRRepository](https://docs.aws.amazon.com/powershell/latest/reference/items/New-ECRRepository.html) \(AWS Tools for Windows PowerShell\)
+Use the following AWS Tools for Windows PowerShell command to start a manual scan of an image\. You can specify an image using the `ImageId_ImageTag` or `ImageId_ImageDigest`, both of which can be obtained using the [Get\-ECRImage](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-ECRImage.html) CLI command\.
++ [Get\-ECRImageScanFinding](https://docs.aws.amazon.com/powershell/latest/reference/items/Start-ECRImageScan.html) \(AWS Tools for Windows PowerShell\)
+
+  The following example uses an image tag\.
 
   ```
-  New-ECRRepository -RepositoryName name -ImageScanningConfiguration scanOnPush=true -Region us-east-2 -Force
+  Start-ECRImageScan -RepositoryName name -ImageId_ImageTag tag_name -Region us-east-2 -Force
+  ```
+
+  The following example uses an image digest\.
+
+  ```
+  Start-ECRImageScan -RepositoryName name -ImageId_ImageDigest sha256_hash -Region us-east-2 -Force
   ```
 
 ## Retrieving Scan Findings<a name="describe-scan-findings"></a>
 
 You can retrieve the scan findings for the last completed image scan\. The findings list by severity the software vulnerabilities that were discovered, based on the Common Vulnerabilities and Exposures \(CVEs\) database\.
+
+For troubleshooting details for some common issues when scanning images, see [Troubleshooting Image Scanning Issues](image-scanning-troubleshooting.md)\.
 
 ### To retrieve image scan findings \(console\)<a name="describe-scan-findings-console"></a>
 
@@ -126,7 +141,7 @@ Use the following steps to retrieve image scan findings using the AWS Management
 
 1. In the navigation pane, choose **Repositories**\.
 
-1. On the **Repositories** page, choose the repository that contains the image to scan\.
+1. On the **Repositories** page, choose the repository that contains the image to retrieve the scan findings for\.
 
 1. On the **Images** page, under the **Vulnerabilities** column, select **Details** for the image to retrieve the scan findings for\.
 
@@ -149,16 +164,17 @@ Use the following AWS CLI command to start a manual scan of an image\. You can s
 
 ### To retrieve image scan findings \(AWS Tools for Windows PowerShell\)<a name="describe-scan-findings-powershell"></a>
 
-Use the following AWS Tools for Windows PowerShell command to start a manual scan of an image\. You can specify an image using the `imageTag` or `imageDigest`, both of which can be obtained using the [list\-images](https://docs.aws.amazon.com/cli/latest/reference/ecr/list-images.html) CLI command\.
-+ [New\-ECRRepository](https://docs.aws.amazon.com/powershell/latest/reference/items/New-ECRRepository.html) \(AWS Tools for Windows PowerShell\)
+Use the following AWS Tools for Windows PowerShell command to retrieve image scan findings\. You can specify an image using the `ImageId_ImageTag` or `ImageId_ImageDigest`, both of which can be obtained using the [Get\-ECRImage](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-ECRImage.html) CLI command\.
++ [Get\-ECRImageScanFinding](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-ECRImageScanFinding.html) \(AWS Tools for Windows PowerShell\)
+
+  The following example uses an image tag\.
 
   ```
-  New-ECRRepository -RepositoryName name -ImageScanningConfiguration scanOnPush=true -Region us-east-2 -Force
+  Get-ECRImageScanFinding -RepositoryName name -ImageId_ImageTag tag_name -Region us-east-2
   ```
 
-## Troubleshooting<a name="image-scanning-troubleshooting"></a>
+  The following example uses an image digest\.
 
-The following are common image scan failures\. You can view errors like this in the Amazon ECR console by displaying the image details or through the API or AWS CLI by using the `DescribeImageScanFindings` API\.
-
-UnsupportedImageError: Operating system ID and version could not be detected  
-You may get a `UnsupportedImageError` error when attempting to scan an image that was built using an unsupported operating system\. Amazon ECR supports package vulnerability scanning for major versions of Amazon Linux, Amazon Linux 2, Debian, Ubuntu, CentOS, Oracle Linux, Alpine, and RHEL Linux distributions\. Amazon ECR does not support scanning images built from the [Docker scratch](https://hub.docker.com/_/scratch) image\.
+  ```
+  Get-ECRImageScanFinding -RepositoryName name -ImageId_ImageDigest sha256_hash -Region us-east-2
+  ```

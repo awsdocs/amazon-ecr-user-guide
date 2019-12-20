@@ -1,7 +1,7 @@
-# Events and EventBridge<a name="ecr-eventbridge"></a>
+# Amazon ECR Events and EventBridge<a name="ecr-eventbridge"></a>
 
 Amazon EventBridge enables you to automate your AWS services and respond automatically to system events such as application availability issues or resource changes\. Events from AWS services are delivered to EventBridge in near real time\. You can write simple rules to indicate which events are of interest to you, and what automated actions to take when an event matches a rule\. The actions that can be automatically triggered include the following:
-+ Log groups in CloudWatch Logs
++ Adding events to log groups in CloudWatch Logs
 + Invoking an AWS Lambda function
 + Invoking Amazon EC2 Run Command
 + Relaying the event to Amazon Kinesis Data Streams
@@ -14,9 +14,33 @@ For more information, see [Getting Started with Amazon EventBridge](https://docs
 
 The following are example events from Amazon ECR\.
 
+**Event for a Completed Image Push**
+
+The following event is sent when each image push is completed\. For more information, see [Pushing an Image](docker-push-ecr-image.md)\.
+
+```
+{
+    "version": "0",
+    "id": "13cde686-328b-6117-af20-0e5566167482",
+    "detail-type": "ECR Image Action",
+    "source": "aws.ecr",
+    "account": "123456789012",
+    "time": "2019-11-16T01:54:34Z",
+    "region": "us-west-2",
+    "resources": [],
+    "detail": {
+        "result": "SUCCESS",
+        "repository-name": "my-repo",
+        "image-digest": "sha256:7f5b2640fe6fb4f46592dfd3410c4a79dac4f89e4782432e0378abcd1234",
+        "action-type": "PUSH",
+        "image-tag": "latest"
+    }
+}
+```
+
 **Event for a Completed Image Scan**
 
-The following event is sent when each image scan is completed\. Fore more information about Amazon ECR image scanning, see [Image Scanning](image-scanning.md)\.
+The following event is sent when each image scan is completed\. For more information, see [Image Scanning](image-scanning.md)\.
 
 ```
 {
@@ -35,6 +59,30 @@ The following event is sent when each image scan is completed\. Fore more inform
         "repository-name": "my-repo",
         "image-digest": "sha256:7f5b2640fe6fb4f46592dfd3410c4a79dac4f89e4782432e0378abcd1234",
         "image-tags": []
+    }
+}
+```
+
+**Event for an Image Deletion**
+
+The following event is sent when an image is deleted\. For more information, see [Deleting an Image](delete_image.md)\.
+
+```
+{
+    "version": "0",
+    "id": "dd3b46cb-2c74-f49e-393b-28286b67279d",
+    "detail-type": "ECR Image Action",
+    "source": "aws.ecr",
+    "account": "123456789012",
+    "time": "2019-11-16T02:01:05Z",
+    "region": "us-west-2",
+    "resources": [],
+    "detail": {
+        "result": "SUCCESS",
+        "repository-name": "my-repo",
+        "image-digest": "sha256:7f5b2640fe6fb4f46592dfd3410c4a79dac4f89e4782432e0378abcd1234",
+        "action-type": "DELETE",
+        "image-tag": "latest"
     }
 }
 ```

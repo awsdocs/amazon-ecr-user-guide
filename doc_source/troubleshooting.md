@@ -8,6 +8,7 @@ This chapter helps you find diagnostic information for Amazon Elastic Container 
 + [Optimizing Performance for Amazon ECR](#performance)
 + [Troubleshooting Errors with Docker Commands When Using Amazon ECR](common-errors-docker.md)
 + [Troubleshooting Amazon ECR Error Messages](common-errors.md)
++ [Troubleshooting Image Scanning Issues](image-scanning-troubleshooting.md)
 
 ## Enabling Docker Debug Output<a name="debug"></a>
 

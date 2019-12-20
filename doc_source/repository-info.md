@@ -15,7 +15,7 @@ Beginning with Docker version 1\.9, the Docker client compresses image layers be
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
-1. From the navigation bar, choose the region that contains the repository to view\.
+1. From the navigation bar, choose the Region that contains the repository to view\.
 
 1. In the navigation pane, choose **Repositories**\.
 

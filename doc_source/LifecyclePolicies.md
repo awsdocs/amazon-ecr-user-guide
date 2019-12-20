@@ -57,7 +57,7 @@ Lifecycle policies are split into the following parts:
 `rulePriority`  
 Type: integer  
 Required: yes  
-Sets the order in which rules are evaluated, lowest to highest\. When you add rules to a lifecycle policy, you must give them each a unique value for `rulePriority`\. Values do not need to be sequential across rules in a policy\. A rule with a `tagStatus` value of `any` must have the highest value for `rulePriority` and be evaluated last\.
+Sets the order in which rules are evaluated, lowest to highest\. A lifecycle policy rule with a priority of `1` will be acted upon first, a rule with priority of `2` will be next, and so on\. When you add rules to a lifecycle policy, you must give them each a unique value for `rulePriority`\. Values do not need to be sequential across rules in a policy\. A rule with a `tagStatus` value of `any` must have the highest value for `rulePriority` and be evaluated last\.
 
 ### Description<a name="lp_description"></a>
 

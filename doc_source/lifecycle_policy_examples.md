@@ -326,5 +326,5 @@ Repository contents:
 The logic of this lifecycle policy would be:
 + Rule 1 identifies images tagged with `alpha`\. It identifies images A and C\. It should keep the newest image and mark the rest for expiration\. It marks image A for expiration\.
 + Rule 2 identifies untagged images\. It identifies images B and E\. It should mark all images older than one day for expiration\. It marks image B for expiration\.
-+ Rule 3 identifies all images\. It identifies images A, B, C, D, and E\. It should keep the newest image and mark the rest for expiration\. However, it can't mark images A, B, or C because they were identified by higher priority rules\. It marks image D for expiration\. 
++ Rule 3 identifies all images\. It identifies images A, B, C, D, and E\. It should keep the newest image and mark the rest for expiration\. However, it can't mark images A, B, C, or E because they were identified by higher priority rules\. It marks image D for expiration\. 
 + Result: Images A, B, and D are expired\.

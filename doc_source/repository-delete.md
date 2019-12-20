@@ -6,7 +6,7 @@ If you are done using a repository, you can delete it\. When you delete a reposi
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
-1. From the navigation bar, choose the region that contains the repository to delete\.
+1. From the navigation bar, choose the Region that contains the repository to delete\.
 
 1. In the navigation pane, choose **Repositories**\.
 
