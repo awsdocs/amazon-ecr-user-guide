@@ -18,7 +18,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Setting Up with Amazon ECR](get-set-up-for-amazon-ecr.md)
 + [Docker Basics for Amazon ECR](docker-basics.md)
 + [Getting Started with Amazon ECR](ECR_GetStarted.md)
-+ [Amazon ECR Registries](registries.md)
++ [Amazon ECR Registries](Registries.md)
 + [Amazon ECR Repositories](Repositories.md)
    + [Creating a Repository](repository-create.md)
    + [Viewing Repository Information](repository-info.md)

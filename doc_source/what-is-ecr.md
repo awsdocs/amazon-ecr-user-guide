@@ -7,10 +7,10 @@ Amazon Elastic Container Registry \(Amazon ECR\) is a managed AWS Docker registr
 Amazon ECR contains the following components:
 
 Registry  
-An Amazon ECR registry is provided to each AWS account; you can create image repositories in your registry and store images in them\. For more information, see [Amazon ECR Registries](registries.md)\.
+An Amazon ECR registry is provided to each AWS account; you can create image repositories in your registry and store images in them\. For more information, see [Amazon ECR Registries](Registries.md)\.
 
 Authorization token  
-Your Docker client must authenticate to Amazon ECR registries as an AWS user before it can push and pull images\. The AWS CLI get\-login command provides you with authentication credentials to pass to Docker\. For more information, see [Registry Authentication](registries.md#registry_auth)\.
+Your Docker client must authenticate to Amazon ECR registries as an AWS user before it can push and pull images\. The AWS CLI get\-login command provides you with authentication credentials to pass to Docker\. For more information, see [Registry Authentication](Registries.md#registry_auth)\.
 
 Repository  
 An Amazon ECR image repository contains your Docker or Open Container Initiative \(OCI\) images\. For more information, see [Amazon ECR Repositories](Repositories.md)\.

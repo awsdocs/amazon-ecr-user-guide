@@ -7,7 +7,7 @@ Amazon ECR requires that users have allow permissions to the `ecr:GetAuthorizati
 
 **To push a Docker image to an Amazon ECR repository**
 
-1. Authenticate your Docker client to the Amazon ECR registry to which you intend to push your image\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry Authentication](registries.md#registry_auth)\.
+1. Authenticate your Docker client to the Amazon ECR registry to which you intend to push your image\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry Authentication](Registries.md#registry_auth)\.
 
 1. If your image repository does not exist in the registry you intend to push to yet, create it\. For more information, see [Creating a Repository](repository-create.md)\.
 
