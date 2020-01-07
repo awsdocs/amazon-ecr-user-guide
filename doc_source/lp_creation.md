@@ -13,7 +13,7 @@ A lifecycle policy allows you to create a set of rules that expire unused reposi
 1. Create a lifecycle policy:
 
    ```
-   aws ecr put-lifecycle-policy [--registry-id <string>] --repository-name <string> --policy-text <string>
+   aws ecr put-lifecycle-policy [--registry-id <string>] --repository-name <string> --lifecycle-policy-text <string>
    ```
 
 **To create a lifecycle policy using the console**
