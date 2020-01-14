@@ -14,6 +14,8 @@ For more information, see [Getting Started with Amazon EventBridge](https://docs
 
 The following are example events from Amazon ECR\.
 
+[Amazon ECR Events](https://docs.aws.amazon.com/eventbridge/latest/userguide/event-types.html#ecr-event-types) in the *Amazon EventBridge User Guide*
+
 **Event for a Completed Image Push**
 
 The following event is sent when each image push is completed\. For more information, see [Pushing an Image](docker-push-ecr-image.md)\.
@@ -40,7 +42,7 @@ The following event is sent when each image push is completed\. For more informa
 
 **Event for a Completed Image Scan**
 
-The following event is sent when each image scan is completed\. For more information, see [Image Scanning](image-scanning.md)\.
+The following event is sent when each image scan is completed\. The `finding-severity-counts` parameter will only return a value for a severity level if one exists\. For example, if the image contains no findings at `CRITICAL` level then there will be no critical count returned\. For more information, see [Image Scanning](image-scanning.md)\.
 
 ```
 {
@@ -57,6 +59,10 @@ The following event is sent when each image scan is completed\. For more informa
     "detail": {
         "scan-status": "COMPLETE",
         "repository-name": "my-repo",
+        "finding-severity-counts": {
+	       "CRITICAL": 10,
+	       "MEDIUM”: 9
+	     },
         "image-digest": "sha256:7f5b2640fe6fb4f46592dfd3410c4a79dac4f89e4782432e0378abcd1234",
         "image-tags": []
     }
