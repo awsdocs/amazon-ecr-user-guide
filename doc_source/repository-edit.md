@@ -6,7 +6,7 @@ Existing repositories can be edited to change its image tag mutability and image
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
-1. From the navigation bar, choose the Region that contains the repository to delete\.
+1. From the navigation bar, choose the Region that contains the repository to edit\.
 
 1. In the navigation pane, choose **Repositories**\.
 
