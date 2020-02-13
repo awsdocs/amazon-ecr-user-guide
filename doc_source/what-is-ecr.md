@@ -10,7 +10,7 @@ Registry
 An Amazon ECR registry is provided to each AWS account; you can create image repositories in your registry and store images in them\. For more information, see [Amazon ECR Registries](Registries.md)\.
 
 Authorization token  
-Your Docker client must authenticate to Amazon ECR registries as an AWS user before it can push and pull images\. The AWS CLI get\-login command provides you with authentication credentials to pass to Docker\. For more information, see [Registry Authentication](Registries.md#registry_auth)\.
+Your Docker client must authenticate to Amazon ECR registries as an AWS user before it can push and pull images\. For more information, see [Registry Authentication](Registries.md#registry_auth)\.
 
 Repository  
 An Amazon ECR image repository contains your Docker or Open Container Initiative \(OCI\) images\. For more information, see [Amazon ECR Repositories](Repositories.md)\.
@@ -23,6 +23,4 @@ You can push and pull container images to your repositories\. You can use these 
 
 ## How to Get Started with Amazon ECR<a name="ecr-get-started"></a>
 
-To use Amazon ECR, you must be set up to install the AWS Command Line Interface and Docker\. For more information, see [Setting Up with Amazon ECR](get-set-up-for-amazon-ecr.md) and [Docker Basics for Amazon ECR](docker-basics.md)\.
-
-After you are set up, you are ready to complete the [Getting Started with Amazon ECR](ECR_GetStarted.md) tutorial\. 
+To use Amazon ECR, you must be set up to install the AWS Command Line Interface and Docker\. For more information, see [Setting Up with Amazon ECR](get-set-up-for-amazon-ecr.md) and [Getting Started with Amazon ECR using the AWS CLI](getting-started-cli.md)\.

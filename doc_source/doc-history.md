@@ -5,6 +5,7 @@ The following table describes the important changes to the documentation since t
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+|  Added `get-login-password` command  |  Added support for get\-login\-password, which provides a simple and secure method for retrieving an authorization token\. For more information, see [Using an Authorization Token](Registries.md#registry-auth-token)\.  |  4 Feb 2020  | 
 |  Image Scanning  |  Added support for image scanning, which helps in identifying software vulnerabilities in your container images\. Amazon ECR uses the Common Vulnerabilities and Exposures \(CVEs\) database from the open source CoreOS Clair project and provides you with a list of scan findings\. For more information, see [Image Scanning](image-scanning.md)\.  |  24 Oct 2019  | 
 |  VPC Endpoint Policy  |  Added support for setting an IAM policy on the Amazon ECR interface VPC endpoints\. For more information, see [Create an Endpoint Policy for your Amazon ECR VPC Endpoint](vpc-endpoints.md#ecr-vpc-endpoint-policy)\.  |  26 Sept 2019  | 
 |  Image Tag Mutability  |  Added support for configuring a repository to be immutable to prevent image tags from being overwritten\. For more information, see [Image Tag Mutability](image-tag-mutability.md)\.  |  25 July 2019  | 

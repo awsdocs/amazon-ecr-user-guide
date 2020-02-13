@@ -85,21 +85,24 @@ Only used if you specified `"tagStatus": "tagged"`\. You must specify a comma\-s
 `countType`  
 Type: string  
 Required: yes  
-Specify a count type to apply to the images\. If `countType` is set to `imageCountMoreThan`, you also specify `countNumber` to create a rule that sets a limit on the number of images that exist in your repository\. If `countType` is set to `sinceImagePushed`, you also specify `countUnit` and `countNumber` to specify a time limit on the images that exist in your repository\.
+Specify a count type to apply to the images\.   
+If `countType` is set to `imageCountMoreThan`, you also specify `countNumber` to create a rule that sets a limit on the number of images that exist in your repository\. If `countType` is set to `sinceImagePushed`, you also specify `countUnit` and `countNumber` to specify a time limit on the images that exist in your repository\.
 
 ### Count Unit<a name="lp_count_unit"></a>
 
 `countUnit`  
 Type: string  
 Required: yes, only if `countType` is set to `sinceImagePushed`  
-Specify a count unit of `days` to indicate that as the unit of time, in addition to `countNumber`, which is the number of days\. This should only be specified when `countType` is `sinceImagePushed`; an error will occur if you specify a count unit when `countType` is any other value\.
+Specify a count unit of `days` to indicate that as the unit of time, in addition to `countNumber`, which is the number of days\.   
+This should only be specified when `countType` is `sinceImagePushed`; an error will occur if you specify a count unit when `countType` is any other value\.
 
 ### Count Number<a name="lp_count_number"></a>
 
 `countNumber`  
 Type: integer  
 Required: yes  
-Specify a count number\. If the `countType` used is `imageCountMoreThan`, then the value is the maximum number of images that you want to retain in your repository\. If the `countType` used is `sinceImagePushed`, then the value is the maximum age limit for your images\.
+Specify a count number\. Acceptable values are positive integers \(`0` is not an accepted value\)\.   
+If the `countType` used is `imageCountMoreThan`, then the value is the maximum number of images that you want to retain in your repository\. If the `countType` used is `sinceImagePushed`, then the value is the maximum age limit for your images\.
 
 ### Action<a name="lp_action"></a>
 

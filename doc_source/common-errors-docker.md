@@ -39,16 +39,16 @@ Your client has encountered a network or disk error
 
 ## HTTP 403 Errors or "no basic auth credentials" Error When Pushing to Repository<a name="error-403"></a>
 
-There are times when you may receive an `HTTP 403 (Forbidden)` error, or the error message `no basic auth credentials` from the `docker push` or docker pull commands, even if you have successfully authenticated to Docker using the aws ecr get\-login command\. The following are some known causes of this issue:
+There are times when you may receive an `HTTP 403 (Forbidden)` error, or the error message `no basic auth credentials` from the docker push or docker pull commands, even if you have successfully authenticated to Docker using the aws ecr get\-login\-password command\. The following are some known causes of this issue:
 
-You have authenticated to a different region   
-Authentication requests are tied to specific regions, and cannot be used across regions\. For example, if you obtain an authorization token from US West \(Oregon\), you cannot use it to authenticate against your repositories in US East \(N\. Virginia\)\. To resolve the issue, ensure that you are using the same Region for both authentication and docker command calls\.
+You have authenticated to a different region  
+Authentication requests are tied to specific regions, and cannot be used across regions\. For example, if you obtain an authorization token from US West \(Oregon\), you cannot use it to authenticate against your repositories in US East \(N\. Virginia\)\. To resolve the issue, ensure that you have retrieved an authentication token from the same Region your repository exists in\.
 
-You have authenticated to push to a repository on the wrong AWS account   
-If you use an IAM user from one AWS account but attempt to push to a repository hosted in a different account, you must specify the \-\-registry\-ids parameter when you call aws ecr get\-login\. Otherwise, you get a Docker login command that by default only authorizes you to push to repositories on the same account that hosts your IAM user\. You are not authorized to push to the account that hosts your repository\. Always ensure that the repository URL in the response from aws ecr get\-login matches the repository URL that you are pushing to, including the account ID portion of the URL\.
+You have authenticated to push to a repository you don't have permissions for  
+You do not have the necessary permissions to push to the repository\. For more information, see [Amazon ECR Repository Policies](repository-policies.md)\.
 
-Your token has expired   
-The default token expiration period for tokens obtained using the `GetAuthorizationToken` operation is 12 hours\. However, if you use a temporary security credential mechanism to authenticate and receive your token, the expiration period of the token is equal to the duration of the temporary credentials\. Temporary security credential mechanisms include multi\-factor authentication \(MFA\) or AWS Security Token Service\. For example, if you call the aws ecr get\-login command by assuming a role, the authorization token expires within 15 minutes to 1 hour\. This depends on the settings you use when calling the aws sts assume\-role command\. 
+Your token has expired  
+The default authorization token expiration period for tokens obtained using the `GetAuthorizationToken` operation is 12 hours\. However, if you use a temporary security credential mechanism to authenticate and receive your token, the expiration period of the token is equal to the duration of the temporary credentials\. Temporary security credential mechanisms include multi\-factor authentication \(MFA\) or AWS Security Token Service\. For example, if you call the aws ecr get\-login\-password command by assuming a role, the authorization token expires based on the session duration\. This depends on the settings you use when calling the aws sts assume\-role command\. 
 
 Bug in `wincred` credential manager  
 Some versions of Docker for Windows use a credential manager called `wincred`, which does not properly handle the Docker login command produced by aws ecr get\-login \(for more information, see [https://github\.com/docker/docker/issues/22910](https://github.com/docker/docker/issues/22910)\)\. You can run the Docker login command that is output, but when you try to push or pull images, those commands fail\. You can work around this bug by removing the `https://` scheme from the registry argument in the Docker login command that is output from aws ecr get\-login\. An example Docker login command without the HTTPS scheme is shown below\.  

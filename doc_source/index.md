@@ -16,8 +16,8 @@ Amazon's trademarks and trade dress may not be used in
 ## Contents
 + [What Is Amazon Elastic Container Registry?](what-is-ecr.md)
 + [Setting Up with Amazon ECR](get-set-up-for-amazon-ecr.md)
-+ [Docker Basics for Amazon ECR](docker-basics.md)
-+ [Getting Started with Amazon ECR](ECR_GetStarted.md)
++ [Getting Started with Amazon ECR using the AWS Management Console](getting-started-console.md)
++ [Getting Started with Amazon ECR using the AWS CLI](getting-started-cli.md)
 + [Amazon ECR Registries](Registries.md)
 + [Amazon ECR Repositories](Repositories.md)
    + [Creating a Repository](repository-create.md)
@@ -56,7 +56,6 @@ Amazon's trademarks and trade dress may not be used in
       + [Amazon ECR Interface VPC Endpoints (AWS PrivateLink)](vpc-endpoints.md)
          + [Minimum Amazon S3 Bucket Permissions for Amazon ECR](ecr-minimum-s3-perms.md)
 + [Amazon ECR Events and EventBridge](ecr-eventbridge.md)
-+ [Using the AWS CLI with Amazon ECR](ECR_AWSCLI.md)
 + [Amazon ECR Service Quotas](service-quotas.md)
 + [Amazon ECR Usage Reports](usage-reports.md)
 + [Logging Amazon ECR API Calls with AWS CloudTrail](logging-using-cloudtrail.md)

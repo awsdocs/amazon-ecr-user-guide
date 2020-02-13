@@ -8,27 +8,21 @@ The Amazon Linux container image is available in Amazon ECR and on [Docker Hub](
 
 **To pull the Amazon Linux container image from Amazon ECR**
 
-1. Authenticate your Docker client to the Amazon Linux container image Amazon ECR registry\. Authentication tokens are valid for 12 hours\. For more information, see [Registry Authentication](Registries.md#registry_auth)\. Specify the region that you would like to pull the image from \(if you are unsure, the `us-west-2` region used in the command below is fine\)\. If you do not use the `us-west-2` region for the following command, be sure to change the region in the subsequent commands and image tags\.
+1. Authenticate your Docker client to the Amazon Linux container image Amazon ECR registry\. Authentication tokens are valid for 12 hours\. For more information, see [Registry Authentication](Registries.md#registry_auth)\.
 **Note**  
-The get\-login command is available in the AWS CLI starting with version 1\.9\.15; however, we recommend version 1\.11\.91 or later for recent versions of Docker \(17\.06 or later\)\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+The get\-login\-password command is available in the AWS CLI starting with version `1.17.10`\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
    ```
-   aws ecr get-login --region us-west-2 --registry-ids 137112412989 --no-include-email
+   aws ecr get-login-password | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.us-east-1.amazonaws.com
    ```
 
-   Example output:
+   Output:
 
    ```
-   docker login -u AWS -p password https://137112412989.dkr.ecr.us-west-2.amazonaws.com
+   Login succeeded
    ```
 **Important**  
-If you receive an `Unknown options: --no-include-email` error, install the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
-
-   The resulting output is a docker login command that you use to authenticate your Docker client to the Amazon Linux container image Amazon ECR registry\.
-
-1. Copy and paste the docker login command into a terminal to authenticate your Docker CLI to the registry\.
-**Important**  
-When you execute this docker login command, the command string can be visible to other users on your system in a process list \(ps \-e\) display\. Because the docker login command contains authentication credentials, there is a risk that other users on your system could view them this way\. They could use the credentials to gain push and pull access to your repositories\. If you are not on a secure system, you should consider this risk and log in interactively by omitting the `-p password` option, and then entering the password when prompted\.
+If you receive an error, install or upgrade to the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
 1. \(Optional\) You can list the images within the Amazon Linux repository with the aws ecr list\-images command\. The `latest` tag always corresponds with the latest Amazon Linux container image that is available\.
 

@@ -1,6 +1,6 @@
 # Using Amazon ECR Images with Amazon EKS<a name="ECR_on_EKS"></a>
 
-You can use your Amazon ECR images with Amazon EKS, but you need to satisfy some prerequisites:
+You can use your Amazon ECR images with Amazon EKS, but you need to satisfy the following prerequisites\.
 + The Amazon EKS worker node IAM role \(`NodeInstanceRole`\) that you use with your worker nodes must possess the following IAM policy permissions for Amazon ECR\.
 
   ```

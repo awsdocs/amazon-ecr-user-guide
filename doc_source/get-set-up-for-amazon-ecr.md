@@ -92,4 +92,4 @@ To use the AWS CLI with Amazon ECR, install the latest AWS CLI version \(Amazon 
 
 ## Install Docker<a name="setup_install_docker"></a>
 
-To use the Docker CLI with Amazon ECR, you must first install Docker on your system\. For information about installing Docker and getting familiar with the tools, see [Docker Basics for Amazon ECR](docker-basics.md)\.
+To use the Docker CLI with Amazon ECR, you must first install Docker on your system\. For information about installing Docker and getting familiar with the tools, see [Getting Started with Amazon ECR using the AWS CLI](getting-started-cli.md)\.
