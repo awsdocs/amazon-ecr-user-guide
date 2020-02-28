@@ -5,6 +5,8 @@ The following table describes the important changes to the documentation since t
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+|  Amazon ECR Usage Metrics  |  Amazon ECR added CloudWatch usage metrics which provides visiblity into your account's resource usage\. You also have the ability to create CloudWatch alarms from both the CloudWatch and Service Quotas consoles to get alerts when your usage approaches your applied service quota\. For more information, see [Amazon ECR Usage Metrics](monitoring-usage.md)\.  |  28 Feb 2020  | 
+|  Updated Amazon ECR service quotas  |  Updated the Amazon ECR service quotas to include per\-API quotas\. For more information, see [Amazon ECR Service Quotas](service-quotas.md)\.  |  19 Feb 2020  | 
 |  Added `get-login-password` command  |  Added support for get\-login\-password, which provides a simple and secure method for retrieving an authorization token\. For more information, see [Using an Authorization Token](Registries.md#registry-auth-token)\.  |  4 Feb 2020  | 
 |  Image Scanning  |  Added support for image scanning, which helps in identifying software vulnerabilities in your container images\. Amazon ECR uses the Common Vulnerabilities and Exposures \(CVEs\) database from the open source CoreOS Clair project and provides you with a list of scan findings\. For more information, see [Image Scanning](image-scanning.md)\.  |  24 Oct 2019  | 
 |  VPC Endpoint Policy  |  Added support for setting an IAM policy on the Amazon ECR interface VPC endpoints\. For more information, see [Create an Endpoint Policy for your Amazon ECR VPC Endpoint](vpc-endpoints.md#ecr-vpc-endpoint-policy)\.  |  26 Sept 2019  | 

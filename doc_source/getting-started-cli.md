@@ -150,7 +150,7 @@ If you receive an error, install or upgrade to the latest version of the AWS CLI
 + [get\-login\-password](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login-password.html) \(AWS CLI\)
 
   ```
-  aws ecr get-login-password | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.us-east-1.amazonaws.com
+  aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.us-east-1.amazonaws.com
   ```
 + [Get\-ECRLoginCommand](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-ECRLoginCommand.html) \(AWS Tools for Windows PowerShell\)
 
@@ -165,7 +165,8 @@ Now that you have an image to push to Amazon ECR, you must create a repository t
 ```
 aws ecr create-repository \
     --repository-name sample-repo \
-    --image-scanning-configuration scanOnPush=true
+    --image-scanning-configuration scanOnPush=true \
+    --region us-east-1
 ```
 
 Output:
@@ -175,7 +176,7 @@ Output:
     "repository": {
         "registryId": "123456789012",
         "repositoryName": "sample-repo",
-        "repositoryArn": "arn:aws:ecr:us-west-2:123456789012:repository/sample-repo",
+        "repositoryArn": "arn:aws:ecr:us-east-1:123456789012:repository/sample-repo",
         "imageScanningConfiguration": {
             "scanOnPush": true
         }
@@ -197,7 +198,12 @@ After those prerequisites are met, you can push your image to your newly created
 1. List the images you have stored locally to identify the image to tag and push\.
 
    ```
-   $ docker images
+   docker images
+   ```
+
+   Output:
+
+   ```
    REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
    ubuntu              trusty              e9ae3c220b23        3 weeks ago         187.9 MB
    ```
@@ -211,7 +217,12 @@ After those prerequisites are met, you can push your image to your newly created
 1. Push the image\.
 
    ```
-   $ docker push aws_account_id.dkr.ecr.us-east-1.amazonaws.com/ubuntu:trusty
+   docker push aws_account_id.dkr.ecr.us-east-1.amazonaws.com/ubuntu:trusty
+   ```
+
+   Output:
+
+   ```
    The push refers to a repository [aws_account_id.dkr.ecr.us-east-1.amazonaws.com/ubuntu] (len: 1)
    e9ae3c220b23: Pushed
    a6785352b25c: Pushed
@@ -230,7 +241,12 @@ After your image has been pushed to your Amazon ECR repository, you can pull it 
 After those prerequisites are met, you can pull your image\. To pull your example image from Amazon ECR, run the following command:
 
 ```
-$ docker pull aws_account_id.dkr.ecr.us-east-1.amazonaws.com/ubuntu:trusty
+docker pull aws_account_id.dkr.ecr.us-east-1.amazonaws.com/ubuntu:trusty
+```
+
+Output:
+
+```
 trusty: Pulling from ubuntu
 0a85502c06c9: Pull complete
 0998bf8fb9e9: Pull complete
@@ -245,7 +261,14 @@ Status: Downloaded newer image for aws_account_id.dkr.ecr.us-east-1.amazonaws.co
 If you decide that you no longer need or want an image in one of your repositories, you can delete it with the batch\-delete\-image command\. To delete an image, you must specify the repository that it is in and either a `imageTag` or `imageDigest` value for the image\. The example below deletes an image in the `ubuntu` repository with the image tag `trusty`\.
 
 ```
-$ aws ecr batch-delete-image --repository-name ubuntu --image-ids imageTag=trusty
+aws ecr batch-delete-image \
+      --repository-name ubuntu \
+      --image-ids imageTag=trusty
+```
+
+Output:
+
+```
 {
     "failures": [],
     "imageIds": [
@@ -262,7 +285,14 @@ $ aws ecr batch-delete-image --repository-name ubuntu --image-ids imageTag=trust
 If you decide that you no longer need or want an entire repository of images, you can delete the repository\. By default, you cannot delete a repository that contains images; however, the `--force` flag allows this\. To delete a repository that contains images \(and all the images within it\), run the following command:
 
 ```
- $ aws ecr delete-repository --repository-name ubuntu --force
+aws ecr delete-repository \
+      --repository-name ubuntu \
+      --force
+```
+
+Output:
+
+```
 {
     "repository": {
         "registryId": "aws_account_id",

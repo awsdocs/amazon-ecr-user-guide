@@ -2,7 +2,7 @@
 
 You can improve the security posture of your VPC by configuring Amazon ECR to use an interface VPC endpoint\. VPC endpoints are powered by AWS PrivateLink, a technology that enables you to privately access Amazon ECR APIs through private IP addresses\. AWS PrivateLink restricts all network traffic between your VPC and Amazon ECR to the Amazon network\. Also, you don't need an internet gateway, a NAT device, or a virtual private gateway\. For Amazon ECS tasks using the Fargate launch type, the VPC endpoint enables the task to pull private images from Amazon ECR without assigning a public IP address to the task\.
 
-For more information about AWS PrivateLink and VPC endpoints, see [Accessing AWS Services Through AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Introduction.html#what-is-privatelink)\.
+For more information about AWS PrivateLink and VPC endpoints, see [VPC Endpoints ](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html) in the *Amazon VPC User Guide*\.
 
 **Topics**
 + [Considerations for Amazon ECR VPC Endpoints](#ecr-vpc-endpoint-considerations)

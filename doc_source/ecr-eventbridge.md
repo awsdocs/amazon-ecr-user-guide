@@ -1,6 +1,6 @@
 # Amazon ECR Events and EventBridge<a name="ecr-eventbridge"></a>
 
-Amazon EventBridge enables you to automate your AWS services and respond automatically to system events such as application availability issues or resource changes\. Events from AWS services are delivered to EventBridge in near real time\. You can write simple rules to indicate which events are of interest to you, and what automated actions to take when an event matches a rule\. The actions that can be automatically triggered include the following:
+Amazon EventBridge enables you to automate your AWS services and to respond automatically to system events such as application availability issues or resource changes\. Events from AWS services are delivered to EventBridge in near real time\. You can write simple rules to indicate which events are of interest to you and include automated actions to take when an event matches a rule\. The actions that can be automatically triggered include the following:
 + Adding events to log groups in CloudWatch Logs
 + Invoking an AWS Lambda function
 + Invoking Amazon EC2 Run Command
@@ -12,7 +12,7 @@ For more information, see [Getting Started with Amazon EventBridge](https://docs
 
 ## Sample Events from Amazon ECR<a name="ecr-eventbridge-bus"></a>
 
-The following are example events from Amazon ECR\.
+The following are example events from Amazon ECR\. For more information about events, see 
 
 [Amazon ECR Events](https://docs.aws.amazon.com/eventbridge/latest/userguide/event-types.html#ecr-event-types) in the *Amazon EventBridge User Guide*
 
@@ -42,7 +42,7 @@ The following event is sent when each image push is completed\. For more informa
 
 **Event for a Completed Image Scan**
 
-The following event is sent when each image scan is completed\. The `finding-severity-counts` parameter will only return a value for a severity level if one exists\. For example, if the image contains no findings at `CRITICAL` level then there will be no critical count returned\. For more information, see [Image Scanning](image-scanning.md)\.
+The following event is sent when each image scan is completed\. The `finding-severity-counts` parameter will only return a value for a severity level if one exists\. For example, if the image contains no findings at `CRITICAL` level, then no critical count is returned\. For more information, see [Image Scanning](image-scanning.md)\.
 
 ```
 {

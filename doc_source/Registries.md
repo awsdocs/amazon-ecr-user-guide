@@ -22,7 +22,7 @@ Amazon ECR provides a Docker credential helper which makes it easier to store an
 
 ### Using an Authorization Token<a name="registry-auth-token"></a>
 
-An authorization token represents your IAM authentication credentials and can be used to access any Amazon ECR registry that your IAM principal has access to\. The authorization token is valid for 12 hours\. To obtain an authorization token, you must use the [GetAuthorizationToken](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) API operation to retrieve a base64\-encoded authorization token containing the username `AWS` and an encoded password\. The AWS CLI `get-login-password` command simplifies this by retrieving and decoding the authorization token which you can then pipe into a docker login command to authenticate\.
+An authorization token's permission scope matches that of the IAM principal used to retrieve the authentication token\. An authentication token is used to access any Amazon ECR registry that your IAM principal has access to and is valid for 12 hours\. To obtain an authorization token, you must use the [GetAuthorizationToken](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) API operation to retrieve a base64\-encoded authorization token containing the username `AWS` and an encoded password\. The AWS CLI `get-login-password` command simplifies this by retrieving and decoding the authorization token which you can then pipe into a docker login command to authenticate\.
 
 #### To authenticate Docker to an Amazon ECR registry with get\-login\-password<a name="get-login-password"></a>
 
@@ -32,7 +32,7 @@ If you receive an error, install or upgrade to the latest version of the AWS CLI
 + [get\-login\-password](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login-password.html) \(AWS CLI\)
 
   ```
-  aws ecr get-login-password | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.us-east-1.amazonaws.com
+  aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.us-east-1.amazonaws.com
   ```
 + [Get\-ECRLoginCommand](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-ECRLoginCommand.html) \(AWS Tools for Windows PowerShell\)
 
@@ -47,7 +47,7 @@ When using AWS CLI versions prior to 1\.17\.10, the get\-login command is availa
 1. Run the aws ecr get\-login command\. The example below is for the default registry associated with the account making the request\. To access other account registries, use the `--registry-ids aws_account_id` option\. For more information, see [get\-login](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login.html) in the *AWS CLI Command Reference*\.
 
    ```
-   aws ecr get-login --region region --no-include-email
+   aws ecr get-login --region us-east-1 --no-include-email
    ```
 
    The resulting output is a docker login command that you use to authenticate your Docker client to your Amazon ECR registry\.
