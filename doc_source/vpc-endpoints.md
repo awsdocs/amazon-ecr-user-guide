@@ -65,7 +65,7 @@ The Amazon S3 gateway endpoint uses an IAM policy document to limit access to th
 
 ## Create the CloudWatch Logs Endpoint<a name="ecr-setting-up-cloudwatch-logs"></a>
 
-For tasks using the Fargate launch type, if your VPC doesn't have an internet gateway and your tasks use the `awslogs` log driver to send log information to CloudWatch Logs, you must create the **com\.amazonaws\.*region*\.logs interface** VPC endpoint for CloudWatch Logs\. For more information, see [Using CloudWatch Logs with Interface VPC Endpoints](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html) in the *Amazon CloudWatch Logs User Guide*\.
+For tasks using the Fargate launch type, if your VPC doesn't have an internet gateway and your tasks use the `awslogs` log driver to send log information to CloudWatch Logs, you must create the **com\.amazonaws\.*region*\.logs** interface VPC endpoint for CloudWatch Logs\. For more information, see [Using CloudWatch Logs with Interface VPC Endpoints](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html) in the *Amazon CloudWatch Logs User Guide*\.
 
 ## Create an Endpoint Policy for your Amazon ECR VPC Endpoint<a name="ecr-vpc-endpoint-policy"></a>
 
