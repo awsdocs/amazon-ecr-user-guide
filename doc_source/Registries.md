@@ -1,4 +1,4 @@
-# Amazon ECR Registries<a name="Registries"></a>
+# Amazon ECR Registries<a name="Registries"></a><ekkarat.w@gmail.com
 
 Amazon ECR registries host your container images in a highly available and scalable architecture, allowing you to deploy containers reliably for your applications\. You can use your registry to manage image repositories consisting of Docker and Open Container Initiative \(OCI\) images\. Each AWS account is provided with a single \(default\) Amazon ECR registry\.
 
