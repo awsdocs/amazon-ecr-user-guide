@@ -1,4 +1,4 @@
-# Pulling an Image<a name="docker-pull-ecr-image"></a>
+# Pulling an image<a name="docker-pull-ecr-image"></a>
 
 If you would like to run a Docker image that is available in Amazon ECR, you can pull it to your local environment with the docker pull command\. You can do this from either your default registry or from a registry associated with another AWS account\. To use an Amazon ECR image in an Amazon ECS task definition, see [Using Amazon ECR Images with Amazon ECS](ECR_on_ECS.md)\.
 

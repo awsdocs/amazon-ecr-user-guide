@@ -83,8 +83,7 @@ For more complicated repository policies that are not currently supported in the
             },
             "Action": [
                 "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage",
-                "ecr:BatchCheckLayerAvailability"
+                "ecr:BatchGetImage"
             ]
         },
         {
@@ -115,8 +114,7 @@ The following repository policy allows all AWS accounts to pull images\.
             "Principal": "*",
             "Action": [
                 "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage",
-                "ecr:BatchCheckLayerAvailability"
+                "ecr:BatchGetImage"
             ]
         }
     ]
@@ -137,8 +135,7 @@ The following repository policy denies all users the ability to pull images\.
             "Principal": "*",
             "Action": [
                 "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage",
-                "ecr:BatchCheckLayerAvailability"
+                "ecr:BatchGetImage"
             ]
         }
     ]
@@ -191,7 +188,6 @@ The following repository policy allows AWS CodeBuild access to the Amazon ECR AP
                 "Service": "codebuild.amazonaws.com"
             },
             "Action": [
-                "ecr:BatchCheckLayerAvailability",
                 "ecr:BatchGetImage",
                 "ecr:GetDownloadUrlForLayer"
             ]

@@ -2,7 +2,7 @@
 
 You can use CloudWatch usage metrics to provide visibility into your account's usage of resources\. Use these metrics to visualize your current service usage on CloudWatch graphs and dashboards\.
 
-Amazon ECR usage metrics correspond to AWS service quotas\. You can configure alarms that alert you when your usage approaches a service quota\. For more information about Amazon ECR service quotas, see [Amazon ECR Service Quotas](service-quotas.md)\.
+Amazon ECR usage metrics correspond to AWS service quotas\. You can configure alarms that alert you when your usage approaches a service quota\. For more information about Amazon ECR service quotas, see [Amazon ECR service quotas](service-quotas.md)\.
 
 Amazon ECR publishes the following metrics in the `AWS/Usage` namespace\.
 

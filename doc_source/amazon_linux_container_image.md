@@ -1,4 +1,4 @@
-# Amazon Linux Container Image<a name="amazon_linux_container_image"></a>
+# Amazon Linux container image<a name="amazon_linux_container_image"></a>
 
 The Amazon Linux container image is built from the same software components that are included in the Amazon Linux AMI\. It is available for use in any environment as a base image for Docker workloads\. If you are already using the Amazon Linux AMI for applications in Amazon EC2, then you can easily containerize your applications with the Amazon Linux container image\.
 
@@ -13,7 +13,7 @@ The Amazon Linux container image is available in Amazon ECR and on [Docker Hub](
 The get\-login\-password command is available in the AWS CLI starting with version `1.17.10`\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 
    ```
-   aws ecr get-login-password | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.us-east-1.amazonaws.com
+   aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 137112412989.dkr.ecr.us-east-1.amazonaws.com
    ```
 
    Output:
@@ -27,19 +27,19 @@ If you receive an error, install or upgrade to the latest version of the AWS CLI
 1. \(Optional\) You can list the images within the Amazon Linux repository with the aws ecr list\-images command\. The `latest` tag always corresponds with the latest Amazon Linux container image that is available\.
 
    ```
-   aws ecr list-images --region us-west-2 --registry-id 137112412989 --repository-name amazonlinux
+   aws ecr list-images --region us-east-1 --registry-id 137112412989 --repository-name amazonlinux
    ```
 
 1. Pull the Amazon Linux container image using the docker pull command\.
 
    ```
-   docker pull 137112412989.dkr.ecr.us-west-2.amazonaws.com/amazonlinux:latest
+   docker pull 137112412989.dkr.ecr.us-east-1.amazonaws.com/amazonlinux:latest
    ```
 
 1. \(Optional\) Run the container locally\.
 
    ```
-   docker run -it 137112412989.dkr.ecr.us-west-2.amazonaws.com/amazonlinux:latest /bin/bash
+   docker run -it 137112412989.dkr.ecr.us-east-1.amazonaws.com/amazonlinux:latest /bin/bash
    ```
 
 **To pull the Amazon Linux container image from Docker Hub**

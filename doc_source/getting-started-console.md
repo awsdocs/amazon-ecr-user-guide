@@ -12,9 +12,9 @@ A repository is where you store your Docker or Open Container Initiative \(OCI\)
 
 1. Choose **Get Started**\.
 
-1. For **Tag immutability**, choose the tag mutability setting for the repository\. Repositories configured with immutable tags will prevent image tags from being overwritten\. For more information, see [Image Tag Mutability](image-tag-mutability.md)\.
+1. For **Tag immutability**, choose the tag mutability setting for the repository\. Repositories configured with immutable tags will prevent image tags from being overwritten\. For more information, see [Image tag mutability](image-tag-mutability.md)\.
 
-1. For **Scan on push**, choose the image scanning setting for the repository\. Repositories configured to scan on push will start an image scan whenever an image is pushed, otherwise image scans need to be started manually\. For more information, see [Image Scanning](image-scanning.md)\.
+1. For **Scan on push**, choose the image scanning setting for the repository\. Repositories configured to scan on push will start an image scan whenever an image is pushed, otherwise image scans need to be started manually\. For more information, see [Image scanning](image-scanning.md)\.
 
 1. Choose **Create repository**\.
 

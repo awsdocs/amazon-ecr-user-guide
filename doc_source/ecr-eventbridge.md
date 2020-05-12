@@ -12,13 +12,11 @@ For more information, see [Getting Started with Amazon EventBridge](https://docs
 
 ## Sample Events from Amazon ECR<a name="ecr-eventbridge-bus"></a>
 
-The following are example events from Amazon ECR\. For more information about events, see 
-
-[Amazon ECR Events](https://docs.aws.amazon.com/eventbridge/latest/userguide/event-types.html#ecr-event-types) in the *Amazon EventBridge User Guide*
+The following are example events from Amazon ECR\.
 
 **Event for a Completed Image Push**
 
-The following event is sent when each image push is completed\. For more information, see [Pushing an Image](docker-push-ecr-image.md)\.
+The following event is sent when each image push is completed\. For more information, see [Pushing an image](docker-push-ecr-image.md)\.
 
 ```
 {
@@ -42,7 +40,7 @@ The following event is sent when each image push is completed\. For more informa
 
 **Event for a Completed Image Scan**
 
-The following event is sent when each image scan is completed\. The `finding-severity-counts` parameter will only return a value for a severity level if one exists\. For example, if the image contains no findings at `CRITICAL` level, then no critical count is returned\. For more information, see [Image Scanning](image-scanning.md)\.
+The following event is sent when each image scan is completed\. The `finding-severity-counts` parameter will only return a value for a severity level if one exists\. For example, if the image contains no findings at `CRITICAL` level, then no critical count is returned\. For more information, see [Image scanning](image-scanning.md)\.
 
 ```
 {
@@ -71,7 +69,7 @@ The following event is sent when each image scan is completed\. The `finding-sev
 
 **Event for an Image Deletion**
 
-The following event is sent when an image is deleted\. For more information, see [Deleting an Image](delete_image.md)\.
+The following event is sent when an image is deleted\. For more information, see [Deleting an image](delete_image.md)\.
 
 ```
 {

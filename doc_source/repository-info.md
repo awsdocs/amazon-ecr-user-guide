@@ -22,7 +22,7 @@ Beginning with Docker version 1\.9, the Docker client compresses image layers be
 1. On the **Repositories** page, choose the repository to view\.
 
 1. On the **Repositories : *repository\_name*** page, use the navigation bar to view information about an image\.
-   + Choose **Images** to view information about the images in the repository\. If there are untagged images that you would like to delete, you can select the box to the left of the repositories to delete and choose **Delete**\. For more information, see [Deleting an Image](delete_image.md)\.
+   + Choose **Images** to view information about the images in the repository\. If there are untagged images that you would like to delete, you can select the box to the left of the repositories to delete and choose **Delete**\. For more information, see [Deleting an image](delete_image.md)\.
    + Choose **Permissions** to view the repository policies that are applied to the repository\. For more information, see [Amazon ECR Repository Policies](repository-policies.md)\.
    + Choose **Lifecycle Policy** to view the lifecycle policy rules that are applied to the repository\. The lifecycle events history is also viewed here\. For more information, see [Amazon ECR Lifecycle Policies](LifecyclePolicies.md)\.
    + Choose **Tags** to view the metadata tags that are applied to the repository\.

@@ -10,7 +10,6 @@ For more information about AWS PrivateLink and VPC endpoints, see [VPC Endpoints
 + [Create the Amazon S3 Gateway Endpoint](#ecr-setting-up-s3-gateway)
 + [Create the CloudWatch Logs Endpoint](#ecr-setting-up-cloudwatch-logs)
 + [Create an Endpoint Policy for your Amazon ECR VPC Endpoint](#ecr-vpc-endpoint-policy)
-+ [Minimum Amazon S3 Bucket Permissions for Amazon ECR](ecr-minimum-s3-perms.md)
 
 ## Considerations for Amazon ECR VPC Endpoints<a name="ecr-vpc-endpoint-considerations"></a>
 
@@ -18,8 +17,9 @@ Before you configure VPC endpoints for Amazon ECR, be aware of the following con
 + To allow your Amazon ECS tasks that use the EC2 launch type to pull private images from Amazon ECR, ensure that you also create the interface VPC endpoints for Amazon ECS\. For more information, see [Interface VPC Endpoints \(AWS PrivateLink\)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/vpc-endpoints.html) in the *Amazon Elastic Container Service Developer Guide*\.
 **Important**  
 Amazon ECS tasks that use the Fargate launch type don't require the Amazon ECS interface VPC endpoints\.
-+ Tasks using the Fargate launch type only require the **com\.amazonaws\.*region*\.ecr\.dkr** Amazon ECR VPC endpoint and the Amazon S3 gateway endpoint to take advantage of this feature\.
-+ Tasks using the Fargate launch type that pull container images from Amazon ECR can restrict access to the specific VPC their tasks use and to the VPC endpoint the service uses by adding condition keys to their task execution role\. For more information, see [Amazon ECS Task Execution IAM Role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html) in the *Amazon Elastic Container Service Developer Guide*\.
++ Amazon ECS tasks using the Fargate launch type and platform version 1\.3\.0 or earlier only require the **com\.amazonaws\.*region*\.ecr\.dkr** Amazon ECR VPC endpoint and the Amazon S3 gateway endpoint to take advantage of this feature\.
++ Amazon ECS tasks using the Fargate launch type and platform version 1\.4\.0 or later require the **com\.amazonaws\.*region*\.ecr\.dkr** and **com\.amazonaws\.*region*\.ecr\.api ** Amazon ECR VPC endpoints and the Amazon S3 gateway endpoint to take advantage of this feature\.
++ Amazon ECS tasks using the Fargate launch type that pull container images from Amazon ECR can restrict access to the specific VPC their tasks use and to the VPC endpoint the service uses by adding condition keys to their task execution role\. For more information, see [Amazon ECS Task Execution IAM Role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html) in the *Amazon Elastic Container Service Developer Guide*\.
 + VPC endpoints currently don't support cross\-Region requests\. Ensure that you create your endpoint in the same Region where you plan to issue your API calls to Amazon ECR\.
 + VPC endpoints only support Amazon provided DNS through Amazon Route 53\. If you want to use your own DNS, you can use conditional DNS forwarding\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
 + The security group attached to the VPC endpoint must allow incoming connections on port 443 from the private subnet of the VPC\.
@@ -61,7 +61,38 @@ arn:aws:s3:::prod-region-starport-layer-bucket/*
 Use the [Creating a Gateway Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-gateway.html#create-gateway-endpoint) procedure in the *Amazon VPC User Guide* to create the following Amazon S3 gateway endpoint for the Amazon ECR service\. When you create the endpoint, be sure to select the route tables for your VPC\.
 
 **com\.amazonaws\.*region*\.s3**  
-The Amazon S3 gateway endpoint uses an IAM policy document to limit access to the service\. The **Full Access** policy can be used because any restrictions that you have put in your task IAM roles or other IAM user policies still apply on top of this policy\. If you want to limit Amazon S3 bucket access to the minimum required permissions for using Amazon ECR, see [Minimum Amazon S3 Bucket Permissions for Amazon ECR](ecr-minimum-s3-perms.md)\.
+The Amazon S3 gateway endpoint uses an IAM policy document to limit access to the service\. The **Full Access** policy can be used because any restrictions that you have put in your task IAM roles or other IAM user policies still apply on top of this policy\. If you want to limit Amazon S3 bucket access to the minimum required permissions for using Amazon ECR, see [Minimum Amazon S3 Bucket Permissions for Amazon ECR](#ecr-minimum-s3-perms)\.
+
+### Minimum Amazon S3 Bucket Permissions for Amazon ECR<a name="ecr-minimum-s3-perms"></a>
+
+The Amazon S3 gateway endpoint uses an IAM policy document to limit access to the service\. To allow only the minimum Amazon S3 bucket permissions for Amazon ECR, restrict access to the Amazon S3 bucket that Amazon ECR uses when you create the IAM policy document for the endpoint\. 
+
+The following table describes the Amazon S3 bucket policy permissions needed by Amazon ECR\.
+
+
+| Permission | Description | 
+| --- | --- | 
+| arn:aws:s3:::prod\-region\-starport\-layer\-bucket/\* | Provides access to the Amazon S3 bucket containing the layers for each Docker image\. Represents the Region identifier for an AWS Region supported by Amazon ECR, such as us\-east\-2 for the US East \(Ohio\) Region\. | 
+
+#### Example<a name="ecr-minimum-s3-perms-example"></a>
+
+The following example illustrates how to provide access to the Amazon S3 buckets required for Amazon ECR operations\.
+
+```
+{
+  "Statement": [
+    {
+      "Sid": "Access-to-specific-bucket-only",
+      "Principal": "*",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::prod-region-starport-layer-bucket/*"]
+    }
+  ]
+}
+```
 
 ## Create the CloudWatch Logs Endpoint<a name="ecr-setting-up-cloudwatch-logs"></a>
 

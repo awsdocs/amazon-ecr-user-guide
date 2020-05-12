@@ -1,4 +1,4 @@
-# Deleting an Image<a name="delete_image"></a>
+# Deleting an image<a name="delete_image"></a>
 
 If you are done using an image, you can delete it from your repository\. You can delete an image using the AWS Management Console, or the AWS CLI\.
 

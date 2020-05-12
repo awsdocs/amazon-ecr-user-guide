@@ -1,4 +1,4 @@
-# Amazon ECR Service Quotas<a name="service-quotas"></a>
+# Amazon ECR service quotas<a name="service-quotas"></a>
 
 The following table provides the default service quotas for Amazon Elastic Container Registry \(Amazon ECR\)\.
 
@@ -7,7 +7,7 @@ The following table provides the default service quotas for Amazon Elastic Conta
 
 | Service quota | Description | Default quota value | 
 | --- | --- | --- | 
-|  Registered repositories  |  The maximum number of repositories that you can create in this account in the current Region\.  |  10,000  | 
+|  Registered repositories  |  The maximum number of repositories that you can create per Region\.  |  10,000  | 
 |  Image per repository  |  The maximum number of images per repository\.  |  10,000  | 
 
 The following table provides the default rate quotas for each of the Amazon ECR API actions involved with the image push and image pull actions\.
@@ -35,7 +35,7 @@ The layer part information mentioned in the following table is only applicable i
 
 \*\* The maximum layer size listed here is calculated by multiplying the maximum layer part size \(10 MiB\) by the maximum number of layer parts \(1,000\)\.
 
-## Managing Your Amazon ECR Service Quotas in the AWS Management Console<a name="service-quotas-console"></a>
+## Managing your Amazon ECR service quotas in the AWS Management Console<a name="service-quotas-console"></a>
 
 Amazon ECR has integrated with Service Quotas, an AWS service that enables you to view and manage your quotas from a central location\. For more information, see [What Is Service Quotas?](https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html) in the *Service Quotas User Guide*\.
 
@@ -53,9 +53,9 @@ Service Quotas makes it easy to look up the value of all Amazon ECR service quot
 
 1. To view additional information about a service quota, such as the description, choose the quota name\.
 
-To request a quota increase, see [Requesting a Quota Increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-increase.html) in the *Service Quotas User Guide*\.
+To request a quota increase, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-increase.html) in the *Service Quotas User Guide*\.
 
-### Creating a CloudWatch Alarm to Monitor API Usage Metrics<a name="service-quota-alarm"></a>
+### Creating a CloudWatch alarm to monitor API usage metrics<a name="service-quota-alarm"></a>
 
 Amazon ECR provides CloudWatch usage metrics that correspond to the AWS service quotas for each of the APIs involved with the registry authentication, image push, and image pull actions\. In the Service Quotas console, you can visualize your usage on a graph and configure alarms that alert you when your usage approaches a service quota\. For more information, see [Amazon ECR Usage Metrics](monitoring-usage.md)\.
 

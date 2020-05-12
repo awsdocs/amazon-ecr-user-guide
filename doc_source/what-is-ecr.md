@@ -19,7 +19,7 @@ Repository policy
 You can control access to your repositories and the images within them with repository policies\. For more information, see [Amazon ECR Repository Policies](repository-policies.md)\.
 
 Image  
-You can push and pull container images to your repositories\. You can use these images locally on your development system, or you can use them in Amazon ECS task definitions\. For more information, see [Using Amazon ECR Images with Amazon ECS](ECR_on_ECS.md)\.
+You can push and pull container images to your repositories\. You can use these images locally on your development system, or you can use them in Amazon ECS task definitions and Amazon EKS pod specifications\. For more information, see [Using Amazon ECR Images with Amazon ECS](ECR_on_ECS.md) and [Using Amazon ECR Images with Amazon EKS](ECR_on_EKS.md)\.
 
 ## How to Get Started with Amazon ECR<a name="ecr-get-started"></a>
 

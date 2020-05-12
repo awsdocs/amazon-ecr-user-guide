@@ -1,4 +1,4 @@
-# Container Image Manifest Formats<a name="image-manifest-formats"></a>
+# Container image manifest formats<a name="image-manifest-formats"></a>
 
 Amazon ECR supports the following container image manifest formats:
 + Docker Image Manifest V2 Schema 1 \(used with Docker version 1\.9 and older\)

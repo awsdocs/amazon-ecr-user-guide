@@ -1,4 +1,4 @@
-# Image Tag Mutability<a name="image-tag-mutability"></a>
+# Image tag mutability<a name="image-tag-mutability"></a>
 
 You can configure a repository to be immutable to prevent image tags from being overwritten\. Once the repository is configured for immutable tags, an `ImageTagAlreadyExistsException` error will be returned if you attempt to push an image with a tag that already exists in the repository\.
 

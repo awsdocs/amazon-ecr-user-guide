@@ -19,4 +19,4 @@ The next step is to establish a baseline for normal Amazon ECR performance in yo
 + [Amazon ECR Usage Metrics](monitoring-usage.md)
 + [Amazon ECR Usage Reports](usage-reports.md)
 + [Amazon ECR Events and EventBridge](ecr-eventbridge.md)
-+ [Logging Amazon ECR API Calls with AWS CloudTrail](logging-using-cloudtrail.md)
++ [Logging Amazon ECR Actions with AWS CloudTrail](logging-using-cloudtrail.md)

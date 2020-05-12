@@ -12,8 +12,8 @@ Existing repositories can be edited to change its image tag mutability and image
 
 1. On the **Repositories** page, select the repository to edit and choose **Edit**\.
 
-1. For **Tag immutability**, choose the tag mutability setting for the repository\. Repositories configured with immutable tags will prevent image tags from being overwritten\. For more information, see [Image Tag Mutability](image-tag-mutability.md)\.
+1. For **Tag immutability**, choose the tag mutability setting for the repository\. Repositories configured with immutable tags will prevent image tags from being overwritten\. For more information, see [Image tag mutability](image-tag-mutability.md)\.
 
-1. For **Scan on push**, choose the image scanning setting for the repository\. Repositories configured to scan on push will start an image scan whenever an image is pushed, otherwise image scans need to be started manually\. For more information, see [Image Scanning](image-scanning.md)\.
+1. For **Scan on push**, choose the image scanning setting for the repository\. Repositories configured to scan on push will start an image scan whenever an image is pushed, otherwise image scans need to be started manually\. For more information, see [Image scanning](image-scanning.md)\.
 
 1. Choose **Save** to update the repository settings\.

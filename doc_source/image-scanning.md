@@ -1,4 +1,4 @@
-# Image Scanning<a name="image-scanning"></a>
+# Image scanning<a name="image-scanning"></a>
 
 Amazon ECR image scanning helps in identifying software vulnerabilities in your container images\. Amazon ECR uses the Common Vulnerabilities and Exposures \(CVEs\) database from the open source CoreOS Clair project and provides you with a list of scan findings\. You can review the scan findings for information about the security of the container images that are being deployed\. For more information about CoreOS Clair, see [CoreOS Clair](https://github.com/coreos/clair)\.
 
