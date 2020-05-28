@@ -119,7 +119,6 @@ In this example, you want to grant an IAM user in your AWS account access to one
          "Sid":"ManageRepositoryContents",
          "Effect":"Allow",
          "Action":[
-                "ecr:GetAuthorizationToken",
                 "ecr:BatchCheckLayerAvailability",
                 "ecr:GetDownloadUrlForLayer",
                 "ecr:GetRepositoryPolicy",
