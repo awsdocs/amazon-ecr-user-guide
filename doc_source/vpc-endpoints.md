@@ -10,6 +10,7 @@ For more information about AWS PrivateLink and VPC endpoints, see [VPC Endpoints
 + [Create the Amazon S3 Gateway Endpoint](#ecr-setting-up-s3-gateway)
 + [Create the CloudWatch Logs Endpoint](#ecr-setting-up-cloudwatch-logs)
 + [Create an Endpoint Policy for your Amazon ECR VPC Endpoint](#ecr-vpc-endpoint-policy)
++ [Special Considerations for Windows Images for Amazon ECR](#ecr-vpc-endpoint-windows)
 
 ## Considerations for Amazon ECR VPC Endpoints<a name="ecr-vpc-endpoint-considerations"></a>
 
@@ -192,3 +193,27 @@ The following endpoint policy example combines the two previous examples into a 
 1. Choose **Edit Policy** and make the changes to the policy\.
 
 1. Choose **Save** to save the policy\.
+
+## Special Considerations for Windows Images for Amazon ECR<a name="ecr-vpc-endpoint-windows"></a>
+
+Images for the Windows Operating System type include artifacts that distribution is restricted by license\. When you build upon these images and push them to ECR the licensed layers are not pushed by default as they are considered "foreign layers"\. In the case of Microsoft-provided these "foreign layers" are retrieved from Azure infrastructure\. For this reason it is not sufficient to enable the required VPC Endpoint infrastructure as your instances may need to pull the foreign layers from Azure infrastructure\.
+
+It is possible to override this behaviour when pushing images to ECR using the `--allow-nondistributable-artifacts` flag in the Docker daemon\. This flag, when enabled, will push the licensed layers to ECR allowing these images to be pulled from ECR via the VPC Endpoint without additional access to Azure being required\.
+
+**Important**
+Usage of this flag shall not preclude your obligation to comply with the terms of the Windows container base image license; you must not post Windows content for public or third-party redistribution\. Usage within your own environment is allowed\.
+
+To enable this flag in your development or build machine you will want to need to modify the `daemon.json` configuration file which, depending on your installation of Docker, can typically be configured in the **Docker Engine** section of Settings menu or found under `C:\ProgramData\docker\config\daemon.json`\. The following example demonstrates this configuration:
+
+```
+{
+  "allow-nondistributable-artifacts": [
+    "1234567890.dkr.ecr.region.amazonaws.com"
+  ]
+}
+```
+
+After modifying `daemon.json` restart the Docker daemon and then attempt to push your image\. The base layer should be pushed to ECR as well\.
+
+**Note**
+The base layers for images of the Windows Operating System type are quite large\. Please note that this will result in a longer time to push and additional storage costs in ECR for these images\. We therefore recommend only using this option when it is strictly required to reduce build times and ongoing storage costs\. As an example the `mcr.microsoft.com/windows/servercore` image is approximately 1.7 GiB in size when compressed in ECR\.
