@@ -1,6 +1,6 @@
 # Image scanning<a name="image-scanning"></a>
 
-Amazon ECR image scanning helps in identifying software vulnerabilities in your container images\. Amazon ECR uses the Common Vulnerabilities and Exposures \(CVEs\) database from the open source CoreOS Clair project and provides you with a list of scan findings\. You can review the scan findings for information about the security of the container images that are being deployed\. For more information about CoreOS Clair, see [CoreOS Clair](https://github.com/coreos/clair)\.
+Amazon ECR image scanning helps in identifying software vulnerabilities in your container images\. Amazon ECR uses the Common Vulnerabilities and Exposures \(CVEs\) database from the open source Clair project and provides you with a list of scan findings\. You can review the scan findings for information about the security of the container images that are being deployed\. For more information about Clair, see [Clair](https://github.com/quay/clair) on GitHub\.
 
 Amazon ECR uses the severity for a CVE from the upstream distribution source if available, otherwise we use the Common Vulnerability Scoring System \(CVSS\) score\. The CVSS score can be used to obtain the NVD vulnerability severity rating\. For more information, see [NVD Vulnerability Severity Ratings](https://nvd.nist.gov/vuln-metrics/cvss)\. 
 
@@ -9,21 +9,21 @@ You can manually scan container images stored in Amazon ECR, or you can configur
 For troubleshooting details for some common issues when scanning images, see [Troubleshooting Image Scanning Issues](image-scanning-troubleshooting.md)\.
 
 **Topics**
-+ [Configuring a Repository to Scan on Push](#scanning-repository)
-+ [Manually Scanning an Image](#manual-scan)
-+ [Retrieving Scan Findings](#describe-scan-findings)
++ [Configuring a repository to scan on push](#scanning-repository)
++ [Manually scanning an image](#manual-scan)
++ [Retrieving image scan findings](#describe-scan-findings)
 
-## Configuring a Repository to Scan on Push<a name="scanning-repository"></a>
+## Configuring a repository to scan on push<a name="scanning-repository"></a>
 
 You can configure the image scan settings either for a new repository during creation or for an existing repository\. When **scan on push** is enabled, images are scanned after being pushed to a repository\. If **scan on push** is disabled on a repository then you must manually start each image scan to get the scan results\.
 
 **Topics**
-+ [Creating a New Repository to Scan on Push](#scanning-new-repository)
-+ [Configure an Existing Repository to Scan on Push](#scanning-existing-repository)
++ [Creating a new repository to scan on push](#scanning-new-repository)
++ [Configure an existing repository to scan on push](#scanning-existing-repository)
 
-### Creating a New Repository to Scan on Push<a name="scanning-new-repository"></a>
+### Creating a new repository to scan on push<a name="scanning-new-repository"></a>
 
-When a new repository is configured to **scan on push**, all new images pushed to the repository will be scanned\. Results from the last completed image scan can then be retrieved\. For more information, see [Retrieving Scan Findings](#describe-scan-findings)\.
+When a new repository is configured to **scan on push**, all new images pushed to the repository will be scanned\. Results from the last completed image scan can then be retrieved\. For more information, see [Retrieving image scan findings](#describe-scan-findings)\.
 
 For AWS Management Console steps, see [Creating a Repository](repository-create.md)\.
 
@@ -45,9 +45,9 @@ Use the following command to create a new repository with image **scan on push**
   New-ECRRepository -RepositoryName name -ImageScanningConfiguration_ScanOnPush true -Region us-east-2 -Force
   ```
 
-### Configure an Existing Repository to Scan on Push<a name="scanning-existing-repository"></a>
+### Configure an existing repository to scan on push<a name="scanning-existing-repository"></a>
 
-Your existing repositories can be configured to scan images when you push them to a repository\. This setting will apply to future image pushes\. Results from the last completed image scan can then be retrieved\. For more information, see [Retrieving Scan Findings](#describe-scan-findings)\.
+Your existing repositories can be configured to scan images when you push them to a repository\. This setting will apply to future image pushes\. Results from the last completed image scan can then be retrieved\. For more information, see [Retrieving image scan findings](#describe-scan-findings)\.
 
 For AWS Management Console steps, see [Editing a Repository](repository-edit.md)\.
 
@@ -71,7 +71,7 @@ Use the following command to edit the image scanning settings of an existing rep
   Write-ECRImageScanningConfiguration -RepositoryName name -ImageScanningConfiguration_ScanOnPush true -Region us-east-2 -Force
   ```
 
-## Manually Scanning an Image<a name="manual-scan"></a>
+## Manually scanning an image<a name="manual-scan"></a>
 
 You can start image scans manually when you want to scan images in repositories that are not configured to **scan on push**\. An image can only be scanned once per day\. This limit includes the initial **scan on push**, if enabled, and any manual scans\.
 
@@ -125,7 +125,7 @@ Use the following AWS Tools for Windows PowerShell command to start a manual sca
   Start-ECRImageScan -RepositoryName name -ImageId_ImageDigest sha256_hash -Region us-east-2 -Force
   ```
 
-## Retrieving Scan Findings<a name="describe-scan-findings"></a>
+## Retrieving image scan findings<a name="describe-scan-findings"></a>
 
 You can retrieve the scan findings for the last completed image scan\. The findings list by severity the software vulnerabilities that were discovered, based on the Common Vulnerabilities and Exposures \(CVEs\) database\.
 
@@ -147,7 +147,7 @@ Use the following steps to retrieve image scan findings using the AWS Management
 
 ### To retrieve image scan findings \(AWS CLI\)<a name="describe-scan-findings-cli"></a>
 
-Use the following AWS CLI command to start a manual scan of an image\. You can specify an image using the `imageTag` or `imageDigest`, both of which can be obtained using the [list\-images](https://docs.aws.amazon.com/cli/latest/reference/ecr/list-images.html) CLI command\.
+Use the following AWS CLI command to retrieve image scan findings using the AWS CLI\. You can specify an image using the `imageTag` or `imageDigest`, both of which can be obtained using the [list\-images](https://docs.aws.amazon.com/cli/latest/reference/ecr/list-images.html) CLI command\.
 + [describe\-image\-scan\-findings](https://docs.aws.amazon.com/cli/latest/reference/ecr/describe-image-scan-findings.html) \(AWS CLI\)
 
   The following example uses an image tag\.

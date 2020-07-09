@@ -13,7 +13,7 @@ Amazon ECR requires that users have allow permissions to the `ecr:GetAuthorizati
 
 You can use either of these policy types to control access to your repositories, as shown in the following examples\.
 
-This example shows an Amazon ECR repository policy, which allows for a specific IAM user to describe the repository and the images within the repository:
+This example shows an Amazon ECR repository policy, which allows for a specific IAM user to describe the repository and the images within the repository\.
 
 ```
 {
@@ -22,7 +22,7 @@ This example shows an Amazon ECR repository policy, which allows for a specific 
     "Sid": "ECR Repository Policy",
     "Effect": "Allow",
     "Principal": {
-      "AWS": "arn:aws:iam::123456789012:user/MyUsername"
+      "AWS": "arn:aws:iam::account-id:user/username"
     },
     "Action": [
        "ecr:DescribeImages",
@@ -32,7 +32,7 @@ This example shows an Amazon ECR repository policy, which allows for a specific 
 }
 ```
 
-This example shows an IAM policy that achieves the same goal as above, by scoping the policy to a repository \(specified by the full ARN of the repository\) using the resource parameter:
+This example shows an IAM policy that achieves the same goal as above, by scoping the policy to a repository \(specified by the full ARN of the repository\) using the resource parameter\. For more information about Amazon Resource Name \(ARN\) format, see [Resources](security_iam_service-with-iam.md#security_iam_service-with-iam-id-based-policies-resources)\.
 
 ```
 {
@@ -41,14 +41,14 @@ This example shows an IAM policy that achieves the same goal as above, by scopin
     "Sid": "ECR Repository Policy",
     "Effect": "Allow",
     "Principal": {
-      "AWS": "arn:aws:iam::123456789012:user/MyUsername"
+      "AWS": "arn:aws:iam::account-id:user/username"
     },
     "Action": [
       "ecr:DescribeImages",
       "ecr:DescribeRepositories"
     ],
     "Resource": [
-      "arn:aws:ecr:region:123456789012:repository/MyRepository"
+      "arn:aws:ecr:region:account-id:repository/repository-name"
     ]
     }]
 }

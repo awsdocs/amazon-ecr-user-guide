@@ -1,10 +1,10 @@
-# Setting Up with Amazon ECR<a name="get-set-up-for-amazon-ecr"></a>
+# Setting up with Amazon ECR<a name="get-set-up-for-amazon-ecr"></a>
 
-If you've signed up for AWS and have been using Amazon Elastic Container Service \(Amazon ECS\), you are close to being able to use Amazon ECR\. The setup process for the two services is similar, as Amazon ECR is an extension to Amazon ECS\. To use the AWS CLI with Amazon ECR, you must use a version of the AWS CLI that supports the latest Amazon ECR features\. If you do not see support for an Amazon ECR feature in the AWS CLI, you should upgrade to the latest version\. For more information, see [http://aws\.amazon\.com/cli/](http://aws.amazon.com/cli/)\.
+If you've signed up for AWS and have been using Amazon Elastic Container Service \(Amazon ECS\) or Amazon Elastic Kubernetes Service \(Amazon EKS\), you are close to being able to use Amazon ECR\. The setup process for these two services is similar, as Amazon ECR is an extension to these services\. To use the AWS CLI with Amazon ECR, you must use a version of the AWS CLI that supports the latest Amazon ECR features\. If you do not see support for an Amazon ECR feature in the AWS CLI, you should upgrade to the latest version\. For more information, see [http://aws\.amazon\.com/cli/](http://aws.amazon.com/cli/)\.
 
-Complete the following tasks to get set up for Amazon ECR\. If you have already completed any of these steps, you may skip them and move on to installing the custom AWS CLI\.
+Complete the following tasks to get set up to push a container image to Amazon ECR for the first time\. If you have already completed any of these steps, you may skip them and move on to the next step\.
 
-## Sign Up for AWS<a name="sign-up-for-aws"></a>
+## Sign up for AWS<a name="sign-up-for-aws"></a>
 
 When you sign up for AWS, your AWS account is automatically signed up for all services, including Amazon ECR\. You are charged only for the services that you use\.
 
@@ -20,7 +20,7 @@ If you have an AWS account already, skip to the next task\. If you don't have an
 
 Note your AWS account number, because you'll need it for the next task\.
 
-## Create an IAM User<a name="create-an-iam-user"></a>
+## Create an IAM user<a name="create-an-iam-user"></a>
 
 Services in AWS, such as Amazon ECR, require that you provide credentials when you access them, so that the service can determine whether you have permission to access its resources\. The console requires your password\. You can create access keys for your AWS account to access the command line interface or API\. However, we don't recommend that you access AWS using the credentials for your AWS account; we recommend that you use AWS Identity and Access Management \(IAM\) instead\. Create an IAM user, and then add the user to an IAM group with administrative permissions or grant this user administrative permissions\. You can then access AWS using a special URL and the credentials for the IAM user\.
 
@@ -28,7 +28,7 @@ If you signed up for AWS but have not created an IAM user for yourself, you can 
 
 **To create an administrator user for yourself and add the user to an administrators group \(console\)**
 
-1. Use your AWS account email address and password to sign in as the *[AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html)* to the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+1. Sign in to the [IAM console](https://console.aws.amazon.com/iam/) as the account owner by choosing **Root user** and entering your AWS account email address\. On the next page, enter your password\.
 **Note**  
 We strongly recommend that you adhere to the best practice of using the **Administrator** IAM user below and securely lock away the root user credentials\. Sign in as the root user only to perform a few [account and service management tasks](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)\.
 
@@ -83,13 +83,3 @@ https://your_account_alias.signin.aws.amazon.com/console/
 To verify the sign\-in link for IAM users for your account, open the IAM console and check under **IAM users sign\-in link** on the dashboard\.
 
 For more information about IAM, see the [AWS Identity and Access Management User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
-
-## Install the AWS CLI<a name="install_aws_cli"></a>
-
-You can use the AWS command line tools to issue commands at your system's command line to perform Amazon ECS and AWS tasks\. This can be faster and more convenient than using the console\. The command line tools are also useful for building scripts that perform AWS tasks\.
-
-To use the AWS CLI with Amazon ECR, install the latest AWS CLI version \(Amazon ECR functionality is available in the AWS CLI starting with version 1\.9\.15\)\. You can check your AWS CLI version with the aws \-\-version command\. For information about installing the AWS CLI or upgrading it to the latest version, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
-
-## Install Docker<a name="setup_install_docker"></a>
-
-To use the Docker CLI with Amazon ECR, you must first install Docker on your system\. For information about installing Docker and getting familiar with the tools, see [Getting Started with Amazon ECR using the AWS CLI](getting-started-cli.md)\.

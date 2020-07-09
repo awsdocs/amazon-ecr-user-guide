@@ -18,8 +18,8 @@ The following repository policy allows IAM users within your account to push and
             "Effect": "Allow",
             "Principal": {
                 "AWS": [
-                    "arn:aws:iam::123456789012:user/push-pull-user-1",
-                    "arn:aws:iam::123456789012:user/push-pull-user-2"
+                    "arn:aws:iam::account-id:user/push-pull-user-1",
+                    "arn:aws:iam::account-id:user/push-pull-user-2"
                 ]
             },
             "Action": [
@@ -48,7 +48,7 @@ The following repository policy allows a specific account to push images\.
             "Sid": "AllowCrossAccountPush",
             "Effect": "Allow",
             "Principal": {
-                "AWS": "arn:aws:iam::123456789012:root"
+                "AWS": "arn:aws:iam::account-id:root"
             },
             "Action": [
                 "ecr:GetDownloadUrlForLayer",
@@ -77,8 +77,8 @@ For more complicated repository policies that are not currently supported in the
             "Effect": "Allow",
             "Principal": {
                 "AWS": [
-                    "arn:aws:iam::123456789012:user/pull-user-1",
-                    "arn:aws:iam::123456789012:user/pull-user-2"
+                    "arn:aws:iam::account-id:user/pull-user-1",
+                    "arn:aws:iam::account-id:user/pull-user-2"
                 ]
             },
             "Action": [
@@ -90,7 +90,7 @@ For more complicated repository policies that are not currently supported in the
             "Sid": "AllowAll",
             "Effect": "Allow",
             "Principal": {
-                "AWS": "arn:aws:iam::123456789012:user/admin-user"
+                "AWS": "arn:aws:iam::account-id:user/admin-user"
             },
             "Action": [
                 "ecr:*"

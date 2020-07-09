@@ -9,7 +9,7 @@ Support for Docker Image Manifest V2 Schema 2 provides the following functionali
 + The ability to use multiple tags per image\.
 + Support for storing Windows container images\. For more information, see [Pushing Windows Images to Amazon ECR](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/windows_ecr.html) in the *Amazon Elastic Container Service Developer Guide*\.
 
-## Amazon ECR Image Manifest Conversion<a name="image-manifest-conversion"></a>
+## Amazon ECR image manifest conversion<a name="image-manifest-conversion"></a>
 
 When you push and pull images to and from Amazon ECR, your container engine client \(for example, Docker\) communicates with the registry to agree on a manifest format that is understood by the client and the registry to use for the image\. 
 

@@ -1,20 +1,28 @@
-# Getting Started with Amazon ECR using the AWS CLI<a name="getting-started-cli"></a>
+# Getting started with Amazon ECR using the AWS CLI<a name="getting-started-cli"></a>
 
-The following steps help you install the AWS Command Line Interface and then log in to Amazon ECR\. From there, you can create an image repository, push an image to that repository, and perform other common scenarios in Amazon ECR\.
-
-The AWS CLI is a unified tool to manage your AWS services\. With just one tool to download and configure, you can control multiple AWS services from the command line and automate them through scripts\. For more information, see [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\.
+The following steps walk you through the steps needed to push a container image to Amazon ECR for the first time using the Docker CLI and the AWS CLI\.
 
 For more information on the other tools available for managing your AWS resources, including the different AWS SDKs, IDE toolkits, and the Windows PowerShell command line tools, see [http://aws\.amazon\.com/tools/](http://aws.amazon.com/tools/)\.
 
-Before you begin, be sure that you've completed the steps in [Setting Up with Amazon ECR](get-set-up-for-amazon-ecr.md)\.
+## Prerequisites<a name="getting-started-cli-prereqs"></a>
 
-## Install Docker<a name="cli-install-docker"></a>
+Before you begin, be sure that you have completed the steps in [Setting up with Amazon ECR](get-set-up-for-amazon-ecr.md)\.
+
+If you do not already have the latest AWS CLI and Docker installed and ready to use, use the following steps to install both of these tools\.
+
+### Install the AWS CLI<a name="cli-install"></a>
+
+You can use the AWS command line tools to issue commands at your system's command line to perform Amazon ECR and other AWS tasks\. This can be faster and more convenient than using the console\. The command line tools are also useful for building scripts that perform AWS tasks\.
+
+To use the AWS CLI with Amazon ECR, install the latest AWS CLI version \(Amazon ECR functionality is available in the AWS CLI starting with version 1\.9\.15\)\. You can check your AWS CLI version with the aws \-\-version command\. For information about installing the AWS CLI or upgrading it to the latest version, see [Installing the AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) in the *AWS Command Line Interface User Guide*\.
+
+### Install Docker<a name="cli-install-docker"></a>
 
 Docker is available on many different operating systems, including most modern Linux distributions, like Ubuntu, and even Mac OSX and Windows\. For more information about how to install Docker on your particular operating system, go to the [Docker installation guide](https://docs.docker.com/engine/installation/#installation)\.
 
 You don't need a local development system to use Docker\. If you are using Amazon EC2 already, you can launch an Amazon Linux 2 instance and install Docker to get started\.
 
-If you already have Docker installed, skip to [Step 1: Create a Docker Image](#cli-create-image)\.
+If you already have Docker installed, skip to [Step 1: Create a Docker image](#cli-create-image)\.
 
 **To install Docker on an Amazon EC2 instance**
 
@@ -60,7 +68,7 @@ In some cases, you may need to reboot your instance to provide permissions for t
    Cannot connect to the Docker daemon. Is the docker daemon running on this host?
    ```
 
-## Step 1: Create a Docker Image<a name="cli-create-image"></a>
+## Step 1: Create a Docker image<a name="cli-create-image"></a>
 
 In this section, you create a Docker image of a simple web application, and test it on your local system or EC2 instance, and then push the image to a container registry \(such as Amazon ECR or Docker Hub\) so you can use it in an ECS task definition\.
 
@@ -140,51 +148,36 @@ Output from the Apache web server is displayed in the terminal window\. You can 
 
 1. Stop the Docker container by typing **Ctrl \+ c**\.
 
-## Step 2: Authenticate to your Default Registry<a name="cli-authenticate-registry"></a>
+## Step 2: Authenticate to your default registry<a name="cli-authenticate-registry"></a>
 
 After you have installed and configured the AWS CLI, authenticate the Docker CLI to your default registry\. That way, the docker command can push and pull images with Amazon ECR\. The AWS CLI provides a get\-login\-password command to simplify the authentication process\.
 
-To authenticate Docker to an Amazon ECR registry with get\-login\-password, run the aws ecr get\-login\-password command\. When passing the authentication token to the docker login command, you specify the username `AWS` and the Amazon ECR registry URI you want to authenticate to\. If authenticating to multiple registries, you must repeat the command for each registry\.
+To authenticate Docker to an Amazon ECR registry with get\-login\-password, run the aws ecr get\-login\-password command\. When passing the authentication token to the docker login command, use the value `AWS` for the username and specify the Amazon ECR registry URI you want to authenticate to\. If authenticating to multiple registries, you must repeat the command for each registry\.
 **Important**  
 If you receive an error, install or upgrade to the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 + [get\-login\-password](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login-password.html) \(AWS CLI\)
 
   ```
-  aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.us-east-1.amazonaws.com
+  aws ecr get-login-password --region region | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
   ```
 + [Get\-ECRLoginCommand](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-ECRLoginCommand.html) \(AWS Tools for Windows PowerShell\)
 
   ```
-  (Get-ECRLoginCommand).Password | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.us-east-1.amazonaws.com
+  (Get-ECRLoginCommand).Password | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
   ```
 
-## Step 3: Create a Repository<a name="cli-create-repository"></a>
+## Step 3: Create a repository<a name="cli-create-repository"></a>
 
-Now that you have an image to push to Amazon ECR, you must create a repository to hold it\. In this example, you create a repository called `ubuntu` to which you later push the `ubuntu:trusty` image\. To create a repository, run the following command:
+Now that you have an image to push to Amazon ECR, you must create a repository to hold it\. In this example, you create a repository called `hello-world` to which you later push the `hello-world:latest` image\. To create a repository, run the following command:
 
 ```
 aws ecr create-repository \
-    --repository-name sample-repo \
+    --repository-name hello-world \
     --image-scanning-configuration scanOnPush=true \
     --region us-east-1
 ```
 
-Output:
-
-```
-{
-    "repository": {
-        "registryId": "123456789012",
-        "repositoryName": "sample-repo",
-        "repositoryArn": "arn:aws:ecr:us-east-1:123456789012:repository/sample-repo",
-        "imageScanningConfiguration": {
-            "scanOnPush": true
-        }
-    }
-}
-```
-
-## Step 4: Push an Image to Amazon ECR<a name="cli-push-image"></a>
+## Step 4: Push an image to Amazon ECR<a name="cli-push-image"></a>
 
 Now you can push your image to the Amazon ECR repository you created in the previous section\. You use the docker CLI to push images, but there are a few prerequisites that must be satisfied for this to work properly:
 + The minimum version of docker is installed: 1\.7
@@ -205,33 +198,33 @@ After those prerequisites are met, you can push your image to your newly created
 
    ```
    REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-   ubuntu              trusty              e9ae3c220b23        3 weeks ago         187.9 MB
+   hello-world         latest              e9ffedc8c286        4 minutes ago       241MB
    ```
 
 1. Tag the image to push to your repository\.
 
    ```
-   $ docker tag ubuntu:trusty aws_account_id.dkr.ecr.us-east-1.amazonaws.com/ubuntu:trusty
+   docker tag hello-world:latest aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest
    ```
 
 1. Push the image\.
 
    ```
-   docker push aws_account_id.dkr.ecr.us-east-1.amazonaws.com/ubuntu:trusty
+   docker push aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest
    ```
 
    Output:
 
    ```
-   The push refers to a repository [aws_account_id.dkr.ecr.us-east-1.amazonaws.com/ubuntu] (len: 1)
+   The push refers to a repository [aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world] (len: 1)
    e9ae3c220b23: Pushed
    a6785352b25c: Pushed
    0998bf8fb9e9: Pushed
    0a85502c06c9: Pushed
-   trusty: digest: sha256:215d7e4121b30157d8839e81c4e0912606fca105775bb0636b95aed25f52c89b size: 6774
+   latest: digest: sha256:215d7e4121b30157d8839e81c4e0912606fca105775bb0636b95aed25f52c89b size: 6774
    ```
 
-## Step 5: Pull an Image from Amazon ECR<a name="cli-pull-image"></a>
+## Step 5: Pull an image from Amazon ECR<a name="cli-pull-image"></a>
 
 After your image has been pushed to your Amazon ECR repository, you can pull it from other locations\. Use the docker CLI to pull images, but there are a few prerequisites that must be satisfied for this to work properly:
 + The minimum version of docker is installed: 1\.7
@@ -241,29 +234,29 @@ After your image has been pushed to your Amazon ECR repository, you can pull it 
 After those prerequisites are met, you can pull your image\. To pull your example image from Amazon ECR, run the following command:
 
 ```
-docker pull aws_account_id.dkr.ecr.us-east-1.amazonaws.com/ubuntu:trusty
+docker pull aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest
 ```
 
 Output:
 
 ```
-trusty: Pulling from ubuntu
+latest: Pulling from hello-world
 0a85502c06c9: Pull complete
 0998bf8fb9e9: Pull complete
 a6785352b25c: Pull complete
 e9ae3c220b23: Pull complete
 Digest: sha256:215d7e4121b30157d8839e81c4e0912606fca105775bb0636b95aed25f52c89b
-Status: Downloaded newer image for aws_account_id.dkr.ecr.us-east-1.amazonaws.com/ubuntu:trusty
+Status: Downloaded newer image for aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest
 ```
 
-## Step 6: Delete an Image<a name="cli-delete-image"></a>
+## Step 6: Delete an image<a name="cli-delete-image"></a>
 
-If you decide that you no longer need or want an image in one of your repositories, you can delete it with the batch\-delete\-image command\. To delete an image, you must specify the repository that it is in and either a `imageTag` or `imageDigest` value for the image\. The example below deletes an image in the `ubuntu` repository with the image tag `trusty`\.
+If you decide that you no longer need or want an image in one of your repositories, you can delete it with the batch\-delete\-image command\. To delete an image, you must specify the repository that it is in and either a `imageTag` or `imageDigest` value for the image\. The example below deletes an image in the `hello-world` repository with the image tag `latest`\.
 
 ```
 aws ecr batch-delete-image \
-      --repository-name ubuntu \
-      --image-ids imageTag=trusty
+      --repository-name hello-world \
+      --image-ids imageTag=latest
 ```
 
 Output:
@@ -273,33 +266,19 @@ Output:
     "failures": [],
     "imageIds": [
         {
-            "imageTag": "trusty",
+            "imageTag": "latest",
             "imageDigest": "sha256:215d7e4121b30157d8839e81c4e0912606fca105775bb0636b95aed25f52c89b"
         }
     ]
 }
 ```
 
-## Step 7: Delete a Repository<a name="cli-delete-repository"></a>
+## Step 7: Delete a repository<a name="cli-delete-repository"></a>
 
-If you decide that you no longer need or want an entire repository of images, you can delete the repository\. By default, you cannot delete a repository that contains images; however, the `--force` flag allows this\. To delete a repository that contains images \(and all the images within it\), run the following command:
+If you decide that you no longer need or want an entire repository of images, you can delete the repository\. By default, you cannot delete a repository that contains images; however, the `--force` flag allows this\. To delete a repository that contains images \(and all the images within it\), run the following command\.
 
 ```
 aws ecr delete-repository \
-      --repository-name ubuntu \
+      --repository-name hello-world \
       --force
-```
-
-Output:
-
-```
-{
-    "repository": {
-        "registryId": "aws_account_id",
-        "repositoryName": "ubuntu",
-        "repositoryArn": "arn:aws:ecr:us-east-1:aws_account_id:repository/ubuntu",
-        "createdAt": 1457671643.0,
-        "repositoryUri": "aws_account_id.dkr.ecr.us-east-1.amazonaws.com/ubuntu"
-    }
-}
 ```

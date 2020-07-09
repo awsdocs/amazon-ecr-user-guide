@@ -2,7 +2,7 @@
 
 The Amazon Linux container image is built from the same software components that are included in the Amazon Linux AMI\. It is available for use in any environment as a base image for Docker workloads\. If you are already using the Amazon Linux AMI for applications in Amazon EC2, then you can easily containerize your applications with the Amazon Linux container image\.
 
-You can use the Amazon Linux container image in your local development environment and then push your application to the AWS Cloud using Amazon ECS\. For more information, see [Using Amazon ECR Images with Amazon ECS](ECR_on_ECS.md)\.
+You can use the Amazon Linux container image in your local development environment and then push your application to the AWS Cloud using Amazon ECS\. For more information, see [Using Amazon ECR images with Amazon ECS](ECR_on_ECS.md)\.
 
 The Amazon Linux container image is available in Amazon ECR and on [Docker Hub](https://hub.docker.com/_/amazonlinux/)\. Support for the Amazon Linux container image can be found by visiting the [AWS developer forums](https://forums.aws.amazon.com/forum.jspa?forumID=228)\.
 
