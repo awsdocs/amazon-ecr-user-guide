@@ -300,7 +300,7 @@ Repository contents:
             "selection": {
                 "tagStatus": "untagged",
                 "countType": "sinceImagePushed",
-                "countUnit": "day",
+                "countUnit": "days",
                 "countNumber": 1
             },
             "action": {
