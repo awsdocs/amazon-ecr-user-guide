@@ -48,7 +48,7 @@ You have authenticated to push to a repository you don't have permissions for
 You do not have the necessary permissions to push to the repository\. For more information, see [Amazon ECR Repository Policies](repository-policies.md)\.
 
 Your token has expired  
-The default authorization token expiration period for tokens obtained using the `GetAuthorizationToken` operation is 12 hours\. However, if you use a temporary security credential mechanism to authenticate and receive your token, the expiration period of the token is equal to the duration of the temporary credentials\. Temporary security credential mechanisms include multi\-factor authentication \(MFA\) or AWS Security Token Service\. For example, if you call the aws ecr get\-login\-password command by assuming a role, the authorization token expires based on the session duration\. This depends on the settings you use when calling the aws sts assume\-role command\. 
+The default authorization token expiration period for tokens obtained using the `GetAuthorizationToken` operation is 12 hours\.
 
 Bug in `wincred` credential manager  
 Some versions of Docker for Windows use a credential manager called `wincred`, which does not properly handle the Docker login command produced by aws ecr get\-login \(for more information, see [https://github\.com/docker/docker/issues/22910](https://github.com/docker/docker/issues/22910)\)\. You can run the Docker login command that is output, but when you try to push or pull images, those commands fail\. You can work around this bug by removing the `https://` scheme from the registry argument in the Docker login command that is output from aws ecr get\-login\. An example Docker login command without the HTTPS scheme is shown below\.  
