@@ -5,6 +5,7 @@ The following table describes the important changes to the documentation since t
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+|  Encryption at rest  |  Amazon ECR added support for configuring encryption for your repositories using server\-side encryption with customer master keys \(CMKs\) stored in AWS Key Management Service \(AWS KMS\)\. For more information, see [Encryption at rest](encryption-at-rest.md)\.  |  29 July 2020  | 
 |  Multi\-architecture images  |  Amazon ECR added support for creating and pushing Docker manifest lists which are used for multi\-architecture images\. For more information, see [Pushing a multi\-architecture image](docker-push-multi-architecture-image.md)\.  |  28 April 2020  | 
 |  Amazon ECR Usage Metrics  |  Amazon ECR added CloudWatch usage metrics which provides visiblity into your account's resource usage\. You also have the ability to create CloudWatch alarms from both the CloudWatch and Service Quotas consoles to get alerts when your usage approaches your applied service quota\. For more information, see [Amazon ECR Usage Metrics](monitoring-usage.md)\.  |  28 Feb 2020  | 
 |  Updated Amazon ECR service quotas  |  Updated the Amazon ECR service quotas to include per\-API quotas\. For more information, see [Amazon ECR service quotas](service-quotas.md)\.  |  19 Feb 2020  | 

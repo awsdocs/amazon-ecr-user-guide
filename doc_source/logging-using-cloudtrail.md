@@ -2,6 +2,7 @@
 
 Amazon ECR is integrated with AWS CloudTrail, a service that provides a record of actions taken by a user, a role, or an AWS service in Amazon ECR\. CloudTrail captures the following Amazon ECR actions as events:
 + All API calls, including calls from the Amazon ECR console
++ All actions taken due to the encryption settings on your repositories
 + All actions taken due to lifecycle policy rules, including both successful and unsuccessful actions
 
 When a trail is created, you can enable continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for Amazon ECR\. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in **Event history**\. Using this information, you can determine the request that was made to Amazon ECR, the originating IP address, who made the request, when it was made, and additional details\. 
@@ -40,6 +41,7 @@ These examples have been formatted for improved readability\. In a CloudTrail lo
 
 **Topics**
 + [Example: Create Repository Action](#cloudtrail-examples-create-repository)
++ [Example: AWS KMS CreateGrant API action when creating an Amazon ECR repository](#cloudtrail-examples-create-repository-kms)
 + [Example: Image Push Action](#cloudtrail-examples-push-image)
 + [Example: Image Pull Action](#cloudtrail-examples-image-pull)
 + [Example: Image Lifecycle Policy Action](#cloudtrail-examples-lcp)
@@ -95,6 +97,72 @@ The following example shows a CloudTrail log entry that demonstrates the `Create
         {
             "ARN": "arn:aws:ecr:us-east-2:123456789012:repository/testrepo",
             "accountId": "123456789012"
+        }
+    ],
+    "eventType": "AwsApiCall",
+    "recipientAccountId": "123456789012"
+}
+```
+
+#### Example: AWS KMS CreateGrant API action when creating an Amazon ECR repository<a name="cloudtrail-examples-create-repository-kms"></a>
+
+The following example shows a CloudTrail log entry that demonstrates the AWS KMS CreateGrant action when creating an Amazon ECR repository with KMS encryption enabled\. For each repository that is created with KMS encryption is enabled, you should see two CreateGrant log entries in CloudTrail\.
+
+```
+{
+    "eventVersion": "1.05",
+    "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAIEP6W46J43IG7LXAQ",
+        "arn": "arn:aws:iam::123456789012:user/Mary_Major",
+        "accountId": "123456789012",
+        "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+        "userName": "Mary_Major",
+        "sessionContext": {
+            "sessionIssuer": {
+                
+            },
+            "webIdFederationData": {
+                
+            },
+            "attributes": {
+                "mfaAuthenticated": "false",
+                "creationDate": "2020-06-10T19:22:10Z"
+            }
+        },
+        "invokedBy": "AWS Internal"
+    },
+    "eventTime": "2020-06-10T19:22:10Z",
+    "eventSource": "kms.amazonaws.com",
+    "eventName": "CreateGrant",
+    "awsRegion": "us-west-2",
+    "sourceIPAddress": "203.0.113.12",
+    "userAgent": "console.amazonaws.com",
+    "requestParameters": {
+        "keyId": "4b55e5bf-39c8-41ad-b589-18464af7758a",
+        "granteePrincipal": "ecr.us-west-2.amazonaws.com",
+        "operations": [
+            "GenerateDataKey",
+            "Decrypt"
+        ],
+        "retiringPrincipal": "ecr.us-west-2.amazonaws.com",
+        "constraints": {
+            "encryptionContextSubset": {
+                "aws:ecr:arn": "arn:aws:ecr:us-west-2:123456789012:repository/testrepo"
+            }
+        }
+    },
+    "responseElements": {
+        "grantId": "3636af9adfee1accb67b83941087dcd45e7fadc4e74ff0103bb338422b5055f3"
+    },
+    "requestID": "047b7dea-b56b-4013-87e9-a089f0f6602b",
+    "eventID": "af4c9573-c56a-4886-baca-a77526544469",
+    "readOnly": false,
+    "resources": [
+        {
+            "accountId": "123456789012",
+            "type": "AWS::KMS::Key",
+            "ARN": "arn:aws:kms:us-west-2:123456789012:key/4b55e5bf-39c8-41ad-b589-18464af7758a"
         }
     ],
     "eventType": "AwsApiCall",

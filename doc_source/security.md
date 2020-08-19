@@ -10,5 +10,6 @@ This documentation helps you understand how to apply the shared responsibility m
 
 **Topics**
 + [Identity and Access Management for Amazon Elastic Container Registry](security-iam.md)
++ [Data protection in Amazon ECR](data-protection.md)
 + [Compliance Validation for Amazon Elastic Container Registry](ecr-compliance.md)
 + [Infrastructure Security in Amazon Elastic Container Registry](infrastructure-security.md)

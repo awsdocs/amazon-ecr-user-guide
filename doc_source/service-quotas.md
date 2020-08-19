@@ -28,7 +28,7 @@ The layer part information mentioned in the following table is only applicable i
 |  Maximum layer size  |  The maximum size \(MiB\) of a layer\. \*\*  |  10,000  | 
 |  Minimum layer part size  |  The minimum size \(MiB\) of a layer part\. This is only applicable if you are using Amazon ECR API actions directly to initiate multipart uploads for image push operations\.  |  5  | 
 |  Maximum layer part size  |  The maximum size \(MiB\) of a layer part\. This is only applicable if you are using Amazon ECR API actions directly to initiate multipart uploads for image push operations\.  |  10  | 
-|  Tags per image  |  The maximum number of tags per image\.  |  100  | 
+|  Tags per image  |  The maximum number of tags per image\.  |  1000  | 
 |  Lifecycle policy length  |  The maximum number of characters in a lifecycle policy\.  |  30,720  | 
 |  Rules per lifecycle policy  |  The maximum number of rules in a lifecycle policy\.  |  50  | 
 |  Rate of image scans  |  The maximum number of image scans per image, per day\.  |  1  | 

@@ -9,7 +9,7 @@ Amazon ECR repository policies are a subset of IAM policies that are scoped for,
 Both Amazon ECR repository policies and IAM policies are used when determining which actions a specific IAM user or role may perform on a repository\. If a user or role is allowed to perform an action through a repository policy but is denied permission through an IAM policy \(or vice versa\) then the action will be denied\. A user or role only needs to be allowed permission for an action through either a repository policy or an IAM policy but not both for the action to be allowed\.
 
 **Important**  
-Amazon ECR requires that users have allow permissions to the `ecr:GetAuthorizationToken` API through an IAM policy before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed IAM policies to control user access at varying levels; for more information, see [Amazon Elastic Container Registry Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
+Amazon ECR requires that users have permission to make calls to the `ecr:GetAuthorizationToken` API through an IAM policy before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed IAM policies to control user access at varying levels; for more information, see [Amazon Elastic Container Registry Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
 
 You can use either of these policy types to control access to your repositories, as shown in the following examples\.
 

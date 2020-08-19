@@ -18,6 +18,10 @@ Before you can push your Docker images to Amazon ECR, you must create a reposito
 
 1. For **Scan on push**, choose the image scanning setting for the repository\. Repositories configured to scan on push will start an image scan whenever an image is pushed, otherwise image scans need to be started manually\. For more information, see [Image scanning](image-scanning.md)\.
 
+1. For **KMS encryption**, choose whether to enable encryption of the images in the repository using AWS Key Management Service\. By default, when KMS encryption is enabled Amazon ECR uses an AWS managed customer master key \(CMK\) with alias `aws/ecr`, which is created in your account the first time that you create a repository with KMS encryption enabled\. For more information, see [Encryption at rest](encryption-at-rest.md)\.
+
+1. When KMS encryption is enabled, select **Customer encryption settings \(advanced\)** to choose your own CMK\. The CMK must exist in the same Region as the cluster\. Choose **Create an AWS KMS key** to navigate to the AWS KMS console to create your own key\.
+
 1. Choose **Create repository**\.
 
 1. \(Optional\) Select the repository you created and choose **View push commands** to view the steps to push an image to your new repository\.

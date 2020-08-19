@@ -3,7 +3,7 @@
 You can push your Docker or Open Container Initiative \(OCI\) images to an Amazon ECR repository with the docker push command\.
 
 **Important**  
-Amazon ECR requires that users have allow permissions to the `ecr:GetAuthorizationToken` API through an IAM policy before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed IAM policies to control user access at varying levels; for more information, see [Amazon Elastic Container Registry Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
+Amazon ECR requires that users have permission to make calls to the `ecr:GetAuthorizationToken` API through an IAM policy before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed IAM policies to control user access at varying levels; for more information, see [Amazon Elastic Container Registry Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
 
 Amazon ECR also supports creating and pushing Docker manifest lists which are used for multi\-architecture images\. Each image referenced in a manifest list must already be pushed to your repository\. For more information, see [Pushing a multi\-architecture image](docker-push-multi-architecture-image.md)\.
 

@@ -52,6 +52,8 @@ Amazon's trademarks and trade dress may not be used in
       + [Amazon Elastic Container Registry Identity-Based Policy Examples](security_iam_id-based-policy-examples.md)
       + [Using Tag-Based Access Control](ecr-supported-iam-actions-tagging.md)
       + [Troubleshooting Amazon Elastic Container Registry Identity and Access](security_iam_troubleshoot.md)
+   + [Data protection in Amazon ECR](data-protection.md)
+      + [Encryption at rest](encryption-at-rest.md)
    + [Compliance Validation for Amazon Elastic Container Registry](ecr-compliance.md)
    + [Infrastructure Security in Amazon Elastic Container Registry](infrastructure-security.md)
       + [Amazon ECR interface VPC endpoints (AWS PrivateLink)](vpc-endpoints.md)
