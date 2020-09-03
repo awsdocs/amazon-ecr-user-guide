@@ -1,4 +1,4 @@
-# Amazon ECR Usage Metrics<a name="monitoring-usage"></a>
+# Amazon ECR usage metrics<a name="monitoring-usage"></a>
 
 You can use CloudWatch usage metrics to provide visibility into your account's usage of resources\. Use these metrics to visualize your current service usage on CloudWatch graphs and dashboards\.
 

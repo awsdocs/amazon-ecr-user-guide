@@ -1,6 +1,8 @@
-# Creating a Lifecycle Policy<a name="lp_creation"></a>
+# Creating a lifecycle policy<a name="lp_creation"></a>
 
 A lifecycle policy allows you to create a set of rules that expire unused repository images\. The following procedure shows you how to create a lifecycle policy\. You should expect that after creating a lifecycle policy, the affected images are expired within 24 hours\.
+
+## To create a lifecycle policy \(AWS CLI\)<a name="lp-creation-cli"></a>
 
 **To create a lifecycle policy using the AWS CLI**
 
@@ -15,6 +17,8 @@ A lifecycle policy allows you to create a set of rules that expire unused reposi
    ```
    aws ecr put-lifecycle-policy [--registry-id <string>] --repository-name <string> --lifecycle-policy-text <string>
    ```
+
+## To create a lifecycle policy \(AWS Management Console\)<a name="lp-creation-console"></a>
 
 **To create a lifecycle policy using the console**
 

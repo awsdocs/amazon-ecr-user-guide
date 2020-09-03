@@ -1,6 +1,6 @@
-# Setting a Repository Policy Statement<a name="set-repository-policy"></a>
+# Setting a repository policy statement<a name="set-repository-policy"></a>
 
-You can add an access policy statement to a repository in the AWS Management Console by following the steps below\. You can add multiple policy statements per repository\. For example policies, see [Amazon ECR Repository Policy Examples](repository-policy-examples.md)\.
+You can add an access policy statement to a repository in the AWS Management Console by following the steps below\. You can add multiple policy statements per repository\. For example policies, see [Repository policy examples](repository-policy-examples.md)\.
 
 **Important**  
 Amazon ECR requires that users have permission to make calls to the `ecr:GetAuthorizationToken` API through an IAM policy before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed IAM policies to control user access at varying levels; for more information, see [Amazon Elastic Container Registry Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.

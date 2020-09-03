@@ -7,7 +7,7 @@ Amazon ECR requires that users have permission to make calls to the `ecr:GetAuth
 
 **To pull a Docker image from an Amazon ECR repository**
 
-1. Authenticate your Docker client to the Amazon ECR registry that you intend to pull your image from\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry Authentication](Registries.md#registry_auth)\.
+1. Authenticate your Docker client to the Amazon ECR registry that you intend to pull your image from\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry authentication](Registries.md#registry_auth)\.
 
 1. \(Optional\) Identify the image to pull\.
    + You can list the repositories in a registry with the aws ecr describe\-repositories command:
@@ -31,4 +31,4 @@ Amazon ECR requires that users have permission to make calls to the `ecr:GetAuth
    docker pull aws_account_id.dkr.ecr.us-west-2.amazonaws.com/amazonlinux:latest
    ```
 **Important**  
-If you receive a `repository-url not found: does not exist or no pull access` error, you may need to authenticate your Docker client with Amazon ECR\. For more information, see [Registry Authentication](Registries.md#registry_auth)\.
+If you receive a `repository-url not found: does not exist or no pull access` error, you may need to authenticate your Docker client with Amazon ECR\. For more information, see [Registry authentication](Registries.md#registry_auth)\.

@@ -1,15 +1,15 @@
-# Examples of Lifecycle Policies<a name="lifecycle_policy_examples"></a>
+# Examples of lifecycle policies<a name="lifecycle_policy_examples"></a>
 
 The following are example lifecycle policies, showing the syntax\.
 
 **Topics**
-+ [Filtering on Image Age](#lifecycle_policy_example_age)
-+ [Filtering on Image Count](#lifecycle_policy_example_number)
-+ [Filtering on Multiple Rules](#lp_example_multiple)
-+ [Filtering on Multiple Tags in a Single Rule](#lp_example_difftype)
-+ [Filtering on All Images](#lp_example_allimages)
++ [Filtering on image age](#lifecycle_policy_example_age)
++ [Filtering on image count](#lifecycle_policy_example_number)
++ [Filtering on multiple rules](#lp_example_multiple)
++ [Filtering on multiple tags in a single rule](#lp_example_difftype)
++ [Filtering on all images](#lp_example_allimages)
 
-## Filtering on Image Age<a name="lifecycle_policy_example_age"></a>
+## Filtering on image age<a name="lifecycle_policy_example_age"></a>
 
 The following example shows the lifecycle policy syntax for a policy that expires untagged images older than `14` days:
 
@@ -33,7 +33,7 @@ The following example shows the lifecycle policy syntax for a policy that expire
 }
 ```
 
-## Filtering on Image Count<a name="lifecycle_policy_example_number"></a>
+## Filtering on image count<a name="lifecycle_policy_example_number"></a>
 
 The following example shows the lifecycle policy syntax for a policy that keeps only one untagged image and expires all others:
 
@@ -56,7 +56,7 @@ The following example shows the lifecycle policy syntax for a policy that keeps 
 }
 ```
 
-## Filtering on Multiple Rules<a name="lp_example_multiple"></a>
+## Filtering on multiple rules<a name="lp_example_multiple"></a>
 
 The following examples use multiple rules in a lifecycle policy\. An example repository and lifecycle policy are given along with an explanation of the outcome\.
 
@@ -156,7 +156,7 @@ The logic of this lifecycle policy would be:
 + Rule 2 identifies images tagged with `prod`\. It should mark images, starting with the oldest, until there is one or fewer images remaining that match\. It would see no images because all available images were already seen by Rule 1 and thus would mark no additional images\.
 + Result: Images A and B are expired\.
 
-## Filtering on Multiple Tags in a Single Rule<a name="lp_example_difftype"></a>
+## Filtering on multiple tags in a single rule<a name="lp_example_difftype"></a>
 
 The following examples specify the lifecycle policy syntax for multiple tag prefixes in a single rule\. An example repository and lifecycle policy are given along with an explanation of the outcome\.
 
@@ -230,7 +230,7 @@ The logic of this lifecycle policy would be:
 + Rule 1 identifies images tagged with `alpha` and `beta`\. It sees all images\. It should mark images, starting with the oldest, until there is one or fewer images remaining that match\. It marks image A and B for expiration\.
 + Result: Images A and B are expired\.
 
-## Filtering on All Images<a name="lp_example_allimages"></a>
+## Filtering on all images<a name="lp_example_allimages"></a>
 
 The following lifecycle policy examples specify all images with different filters\. An example repository and lifecycle policy are given along with an explanation of the outcome\.
 

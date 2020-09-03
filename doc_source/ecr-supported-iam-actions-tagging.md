@@ -1,6 +1,6 @@
 # Using Tag\-Based Access Control<a name="ecr-supported-iam-actions-tagging"></a>
 
-The Amazon ECR CreateRepository API action enables you to specify tags when you create the repository\. For more information, see [Tagging an Amazon ECR Repository](ecr-using-tags.md)\.
+The Amazon ECR CreateRepository API action enables you to specify tags when you create the repository\. For more information, see [Tagging an Amazon ECR repository](ecr-using-tags.md)\.
 
 To enable users to tag repositories on creation, they must have permissions to use the action that creates the resource \(for example, `ecr:CreateRepository`\)\. If tags are specified in the resource\-creating action, Amazon performs additional authorization on the `ecr:CreateRepository` action to verify if users have permissions to create tags\.
 

@@ -11,7 +11,7 @@ The following steps can be used to create and push a Docker manifest list to an 
 
 **To push a multi\-architecture Docker image to an Amazon ECR repository**
 
-1. Authenticate your Docker client to the Amazon ECR registry to which you intend to push your image\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry Authentication](Registries.md#registry_auth)\.
+1. Authenticate your Docker client to the Amazon ECR registry to which you intend to push your image\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry authentication](Registries.md#registry_auth)\.
 
 1. List the images in your repository, confirming the image tags\.
 

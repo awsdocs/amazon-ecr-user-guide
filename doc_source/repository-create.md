@@ -1,4 +1,4 @@
-# Creating a Repository<a name="repository-create"></a>
+# Creating a repository<a name="repository-create"></a>
 
 Before you can push your Docker images to Amazon ECR, you must create a repository to store them in\. You can create Amazon ECR repositories with the AWS Management Console, or with the AWS CLI and AWS SDKs\.
 

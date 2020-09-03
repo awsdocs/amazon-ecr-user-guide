@@ -1,4 +1,4 @@
-# Logging Amazon ECR Actions with AWS CloudTrail<a name="logging-using-cloudtrail"></a>
+# Logging Amazon ECR actions with AWS CloudTrail<a name="logging-using-cloudtrail"></a>
 
 Amazon ECR is integrated with AWS CloudTrail, a service that provides a record of actions taken by a user, a role, or an AWS service in Amazon ECR\. CloudTrail captures the following Amazon ECR actions as events:
 + All API calls, including calls from the Amazon ECR console
@@ -9,7 +9,7 @@ When a trail is created, you can enable continuous delivery of CloudTrail events
 
 For more information, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
 
-## Amazon ECR Information in CloudTrail<a name="service-name-info-in-cloudtrail"></a>
+## Amazon ECR information in CloudTrail<a name="service-name-info-in-cloudtrail"></a>
 
 CloudTrail is enabled on your AWS account when you create the account\. When activity occurs in Amazon ECR, that activity is recorded in a CloudTrail event along with other AWS service events in **Event history**\. You can view, search, and download recent events in your AWS account\. For more information, see [Viewing Events with CloudTrail Event History](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events.html)\. 
 
@@ -19,7 +19,7 @@ For an ongoing record of events in your AWS account, including events for Amazon
 + [Configuring Amazon SNS Notifications for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/getting_notifications_top_level.html)
 + [Receiving CloudTrail Log Files from Multiple Regions](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/receive-cloudtrail-log-files-from-multiple-regions.html) and [Receiving CloudTrail Log Files from Multiple Accounts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)
 
-All Amazon ECR API actions are logged by CloudTrail and are documented in the [Amazon Elastic Container Registry API Reference](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/)\. When you perform common tasks, sections are generated in the CloudTrail log files for each API action that is part of that task\. For example, when you create a repository, `GetAuthorizationToken`, `CreateRepository` and `SetRepositoryPolicy` sections are generated in the CloudTrail log files\. When you push an image to a repository, `InitiateLayerUpload`, `UploadLayerPart`, `CompleteLayerUpload`, and `PutImage` sections are generated\. When you pull an image, `GetDownloadUrlForLayer` and `BatchGetImage` sections are generated\. For examples of these common tasks, see [CloudTrail Log Entry Examples](#cloudtrail-examples)\.
+All Amazon ECR API actions are logged by CloudTrail and are documented in the [Amazon Elastic Container Registry API Reference](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/)\. When you perform common tasks, sections are generated in the CloudTrail log files for each API action that is part of that task\. For example, when you create a repository, `GetAuthorizationToken`, `CreateRepository` and `SetRepositoryPolicy` sections are generated in the CloudTrail log files\. When you push an image to a repository, `InitiateLayerUpload`, `UploadLayerPart`, `CompleteLayerUpload`, and `PutImage` sections are generated\. When you pull an image, `GetDownloadUrlForLayer` and `BatchGetImage` sections are generated\. For examples of these common tasks, see [CloudTrail log entry examples](#cloudtrail-examples)\.
 
 Every event or log entry contains information about who generated the request\. The identity information helps you determine the following:
 + Whether the request was made with root or IAM user credentials
@@ -28,11 +28,11 @@ Every event or log entry contains information about who generated the request\. 
 
 For more information, see the [CloudTrail `userIdentity` Element](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\.
 
-## Understanding Amazon ECR Log File Entries<a name="understanding-service-name-entries"></a>
+## Understanding Amazon ECR log file entries<a name="understanding-service-name-entries"></a>
 
 A trail is a configuration that enables delivery of events as log files to an Amazon S3 bucket that you specify\. CloudTrail log files contain one or more log entries\. An event represents a single request from any source and includes information about the requested action, the date and time of the action, request parameters, and other information\. CloudTrail log files are not an ordered stack trace of the public API calls, so they do not appear in any specific order\. 
 
-### CloudTrail Log Entry Examples<a name="cloudtrail-examples"></a>
+### CloudTrail log entry examples<a name="cloudtrail-examples"></a>
 
 The following are CloudTrail log entry examples for a few common Amazon ECR tasks\.
 
@@ -40,13 +40,13 @@ The following are CloudTrail log entry examples for a few common Amazon ECR task
 These examples have been formatted for improved readability\. In a CloudTrail log file, all entries and events are concatenated into a single line\. In addition, this example has been limited to a single Amazon ECR entry\. In a real CloudTrail log file, you see entries and events from multiple AWS services\.
 
 **Topics**
-+ [Example: Create Repository Action](#cloudtrail-examples-create-repository)
++ [Example: Create repository action](#cloudtrail-examples-create-repository)
 + [Example: AWS KMS CreateGrant API action when creating an Amazon ECR repository](#cloudtrail-examples-create-repository-kms)
-+ [Example: Image Push Action](#cloudtrail-examples-push-image)
-+ [Example: Image Pull Action](#cloudtrail-examples-image-pull)
-+ [Example: Image Lifecycle Policy Action](#cloudtrail-examples-lcp)
++ [Example: Image push action](#cloudtrail-examples-push-image)
++ [Example: Image pull action](#cloudtrail-examples-image-pull)
++ [Example: Image lifecycle policy action](#cloudtrail-examples-lcp)
 
-#### Example: Create Repository Action<a name="cloudtrail-examples-create-repository"></a>
+#### Example: Create repository action<a name="cloudtrail-examples-create-repository"></a>
 
 The following example shows a CloudTrail log entry that demonstrates the `CreateRepository` action\.
 
@@ -170,7 +170,7 @@ The following example shows a CloudTrail log entry that demonstrates the AWS KMS
 }
 ```
 
-#### Example: Image Push Action<a name="cloudtrail-examples-push-image"></a>
+#### Example: Image push action<a name="cloudtrail-examples-push-image"></a>
 
 The following example shows a CloudTrail log entry that demonstrates an image push which uses the `PutImage` action\.
 
@@ -228,7 +228,7 @@ When pushing an image, you will also see `InitiateLayerUpload`, `UploadLayerPart
 }
 ```
 
-#### Example: Image Pull Action<a name="cloudtrail-examples-image-pull"></a>
+#### Example: Image pull action<a name="cloudtrail-examples-image-pull"></a>
 
 The following example shows a CloudTrail log entry that demonstrates an image pull which uses the `BatchGetImage` action\.
 
@@ -285,7 +285,7 @@ When pulling an image, if you don't already have the image locally, you will als
 }
 ```
 
-#### Example: Image Lifecycle Policy Action<a name="cloudtrail-examples-lcp"></a>
+#### Example: Image lifecycle policy action<a name="cloudtrail-examples-lcp"></a>
 
 The following example shows a CloudTrail log entry that demonstrates when an image is expired due to a lifecycle policy rule\. This event type can be located by filtering for `PolicyExecutionEvent` for the event name field\.
 

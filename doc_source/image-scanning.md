@@ -4,7 +4,7 @@ Amazon ECR image scanning helps in identifying software vulnerabilities in your 
 
 Amazon ECR uses the severity for a CVE from the upstream distribution source if available, otherwise we use the Common Vulnerability Scoring System \(CVSS\) score\. The CVSS score can be used to obtain the NVD vulnerability severity rating\. For more information, see [NVD Vulnerability Severity Ratings](https://nvd.nist.gov/vuln-metrics/cvss)\. 
 
-You can manually scan container images stored in Amazon ECR, or you can configure your repositories to scan images when you push them to a repository\. The last completed image scan findings can be retrieved for each image\. Amazon ECR sends an event to Amazon EventBridge \(formerly called CloudWatch Events\) when an image scan is completed\. For more information, see [Amazon ECR Events and EventBridge](ecr-eventbridge.md)\.
+You can manually scan container images stored in Amazon ECR, or you can configure your repositories to scan images when you push them to a repository\. The last completed image scan findings can be retrieved for each image\. Amazon ECR sends an event to Amazon EventBridge \(formerly called CloudWatch Events\) when an image scan is completed\. For more information, see [Amazon ECR events and EventBridge](ecr-eventbridge.md)\.
 
 For troubleshooting details for some common issues when scanning images, see [Troubleshooting Image Scanning Issues](image-scanning-troubleshooting.md)\.
 
@@ -25,7 +25,7 @@ You can configure the image scan settings either for a new repository during cre
 
 When a new repository is configured to **scan on push**, all new images pushed to the repository will be scanned\. Results from the last completed image scan can then be retrieved\. For more information, see [Retrieving image scan findings](#describe-scan-findings)\.
 
-For AWS Management Console steps, see [Creating a Repository](repository-create.md)\.
+For AWS Management Console steps, see [Creating a repository](repository-create.md)\.
 
 #### To create a repository configured for scan on push \(AWS CLI\)<a name="scanning-repo-cli"></a>
 
@@ -49,7 +49,7 @@ Use the following command to create a new repository with image **scan on push**
 
 Your existing repositories can be configured to scan images when you push them to a repository\. This setting will apply to future image pushes\. Results from the last completed image scan can then be retrieved\. For more information, see [Retrieving image scan findings](#describe-scan-findings)\.
 
-For AWS Management Console steps, see [Editing a Repository](repository-edit.md)\.
+For AWS Management Console steps, see [Editing a repository](repository-edit.md)\.
 
 #### To edit the settings of an existing repository \(AWS CLI\)<a name="scanning-existing-repo-cli"></a>
 

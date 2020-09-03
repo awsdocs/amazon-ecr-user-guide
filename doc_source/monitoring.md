@@ -1,4 +1,4 @@
-# Amazon ECR Monitoring<a name="monitoring"></a>
+# Amazon ECR monitoring<a name="monitoring"></a>
 
 You can monitor your Amazon ECR API usage with Amazon CloudWatch, which collects and processes raw data from Amazon ECR into readable, near real\-time metrics\. These statistics are recorded for a period of two weeks, so that you can access historical information and gain perspective on your API usage\. Amazon ECR metric data is automatically sent to CloudWatch in one\-minute periods\. For more information about CloudWatch, see the [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\.
 
@@ -15,8 +15,8 @@ Monitoring is an important part of maintaining the reliability, availability, an
 The next step is to establish a baseline for normal Amazon ECR performance in your environment by measuring performance at various times and under different load conditions\. As you monitor Amazon ECR, store historical monitoring data so that you can compare it with new performance data, identify normal performance patterns and performance anomalies, and devise methods to address issues\.
 
 **Topics**
-+ [Visualizing Your Service Quotas and Setting Alarms](monitoring-quotas-alarms.md)
-+ [Amazon ECR Usage Metrics](monitoring-usage.md)
-+ [Amazon ECR Usage Reports](usage-reports.md)
-+ [Amazon ECR Events and EventBridge](ecr-eventbridge.md)
-+ [Logging Amazon ECR Actions with AWS CloudTrail](logging-using-cloudtrail.md)
++ [Visualizing your service quotas and setting alarms](monitoring-quotas-alarms.md)
++ [Amazon ECR usage metrics](monitoring-usage.md)
++ [Amazon ECR usage reports](usage-reports.md)
++ [Amazon ECR events and EventBridge](ecr-eventbridge.md)
++ [Logging Amazon ECR actions with AWS CloudTrail](logging-using-cloudtrail.md)

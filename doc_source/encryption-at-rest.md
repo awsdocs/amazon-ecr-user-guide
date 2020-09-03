@@ -4,7 +4,7 @@ Amazon ECR stores images in Amazon S3 buckets that Amazon ECR manages\. By defau
 
 For more control over the encryption for your Amazon ECR repositories, you can use server\-side encryption with customer master keys \(CMKs\) stored in AWS Key Management Service \(AWS KMS\)\. When you use AWS KMS to encrypt your data, you can either use the default AWS\-managed CMK, which is managed by Amazon ECR, or specify your own CMK \(referred to as a customer\-managed CMK\)\. For more information, see [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS Key Management Service \(SSE\-KMS\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) in the *Amazon Simple Storage Service Developer Guide*\.
 
-Each Amazon ECR repository has an encryption configuration, which is set when the repository is created\. You can use different encryption configurations on each repository\. For more information, see [Creating a Repository](repository-create.md)\.
+Each Amazon ECR repository has an encryption configuration, which is set when the repository is created\. You can use different encryption configurations on each repository\. For more information, see [Creating a repository](repository-create.md)\.
 
 When a repository is created with AWS KMS encryption enabled, a CMK is used to encrypt the contents of the repository\. Moreover, Amazon ECR adds an AWS KMS grant to the CMK with the Amazon ECR repository as the grantee principal\.
 

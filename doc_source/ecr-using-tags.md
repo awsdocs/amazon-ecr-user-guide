@@ -1,16 +1,16 @@
-# Tagging an Amazon ECR Repository<a name="ecr-using-tags"></a>
+# Tagging an Amazon ECR repository<a name="ecr-using-tags"></a>
 
 To help you manage your Amazon ECR repositories, you can optionally assign your own metadata to each repository in the form of *tags*\. This topic describes tags and shows you how to create them\.
 
 **Topics**
-+ [Tag Basics](#tag-basics)
-+ [Tagging Your Resources](#tag-resources)
-+ [Tag Restrictions](#tag-restrictions)
-+ [Tagging Your Resources for Billing](#tag-resources-for-billing)
-+ [Working with Tags Using the Console](#tag-resources-console)
-+ [Working with Tags Using the AWS CLI or API](#tag-resources-api-sdk)
++ [Tag basics](#tag-basics)
++ [Tagging your resources](#tag-resources)
++ [Tag restrictions](#tag-restrictions)
++ [Tagging your resources for billing](#tag-resources-for-billing)
++ [Working with tags using the console](#tag-resources-console)
++ [Working with tags using the AWS CLI or API](#tag-resources-api-sdk)
 
-## Tag Basics<a name="tag-basics"></a>
+## Tag basics<a name="tag-basics"></a>
 
 A tag is a label that you assign to an AWS resource\. Each tag consists of a *key* and an optional *value*, both of which you define\.
 
@@ -24,7 +24,7 @@ You can work with tags using the AWS Management Console, the AWS CLI, and the Am
 
 If you're using AWS Identity and Access Management \(IAM\), you can control which users in your AWS account have permission to create, edit, or delete tags\.
 
-## Tagging Your Resources<a name="tag-resources"></a>
+## Tagging your resources<a name="tag-resources"></a>
 
 You can tag new or existing Amazon ECR repositories\.
 
@@ -34,7 +34,7 @@ If you're using the Amazon ECR API, the AWS CLI, or an AWS SDK, you can apply ta
 
 Additionally, if tags cannot be applied during repository creation, we roll back the repository creation process\. This ensures that repositories are either created with tags or not created at all, and that no repositories are left untagged at any time\. By tagging repositories at the time of creation, you can eliminate the need to run custom tagging scripts after repository creation\.
 
-## Tag Restrictions<a name="tag-restrictions"></a>
+## Tag restrictions<a name="tag-restrictions"></a>
 
 The following basic restrictions apply to tags:
 + Maximum number of tags per repository – 50
@@ -45,16 +45,16 @@ The following basic restrictions apply to tags:
 + Tag keys and values are case\-sensitive\.
 + Don't use the `aws:` prefix for either keys or values; it's reserved for AWS use\. You can't edit or delete tag keys or values with this prefix\. Tags with this prefix do not count against your tags per resource limit\.
 
-## Tagging Your Resources for Billing<a name="tag-resources-for-billing"></a>
+## Tagging your resources for billing<a name="tag-resources-for-billing"></a>
 
-The tags you add to your Amazon ECR repositories are helpful when reviewing cost allocation after enabling them in your Cost & Usage Report\. For more information, see [Amazon ECR Usage Reports](usage-reports.md)\.
+The tags you add to your Amazon ECR repositories are helpful when reviewing cost allocation after enabling them in your Cost & Usage Report\. For more information, see [Amazon ECR usage reports](usage-reports.md)\.
 
 To see the cost of your combined resources, you can organize your billing information based on resources that have the same tag key values\. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services\. For more information about setting up a cost allocation report with tags, see [The Monthly Cost Allocation Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/configurecostallocreport.html) in the *AWS Billing and Cost Management User Guide*\.
 
 **Note**  
 If you've just enabled reporting, data for the current month is available for viewing after 24 hours\.
 
-## Working with Tags Using the Console<a name="tag-resources-console"></a>
+## Working with tags using the console<a name="tag-resources-console"></a>
 
 Using the Amazon ECR console, you can manage the tags associated with new or existing repositories\.
 
@@ -90,7 +90,7 @@ When you select a specific repository in the Amazon ECR console, you can view th
 
 1. On the **Edit Tags** page, select **Remove** for each tag you want to delete, and choose **Save**\.
 
-## Working with Tags Using the AWS CLI or API<a name="tag-resources-api-sdk"></a>
+## Working with tags using the AWS CLI or API<a name="tag-resources-api-sdk"></a>
 
 Use the following to add, update, list, and delete the tags for your resources\. The corresponding documentation provides examples\.
 

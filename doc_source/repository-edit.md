@@ -1,4 +1,4 @@
-# Editing a Repository<a name="repository-edit"></a>
+# Editing a repository<a name="repository-edit"></a>
 
 Existing repositories can be edited to change its image tag mutability and image scanning settings\.
 

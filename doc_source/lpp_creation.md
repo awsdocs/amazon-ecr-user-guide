@@ -1,4 +1,4 @@
-# Creating a Lifecycle Policy Preview<a name="lpp_creation"></a>
+# Creating a lifecycle policy preview<a name="lpp_creation"></a>
 
 A lifecycle policy preview allows you to see the impact of a lifecycle policy on an image repository before you execute it\. The following procedure shows you how to create a lifecycle policy preview\.
 

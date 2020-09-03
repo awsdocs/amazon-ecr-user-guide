@@ -1,18 +1,18 @@
-# Amazon ECR Lifecycle Policies<a name="LifecyclePolicies"></a>
+# Lifecycle policies<a name="LifecyclePolicies"></a>
 
 Amazon ECR lifecycle policies enable you to specify the lifecycle management of images in a repository\. A lifecycle policy is a set of one or more rules, where each rule defines an action for Amazon ECR\. The actions apply to images that contain tags prefixed with the given strings\. This allows the automation of cleaning up unused images, for example expiring images based on age or count\. You should expect that after creating a lifecycle policy the affected images are expired within 24 hours\.
 
 **Topics**
-+ [Lifecycle Policy Template](#lifecycle_policy_syntax)
-+ [Lifecycle Policy Parameters](#lifecycle_policy_parameters)
-+ [Lifecycle Policy Evaluation Rules](#lp_evaluation_rules)
-+ [Creating a Lifecycle Policy Preview](lpp_creation.md)
-+ [Creating a Lifecycle Policy](lp_creation.md)
-+ [Examples of Lifecycle Policies](lifecycle_policy_examples.md)
++ [Lifecycle policy template](#lifecycle_policy_syntax)
++ [Lifecycle policy parameters](#lifecycle_policy_parameters)
++ [Lifecycle policy evaluation rules](#lp_evaluation_rules)
++ [Creating a lifecycle policy preview](lpp_creation.md)
++ [Creating a lifecycle policy](lp_creation.md)
++ [Examples of lifecycle policies](lifecycle_policy_examples.md)
 
-## Lifecycle Policy Template<a name="lifecycle_policy_syntax"></a>
+## Lifecycle policy template<a name="lifecycle_policy_syntax"></a>
 
-The contents of your lifecycle policy is evaluated before being associated with a repository\. The following is the JSON syntax template for the lifecycle policy\. For lifecycle policy examples, see [Examples of Lifecycle Policies](lifecycle_policy_examples.md)\.
+The contents of your lifecycle policy is evaluated before being associated with a repository\. The following is the JSON syntax template for the lifecycle policy\. For lifecycle policy examples, see [Examples of lifecycle policies](lifecycle_policy_examples.md)\.
 
 ```
 {
@@ -38,21 +38,21 @@ The contents of your lifecycle policy is evaluated before being associated with 
 **Note**  
 The `tagPrefixList` parameter is only used if `tagStatus` is `tagged`\. The `countUnit` parameter is only used if `countType` is `sinceImagePushed`\. The `countNumber` parameter is only used if `countType` is set to `imageCountMoreThan`\.
 
-## Lifecycle Policy Parameters<a name="lifecycle_policy_parameters"></a>
+## Lifecycle policy parameters<a name="lifecycle_policy_parameters"></a>
 
 Lifecycle policies are split into the following parts:
 
 **Topics**
-+ [Rule Priority](#lp_rule_priority)
++ [Rule priority](#lp_rule_priority)
 + [Description](#lp_description)
-+ [Tag Status](#lp_tag_status)
-+ [Tag Prefix List](#lp_tag_prefix_list)
-+ [Count Type](#lp_count_type)
-+ [Count Unit](#lp_count_unit)
-+ [Count Number](#lp_count_number)
++ [Tag status](#lp_tag_status)
++ [Tag prefix list](#lp_tag_prefix_list)
++ [Count type](#lp_count_type)
++ [Count unit](#lp_count_unit)
++ [Count number](#lp_count_number)
 + [Action](#lp_action)
 
-### Rule Priority<a name="lp_rule_priority"></a>
+### Rule priority<a name="lp_rule_priority"></a>
 
 `rulePriority`  
 Type: integer  
@@ -66,21 +66,21 @@ Type: string
 Required: no  
 \(Optional\) Describes the purpose of a rule within a lifecycle policy\.
 
-### Tag Status<a name="lp_tag_status"></a>
+### Tag status<a name="lp_tag_status"></a>
 
 `tagStatus`  
 Type: string  
 Required: yes  
 Determines whether the lifecycle policy rule that you are adding specifies a tag for an image\. Acceptable options are `tagged`, `untagged`, or `any`\. If you specify `any`, then all images have the rule applied to them\. If you specify `tagged`, then you must also specify a `tagPrefixList` value\. If you specify `untagged`, then you must omit `tagPrefixList`\.
 
-### Tag Prefix List<a name="lp_tag_prefix_list"></a>
+### Tag prefix list<a name="lp_tag_prefix_list"></a>
 
 `tagPrefixList`  
 Type: list\[string\]  
 Required: yes, only if `tagStatus` is set to tagged  
 Only used if you specified `"tagStatus": "tagged"`\. You must specify a comma\-separated list of image tag prefixes on which to take action with your lifecycle policy\. For example, if your images are tagged as `prod`, `prod1`, `prod2`, and so on, you would use the tag prefix `prod` to specify all of them\. If you specify multiple tags, only the images with all specified tags are selected\.
 
-### Count Type<a name="lp_count_type"></a>
+### Count type<a name="lp_count_type"></a>
 
 `countType`  
 Type: string  
@@ -88,7 +88,7 @@ Required: yes
 Specify a count type to apply to the images\.   
 If `countType` is set to `imageCountMoreThan`, you also specify `countNumber` to create a rule that sets a limit on the number of images that exist in your repository\. If `countType` is set to `sinceImagePushed`, you also specify `countUnit` and `countNumber` to specify a time limit on the images that exist in your repository\.
 
-### Count Unit<a name="lp_count_unit"></a>
+### Count unit<a name="lp_count_unit"></a>
 
 `countUnit`  
 Type: string  
@@ -96,7 +96,7 @@ Required: yes, only if `countType` is set to `sinceImagePushed`
 Specify a count unit of `days` to indicate that as the unit of time, in addition to `countNumber`, which is the number of days\.   
 This should only be specified when `countType` is `sinceImagePushed`; an error will occur if you specify a count unit when `countType` is any other value\.
 
-### Count Number<a name="lp_count_number"></a>
+### Count number<a name="lp_count_number"></a>
 
 `countNumber`  
 Type: integer  
@@ -111,7 +111,7 @@ Type: string
 Required: yes  
 Specify an action type\. The supported value is `expire`\.
 
-## Lifecycle Policy Evaluation Rules<a name="lp_evaluation_rules"></a>
+## Lifecycle policy evaluation rules<a name="lp_evaluation_rules"></a>
 
 The lifecycle policy evaluator is responsible for parsing the plaintext JSON and applying it to the images in the specified repository\. The following rules should be noted when creating a lifecycle policy:
 + An image is expired by exactly one or zero rules\.

@@ -45,7 +45,7 @@ You have authenticated to a different region
 Authentication requests are tied to specific regions, and cannot be used across regions\. For example, if you obtain an authorization token from US West \(Oregon\), you cannot use it to authenticate against your repositories in US East \(N\. Virginia\)\. To resolve the issue, ensure that you have retrieved an authentication token from the same Region your repository exists in\.
 
 You have authenticated to push to a repository you don't have permissions for  
-You do not have the necessary permissions to push to the repository\. For more information, see [Amazon ECR Repository Policies](repository-policies.md)\.
+You do not have the necessary permissions to push to the repository\. For more information, see [Repository policies](repository-policies.md)\.
 
 Your token has expired  
 The default authorization token expiration period for tokens obtained using the `GetAuthorizationToken` operation is 12 hours\.

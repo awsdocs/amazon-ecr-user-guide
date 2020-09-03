@@ -1,8 +1,8 @@
-# Amazon ECR Repository Policies<a name="repository-policies"></a>
+# Repository policies<a name="repository-policies"></a>
 
 Amazon ECR uses resource\-based permissions to control access to repositories\. Resource\-based permissions let you specify which IAM users or roles have access to a repository and what actions they can perform on it\. By default, only the repository owner has access to a repository\. You can apply a policy document that allow additional permissions to your repository\.
 
-## Repository Policies vs IAM Policies<a name="repository-policy-vs-iam-policy"></a>
+## Repository policies vs IAM policies<a name="repository-policy-vs-iam-policy"></a>
 
 Amazon ECR repository policies are a subset of IAM policies that are scoped for, and specifically used for, controlling access to individual Amazon ECR repositories\. IAM policies are generally used to apply permissions for the entire Amazon ECR service but can also be used to control access to specific resources as well\.
 
@@ -55,7 +55,7 @@ This example shows an IAM policy that achieves the same goal as above, by scopin
 ```
 
 **Topics**
-+ [Repository Policies vs IAM Policies](#repository-policy-vs-iam-policy)
-+ [Setting a Repository Policy Statement](set-repository-policy.md)
-+ [Deleting a Repository Policy Statement](delete-repository-policy.md)
-+ [Amazon ECR Repository Policy Examples](repository-policy-examples.md)
++ [Repository policies vs IAM policies](#repository-policy-vs-iam-policy)
++ [Setting a repository policy statement](set-repository-policy.md)
++ [Deleting a repository policy statement](delete-repository-policy.md)
++ [Repository policy examples](repository-policy-examples.md)

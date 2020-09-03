@@ -57,7 +57,7 @@ To request a quota increase, see [Requesting a quota increase](https://docs.aws.
 
 ### Creating a CloudWatch alarm to monitor API usage metrics<a name="service-quota-alarm"></a>
 
-Amazon ECR provides CloudWatch usage metrics that correspond to the AWS service quotas for each of the APIs involved with the registry authentication, image push, and image pull actions\. In the Service Quotas console, you can visualize your usage on a graph and configure alarms that alert you when your usage approaches a service quota\. For more information, see [Amazon ECR Usage Metrics](monitoring-usage.md)\.
+Amazon ECR provides CloudWatch usage metrics that correspond to the AWS service quotas for each of the APIs involved with the registry authentication, image push, and image pull actions\. In the Service Quotas console, you can visualize your usage on a graph and configure alarms that alert you when your usage approaches a service quota\. For more information, see [Amazon ECR usage metrics](monitoring-usage.md)\.
 
 Use the following steps to create a CloudWatch alarm based on one of the Amazon ECR API usage metrics\.
 

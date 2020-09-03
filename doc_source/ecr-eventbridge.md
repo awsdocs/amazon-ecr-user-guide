@@ -1,4 +1,4 @@
-# Amazon ECR Events and EventBridge<a name="ecr-eventbridge"></a>
+# Amazon ECR events and EventBridge<a name="ecr-eventbridge"></a>
 
 Amazon EventBridge enables you to automate your AWS services and to respond automatically to system events such as application availability issues or resource changes\. Events from AWS services are delivered to EventBridge in near real time\. You can write simple rules to indicate which events are of interest to you and include automated actions to take when an event matches a rule\. The actions that can be automatically triggered include the following:
 + Adding events to log groups in CloudWatch Logs
@@ -10,11 +10,11 @@ Amazon EventBridge enables you to automate your AWS services and to respond auto
 
 For more information, see [Getting Started with Amazon EventBridge](https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-getting-set-up.html) in the *Amazon EventBridge User Guide*\.
 
-## Sample Events from Amazon ECR<a name="ecr-eventbridge-bus"></a>
+## Sample events from Amazon ECR<a name="ecr-eventbridge-bus"></a>
 
 The following are example events from Amazon ECR\.
 
-**Event for a Completed Image Push**
+**Event for a completed image push**
 
 The following event is sent when each image push is completed\. For more information, see [Pushing an image](docker-push-ecr-image.md)\.
 
@@ -38,7 +38,7 @@ The following event is sent when each image push is completed\. For more informa
 }
 ```
 
-**Event for a Completed Image Scan**
+**Event for a completed image scan**
 
 The following event is sent when each image scan is completed\. The `finding-severity-counts` parameter will only return a value for a severity level if one exists\. For example, if the image contains no findings at `CRITICAL` level, then no critical count is returned\. For more information, see [Image scanning](image-scanning.md)\.
 
@@ -67,7 +67,7 @@ The following event is sent when each image scan is completed\. The `finding-sev
 }
 ```
 
-**Event for an Image Deletion**
+**Event for an image deletion**
 
 The following event is sent when an image is deleted\. For more information, see [Deleting an image](delete_image.md)\.
 

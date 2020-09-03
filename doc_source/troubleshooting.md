@@ -16,7 +16,7 @@ To begin debugging any Docker\-related issue, you should start by enabling Docke
 
 ## Enabling AWS CloudTrail<a name="cloudtrail"></a>
 
- Additional information about errors returned by Amazon ECR can be discovered by enabling AWS CloudTrail, which is a service that records AWS calls for your AWS account\. CloudTrail delivers log files to an Amazon S3 bucket\. By using information collected by CloudTrail, you can determine what requests were successfully made to AWS services, who made the request, when it was made, and so on\. To learn more about CloudTrail, including how to turn it on and find your log files, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\. For more information on using CloudTrail with Amazon ECR, see [Logging Amazon ECR Actions with AWS CloudTrail](logging-using-cloudtrail.md)\. 
+ Additional information about errors returned by Amazon ECR can be discovered by enabling AWS CloudTrail, which is a service that records AWS calls for your AWS account\. CloudTrail delivers log files to an Amazon S3 bucket\. By using information collected by CloudTrail, you can determine what requests were successfully made to AWS services, who made the request, when it was made, and so on\. To learn more about CloudTrail, including how to turn it on and find your log files, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\. For more information on using CloudTrail with Amazon ECR, see [Logging Amazon ECR actions with AWS CloudTrail](logging-using-cloudtrail.md)\. 
 
 ## Optimizing Performance for Amazon ECR<a name="performance"></a>
 

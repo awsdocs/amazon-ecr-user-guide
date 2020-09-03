@@ -8,7 +8,7 @@ The Amazon Linux container image is available in Amazon ECR and on [Docker Hub](
 
 **To pull the Amazon Linux container image from Amazon ECR**
 
-1. Authenticate your Docker client to the Amazon Linux container image Amazon ECR registry\. Authentication tokens are valid for 12 hours\. For more information, see [Registry Authentication](Registries.md#registry_auth)\.
+1. Authenticate your Docker client to the Amazon Linux container image Amazon ECR registry\. Authentication tokens are valid for 12 hours\. For more information, see [Registry authentication](Registries.md#registry_auth)\.
 **Note**  
 The get\-login\-password command is available in the AWS CLI starting with version `1.17.10`\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
 

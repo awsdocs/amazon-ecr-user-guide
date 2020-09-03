@@ -1,4 +1,4 @@
-# Visualizing Your Service Quotas and Setting Alarms<a name="monitoring-quotas-alarms"></a>
+# Visualizing your service quotas and setting alarms<a name="monitoring-quotas-alarms"></a>
 
 You can use the CloudWatch console to visualize your service quotas and see how your current usage compares to service quotas\. You can also set alarms so that you will be notified when you approach a quota\.
 

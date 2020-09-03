@@ -44,4 +44,4 @@ This indicates that your user does not have permissions granted to use Amazon EC
 
 ## HTTP 404: "Repository Does Not Exist" Error<a name="repo-does-not-exist-error"></a>
 
-If you specify a Docker Hub repository that does not currently exist, Docker Hub creates it automatically\. With Amazon ECR, new repositories must be explicitly created before they can be used\. This prevents new repositories from being created accidentally \(for example, due to typos\), and it also ensures that an appropriate security access policy is explicitly assigned to any new repositories\. For more information about creating repositories, see [Amazon ECR Repositories](Repositories.md)\.
+If you specify a Docker Hub repository that does not currently exist, Docker Hub creates it automatically\. With Amazon ECR, new repositories must be explicitly created before they can be used\. This prevents new repositories from being created accidentally \(for example, due to typos\), and it also ensures that an appropriate security access policy is explicitly assigned to any new repositories\. For more information about creating repositories, see [Amazon ECR repositories](Repositories.md)\.

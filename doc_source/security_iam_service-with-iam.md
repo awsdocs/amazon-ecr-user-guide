@@ -74,7 +74,7 @@ To see a list of Amazon ECR resource types and their ARNs, see [Resources Define
 
 ### Condition Keys<a name="security_iam_service-with-iam-id-based-policies-conditionkeys"></a>
 
-The `Condition` element \(or `Condition` *block*\) lets you specify conditions in which a statement is in effect\. The `Condition` element is optional\. You can build conditional expressions that use [condition operators](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html), such as equals or less than, to match the condition in the policy with values in the request\. 
+The `Condition` element \(or `Condition` *block*\) lets you specify conditions in which a statement is in effect\. The `Condition` element is optional\. You can create conditional expressions that use [condition operators](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html), such as equals or less than, to match the condition in the policy with values in the request\. 
 
 If you specify multiple `Condition` elements in a statement, or multiple keys in a single `Condition` element, AWS evaluates them using a logical `AND` operation\. If you specify multiple values for a single condition key, AWS evaluates the condition using a logical `OR` operation\. All of the conditions must be met before the statement's permissions are granted\.
 
@@ -102,17 +102,17 @@ To enable cross\-account access, you can specify an entire account or IAM entiti
 
 The Amazon ECR service supports only one type of resource\-based policy called a *repository policy*, which is attached to a *repository*\. This policy defines which principal entities \(accounts, users, roles, and federated users\) can perform actions on the repository\.
 
-To learn how to attach a resource\-based policy to a repository, see [Amazon ECR Repository Policies](repository-policies.md)\.
+To learn how to attach a resource\-based policy to a repository, see [Repository policies](repository-policies.md)\.
 
 ### Examples<a name="security_iam_service-with-iam-resource-based-policies-examples"></a>
 
 
 
-To view examples of Amazon ECR resource\-based policies, see [Amazon ECR Repository Policy Examples](repository-policy-examples.md),
+To view examples of Amazon ECR resource\-based policies, see [Repository policy examples](repository-policy-examples.md),
 
 ## Authorization Based on Amazon ECR Tags<a name="security_iam_service-with-iam-tags"></a>
 
-You can attach tags to Amazon ECR resources or pass tags in a request to Amazon ECR\. To control access based on tags, you provide tag information in the [condition element](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) of a policy using the `ecr:ResourceTag/key-name`, `aws:RequestTag/key-name`, or `aws:TagKeys` condition keys\. For more information about tagging Amazon ECR resources, see [Tagging an Amazon ECR Repository](ecr-using-tags.md)\.
+You can attach tags to Amazon ECR resources or pass tags in a request to Amazon ECR\. To control access based on tags, you provide tag information in the [condition element](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) of a policy using the `ecr:ResourceTag/key-name`, `aws:RequestTag/key-name`, or `aws:TagKeys` condition keys\. For more information about tagging Amazon ECR resources, see [Tagging an Amazon ECR repository](ecr-using-tags.md)\.
 
 To view an example identity\-based policy for limiting access to a resource based on the tags on that resource, see [Using Tag\-Based Access Control](ecr-supported-iam-actions-tagging.md)\.
 
