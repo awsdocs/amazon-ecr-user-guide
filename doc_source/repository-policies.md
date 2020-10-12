@@ -38,7 +38,7 @@ This example shows an IAM policy that achieves the same goal as above, by scopin
 {
   "Version": "2012-10-17",
   "Statement": [{
-    "Sid": "ECR Repository Policy",
+    "Sid": "ECRRepositoryPolicy",
     "Effect": "Allow",
     "Principal": {
       "AWS": "arn:aws:iam::account-id:user/username"
