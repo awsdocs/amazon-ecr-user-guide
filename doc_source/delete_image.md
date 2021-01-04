@@ -1,9 +1,9 @@
 # Deleting an image<a name="delete_image"></a>
 
-If you are done using an image, you can delete it from your repository\. You can delete an image using the AWS Management Console, or the AWS CLI\.
+If you're finished using an image, you can delete it from your repository\. You can delete an image using the AWS Management Console or the AWS CLI\.
 
 **Note**  
-If you are done with a repository, you can delete the entire repository and all of the images within it\. For more information, see [Deleting a repository](repository-delete.md)\.
+If you're finished with a repository, you can delete the entire repository and all of the images within it\. For more information, see [Deleting a repository](repository-delete.md)\.
 
 **To delete an image with the AWS Management Console**
 

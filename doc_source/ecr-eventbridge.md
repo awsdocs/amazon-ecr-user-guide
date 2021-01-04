@@ -16,7 +16,7 @@ The following are example events from Amazon ECR\.
 
 **Event for a completed image push**
 
-The following event is sent when each image push is completed\. For more information, see [Pushing an image](docker-push-ecr-image.md)\.
+The following event is sent when each image push is completed\. For more information, see [Pushing a Docker image](docker-push-ecr-image.md)\.
 
 ```
 {
@@ -59,7 +59,7 @@ The following event is sent when each image scan is completed\. The `finding-sev
         "repository-name": "my-repo",
         "finding-severity-counts": {
 	       "CRITICAL": 10,
-	       "MEDIUM”: 9
+	       "MEDIUM": 9
 	     },
         "image-digest": "sha256:7f5b2640fe6fb4f46592dfd3410c4a79dac4f89e4782432e0378abcd1234",
         "image-tags": []

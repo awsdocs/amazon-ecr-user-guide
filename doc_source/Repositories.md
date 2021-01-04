@@ -1,6 +1,6 @@
-# Amazon ECR repositories<a name="Repositories"></a>
+# Amazon ECR private repositories<a name="Repositories"></a>
 
-Amazon Elastic Container Registry \(Amazon ECR\) provides API operations to create, monitor, and delete image repositories and set permissions that control who can access them\. You can perform the same actions in the **Repositories** section of the Amazon ECR console\. Amazon ECR also integrates with the Docker CLI allowing you to push and pull images from your development environments to your repositories\.
+Amazon Elastic Container Registry \(Amazon ECR\) provides API operations to create, monitor, and delete image repositories and set permissions that control who can access them\. You can perform the same actions in the **Repositories** section of the Amazon ECR console\. Amazon ECR also integrates with the Docker CLI, so that you push and pull images from your development environments to your repositories\.
 
 **Topics**
 + [Repository concepts](#repository-concepts)
@@ -12,6 +12,7 @@ Amazon Elastic Container Registry \(Amazon ECR\) provides API operations to crea
 + [Tagging an Amazon ECR repository](ecr-using-tags.md)
 
 ## Repository concepts<a name="repository-concepts"></a>
-+ By default, your account has read and write access to the repositories in your default registry \(`aws_account_id.dkr.ecr.region.amazonaws.com`\)\. However, IAM users require permissions to make calls to the Amazon ECR APIs and to push or pull images from your repositories\. Amazon ECR provides several managed policies to control user access at varying levels; for more information, see [Amazon Elastic Container Registry Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
-+ Repositories can be controlled with both IAM user access policies and repository policies\. For more information, see [Repository policies](repository-policies.md)\.
-+ Repository names can support namespaces, which you can use to group similar repositories\. For example if there are several teams using the same registry, Team A could use the `team-a` namespace while Team B uses the `team-b` namespace\. Each team could have their own image called `web-app`, but because they are each prefaced with the team namespace, the two images can be used simultaneously without interference\. Team A's image would be called `team-a/web-app`, while Team B's image would be called `team-b/web-app`\.
++ By default, your account has read and write access to the repositories in your default registry \(`aws_account_id.dkr.ecr.region.amazonaws.com`\)\. However, IAM users require permissions to make calls to the Amazon ECR APIs and to push or pull images to and from your repositories\. Amazon ECR provides several managed policies to control user access at varying levels\. For more information, see [Amazon Elastic Container Registry Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
++ Repositories can be controlled with both IAM user access policies and individual repository policies\. For more information, see [Repository policies](repository-policies.md)\.
++ Repository names can support namespaces, which you can use to group similar repositories\. For example, if there are several teams using the same registry, Team A can use the `team-a` namespace, and Team B can use the `team-b` namespace\. By doing this, each teamhas their own image called `web-app` with each image prefaced with the team namespace\. This configuration allows these images on each team to be used simultaneously without interference\. Team A's image is `team-a/web-app`, and Team B's image is `team-b/web-app`\.
++ Your images can be replicated to other repositories across Regions in your own registry and across accounts\. You can do this by specifying a replication configuration in your registry settings\. For more information, see [Private registry settings](registry-settings.md)\.

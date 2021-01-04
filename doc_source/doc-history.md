@@ -1,16 +1,17 @@
-# Document History<a name="doc-history"></a>
+# Document history<a name="doc-history"></a>
 
 The following table describes the important changes to the documentation since the last release of Amazon ECR\. We also update the documentation frequently to address the feedback that you send us\.
 
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+|  Cross\-Region and cross\-account replication  |  Amazon ECR added support for configuring replication settings for your private registry\. For more information, see [Private registry settings](registry-settings.md)\.  |  8 December 2020  | 
 |  OCI artifact support  |  Amazon ECR added support for pushing and pulling Open Container Initiative \(OCI\) artifacts\. A new parameter `artifactMediaType` was added to the `DescribeImages` API response to indicate the type of artifact\. For more information, see [Pushing a Helm chart](push-oci-artifact.md)\.  |  24 August 2020  | 
 |  Encryption at rest  |  Amazon ECR added support for configuring encryption for your repositories using server\-side encryption with customer master keys \(CMKs\) stored in AWS Key Management Service \(AWS KMS\)\. For more information, see [Encryption at rest](encryption-at-rest.md)\.  |  29 July 2020  | 
 |  Multi\-architecture images  |  Amazon ECR added support for creating and pushing Docker manifest lists which are used for multi\-architecture images\. For more information, see [Pushing a multi\-architecture image](docker-push-multi-architecture-image.md)\.  |  28 April 2020  | 
 |  Amazon ECR Usage Metrics  |  Amazon ECR added CloudWatch usage metrics which provides visiblity into your account's resource usage\. You also have the ability to create CloudWatch alarms from both the CloudWatch and Service Quotas consoles to get alerts when your usage approaches your applied service quota\. For more information, see [Amazon ECR usage metrics](monitoring-usage.md)\.  |  28 Feb 2020  | 
 |  Updated Amazon ECR service quotas  |  Updated the Amazon ECR service quotas to include per\-API quotas\. For more information, see [Amazon ECR service quotas](service-quotas.md)\.  |  19 Feb 2020  | 
-|  Added `get-login-password` command  |  Added support for get\-login\-password, which provides a simple and secure method for retrieving an authorization token\. For more information, see [Using an authorization token](Registries.md#registry-auth-token)\.  |  4 Feb 2020  | 
+|  Added `get-login-password` command  |  Added support for get\-login\-password, which provides a simple and secure method for retrieving an authorization token\. For more information, see [Using an authorization token](registry_auth.md#registry-auth-token)\.  |  4 Feb 2020  | 
 |  Image Scanning  |  Added support for image scanning, which helps in identifying software vulnerabilities in your container images\. Amazon ECR uses the Common Vulnerabilities and Exposures \(CVEs\) database from the open source CoreOS Clair project and provides you with a list of scan findings\. For more information, see [Image scanning](image-scanning.md)\.  |  24 Oct 2019  | 
 |  VPC Endpoint Policy  |  Added support for setting an IAM policy on the Amazon ECR interface VPC endpoints\. For more information, see [Create an endpoint policy for your Amazon ECR VPC endpoints](vpc-endpoints.md#ecr-vpc-endpoint-policy)\.  |  26 Sept 2019  | 
 |  Image Tag Mutability  |  Added support for configuring a repository to be immutable to prevent image tags from being overwritten\. For more information, see [Image tag mutability](image-tag-mutability.md)\.  |  25 July 2019  | 

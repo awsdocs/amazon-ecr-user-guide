@@ -22,7 +22,7 @@ For more information about using your Amazon ECR hosted Helm charts with Amazon 
         --region us-west-2
    ```
 
-1. Authenticate your Helm client to the Amazon ECR registry to which you intend to push your Helm chart\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry authentication](Registries.md#registry_auth)\.
+1. Authenticate your Helm client to the Amazon ECR registry to which you intend to push your Helm chart\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Private registry authentication](registry_auth.md)\.
 
    ```
    aws ecr get-login-password \
@@ -97,7 +97,7 @@ For more information about using your Amazon ECR hosted Helm charts with Amazon 
         --region us-west-2
    ```
 
-   In the output, verify the `artifactMediaType` parameter indicates the proper artifact type\.
+   In the output, verify that the `artifactMediaType` parameter indicates the proper artifact type\.
 
    ```
    {

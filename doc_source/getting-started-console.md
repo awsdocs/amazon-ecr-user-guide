@@ -20,7 +20,7 @@ A repository is where you store your Docker or Open Container Initiative \(OCI\)
 
 **Build, tag, and push a Docker image**
 
-In this section of the wizard, you use the Docker CLI to tag an existing local image \(that you have built from a Dockerfile or pulled from another registry, such as Docker Hub\) and then push the tagged image to your Amazon ECR registry\. For more detailed steps on using the Docker CLI, see [Getting started with Amazon ECR using the AWS CLI](getting-started-cli.md)\.
+In this section of the wizard, you use the Docker CLI to tag an existing local image \(that you have built from a Dockerfile or pulled from another registry, such as Docker Hub\) and then push the tagged image to your Amazon ECR registry\. For more detailed steps on using the Docker CLI, see [Using Amazon ECR with the AWS CLI](getting-started-cli.md)\.
 
 1. Select the repository you created and choose **View push commands** to view the steps to push an image to your new repository\.
 

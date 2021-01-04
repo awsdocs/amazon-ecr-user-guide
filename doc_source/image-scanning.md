@@ -1,10 +1,10 @@
 # Image scanning<a name="image-scanning"></a>
 
-Amazon ECR image scanning helps in identifying software vulnerabilities in your container images\. Amazon ECR uses the Common Vulnerabilities and Exposures \(CVEs\) database from the open source Clair project and provides you with a list of scan findings\. You can review the scan findings for information about the security of the container images that are being deployed\. For more information about Clair, see [Clair](https://github.com/quay/clair) on GitHub\.
+Amazon ECR image scanning helps in identifying software vulnerabilities in your container images\. Amazon ECR uses the Common Vulnerabilities and Exposures \(CVEs\) database from the open\-source Clair project and provides a list of scan findings\. You can review the scan findings for information about the security of the container images that are being deployed\. For more information about Clair, see [Clair](https://github.com/quay/clair) on GitHub\.
 
 Amazon ECR uses the severity for a CVE from the upstream distribution source if available, otherwise we use the Common Vulnerability Scoring System \(CVSS\) score\. The CVSS score can be used to obtain the NVD vulnerability severity rating\. For more information, see [NVD Vulnerability Severity Ratings](https://nvd.nist.gov/vuln-metrics/cvss)\. 
 
-You can manually scan container images stored in Amazon ECR, or you can configure your repositories to scan images when you push them to a repository\. The last completed image scan findings can be retrieved for each image\. Amazon ECR sends an event to Amazon EventBridge \(formerly called CloudWatch Events\) when an image scan is completed\. For more information, see [Amazon ECR events and EventBridge](ecr-eventbridge.md)\.
+You can manually scan container images stored in Amazon ECR\. Or, alternatively, you can configure your repositories to scan images when you push them to a repository\. The last completed image scan findings can be retrieved for each image\. Amazon ECR sends an event to Amazon EventBridge \(formerly called CloudWatch Events\) when an image scan is completed\. For more information, see [Amazon ECR events and EventBridge](ecr-eventbridge.md)\.
 
 For troubleshooting details for some common issues when scanning images, see [Troubleshooting Image Scanning Issues](image-scanning-troubleshooting.md)\.
 
@@ -15,7 +15,7 @@ For troubleshooting details for some common issues when scanning images, see [Tr
 
 ## Configuring a repository to scan on push<a name="scanning-repository"></a>
 
-You can configure the image scan settings either for a new repository during creation or for an existing repository\. When **scan on push** is enabled, images are scanned after being pushed to a repository\. If **scan on push** is disabled on a repository then you must manually start each image scan to get the scan results\.
+You can configure the image scan settings either for a new repository during creation or for an existing repository\. When **scan on push** is enabled, images are scanned after being pushed to a repository\. If **scan on push** is disabled on a repository, then you must manually start each image scan to get the scan results\.
 
 **Topics**
 + [Creating a new repository to scan on push](#scanning-new-repository)
@@ -73,7 +73,7 @@ Use the following command to edit the image scanning settings of an existing rep
 
 ## Manually scanning an image<a name="manual-scan"></a>
 
-You can start image scans manually when you want to scan images in repositories that are not configured to **scan on push**\. An image can only be scanned once per day\. This limit includes the initial **scan on push**, if enabled, and any manual scans\.
+You can start image scans manually when you want to scan images in repositories that aren't configured to **scan on push**\. An image can only be scanned once each day\. This limit includes the initial **scan on push**, if enabled, and any manual scans\.
 
 For troubleshooting details for some common issues when scanning images, see [Troubleshooting Image Scanning Issues](image-scanning-troubleshooting.md)\.
 

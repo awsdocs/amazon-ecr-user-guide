@@ -1,6 +1,6 @@
 # Deleting a repository<a name="repository-delete"></a>
 
-If you are done using a repository, you can delete it\. When you delete a repository in the AWS Management Console, all of the images contained in the repository are also deleted; this cannot be undone\.
+If you're finished using a repository, you can delete it\. When you delete a repository in the AWS Management Console, all of the images contained in the repository are also deleted; this cannot be undone\.
 
 **To delete a repository**
 

@@ -1,6 +1,6 @@
-# Getting started with Amazon ECR using the AWS CLI<a name="getting-started-cli"></a>
+# Using Amazon ECR with the AWS CLI<a name="getting-started-cli"></a>
 
-The following steps walk you through the steps needed to push a container image to Amazon ECR for the first time using the Docker CLI and the AWS CLI\.
+The following steps walk you through the steps needed to push a container image to a private Amazon ECR repository for the first time using the Docker CLI and the AWS CLI\.
 
 For more information on the other tools available for managing your AWS resources, including the different AWS SDKs, IDE toolkits, and the Windows PowerShell command line tools, see [http://aws\.amazon\.com/tools/](http://aws.amazon.com/tools/)\.
 
