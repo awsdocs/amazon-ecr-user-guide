@@ -1,8 +1,8 @@
 # Deleting a private registry permission statement<a name="registry-permissions-delete"></a>
 
-You can delete all permission policy statements for your registry by using the following steps\.
+You can delete all permissions policy statements for your registry by using the following steps\.
 
-**To delete a permission policy for a private registry \(AWS Management Console\)**
+**To delete a permissions policy for a private registry \(AWS Management Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 
@@ -16,7 +16,7 @@ You can delete all permission policy statements for your registry by using the f
 
 1. On the **Delete registry policy** confirmation screen, choose **Delete policy**\.
 
-**To delete a permission policy for a private registry \(AWS CLI\)**
+**To delete a permissions policy for a private registry \(AWS CLI\)**
 
 1. Delete the registry policy\.
 

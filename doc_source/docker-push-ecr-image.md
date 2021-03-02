@@ -35,4 +35,4 @@ Amazon ECR also supports creating and pushing Docker manifest lists, which are u
    docker push aws_account_id.dkr.ecr.region.amazonaws.com/my-web-app
    ```
 
-1. \(Optional\) Apply any additional tags to your image and push those tags to Amazon ECR by repeating [Step 4](#image-tag-step) and [Step 5](#image-push-step)\. You can apply up to 100 tags to each image in Amazon ECR\.
+1. \(Optional\) Apply any additional tags to your image and push those tags to Amazon ECR by repeating [Step 4](#image-tag-step) and [Step 5](#image-push-step)\.

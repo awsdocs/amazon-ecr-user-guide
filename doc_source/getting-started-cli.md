@@ -18,7 +18,7 @@ To use the AWS CLI with Amazon ECR, install the latest AWS CLI version \(Amazon 
 
 ### Install Docker<a name="cli-install-docker"></a>
 
-Docker is available on many different operating systems, including most modern Linux distributions, like Ubuntu, and even Mac OSX and Windows\. For more information about how to install Docker on your particular operating system, go to the [Docker installation guide](https://docs.docker.com/engine/installation/#installation)\.
+Docker is available on many different operating systems, including most modern Linux distributions, like Ubuntu, and even macOS and Windows\. For more information about how to install Docker on your particular operating system, go to the [Docker installation guide](https://docs.docker.com/engine/installation/#installation)\.
 
 You don't need a local development system to use Docker\. If you are using Amazon EC2 already, you can launch an Amazon Linux 2 instance and install Docker to get started\.
 
@@ -138,7 +138,7 @@ Output from the Apache web server is displayed in the terminal window\. You can 
 1. Open a browser and point to the server that is running Docker and hosting your container\.
    + If you are using an EC2 instance, this is the **Public DNS** value for the server, which is the same address you use to connect to the instance with SSH\. Make sure that the security group for your instance allows inbound traffic on port 80\.
    + If you are running Docker locally, point your browser to [http://localhost/](http://localhost/)\.
-   + If you are using docker\-machine on a Windows or Mac computer, find the IP address of the VirtualBox VM that is hosting Docker with the docker\-machine ip command, substituting *machine\-name* with the name of the docker machine you are using\.
+   + If you are using docker\-machine on a Windows or macOS computer, find the IP address of the VirtualBox VM that is hosting Docker with the docker\-machine ip command, substituting *machine\-name* with the name of the docker machine you are using\.
 
      ```
      docker-machine ip machine-name

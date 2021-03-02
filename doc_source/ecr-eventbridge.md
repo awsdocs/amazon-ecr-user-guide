@@ -12,7 +12,7 @@ For more information, see [Getting Started with Amazon EventBridge](https://docs
 
 ## Sample events from Amazon ECR<a name="ecr-eventbridge-bus"></a>
 
-The following are example events from Amazon ECR\.
+The following are example events from Amazon ECR\. Events are emitted on a best effort basis\.
 
 **Event for a completed image push**
 

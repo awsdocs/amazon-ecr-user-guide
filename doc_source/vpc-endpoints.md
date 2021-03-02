@@ -23,7 +23,7 @@ Amazon ECS tasks that use the Fargate launch type don't require the Amazon ECS i
 
 Images based on the Windows operating system include artifacts that are restricted by license from being distributed\. By default, when you push Windows images to an Amazon ECR repository, the layers that include these artifacts are not pushed as they are considered *foreign layers*\. When the artifacts are provided by Microsoft, the foreign layers are retrieved from Microsoft Azure infrastructure\. For this reason, to enable your containers to pull these foreign layers from Azure additional steps are needed beyond creating the VPC endpoints\.
 
-It is possible to override this behaviour when pushing Windows images to Amazon ECR by using the `--allow-nondistributable-artifacts` flag in the Docker daemon\. When enabled, this flag will push the licensed layers to Amazon ECR which enables these images to be pulled from Amazon ECR via the VPC endpoint without additional access to Azure being required\.
+It is possible to override this behavior when pushing Windows images to Amazon ECR by using the `--allow-nondistributable-artifacts` flag in the Docker daemon\. When enabled, this flag will push the licensed layers to Amazon ECR which enables these images to be pulled from Amazon ECR via the VPC endpoint without additional access to Azure being required\.
 
 **Important**  
 Using the `--allow-nondistributable-artifacts` flag does not preclude your obligation to comply with the terms of the Windows container base image license; you cannot post Windows content for public or third\-party redistribution\. Usage within your own environment is allowed\.

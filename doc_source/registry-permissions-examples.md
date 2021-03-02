@@ -1,6 +1,6 @@
 # Private registry policy examples<a name="registry-permissions-examples"></a>
 
-The following examples show registry permission policy statements that you could use to control the permissions that users have to your Amazon ECR registry\.
+The following examples show registry permissions policy statements that you could use to control the permissions that users have to your Amazon ECR registry\.
 
 ## Example: Allow the root user of a source account to replicate all repositories<a name="registry-permissions-examples-all"></a>
 
