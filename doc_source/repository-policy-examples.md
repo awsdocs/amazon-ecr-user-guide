@@ -2,7 +2,7 @@
 
 The following examples show policy statements that you could use to control the permissions that users have to Amazon ECR repositories\.
 
-**Important**  
+**Important**
 Amazon ECR requires that users have permission to make calls to the `ecr:GetAuthorizationToken` API through an IAM policy before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed IAM policies to control user access at varying levels; for more information, see [Amazon Elastic Container Registry Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
 
 ## Example: Allow an IAM user within your account<a name="IAM_within_account"></a>
@@ -23,13 +23,13 @@ The following repository policy allows IAM users within your account to push and
                 ]
             },
             "Action": [
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage",
                 "ecr:BatchCheckLayerAvailability",
-                "ecr:PutImage",
+                "ecr:BatchGetImage",
+                "ecr:CompleteLayerUpload",
+                "ecr:GetDownloadUrlForLayer",
                 "ecr:InitiateLayerUpload",
-                "ecr:UploadLayerPart",
-                "ecr:CompleteLayerUpload"
+                "ecr:PutImage",
+                "ecr:UploadLayerPart"
             ]
         }
     ]
@@ -51,12 +51,11 @@ The following repository policy allows a specific account to push images\.
                 "AWS": "arn:aws:iam::account-id:root"
             },
             "Action": [
-                "ecr:GetDownloadUrlForLayer",
                 "ecr:BatchCheckLayerAvailability",
-                "ecr:PutImage",
+                "ecr:CompleteLayerUpload",
                 "ecr:InitiateLayerUpload",
-                "ecr:UploadLayerPart",
-                "ecr:CompleteLayerUpload"
+                "ecr:PutImage",
+                "ecr:UploadLayerPart"
             ]
         }
     ]
@@ -65,7 +64,7 @@ The following repository policy allows a specific account to push images\.
 
 The following repository policy allows some IAM users to pull images \(*pull\-user\-1* and *pull\-user\-2*\) while providing full access to another \(*admin\-user*\)\.
 
-**Note**  
+**Note**
 For more complicated repository policies that are not currently supported in the AWS Management Console, you can apply the policy with the [https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html](https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html) AWS CLI command\.
 
 ```
@@ -82,8 +81,8 @@ For more complicated repository policies that are not currently supported in the
                 ]
             },
             "Action": [
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage"
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
             ]
         },
         {
@@ -113,8 +112,8 @@ The following repository policy allows all AWS accounts to pull images\.
             "Effect": "Allow",
             "Principal": "*",
             "Action": [
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage"
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
             ]
         }
     ]
@@ -134,8 +133,8 @@ The following repository policy denies all users the ability to pull images\.
             "Effect": "Deny",
             "Principal": "*",
             "Action": [
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage"
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
             ]
         }
     ]
