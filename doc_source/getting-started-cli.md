@@ -1,6 +1,6 @@
-# Getting started with Amazon ECR using the AWS CLI<a name="getting-started-cli"></a>
+# Using Amazon ECR with the AWS CLI<a name="getting-started-cli"></a>
 
-The following steps walk you through the steps needed to push a container image to Amazon ECR for the first time using the Docker CLI and the AWS CLI\.
+The following steps walk you through the steps needed to push a container image to a private Amazon ECR repository for the first time using the Docker CLI and the AWS CLI\.
 
 For more information on the other tools available for managing your AWS resources, including the different AWS SDKs, IDE toolkits, and the Windows PowerShell command line tools, see [http://aws\.amazon\.com/tools/](http://aws.amazon.com/tools/)\.
 
@@ -14,11 +14,11 @@ If you do not already have the latest AWS CLI and Docker installed and ready to 
 
 You can use the AWS command line tools to issue commands at your system's command line to perform Amazon ECR and other AWS tasks\. This can be faster and more convenient than using the console\. The command line tools are also useful for building scripts that perform AWS tasks\.
 
-To use the AWS CLI with Amazon ECR, install the latest AWS CLI version \(Amazon ECR functionality is available in the AWS CLI starting with version 1\.9\.15\)\. You can check your AWS CLI version with the aws \-\-version command\. For information about installing the AWS CLI or upgrading it to the latest version, see [Installing the AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) in the *AWS Command Line Interface User Guide*\.
+To use the AWS CLI with Amazon ECR, install the latest AWS CLI version \(Amazon ECR functionality is available in the AWS CLI starting with version 1\.9\.15\)\. You can check your AWS CLI version with the aws \-\-version command\. For information about installing the AWS CLI or upgrading it to the latest version, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) in the *AWS Command Line Interface User Guide*\.
 
 ### Install Docker<a name="cli-install-docker"></a>
 
-Docker is available on many different operating systems, including most modern Linux distributions, like Ubuntu, and even Mac OSX and Windows\. For more information about how to install Docker on your particular operating system, go to the [Docker installation guide](https://docs.docker.com/engine/installation/#installation)\.
+Docker is available on many different operating systems, including most modern Linux distributions, like Ubuntu, and even macOS and Windows\. For more information about how to install Docker on your particular operating system, go to the [Docker installation guide](https://docs.docker.com/engine/installation/#installation)\.
 
 You don't need a local development system to use Docker\. If you are using Amazon EC2 already, you can launch an Amazon Linux 2 instance and install Docker to get started\.
 
@@ -138,7 +138,7 @@ Output from the Apache web server is displayed in the terminal window\. You can 
 1. Open a browser and point to the server that is running Docker and hosting your container\.
    + If you are using an EC2 instance, this is the **Public DNS** value for the server, which is the same address you use to connect to the instance with SSH\. Make sure that the security group for your instance allows inbound traffic on port 80\.
    + If you are running Docker locally, point your browser to [http://localhost/](http://localhost/)\.
-   + If you are using docker\-machine on a Windows or Mac computer, find the IP address of the VirtualBox VM that is hosting Docker with the docker\-machine ip command, substituting *machine\-name* with the name of the docker machine you are using\.
+   + If you are using docker\-machine on a Windows or macOS computer, find the IP address of the VirtualBox VM that is hosting Docker with the docker\-machine ip command, substituting *machine\-name* with the name of the docker machine you are using\.
 
      ```
      docker-machine ip machine-name
@@ -152,9 +152,11 @@ Output from the Apache web server is displayed in the terminal window\. You can 
 
 After you have installed and configured the AWS CLI, authenticate the Docker CLI to your default registry\. That way, the docker command can push and pull images with Amazon ECR\. The AWS CLI provides a get\-login\-password command to simplify the authentication process\.
 
-To authenticate Docker to an Amazon ECR registry with get\-login\-password, run the aws ecr get\-login\-password command\. When passing the authentication token to the docker login command, use the value `AWS` for the username and specify the Amazon ECR registry URI you want to authenticate to\. If authenticating to multiple registries, you must repeat the command for each registry\.
+The `get-login-password` is the preferred method for authenticating to an Amazon ECR private registry when using the AWS CLI\. Ensure that you have configured your AWS CLI to interact with AWS\. For more information, see [AWS CLI configuration basics](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) in the *AWS Command Line Interface User Guide*\.
+
+When passing the Amazon ECR authorization token to the docker login command, use the value `AWS` for the username and specify the Amazon ECR registry URI you want to authenticate to\. If authenticating to multiple registries, you must repeat the command for each registry\.
 **Important**  
-If you receive an error, install or upgrade to the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) in the *AWS Command Line Interface User Guide*\.
+If you receive an error, install or upgrade to the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) in the *AWS Command Line Interface User Guide*\.
 + [get\-login\-password](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login-password.html) \(AWS CLI\)
 
   ```

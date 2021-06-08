@@ -97,7 +97,7 @@ Use the following to add, update, list, and delete the tags for your resources\.
 
 **Tagging Support for Amazon ECR Resources**  
 
-| Task | AWS CLI | API Action | 
+| Task | AWS CLI | API action | 
 | --- | --- | --- | 
 |  Add or overwrite one or more tags\.  |  [tag\-resource](https://docs.aws.amazon.com/cli/latest/reference/ecr/tag-resource.html)  |  [TagResource](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_TagResource.html)  | 
 |  Delete one or more tags\.  |  [untag\-resource](https://docs.aws.amazon.com/cli/latest/reference/ecr/untag-resource.html)  |  [UntagResource](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_UntagResource.html)  | 
@@ -115,7 +115,7 @@ aws ecr tag-resource --resource-arn arn:aws:ecr:region:account_id:repository/rep
 The following command tags an existing repository\.
 
 ```
-aws ecr tag-resource --resource-arn arn:aws:ecr:region:account_id:repository/repository_name --tags Key=key1,Value=value1 key=key2,value=value2 key=key3,value=value3
+aws ecr tag-resource --resource-arn arn:aws:ecr:region:account_id:repository/repository_name --tags Key=key1,Value=value1 Key=key2,Value=value2 Key=key3,Value=value3
 ```
 
 **Example 3: Untag an existing repository**  

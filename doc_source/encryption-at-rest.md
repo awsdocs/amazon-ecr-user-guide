@@ -2,7 +2,7 @@
 
 Amazon ECR stores images in Amazon S3 buckets that Amazon ECR manages\. By default, Amazon ECR uses server\-side encryption with Amazon S3\-managed encryption keys which encrypts your data at rest using an AES\-256 encryption algorithm\. This does not require any action on your part and is offered at no additional charge\. For more information, see [Protecting Data Using Server\-Side Encryption with Amazon S3\-Managed Encryption Keys \(SSE\-S3\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html) in the *Amazon Simple Storage Service Developer Guide*\.
 
-For more control over the encryption for your Amazon ECR repositories, you can use server\-side encryption with customer master keys \(CMKs\) stored in AWS Key Management Service \(AWS KMS\)\. When you use AWS KMS to encrypt your data, you can either use the default AWS\-managed CMK, which is managed by Amazon ECR, or specify your own CMK \(referred to as a customer\-managed CMK\)\. For more information, see [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS Key Management Service \(SSE\-KMS\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) in the *Amazon Simple Storage Service Developer Guide*\.
+For more control over the encryption for your Amazon ECR repositories, you can use server\-side encryption with customer master keys \(CMKs\) stored in AWS Key Management Service \(AWS KMS\)\. When you use AWS KMS to encrypt your data, you can either use the default AWS\-managed CMK, which is managed by Amazon ECR, or specify your own CMK \(referred to as a customer managed CMK\)\. For more information, see [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS KMS \(SSE\-KMS\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) in the *Amazon Simple Storage Service Developer Guide*\.
 
 Each Amazon ECR repository has an encryption configuration, which is set when the repository is created\. You can use different encryption configurations on each repository\. For more information, see [Creating a repository](repository-create.md)\.
 
@@ -62,11 +62,11 @@ The following example IAM policy can be added as an inline policy to a user to e
 }
 ```
 
-### Required IAM permissions when using a customer\-managed CMK<a name="encryption-customer-managed-key"></a>
+### Required IAM permissions when using a customer managed CMK<a name="encryption-customer-managed-key"></a>
 
-When creating a repository with AWS KMS encryption enabled using a customer\-managed CMK, there are required permissions for both the CMK key policy and the IAM policy for the user or role creating the repository\.
+When creating a repository with AWS KMS encryption enabled using a customer managed CMK, there are required permissions for both the CMK key policy and the IAM policy for the user or role creating the repository\.
 
-When creating your own CMK, you can either use the default key policy AWS KMS creates or you can specify your own\. To ensure that the customer\-managed CMK remains manageable by the account owner, the key policy for the CMK should allow all AWS KMS actions for the root user of the account\. Additional scoped permissions may be added to the key policy but at minimum the root user should be given permissions to manage the CMK\. To allow the CMK to be used only for requests that originate in Amazon ECR, you can use the [kms:ViaService condition key](https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-via-service) with the `ecr.<region>.amazonaws.com` value\.
+When creating your own CMK, you can either use the default key policy AWS KMS creates or you can specify your own\. To ensure that the customer managed CMK remains manageable by the account owner, the key policy for the CMK should allow all AWS KMS actions for the root user of the account\. Additional scoped permissions may be added to the key policy but at minimum the root user should be given permissions to manage the CMK\. To allow the CMK to be used only for requests that originate in Amazon ECR, you can use the [kms:ViaService condition key](https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-via-service) with the `ecr.<region>.amazonaws.com` value\.
 
 The following example key policy gives the AWS account \(root user\) that owns the CMK full access to the CMK\. For more information about this example key policy, see [Allows access to the AWS account and enables IAM policies](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam) in the *AWS Key Management Service Developer Guide*\.
 
@@ -116,7 +116,7 @@ The following example IAM policy can be added as an inline policy to a user to e
 
 ### Allow a user to list CMKs in the console when creating a repository<a name="encryption-at-rest-iam-example"></a>
 
-When using the Amazon ECR console to create a repository, you can grant permissions to enable a user to list the customer\-managed CMKs in the Region when enabling encryption for the repository\. The following IAM policy example shows the permissions needed to list your CMKs and aliases when using the console\.
+When using the Amazon ECR console to create a repository, you can grant permissions to enable a user to list the customer managed CMKs in the Region when enabling encryption for the repository\. The following IAM policy example shows the permissions needed to list your CMKs and aliases when using the console\.
 
 ```
 {
@@ -188,7 +188,7 @@ When this occurs, you can retire the AWS KMS grants for the repository yourself\
 
 **To retire AWS KMS grants for a repository manually**
 
-1. List the grants for the AWS KMS key used for the repository\. The `key-id` value is included in the error you receive from the console\. You can also use the `list-keys` command to list both the AWS managed CMKs and customer\-managed CMKs in a specific Region in your account\.
+1. List the grants for the AWS KMS key used for the repository\. The `key-id` value is included in the error you receive from the console\. You can also use the `list-keys` command to list both the AWS managed CMKs and customer managed CMKs in a specific Region in your account\.
 
    ```
    aws kms list-grants \

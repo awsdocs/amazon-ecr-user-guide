@@ -13,9 +13,11 @@ Amazon ECR requires that users have permission to make calls to the `ecr:GetAuth
 
 1. In the navigation pane, choose **Repositories**\.
 
-1. On the **Repositories** page, choose the repository to set a policy statement on\.
+1. On the **Repositories** page, choose the repository to set a policy statement on to view the contents of the repository\.
 
-1. In the navigation pane, choose **Permissions**, **Edit**\.
+1. From the repository image list view, in the navigation pane, choose **Permissions**, **Edit**\.
+**Note**  
+If you don't see the **Permissions** option in the navigation pane, ensure that you are in the repository image list view\.
 
 1. On the **Edit permissions** page, choose **Add statement**\.
 

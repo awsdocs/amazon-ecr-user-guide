@@ -1,4 +1,4 @@
-# Compliance Validation for Amazon Elastic Container Registry<a name="ecr-compliance"></a>
+# Compliance validation for Amazon Elastic Container Registry<a name="ecr-compliance"></a>
 
 Third\-party auditors assess the security and compliance of Amazon Elastic Container Registry as part of multiple AWS compliance programs\. These include SOC, PCI, HIPAA, and others\.
 

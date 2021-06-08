@@ -23,13 +23,13 @@ The following repository policy allows IAM users within your account to push and
                 ]
             },
             "Action": [
-                "ecr:GetDownloadUrlForLayer",
                 "ecr:BatchGetImage",
                 "ecr:BatchCheckLayerAvailability",
-                "ecr:PutImage",
+                "ecr:CompleteLayerUpload",
+                "ecr:GetDownloadUrlForLayer",
                 "ecr:InitiateLayerUpload",
-                "ecr:UploadLayerPart",
-                "ecr:CompleteLayerUpload"
+                "ecr:PutImage",
+                "ecr:UploadLayerPart"
             ]
         }
     ]
@@ -51,12 +51,11 @@ The following repository policy allows a specific account to push images\.
                 "AWS": "arn:aws:iam::account-id:root"
             },
             "Action": [
-                "ecr:GetDownloadUrlForLayer",
                 "ecr:BatchCheckLayerAvailability",
-                "ecr:PutImage",
+                "ecr:CompleteLayerUpload",
                 "ecr:InitiateLayerUpload",
-                "ecr:UploadLayerPart",
-                "ecr:CompleteLayerUpload"
+                "ecr:PutImage",
+                "ecr:UploadLayerPart"
             ]
         }
     ]
@@ -82,8 +81,8 @@ For more complicated repository policies that are not currently supported in the
                 ]
             },
             "Action": [
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage"
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
             ]
         },
         {
@@ -113,8 +112,8 @@ The following repository policy allows all AWS accounts to pull images\.
             "Effect": "Allow",
             "Principal": "*",
             "Action": [
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage"
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
             ]
         }
     ]
@@ -134,8 +133,8 @@ The following repository policy denies all users the ability to pull images\.
             "Effect": "Deny",
             "Principal": "*",
             "Action": [
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage"
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
             ]
         }
     ]

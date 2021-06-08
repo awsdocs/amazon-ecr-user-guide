@@ -5,10 +5,10 @@ The following table provides the default service quotas for Amazon Elastic Conta
 
 ****  
 
-| Service quota | Description | Default quota value | 
-| --- | --- | --- | 
-|  Registered repositories  |  The maximum number of repositories that you can create per Region\.  |  10,000  | 
-|  Image per repository  |  The maximum number of images per repository\.  |  10,000  | 
+| Service quota | Description | Default quota value | Adjustable | 
+| --- | --- | --- | --- | 
+|  Registered repositories  |  The maximum number of repositories that you can create per Region\.  |  10,000  |  Yes  | 
+|  Image per repository  |  The maximum number of images per repository\.  |  10,000  |  Yes  | 
 
 The following table provides the default rate quotas for each of the Amazon ECR API actions involved with the image push and image pull actions\.
 
@@ -22,18 +22,18 @@ The following table provides other quotas for Amazon ECR and Docker images that 
 The layer part information mentioned in the following table is only applicable if you are calling the Amazon ECR API actions directly to initiate multipart uploads for image push operations\. This is a rare action\. We recommend that you use the Docker CLI to pull, tag, and push images\.
 
 
-| Service quota | Description | Quota value | 
-| --- | --- | --- | 
-|  Layer parts  |  The maximum number of layer parts\. This is only applicable if you are using Amazon ECR API actions directly to initiate multipart uploads for image push operations\.  |  1,000  | 
-|  Maximum layer size  |  The maximum size \(MiB\) of a layer\. \*\*  |  10,000  | 
-|  Minimum layer part size  |  The minimum size \(MiB\) of a layer part\. This is only applicable if you are using Amazon ECR API actions directly to initiate multipart uploads for image push operations\.  |  5  | 
-|  Maximum layer part size  |  The maximum size \(MiB\) of a layer part\. This is only applicable if you are using Amazon ECR API actions directly to initiate multipart uploads for image push operations\.  |  10  | 
-|  Tags per image  |  The maximum number of tags per image\.  |  1000  | 
-|  Lifecycle policy length  |  The maximum number of characters in a lifecycle policy\.  |  30,720  | 
-|  Rules per lifecycle policy  |  The maximum number of rules in a lifecycle policy\.  |  50  | 
-|  Rate of image scans  |  The maximum number of image scans per image, per day\.  |  1  | 
+| Service quota | Description | Quota value | Adjustable | 
+| --- | --- | --- | --- | 
+|  Layer parts  |  The maximum number of layer parts\. This is only applicable if you are using Amazon ECR API actions directly to initiate multipart uploads for image push operations\.  |  4,200  |  No  | 
+|  Maximum layer size  |  The maximum size \(MiB\) of a layer\. \*\*  |  42,000  |  No  | 
+|  Minimum layer part size  |  The minimum size \(MiB\) of a layer part\. This is only applicable if you are using Amazon ECR API actions directly to initiate multipart uploads for image push operations\.  |  5  |  No  | 
+|  Maximum layer part size  |  The maximum size \(MiB\) of a layer part\. This is only applicable if you are using Amazon ECR API actions directly to initiate multipart uploads for image push operations\.  |  10  |  No  | 
+|  Tags per image  |  The maximum number of tags per image\.  |  1,000  |  No  | 
+|  Lifecycle policy length  |  The maximum number of characters in a lifecycle policy\.  |  30,720  |  No  | 
+|  Rules per lifecycle policy  |  The maximum number of rules in a lifecycle policy\.  |  50  |  No  | 
+|  Rate of image scans  |  The maximum number of image scans per image, per 24 hours\.  |  1  |  No  | 
 
-\*\* The maximum layer size listed here is calculated by multiplying the maximum layer part size \(10 MiB\) by the maximum number of layer parts \(1,000\)\.
+\*\* The maximum layer size listed here is calculated by multiplying the maximum layer part size \(10 MiB\) by the maximum number of layer parts \(4,200\)\.
 
 ## Managing your Amazon ECR service quotas in the AWS Management Console<a name="service-quotas-console"></a>
 

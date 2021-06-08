@@ -1,0 +1,3 @@
+# Private registry settings<a name="registry-settings"></a>
+
+Amazon ECR uses **registry settings** to configure features at the registry level\. The private registry settings are configured separately for each Region\. Currently, the only registry setting is the replication setting, which is used to configure cross\-Region and cross\-account replication of the images in your repositories\. For more information, see [Private image replication](replication.md)\.

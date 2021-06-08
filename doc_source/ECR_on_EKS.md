@@ -46,7 +46,7 @@ Before you begin, ensure the following steps have been completed\.
    export HELM_EXPERIMENTAL_OCI=1
    ```
 
-1. Authenticate your Helm client to the Amazon ECR registry that your Helm chart is hosted\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Registry authentication](Registries.md#registry_auth)\.
+1. Authenticate your Helm client to the Amazon ECR registry that your Helm chart is hosted\. Authentication tokens must be obtained for each registry used, and the tokens are valid for 12 hours\. For more information, see [Private registry authentication](registry_auth.md)\.
 
    ```
    aws ecr get-login-password \
@@ -88,6 +88,12 @@ Before you begin, ensure the following steps have been completed\.
 
    ```
    helm get manifest ecr-chart-demo
+   ```
+
+1. \(Optional\) See your Helm chart running in your Amazon EKS pod\.
+
+   ```
+   kubectl get pods --all-namespaces
    ```
 
 1. When you are finished, you can remove the chart release from your cluster\.

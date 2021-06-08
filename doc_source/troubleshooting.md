@@ -1,16 +1,16 @@
-# Amazon ECR Troubleshooting<a name="troubleshooting"></a>
+# Amazon ECR troubleshooting<a name="troubleshooting"></a>
 
 This chapter helps you find diagnostic information for Amazon Elastic Container Registry \(Amazon ECR\), and provides troubleshooting steps for common issues and error messages\.
 
 **Topics**
-+ [Enabling Docker Debug Output](#debug)
++ [Enabling Docker debug output](#debug)
 + [Enabling AWS CloudTrail](#cloudtrail)
-+ [Optimizing Performance for Amazon ECR](#performance)
-+ [Troubleshooting Errors with Docker Commands When Using Amazon ECR](common-errors-docker.md)
-+ [Troubleshooting Amazon ECR Error Messages](common-errors.md)
-+ [Troubleshooting Image Scanning Issues](image-scanning-troubleshooting.md)
++ [Optimizing performance for Amazon ECR](#performance)
++ [Troubleshooting errors with Docker commands when using Amazon ECR](common-errors-docker.md)
++ [Troubleshooting Amazon ECR error messages](common-errors.md)
++ [Troubleshooting image scanning issues](image-scanning-troubleshooting.md)
 
-## Enabling Docker Debug Output<a name="debug"></a>
+## Enabling Docker debug output<a name="debug"></a>
 
 To begin debugging any Docker\-related issue, you should start by enabling Docker debugging output on the Docker daemon running on your host instances\. For more information about enabling Docker debugging if you are using images pulled from Amazon ECR on Amazon ECS container instances, see [Enabling Docker Debug Output](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/troubleshooting.html#docker-debug-mode) in the *Amazon Elastic Container Service Developer Guide*\. 
 
@@ -18,7 +18,7 @@ To begin debugging any Docker\-related issue, you should start by enabling Docke
 
  Additional information about errors returned by Amazon ECR can be discovered by enabling AWS CloudTrail, which is a service that records AWS calls for your AWS account\. CloudTrail delivers log files to an Amazon S3 bucket\. By using information collected by CloudTrail, you can determine what requests were successfully made to AWS services, who made the request, when it was made, and so on\. To learn more about CloudTrail, including how to turn it on and find your log files, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\. For more information on using CloudTrail with Amazon ECR, see [Logging Amazon ECR actions with AWS CloudTrail](logging-using-cloudtrail.md)\. 
 
-## Optimizing Performance for Amazon ECR<a name="performance"></a>
+## Optimizing performance for Amazon ECR<a name="performance"></a>
 
 The following section provides recommendations on settings and strategies that can be used to optimize performance when using Amazon ECR\.
 

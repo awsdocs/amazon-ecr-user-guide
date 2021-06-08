@@ -14,19 +14,19 @@ With Docker Image Manifest V2 Schema 2 images, you can use the `--image-tag` opt
 
 1. Use the `--image-tag` option of the put\-image command to put the image manifest to Amazon ECR with a new tag\. In this example, the image is tagged as *2017\.03*\.
 **Note**  
-If the `--image-tag` option is not available in your version of the AWS CLI, upgrade to the latest version\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/) in the *AWS Command Line Interface User Guide*\.
+If the `--image-tag` option isn't available in your version of the AWS CLI, upgrade to the latest version\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) in the *AWS Command Line Interface User Guide*\.
 
    ```
    aws ecr put-image --repository-name amazonlinux --image-tag 2017.03 --image-manifest "$MANIFEST"
    ```
 
-1. Verify that your new image tag is attached to your image\. In the output below, the image has the tags `latest` and `2017.03`\.
+1. Verify that your new image tag is attached to your image\. In the following output, the image has the tags `latest` and `2017.03`\.
 
    ```
    aws ecr describe-images --repository-name amazonlinux
    ```
 
-   Output:
+   The output is as follows:
 
    ```
    {
@@ -50,7 +50,7 @@ If the `--image-tag` option is not available in your version of the AWS CLI, upg
 
 **To retag an image with the AWS Tools for Windows PowerShell**
 
-1. Use the Get\-ECRImageBatch cmdlet to get the description of the image to retag and write it to an environment variable\. In this example, an image with the tag, *latest*, in the repository, *amazonlinux*, is written to the environment variable, *$Image*\.
+1. Use the Get\-ECRImageBatch cmdlet to obtain the description of the image to retag and write it to an environment variable\. In this example, an image with the tag, *latest*, in the repository, *amazonlinux*, is written to the environment variable, *$Image*\.
 **Note**  
 If you don't have the Get\-ECRImageBatch cmdlet available on your system, see [Setting up the AWS Tools for Windows PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-set-up.html) in the *AWS Tools for Windows PowerShell User Guide*\.
 
@@ -70,13 +70,13 @@ If you don't have the Get\-ECRImageBatch cmdlet available on your system, see [S
    Write-ECRImage -RepositoryName amazonlinux -ImageManifest $Manifest -ImageTag 2017.09
    ```
 
-1. Verify that your new image tag is attached to your image\. In the output below, the image has the tags `latest` and `2017.09`\.
+1. Verify that your new image tag is attached to your image\. In the following output, the image has the tags `latest` and `2017.09`\.
 
    ```
    Get-ECRImage -RepositoryName amazonlinux
    ```
 
-   Output:
+   The output is as follows:
 
    ```
    ImageDigest                                                             ImageTag

@@ -1,10 +1,10 @@
-# Troubleshooting Amazon ECR Error Messages<a name="common-errors"></a>
+# Troubleshooting Amazon ECR error messages<a name="common-errors"></a>
 
 In some cases, an API call that you have triggered through the Amazon ECS console or the AWS CLI exits with an error message\. Some common error messages and potential solutions are explained below\. 
 
-## Error: "Error Response from Daemon: Invalid Registry Endpoint" When Running aws ecr get\-login<a name="error-invalid-registry-endpoint"></a>
+## Error: "Error Response from Daemon: Invalid Registry Endpoint"<a name="error-invalid-registry-endpoint"></a>
 
- You may see the following error when running the aws ecr get\-login command to obtain the login credentials for your Amazon ECR repository: 
+You may see the following error when running the `aws ecr get-login` command to obtain the login credentials for your Amazon ECR repository:
 
 ```
 Error response from daemon: invalid registry endpoint 
@@ -15,7 +15,7 @@ v2 ping attempt failed with error: Get https://xxxxxxxxxxxx.dkr.ecr.us-east-1.am
     read udp 172.20.10.1:53: i/o timeout
 ```
 
-This error can occur on MacOS X and Windows systems that are running Docker Toolbox, Docker for Windows, or Docker for Mac\. It is often caused when other applications alter the routes through the local gateway \(192\.168\.0\.1\) through which the virtual machine must call to access the Amazon ECR service\. If this error occurs when using Docker Toolbox, then it can often be resolved by restarting the Docker Machine environment, or rebooting the local client operating system\. If this does not resolve the issue, use the docker\-machine ssh command to log in to your container instance\. Perform a DNS lookup on an external host to verify that you see the same results as you see on your local host\. If the results differ, consult the documentation for Docker Toolbox to ensure that your Docker Machine environment is configured properly\. 
+This error can occur on macOS and Windows systems that are running Docker Toolbox, Docker for Windows, or Docker for Mac\. It is often caused when other applications alter the routes through the local gateway \(192\.168\.0\.1\) through which the virtual machine must call to access the Amazon ECR service\. If this error occurs when using Docker Toolbox, then it can often be resolved by restarting the Docker Machine environment, or rebooting the local client operating system\. If this does not resolve the issue, use the docker\-machine ssh command to log in to your container instance\. Perform a DNS lookup on an external host to verify that you see the same results as you see on your local host\. If the results differ, consult the documentation for Docker Toolbox to ensure that your Docker Machine environment is configured properly\.
 
 ## HTTP 429: Too Many Requests or ThrottleException<a name="error-429-too-many-requests"></a>
 
@@ -42,6 +42,6 @@ A client error (AccessDeniedException) occurred when calling the GetAuthorizatio
 
 This indicates that your user does not have permissions granted to use Amazon ECR, or that those permissions are not set up correctly\. In particular, if you are performing actions against an Amazon ECR repository, verify that the user has been granted permissions to access that repository\. For more information about creating and verifying permissions for Amazon ECR, see [Identity and Access Management for Amazon Elastic Container Registry](security-iam.md)\.
 
-## HTTP 404: "Repository Does Not Exist" Error<a name="repo-does-not-exist-error"></a>
+## HTTP 404: "Repository Does Not Exist" error<a name="repo-does-not-exist-error"></a>
 
-If you specify a Docker Hub repository that does not currently exist, Docker Hub creates it automatically\. With Amazon ECR, new repositories must be explicitly created before they can be used\. This prevents new repositories from being created accidentally \(for example, due to typos\), and it also ensures that an appropriate security access policy is explicitly assigned to any new repositories\. For more information about creating repositories, see [Amazon ECR repositories](Repositories.md)\.
+If you specify a Docker Hub repository that does not currently exist, Docker Hub creates it automatically\. With Amazon ECR, new repositories must be explicitly created before they can be used\. This prevents new repositories from being created accidentally \(for example, due to typos\), and it also ensures that an appropriate security access policy is explicitly assigned to any new repositories\. For more information about creating repositories, see [Amazon ECR private repositories](Repositories.md)\.
