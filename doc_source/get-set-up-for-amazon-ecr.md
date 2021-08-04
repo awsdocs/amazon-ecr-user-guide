@@ -1,6 +1,6 @@
 # Setting up with Amazon ECR<a name="get-set-up-for-amazon-ecr"></a>
 
-If you've signed up for AWS and have been using Amazon Elastic Container Service \(Amazon ECS\) or Amazon Elastic Kubernetes Service \(Amazon EKS\), you are close to being able to use Amazon ECR\. The setup process for these two services is similar, as Amazon ECR is an extension to these services\. To use the AWS CLI with Amazon ECR, you must use a version of the AWS CLI that supports the latest Amazon ECR features\. If you do not see support for an Amazon ECR feature in the AWS CLI, you should upgrade to the latest version\. For more information, see [http://aws\.amazon\.com/cli/](http://aws.amazon.com/cli/)\.
+If you've signed up for AWS and have been using Amazon Elastic Container Service \(Amazon ECS\) or Amazon Elastic Kubernetes Service \(Amazon EKS\), you are close to being able to use Amazon ECR\. The setup process for those two services is similar, as Amazon ECR is an extension to both services\. When using the AWS CLI with Amazon ECR, we recommend you use a version of the AWS CLI that supports the latest Amazon ECR features\. If you do not see support for an Amazon ECR feature in the AWS CLI, you should upgrade to the latest version\. For more information, see [http://aws\.amazon\.com/cli/](http://aws.amazon.com/cli/)\.
 
 Complete the following tasks to get set up to push a container image to Amazon ECR for the first time\. If you have already completed any of these steps, you may skip them and move on to the next step\.
 
