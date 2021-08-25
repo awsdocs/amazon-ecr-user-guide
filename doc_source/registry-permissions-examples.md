@@ -66,6 +66,8 @@ The following examples show registry permissions policy statements that you coul
 
 ## Example: Allow the root user of a source account to replicate all repositories starting with `prod-`<a name="registry-permissions-examples-specific"></a>
 
+If the `ecr:CreateRepository` action is removed from your registry permission statement, you can replicate your repositories\. However, for successful replication, you need to create repositories with the same name within your account\.
+
 ```
 {
     "Version":"2012-10-17",
@@ -82,31 +84,6 @@ The following examples show registry permissions policy statements that you coul
             ],
             "Resource": [
                 "arn:aws:ecr:us-west-2:your_account_id:repository/prod-*"
-            ]
-        }
-    ]
-}
-```
-
-## Example: Allow the root user of a source account to replicate all repositories starting with `prod-`<a name="registry-permissions-examples-nocreate"></a>
-
-If the `ecr:CreateRepository` action is removed from your registry permission statement, you can replicate your repositories\. However, for successful replication, you need to create repositories with the same name within your account\.
-
-```
-{
-    "Version":"2012-10-17",
-    "Statement":[
-        {
-            "Sid":"ReplicationAccessCrossAccount",
-            "Effect":"Allow",
-            "Principal":{
-                "AWS":"arn:aws:iam::source_account_id:root"
-            },
-            "Action":[
-                "ecr:ReplicateImage"
-            ],
-            "Resource": [
-                "arn:aws:ecr:us-west-2:your_account_id:repository/*"
             ]
         }
     ]
