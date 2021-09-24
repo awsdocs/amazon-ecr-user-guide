@@ -1,17 +1,17 @@
 # Repository policy examples<a name="repository-policy-examples"></a>
 
-The following examples show policy statements that you could use to control the permissions that users have to Amazon ECR repositories\.
+The following examples show policy statements that you could use to control the permissions that authenticated users have to Amazon ECR repositories\.
 
 **Important**  
 Amazon ECR requires that users have permission to make calls to the `ecr:GetAuthorizationToken` API through an IAM policy before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed IAM policies to control user access at varying levels; for more information, see [Amazon Elastic Container Registry Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
 
-## Example: Allow an IAM user within your account<a name="IAM_within_account"></a>
+## Example: Allow one or more IAM users<a name="IAM_within_account"></a>
 
-The following repository policy allows IAM users within your account to push and pull images\.
+The following repository policy allows one or more IAM users to push and pull images to and from a repository\.
 
 ```
 {
-    "Version": "2008-10-17",
+    "Version": "2012-10-17",
     "Statement": [
         {
             "Sid": "AllowPushPull",
@@ -40,9 +40,12 @@ The following repository policy allows IAM users within your account to push and
 
 The following repository policy allows a specific account to push images\.
 
+**Important**  
+The account you are granting permissions to must have the Region you are creating the repository policy in enabled, otherwise an error will occur\.
+
 ```
 {
-    "Version": "2008-10-17",
+    "Version": "2012-10-17",
     "Statement": [
         {
             "Sid": "AllowCrossAccountPush",
@@ -69,7 +72,7 @@ For more complicated repository policies that are not currently supported in the
 
 ```
 {
-    "Version": "2008-10-17",
+    "Version": "2012-10-17",
     "Statement": [
         {
             "Sid": "AllowPull",
@@ -99,34 +102,13 @@ For more complicated repository policies that are not currently supported in the
 }
 ```
 
-## Example: Allow all AWS accounts to pull images<a name="IAM_all_accounts"></a>
-
-The following repository policy allows all AWS accounts to pull images\.
-
-```
-{
-    "Version": "2008-10-17",
-    "Statement": [
-        {
-            "Sid": "AllowPull",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": [
-                "ecr:BatchGetImage",
-                "ecr:GetDownloadUrlForLayer"
-            ]
-        }
-    ]
-}
-```
-
 ## Example: Deny all<a name="IAM_deny_all"></a>
 
-The following repository policy denies all users the ability to pull images\.
+The following repository policy denies all users in all accounts the ability to pull images\.
 
 ```
 {
-    "Version": "2008-10-17",
+    "Version": "2012-10-17",
     "Statement": [
         {
             "Sid": "DenyPull",
@@ -172,25 +154,23 @@ The `Condition` block uses the `IpAddress` and `NotIpAddress` conditions and the
 }
 ```
 
-## Example: Service\-linked role<a name="IAM_service_linked"></a>
+## Example: Allow an AWS service<a name="IAM_service_linked"></a>
 
-The following repository policy allows AWS CodeBuild access to the Amazon ECR API actions necessary for integration with that service\. For more information, see [Amazon ECR Sample for CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-ecr.html) in the *AWS CodeBuild User Guide*\.
+The following repository policy allows AWS CodeBuild access to the Amazon ECR API actions necessary for integration with that service\. For more information, see [Amazon ECR sample for CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-ecr.html) in the *AWS CodeBuild User Guide*\.
 
 ```
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "CodeBuildAccess",
-            "Effect": "Allow",
-            "Principal": {
-                "Service": "codebuild.amazonaws.com"
-            },
-            "Action": [
-                "ecr:BatchGetImage",
-                "ecr:GetDownloadUrlForLayer"
-            ]
-        }
-    ]
+	"Version": "2012-10-17",
+	"Statement": [{
+		"Sid": "CodeBuildAccess",
+		"Effect": "Allow",
+		"Principal": {
+			"Service": "codebuild.amazonaws.com"
+		},
+		"Action": [
+			"ecr:BatchGetImage",
+			"ecr:GetDownloadUrlForLayer"
+		]
+	}]
 }
 ```

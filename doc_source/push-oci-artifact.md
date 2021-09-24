@@ -6,19 +6,55 @@ For more information about using your Amazon ECR hosted Helm charts with Amazon 
 
 **To push a Helm chart to an Amazon ECR repository**
 
-1. Install the Helm client version 3\. For more information, see [Installing Helm](https://helm.sh/docs/intro/install/)\.
+1. Install the latest version of the Helm client\. These steps were written using Helm version `3.7.0`\. For more information, see [Installing Helm](https://helm.sh/docs/intro/install/)\.
 
-1. Enable OCI support in the Helm 3 client\.
+1. Currently, OCI support is considered experimental\. In order to use the commands in these steps, you must enable OCI support in the Helm client\.
 
    ```
    export HELM_EXPERIMENTAL_OCI=1
    ```
 
-1. Create a repository to store your Helm chart\. For more information, see [Creating a repository](repository-create.md)\.
+1. Use the following steps to create a test Helm chart\. For more information, see [Helm Docs \- Getting Started](https://helm.sh/docs/chart_template_guide/getting_started/)\.
+
+   1. Create a Helm chart named `helm-test-chart` and clear the contents of the `templates` directory\.
+
+      ```
+      helm create helm-test-chart
+      rm -rf ./helm-test-chart/templates/*
+      ```
+
+   1. Create a ConfigMap in the `templates` folder\.
+
+      ```
+      cd helm-test-chart/templates
+      cat <<EOF > configmap.yaml
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: helm-test-chart-configmap
+      data:
+        myvalue: "Hello World"
+      EOF
+      ```
+
+1. Package the chart\. The output will contain the filename of the packaged chart which you use when pushing the Helm chart\.
+
+   ```
+   cd ..
+   helm package helm-test-chart
+   ```
+
+   Output
+
+   ```
+   Successfully packaged chart and saved it to: /Users/username/helm-test-chart-0.1.0.tgz
+   ```
+
+1. Create a repository to store your Helm chart\. The name of your repository should match the name you use the Helm chart in step 3\. For more information, see [Creating a private repository](repository-create.md)\.
 
    ```
    aws ecr create-repository \
-        --repository-name artifact-test \
+        --repository-name helm-test-chart \
         --region us-west-2
    ```
 
@@ -31,69 +67,17 @@ For more information about using your Amazon ECR hosted Helm charts with Amazon 
         --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
    ```
 
-1. Use the following steps to create a test Helm chart\. For more information, see [Helm Docs \- Getting Started](https://helm.sh/docs/chart_template_guide/getting_started/)\.
-
-   1. Create a directory named `helm-tutorial` to work in\.
-
-      ```
-      mkdir helm-tutorial
-      cd helm-tutorial
-      ```
-
-   1. Create a Helm chart named `mychart` and clear the contents of the `templates` directory\.
-
-      ```
-      helm create mychart
-      rm -rf ./mychart/templates/*
-      ```
-
-   1. Create a ConfigMap in the `templates` folder\.
-
-      ```
-      cd mychart/templates
-      cat <<EOF > configmap.yaml
-      apiVersion: v1
-      kind: ConfigMap
-      metadata:
-        name: mychart-configmap
-      data:
-        myvalue: "Hello World"
-      EOF
-      ```
-
-1. Save the chart locally and create an alias for the chart with your registry URI\.
+1. Push the Helm chart using the helm push command\. The output should include the Amazon ECR repository URI and SHA digest\.
 
    ```
-   cd ..
-   helm chart save . mychart
-   helm chart save . aws_account_id.dkr.ecr.us-west-2.amazonaws.com/artifact-test:mychart
-   ```
-
-1. Identify the Helm chart to push\. Run the helm chart list command to list the Helm charts on your system\.
-
-   ```
-   helm chart list
-   ```
-
-   The output should look similar to this:
-
-   ```
-   REF                                                         	NAME   	VERSION	DIGEST 	SIZE   	CREATED       
-   aws_account_id.dkr.ecr.us-west-2.amazonaws.com/artifact-tes..   mychart	0.1.0  	30e0a03	3.6 KiB	14 seconds    
-   mychart                                                  	mychart	0.1.0  	ba3e62a	3.6 KiB	About a minute
-   ```
-
-1. Push the Helm chart using the helm chart push command:
-
-   ```
-   helm chart push aws_account_id.dkr.ecr.region.amazonaws.com/artifact-test:mychart
+   helm push helm-test-chart-0.1.0.tgz oci://aws_account_id.dkr.ecr.region.amazonaws.com/
    ```
 
 1. Describe your Helm chart\.
 
    ```
    aws ecr describe-images \
-        --repository-name artifact-test \
+        --repository-name helm-test-chart \
         --region us-west-2
    ```
 
@@ -104,13 +88,13 @@ For more information about using your Amazon ECR hosted Helm charts with Amazon 
        "imageDetails": [
            {
                "registryId": "aws_account_id",
-               "repositoryName": "artifact-test",
-               "imageDigest": "sha256:f23ab9dc0fda33175e465bd694a5f4cade93eaf62715fa9390d9fEXAMPLE",
+               "repositoryName": "helm-test-chart",
+               "imageDigest": "sha256:dd8aebdda7df991a0ffe0b3d6c0cf315fd582cd26f9755a347a52adEXAMPLE",
                "imageTags": [
-                   "mychart"
+                   "0.1.0"
                ],
-               "imageSizeInBytes": 3714,
-               "imagePushedAt": 1597433021.0,
+               "imageSizeInBytes": 1620,
+               "imagePushedAt": "2021-09-23T11:39:30-05:00",
                "imageManifestMediaType": "application/vnd.oci.image.manifest.v1+json",
                "artifactMediaType": "application/vnd.cncf.helm.config.v1+json"
            }

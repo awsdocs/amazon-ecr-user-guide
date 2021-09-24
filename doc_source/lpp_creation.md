@@ -1,8 +1,8 @@
 # Creating a lifecycle policy preview<a name="lpp_creation"></a>
 
-A lifecycle policy preview allows you to see the impact of a lifecycle policy on an image repository before you execute it\. The following procedure shows you how to create a lifecycle policy preview\.
+A lifecycle policy preview provides a way see the impact of a lifecycle policy on an image repository before you apply it\. It is considered best practice to do a preview before applying a lifecycle policy to a repository\. The following procedure shows you how to create a lifecycle policy preview\.
 
-**To create a lifecycle policy preview using the console**
+**To create a lifecycle policy preview \(AWS Management Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
@@ -11,6 +11,8 @@ A lifecycle policy preview allows you to see the impact of a lifecycle policy on
 1. In the navigation pane, choose **Repositories** and select a repository\.
 
 1. On the **Repositories: *repository\_name*** page, in the navigation pane choose **Lifecycle Policy**\.
+**Note**  
+If you don't see the **Lifecycle Policy** option in the navigation pane, ensure that you are in the repository image list view\.
 
 1. On the **Repositories: *repository\_name*: Lifecycle policy** page, choose **Edit test rules**, **Create rule**\.
 
@@ -37,4 +39,4 @@ A lifecycle policy preview allows you to see the impact of a lifecycle policy on
 1. If you are satisfied with the preview results, choose **Apply as lifecycle policy** to create a lifecycle policy with the specified rules\.
 
 **Note**  
-You should expect that after creating a lifecycle policy, the affected images are expired within 24 hours\.
+You should expect that after applying a lifecycle policy, the affected images are expired within 24 hours\.

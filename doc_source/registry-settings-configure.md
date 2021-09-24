@@ -8,36 +8,40 @@ Replication settings are configured separately for each Region\. Use the followi
 
 1. From the navigation bar, choose the Region to configure your registry replication settings for\.
 
-1. In the navigation pane, choose **Registries**\.
+1. In the navigation pane, choose **Private registry**\.
 
-1. On the **Registries** page, select your **Private** registry and choose **Edit**\.
+1. On the **Private registry** page, on the **Replication** section, choose **Edit**\.
 
-1. On the **Edit registry** page, do the following\.
+1. On the **Replication** page, choose **Add replication rule**\.
 
-   1. For **Cross\-Region replication**, choose the cross\-Region replication setting for the registry\. If set to **Enabled**, choose one or more **Destination regions**\.
+1. On the **Destination types** page, choose whether to enable cross\-Region replication, cross\-account replication, or both and then choose **Next**\.
 
-   1. For **Cross\-account replication**, choose the cross\-account replication setting for the registry\. If set to **Enabled**, enter the account ID for the destination account and one or more **Destination regions** to replicate to\.
+1. If cross\-Region replication is enabled, then for **Configure destination regions**, choose one or more **Destination regions** and then choose **Next**\.
+
+1. If cross\-account replication is enabled, then for **Cross\-account replication**, choose the cross\-account replication setting for the registry\. For **Destination account**, enter the account ID for the destination account and one or more **Destination regions** to replicate to\. Choose **Destination account \+** to configure additional accounts as replication destinations\.
 **Important**  
 For cross\-account replication to occur, the destination account must configure a registry permissions policy to allow replication to occur\. For more information, see [Private registry permissions](registry-permissions.md)\.
 
-1. Choose **Save**\.
+1. \(Optional\) On the **Add filters** page, specify one or more filters for the replication rule and then choose **Add**\. Repeat this step for each filter you want to associate with the replication action\. Filters are specified as repository name prefixes\. If no filters are specified, all images are replicated\. Choose **Next** once all filters have been added\.
+
+1. On the **Review and submit** page, review the replication rule configuration and then choose **Submit rule**\.
 
 **To configure registry replication settings \(AWS CLI\)**
 
-1. Create a JSON file containing the replication configuration settings to define for your registry\. This might contain one or more rules, with each rule containing a destination Region and account\. If you want to replicate the images in your own registry between Regions, then specify your own account ID\. For more examples, see [Private image replication examples](registry-settings-examples.md)\.
+1. Create a JSON file containing the replication rules to define for your registry\. A replication configuration may contain up to 10 rules, with each rule specifying up to 25 destinations and 100 filters\. To configure cross\-Region replication within your own account, you specify your own account ID\. For more examples, see [Private image replication examples](registry-settings-examples.md)\.
 
    ```
    {
-       "rules": [
-           {
-               "destinations": [
-                   {
-                       "region": "destination_region",
-                       "registryId": "destination_accountId"
-                   }
-               ]
-           }
-       ]
+   	"rules": [{
+   		"destinations": [{
+   			"region": "destination_region",
+   			"registryId": "destination_accountId"
+   		}],
+   		"repositoryFilters": [{
+   			"filter": "repository_prefix_name",
+   			"filterType": "PREFIX_MATCH"
+   		}]
+   	}]
    }
    ```
 
@@ -45,7 +49,7 @@ For cross\-account replication to occur, the destination account must configure 
 
    ```
    aws ecr put-replication-configuration \
-        --replication-configuration file://crr-setup.json \
+        --replication-configuration file://replication-settings.json \
         --region us-west-2
    ```
 

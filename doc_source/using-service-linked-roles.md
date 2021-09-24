@@ -1,6 +1,6 @@
 # Using service\-linked roles for Amazon ECR<a name="using-service-linked-roles"></a>
 
-Amazon Elastic Container Registry \(Amazon ECR\) uses AWS Identity and Access Management \(IAM\)[ service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role) to provide access to replicate resources\. A service\-linked role is a unique type of IAM role that is linked directly to Amazon ECR\. The service\-linked role is predefined by Amazon ECR\. It includes all of the permissions that the service requires to support cross\-Region and cross\-account image replication for your registry\. After you configure replication for your registry, an service\-linked role is created automatically on your behalf\. For more information, see [Private registry settings](registry-settings.md)\. />\.
+Amazon Elastic Container Registry \(Amazon ECR\) uses AWS Identity and Access Management \(IAM\)[ service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role) to provide access to replicate resources\. A service\-linked role is a unique type of IAM role that is linked directly to Amazon ECR\. The service\-linked role is predefined by Amazon ECR\. It includes all of the permissions that the service requires to support cross\-Region and cross\-account image replication for your registry\. After you configure replication for your registry, an service\-linked role is created automatically on your behalf\. For more information, see [Private registry settings](registry-settings.md)\.
 
 A service\-linked role makes setting up replication with Amazon ECR easier\. This is because, by using it, you don’t have to manually add all the necessary permissions\. Amazon ECR defines the permissions of its service\-linked roles, and unless defined otherwise, only Amazon ECR can assume its roles\. The defined permissions include the trust policy and the permissions policy,\. The permissions policy can't be attached to any other IAM entity\.
 
@@ -15,7 +15,7 @@ Amazon ECR uses the service\-linked role named **AWSServiceRoleForECRReplication
 The AWSServiceRoleForECRReplication service\-linked role trusts the following services to assume the role:
 + `replication.ecr.amazonaws.com`
 
-The role permissions policy allows Amazon ECR to use the following actions on resources:
+The following `ECRReplicationServiceRolePolicy` role permissions policy allows Amazon ECR to use the following actions on resources:
 
 ```
 {

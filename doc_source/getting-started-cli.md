@@ -236,7 +236,7 @@ After your image has been pushed to your Amazon ECR repository, you can pull it 
 After those prerequisites are met, you can pull your image\. To pull your example image from Amazon ECR, run the following command:
 
 ```
-docker pull aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest
+docker pull aws_account_id.dkr.ecr.region.amazonaws.com/hello-world:latest
 ```
 
 Output:
@@ -248,7 +248,7 @@ latest: Pulling from hello-world
 a6785352b25c: Pull complete
 e9ae3c220b23: Pull complete
 Digest: sha256:215d7e4121b30157d8839e81c4e0912606fca105775bb0636b95aed25f52c89b
-Status: Downloaded newer image for aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest
+Status: Downloaded newer image for aws_account_id.dkr.region.amazonaws.com/hello-world:latest
 ```
 
 ## Step 6: Delete an image<a name="cli-delete-image"></a>

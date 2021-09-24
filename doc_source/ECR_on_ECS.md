@@ -23,7 +23,7 @@ You can use your container images hosted in Amazon ECR in your Amazon ECS task d
   ```
 
   If you use the **AmazonEC2ContainerServiceforEC2Role** managed policy, then your container instance IAM role has the proper permissions\. To check that your role supports Amazon ECR, see [Amazon ECS container instance IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance_IAM_role.html) in the *Amazon Elastic Container Service Developer Guide*\.
-+ In your Amazon ECS task definitions, make sure that you are using the full `registry/repository:tag` naming for your Amazon ECR images\. For example, `aws_account_id.dkr.ecr.region.amazonaws.com``/my-web-app:latest`\.
++ In your Amazon ECS task definitions, make sure that you are using the full `registry/repository:tag` naming for your Amazon ECR images\. For example, `aws_account_id.dkr.ecr.region.amazonaws.com``/my-repository:latest`\.
 
   The following task definition snippet shows the syntax you would use to specify a container image hosted in Amazon ECR in your Amazon ECS task definition\.
 
@@ -34,7 +34,7 @@ You can use your container images hosted in Amazon ECR in your Amazon ECS task d
       "containerDefinitions": [
           {
               "name": "container-name",
-              "image": "aws_account_id.dkr.ecr.region.amazonaws.com/my-web-app:latest",
+              "image": "aws_account_id.dkr.ecr.region.amazonaws.com/my-repository:latest",
               ...
           }
       ],

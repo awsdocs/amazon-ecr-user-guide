@@ -7,16 +7,16 @@ For more information about AWS PrivateLink and VPC endpoints, see [VPC Endpoints
 ## Considerations for Amazon ECR VPC endpoints<a name="ecr-vpc-endpoint-considerations"></a>
 
 Before you configure VPC endpoints for Amazon ECR, be aware of the following considerations\.
-+ To allow your Amazon ECS tasks that use the EC2 launch type to pull private images from Amazon ECR, ensure that you also create the interface VPC endpoints for Amazon ECS\. For more information, see [Interface VPC Endpoints \(AWS PrivateLink\)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/vpc-endpoints.html) in the *Amazon Elastic Container Service Developer Guide*\.
++ To allow your Amazon ECS tasks hosted on Amazon EC2 instances to pull private images from Amazon ECR, ensure that you also create the interface VPC endpoints for Amazon ECS\. For more information, see [Interface VPC Endpoints \(AWS PrivateLink\)](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/vpc-endpoints.html) in the *Amazon Elastic Container Service Developer Guide*\.
 **Important**  
-Amazon ECS tasks that use the Fargate launch type don't require the Amazon ECS interface VPC endpoints\.
-+ Amazon ECS tasks using the Fargate launch type and platform version 1\.3\.0 or earlier only require the **com\.amazonaws\.*region*\.ecr\.dkr** Amazon ECR VPC endpoint and the Amazon S3 gateway endpoint to take advantage of this feature\.
-+ Amazon ECS tasks using the Fargate launch type and platform version 1\.4\.0 or later require both the **com\.amazonaws\.*region*\.ecr\.dkr** and **com\.amazonaws\.*region*\.ecr\.api ** Amazon ECR VPC endpoints as well as the Amazon S3 gateway endpoint to take advantage of this feature\.
-+ Amazon ECS tasks using the Fargate launch type that pull container images from Amazon ECR can restrict access to the specific VPC their tasks use and to the VPC endpoint the service uses by adding condition keys to the task execution IAM role for the task\. For more information, see [Optional IAM Permissions for Fargate Tasks Pulling Amazon ECR Images over Interface Endpoints](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html) in the *Amazon Elastic Container Service Developer Guide*\.
-+ Amazon ECS tasks using the Fargate launch type that pull container images from Amazon ECR that also use the `awslogs` log driver to send log information to CloudWatch Logs require the CloudWatch Logs VPC endpoint\. For more information, see [Create the CloudWatch Logs endpoint](#ecr-setting-up-cloudwatch-logs)\.
+Amazon ECS tasks hosted on Fargate don't require the Amazon ECS interface VPC endpoints\.
++ Amazon ECS tasks hosted on Fargate using platform version `1.3.0` or earlier only require the **com\.amazonaws\.*region*\.ecr\.dkr** Amazon ECR VPC endpoint and the Amazon S3 gateway endpoint to take advantage of this feature\.
++ Amazon ECS tasks hosted on Fargate using platform version `1.4.0` or later require both the **com\.amazonaws\.*region*\.ecr\.dkr** and **com\.amazonaws\.*region*\.ecr\.api ** Amazon ECR VPC endpoints as well as the Amazon S3 gateway endpoint to take advantage of this feature\.
++ Amazon ECS tasks hosted on Fargate that pull container images from Amazon ECR can restrict access to the specific VPC their tasks use and to the VPC endpoint the service uses by adding condition keys to the task execution IAM role for the task\. For more information, see [Optional IAM Permissions for Fargate Tasks Pulling Amazon ECR Images over Interface Endpoints](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html) in the *Amazon Elastic Container Service Developer Guide*\.
++ Amazon ECS tasks hosted on Fargate that pull container images from Amazon ECR that also use the `awslogs` log driver to send log information to CloudWatch Logs require the CloudWatch Logs VPC endpoint\. For more information, see [Create the CloudWatch Logs endpoint](#ecr-setting-up-cloudwatch-logs)\.
 + The security group attached to the VPC endpoint must allow incoming connections on port 443 from the private subnet of the VPC\.
 + VPC endpoints currently don't support cross\-Region requests\. Ensure that you create your VPC endpoints in the same Region where you plan to issue your API calls to Amazon ECR\.
-+ VPC endpoints only support Amazon provided DNS through Amazon Route 53\. If you want to use your own DNS, you can use conditional DNS forwarding\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
++ VPC endpoints only support AWS provided DNS through Amazon Route 53 \. If you want to use your own DNS, you can use conditional DNS forwarding\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
 + If your containers have existing connections to Amazon S3, their connections might be briefly interrupted when you add the Amazon S3 gateway endpoint\. If you want to avoid this interruption, create a new VPC that uses the Amazon S3 gateway endpoint and then migrate your Amazon ECS cluster and its containers into the new VPC\.
 
 ### Considerations for Windows images<a name="ecr-vpc-endpoint-windows-considerations"></a>
@@ -49,23 +49,23 @@ The base layers for Windows images are large\. The layer size will result in a l
 
 To create the VPC endpoints for the Amazon ECR service, use the [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint) procedure in the *Amazon VPC User Guide*\.
 
-Amazon ECS tasks using the EC2 launch type require both Amazon ECR endpoints and the Amazon S3 gateway endpoint\.
+Amazon ECS tasks hosted on Amazon EC2 instances require both Amazon ECR endpoints and the Amazon S3 gateway endpoint\.
 
-Amazon ECS tasks using the Fargate launch type and platform version 1\.3\.0 or earlier only require the **com\.amazonaws\.*region*\.ecr\.dkr** Amazon ECR VPC endpoint and the Amazon S3 gateway endpoints\.
+Amazon ECS tasks hosted on Fargate using platform version `1.4.0` or later require both Amazon ECR VPC endpoints and the Amazon S3 gateway endpoints\.
 
-Amazon ECS tasks using the Fargate launch type and platform version 1\.4\.0 or later require both the **com\.amazonaws\.*region*\.ecr\.dkr** and **com\.amazonaws\.*region*\.ecr\.api ** Amazon ECR VPC endpoints and the Amazon S3 gateway endpoints\.
+Amazon ECS tasks hosted on Fargate that use platform version `1.3.0` or earlier only require the **com\.amazonaws\.*region*\.ecr\.dkr** Amazon ECR VPC endpoint and the Amazon S3 gateway endpoints\.
 
 **Note**  
 The order that the endpoints are created in doesn't matter\.
 
 **com\.amazonaws\.*region*\.ecr\.dkr**  
 This endpoint is used for the Docker Registry APIs\. Docker client commands such as `push` and `pull` use this endpoint\.  
-When you create the **com\.amazonaws\.*region*\.ecr\.dkr** endpoint, you must enable a private DNS hostname\. To do this, ensure that the **Enable Private DNS Name** option is selected in the VPC console when you create the VPC endpoint\.
+When you create this endpoint, you must enable a private DNS hostname\. To do this, ensure that the **Enable Private DNS Name** option is selected in the Amazon VPC console when you create the VPC endpoint\.
 
 **com\.amazonaws\.*region*\.ecr\.api**  
 The specified *region* represents the Region identifier for an AWS Region supported by Amazon ECR, such as `us-east-2` for the US East \(Ohio\) Region\.
-This endpoint is used for calls to the Amazon ECR API\. API actions such as DescribeImages and CreateRepositories go to this endpoint\.  
-When the **com\.amazonaws\.*region*\.ecr\.api** endpoint is created, you have the option to enable a private DNS hostname\. Enable this setting by selecting **Enable Private DNS Name** in the VPC console when you create the VPC endpoint\. If you enable a private DNS hostname for the VPC endpoint, update your SDK or AWS CLI to the latest version so that specifying an endpoint URL when using the SDK or AWS CLI isn't necessary\.  
+This endpoint is used for calls to the Amazon ECR API\. API actions such as `DescribeImages` and `CreateRepository` go to this endpoint\.  
+When this endpoint is created, you have the option to enable a private DNS hostname\. Enable this setting by selecting **Enable Private DNS Name** in the VPC console when you create the VPC endpoint\. If you enable a private DNS hostname for the VPC endpoint, update your SDK or AWS CLI to the latest version so that specifying an endpoint URL when using the SDK or AWS CLI isn't necessary\.  
 If you enable a private DNS hostname and are using an SDK or AWS CLI version released before January 24, 2019, you must use the `--endpoint-url` parameter to specify the interface endpoints\. The following example shows the format for the endpoint URL\.  
 
 ```
@@ -123,7 +123,7 @@ The following example illustrates how to provide access to the Amazon S3 buckets
 
 ## Create the CloudWatch Logs endpoint<a name="ecr-setting-up-cloudwatch-logs"></a>
 
-Amazon ECS tasks using the Fargate launch type that use a VPC without an internet gateway that also use the `awslogs` log driver to send log information to CloudWatch Logs require that you create the **com\.amazonaws\.*region*\.logs** interface VPC endpoint for CloudWatch Logs\. For more information, see [Creating a gateway endpoint](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html) in the *Amazon CloudWatch Logs User Guide*\.
+Amazon ECS tasks using the Fargate launch type that use a VPC without an internet gateway that also use the `awslogs` log driver to send log information to CloudWatch Logs require that you create the **com\.amazonaws\.*region*\.logs** interface VPC endpoint for CloudWatch Logs\. For more information, see [Using CloudWatch Logs with interface VPC endpoints](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html) in the *Amazon CloudWatch Logs User Guide*\.
 
 ## Create an endpoint policy for your Amazon ECR VPC endpoints<a name="ecr-vpc-endpoint-policy"></a>
 
@@ -142,7 +142,8 @@ The following is an example of an endpoint policy for Amazon ECR\. This policy e
 		},
 		"Action": [
 			"ecr:BatchGetImage",
-			"ecr:GetDownloadUrlForLayer"
+			"ecr:GetDownloadUrlForLayer",
+                    "ecr:GetAuthorizationToken"
 		],
 		"Effect": "Allow",
 		"Resource": "*"
@@ -198,7 +199,8 @@ The following endpoint policy example combines the two previous examples into a 
 			},
 			"Action": [
 				"ecr:BatchGetImage",
-				"ecr:GetDownloadUrlForLayer"
+				"ecr:GetDownloadUrlForLayer",
+                           "ecr:GetAuthorizationToken"
 			],
 			"Resource": "*"
 		}

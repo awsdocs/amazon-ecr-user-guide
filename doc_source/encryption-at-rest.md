@@ -2,21 +2,21 @@
 
 Amazon ECR stores images in Amazon S3 buckets that Amazon ECR manages\. By default, Amazon ECR uses server\-side encryption with Amazon S3\-managed encryption keys which encrypts your data at rest using an AES\-256 encryption algorithm\. This does not require any action on your part and is offered at no additional charge\. For more information, see [Protecting Data Using Server\-Side Encryption with Amazon S3\-Managed Encryption Keys \(SSE\-S3\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html) in the *Amazon Simple Storage Service Developer Guide*\.
 
-For more control over the encryption for your Amazon ECR repositories, you can use server\-side encryption with customer master keys \(CMKs\) stored in AWS Key Management Service \(AWS KMS\)\. When you use AWS KMS to encrypt your data, you can either use the default AWS\-managed CMK, which is managed by Amazon ECR, or specify your own CMK \(referred to as a customer managed CMK\)\. For more information, see [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS KMS \(SSE\-KMS\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) in the *Amazon Simple Storage Service Developer Guide*\.
+For more control over the encryption for your Amazon ECR repositories, you can use server\-side encryption with KMS keys stored in AWS Key Management Service \(AWS KMS\)\. When you use AWS KMS to encrypt your data, you can either use the default AWS managed key, which is managed by Amazon ECR, or specify your own KMS key \(referred to as a customer managed key\)\. For more information, see [Protecting Data Using Server\-Side Encryption withKMS keys Stored in AWS KMS \(SSE\-KMS\)](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html) in the *Amazon Simple Storage Service Developer Guide*\.
 
-Each Amazon ECR repository has an encryption configuration, which is set when the repository is created\. You can use different encryption configurations on each repository\. For more information, see [Creating a repository](repository-create.md)\.
+Each Amazon ECR repository has an encryption configuration, which is set when the repository is created\. You can use different encryption configurations on each repository\. For more information, see [Creating a private repository](repository-create.md)\.
 
-When a repository is created with AWS KMS encryption enabled, a CMK is used to encrypt the contents of the repository\. Moreover, Amazon ECR adds an AWS KMS grant to the CMK with the Amazon ECR repository as the grantee principal\.
+When a repository is created with AWS KMS encryption enabled, a KMS key is used to encrypt the contents of the repository\. Moreover, Amazon ECR adds an AWS KMS grant to the KMS key with the Amazon ECR repository as the grantee principal\.
 
 The following provides a high\-level understanding of how Amazon ECR is integrated with AWS KMS to encrypt and decrypt your repositories:
 
-1. When creating a repository, Amazon ECR sends a [DescribeKey](https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html) call to AWS KMS to validate and retrieve the Amazon Resource Name \(ARN\) of the CMK specified in the encryption configuration\.
+1. When creating a repository, Amazon ECR sends a [DescribeKey](https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html) call to AWS KMS to validate and retrieve the Amazon Resource Name \(ARN\) of the KMS key specified in the encryption configuration\.
 
-1. Amazon ECR sends two [CreateGrant](https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateGrant.html) requests to AWS KMS to create grants on the CMK to allow Amazon ECR to encrypt and decrypt data using the data key\.
+1. Amazon ECR sends two [CreateGrant](https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateGrant.html) requests to AWS KMS to create grants on the KMS key to allow Amazon ECR to encrypt and decrypt data using the data key\.
 
-1. When pushing an image, a [GenerateDataKey](https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyWithoutPlaintext.html) request is made to AWS KMS that specifies the CMK to use for encrypting the image layer and manifest\.
+1. When pushing an image, a [GenerateDataKey](https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyWithoutPlaintext.html) request is made to AWS KMS that specifies the KMS key to use for encrypting the image layer and manifest\.
 
-1. AWS KMS generates a new data key, encrypts it under the specified CMK, and sends the encrypted data key to be stored with the image layer metadata and the image manifest\.
+1. AWS KMS generates a new data key, encrypts it under the specified KMS key, and sends the encrypted data key to be stored with the image layer metadata and the image manifest\.
 
 1. When pulling an image, a [Decrypt](https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html) request is made to AWS KMS, specifying the encrypted data key\.
 
@@ -29,21 +29,20 @@ The following provides a high\-level understanding of how Amazon ECR is integrat
 ## Considerations<a name="encryption-at-rest-considerations"></a>
 
 The following points should be considered when using AWS KMS encryption with Amazon ECR\.
-+ If you create your Amazon ECR repository with KMS encryption and you do not specify a CMK, Amazon ECR uses an AWS\-managed CMK with the alias `aws/ecr` by default\. This CMK is created in your account the first time that you create a repository with KMS encryption enabled\.
-+ When you use KMS encryption with your own CMK, the key must exist in the same Region as your repository\.
-+ AWS KMS enforces a limit of 500 grants per CMK\. As a result, there is a limit of 500 Amazon ECR repositories that can be encrypted per CMK\.
++ If you create your Amazon ECR repository with KMS encryption and you do not specify a KMS key, Amazon ECR uses an AWS managed key with the alias `aws/ecr` by default\. This KMS key is created in your account the first time that you create a repository with KMS encryption enabled\.
++ When you use KMS encryption with your own KMS key, the key must exist in the same Region as your repository\.
 + The grants that Amazon ECR creates on your behalf should not be revoked\. If you revoke the grant that gives Amazon ECR permission to use the AWS KMS keys in your account, Amazon ECR cannot access this data, encrypt new images pushed to the repository, or decrypt them when they are pulled\. When you revoke a grant for Amazon ECR, the change occurs immediately\. To revoke access rights, you should delete the repository rather than revoking the grant\. When a repository is deleted, Amazon ECR retires the grants on your behalf\.
 + There is a cost associated with using AWS KMS keys\. For more information, see [AWS Key Management Service pricing](http://aws.amazon.com/kms/pricing/)\.
 
 ## Required IAM permissions<a name="encryption-at-rest-iam"></a>
 
-When creating or deleting an Amazon ECR repository with server\-side encryption using AWS KMS, the permissions required depend on the specific customer master key \(CMK\) you are using\. 
+When creating or deleting an Amazon ECR repository with server\-side encryption using AWS KMS, the permissions required depend on the specific KMS key you are using\. 
 
-### Required IAM permissions when using the AWS managed CMK for Amazon ECR<a name="encryption-aws-managed-key"></a>
+### Required IAM permissions when using the AWS managed key for Amazon ECR<a name="encryption-aws-managed-key"></a>
 
-By default, when AWS KMS encryption is enabled for an Amazon ECR repository but no CMK is specified, the AWS\-managed CMK for Amazon ECR is used\. When the AWS\-managed CMK for Amazon ECR is used to encrypt a repository, any principal that has permission to create a repository can also enable AWS KMS encryption on the repository\. However, the IAM principal that deletes the repository must have the `kms:RetireGrant` permission\. This enables the retirement of the grants that were added to the AWS KMS key when the repository was created\.
+By default, when AWS KMS encryption is enabled for an Amazon ECR repository but no KMS key is specified, the AWS managed key for Amazon ECR is used\. When the AWS\-managed KMS key for Amazon ECR is used to encrypt a repository, any principal that has permission to create a repository can also enable AWS KMS encryption on the repository\. However, the IAM principal that deletes the repository must have the `kms:RetireGrant` permission\. This enables the retirement of the grants that were added to the AWS KMS key when the repository was created\.
 
-The following example IAM policy can be added as an inline policy to a user to ensure they have the minimum permissions needed to delete a repository that has encryption enabled\. The AWS KMS key used to encrypt the repository can be specified using the resource parameter\.
+The following example IAM policy can be added as an inline policy to a user to ensure they have the minimum permissions needed to delete a repository that has encryption enabled\. The KMS key used to encrypt the repository can be specified using the resource parameter\.
 
 ```
 {
@@ -62,13 +61,13 @@ The following example IAM policy can be added as an inline policy to a user to e
 }
 ```
 
-### Required IAM permissions when using a customer managed CMK<a name="encryption-customer-managed-key"></a>
+### Required IAM permissions when using a customer managed key<a name="encryption-customer-managed-key"></a>
 
-When creating a repository with AWS KMS encryption enabled using a customer managed CMK, there are required permissions for both the CMK key policy and the IAM policy for the user or role creating the repository\.
+When creating a repository with AWS KMS encryption enabled using a customer managed key, there are required permissions for both the KMS keypolicy and the IAM policy for the user or role creating the repository\.
 
-When creating your own CMK, you can either use the default key policy AWS KMS creates or you can specify your own\. To ensure that the customer managed CMK remains manageable by the account owner, the key policy for the CMK should allow all AWS KMS actions for the root user of the account\. Additional scoped permissions may be added to the key policy but at minimum the root user should be given permissions to manage the CMK\. To allow the CMK to be used only for requests that originate in Amazon ECR, you can use the [kms:ViaService condition key](https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-via-service) with the `ecr.<region>.amazonaws.com` value\.
+When creating your own KMS key, you can either use the default key policy AWS KMS creates or you can specify your own\. To ensure that the customer managed key remains manageable by the account owner, the key policy for the KMS key should allow all AWS KMS actions for the root user of the account\. Additional scoped permissions may be added to the key policy but at minimum the root user should be given permissions to manage the KMS key\. To allow the KMS key to be used only for requests that originate in Amazon ECR, you can use the [kms:ViaService condition key](https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-via-service) with the `ecr.<region>.amazonaws.com` value\.
 
-The following example key policy gives the AWS account \(root user\) that owns the CMK full access to the CMK\. For more information about this example key policy, see [Allows access to the AWS account and enables IAM policies](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam) in the *AWS Key Management Service Developer Guide*\.
+The following example key policy gives the AWS account \(root user\) that owns the KMS key full access to the KMS key\. For more information about this example key policy, see [Allows access to the AWS account and enables IAM policies](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam) in the *AWS Key Management Service Developer Guide*\.
 
 ```
 {
@@ -91,9 +90,9 @@ The following example key policy gives the AWS account \(root user\) that owns t
 The IAM user, IAM role, or AWS account creating your repositories must have the `kms:CreateGrant`, `kms:RetireGrant`, and `kms:DescribeKey` permission in addition to the necessary Amazon ECR permissions\.
 
 **Note**  
-The `kms:RetireGrant` permission must be added to the IAM policy of the user or role creating the repository\. The `kms:CreateGrant` and `kms:DescribeKey` permissions can be added to either the key policy for the CMK or the IAM policy of user or role creating the repository\. For more information on how AWS KMS permissions work, see [AWS KMS API permissions: Actions and resources reference](https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html) in the *AWS Key Management Service Developer Guide*\.
+The `kms:RetireGrant` permission must be added to the IAM policy of the user or role creating the repository\. The `kms:CreateGrant` and `kms:DescribeKey` permissions can be added to either the key policy for the KMS key or the IAM policy of user or role creating the repository\. For more information on how AWS KMS permissions work, see [AWS KMS API permissions: Actions and resources reference](https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html) in the *AWS Key Management Service Developer Guide*\.
 
-The following example IAM policy can be added as an inline policy to a user to ensure they have the minimum permissions needed to create a repository with encryption enabled and delete the repository when they are finished with it\. The AWS KMS key used to encrypt the repository can be specified using the resource parameter\.
+The following example IAM policy can be added as an inline policy to a user to ensure they have the minimum permissions needed to create a repository with encryption enabled and delete the repository when they are finished with it\. The AWS KMS key key used to encrypt the repository can be specified using the resource parameter\.
 
 ```
 {
@@ -114,9 +113,9 @@ The following example IAM policy can be added as an inline policy to a user to e
 }
 ```
 
-### Allow a user to list CMKs in the console when creating a repository<a name="encryption-at-rest-iam-example"></a>
+### Allow a user to list KMS keys in the console when creating a repository<a name="encryption-at-rest-iam-example"></a>
 
-When using the Amazon ECR console to create a repository, you can grant permissions to enable a user to list the customer managed CMKs in the Region when enabling encryption for the repository\. The following IAM policy example shows the permissions needed to list your CMKs and aliases when using the console\.
+When using the Amazon ECR console to create a repository, you can grant permissions to enable a user to list the customer managed KMS keys in the Region when enabling encryption for the repository\. The following IAM policy example shows the permissions needed to list your KMS keys and aliases when using the console\.
 
 ```
 {
@@ -178,7 +177,7 @@ The Amazon ECR encryption context consists of two name\-value pairs\.
 
 ## Troubleshooting<a name="encryption-at-rest-troubleshooting"></a>
 
-When deleting an Amazon ECR repository with the console, if the repository is successfully deleted but Amazon ECR is unable to retire the grants added to your CMK for your repository, you will receive the following error\.
+When deleting an Amazon ECR repository with the console, if the repository is successfully deleted but Amazon ECR is unable to retire the grants added to your KMS key for your repository, you will receive the following error\.
 
 ```
 The repository [{repository-name}] has been deleted successfully but the grants created by the kmsKey [{kms_key}] failed to be retired
@@ -188,7 +187,7 @@ When this occurs, you can retire the AWS KMS grants for the repository yourself\
 
 **To retire AWS KMS grants for a repository manually**
 
-1. List the grants for the AWS KMS key used for the repository\. The `key-id` value is included in the error you receive from the console\. You can also use the `list-keys` command to list both the AWS managed CMKs and customer managed CMKs in a specific Region in your account\.
+1. List the grants for the AWS KMS key used for the repository\. The `key-id` value is included in the error you receive from the console\. You can also use the `list-keys` command to list both the AWS managed keys and customer managed KMS keys in a specific Region in your account\.
 
    ```
    aws kms list-grants \

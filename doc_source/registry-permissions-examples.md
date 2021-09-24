@@ -2,6 +2,9 @@
 
 The following examples show registry permissions policy statements that you could use to control the permissions that users have to your Amazon ECR registry\.
 
+**Note**  
+In each example, if the `ecr:CreateRepository` action is removed from your registry permission statement, replication can still occur\. However, for successful replication, you need to create repositories with the same name within your account\.
+
 ## Example: Allow the root user of a source account to replicate all repositories<a name="registry-permissions-examples-all"></a>
 
 ```
@@ -64,9 +67,7 @@ The following examples show registry permissions policy statements that you coul
 }
 ```
 
-## Example: Allow the root user of a source account to replicate all repositories starting with `prod-`<a name="registry-permissions-examples-specific"></a>
-
-If the `ecr:CreateRepository` action is removed from your registry permission statement, you can replicate your repositories\. However, for successful replication, you need to create repositories with the same name within your account\.
+## Example: Allow the root user of a source account to replicate all repositories with prefix `prod-`\.<a name="registry-permissions-examples-specific"></a>
 
 ```
 {

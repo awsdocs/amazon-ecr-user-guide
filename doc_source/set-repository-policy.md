@@ -29,6 +29,8 @@ If you don't see the **Permissions** option in the navigation pane, ensure that 
    + You can apply the statement to all authenticated AWS users by selecting the **Everyone \(\*\)** check box\.
    + For **Service principal**, specify the service principal name \(for example, `ecs.amazonaws.com`\) to apply the statement to a specific service\.
    + For **AWS Account IDs**, specify an AWS account number \(for example, `111122223333`\) to apply the statement to all users under a specific AWS account\. Multiple accounts can be specified by using a comma delimited list\.
+**Important**  
+The account you are granting permissions to must have the Region you are creating the repository policy in enabled, otherwise an error will occur\.
    + For **IAM Entities**, select the roles or users under your AWS account to apply the statement to\.
 **Note**  
 For more complicated repository policies that are not currently supported in the AWS Management Console, you can apply the policy with the [https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html](https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html) AWS CLI command\.

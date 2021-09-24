@@ -2,21 +2,6 @@
 
 In some cases, an API call that you have triggered through the Amazon ECS console or the AWS CLI exits with an error message\. Some common error messages and potential solutions are explained below\. 
 
-## Error: "Error Response from Daemon: Invalid Registry Endpoint"<a name="error-invalid-registry-endpoint"></a>
-
-You may see the following error when running the `aws ecr get-login` command to obtain the login credentials for your Amazon ECR repository:
-
-```
-Error response from daemon: invalid registry endpoint 
-    https://xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/v0/: unable to ping registry endpoint 
-    https://xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/v0/
-v2 ping attempt failed with error: Get https://xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com/v2/: 
-    dial tcp: lookup xxxxxxxxxxxx.dkr.ecr.us-east-1.amazonaws.com on 172.20.10.1:53: 
-    read udp 172.20.10.1:53: i/o timeout
-```
-
-This error can occur on macOS and Windows systems that are running Docker Toolbox, Docker for Windows, or Docker for Mac\. It is often caused when other applications alter the routes through the local gateway \(192\.168\.0\.1\) through which the virtual machine must call to access the Amazon ECR service\. If this error occurs when using Docker Toolbox, then it can often be resolved by restarting the Docker Machine environment, or rebooting the local client operating system\. If this does not resolve the issue, use the docker\-machine ssh command to log in to your container instance\. Perform a DNS lookup on an external host to verify that you see the same results as you see on your local host\. If the results differ, consult the documentation for Docker Toolbox to ensure that your Docker Machine environment is configured properly\.
-
 ## HTTP 429: Too Many Requests or ThrottleException<a name="error-429-too-many-requests"></a>
 
 You may receive a `429: Too Many Requests` error or a `ThrottleException` error from one or more Amazon ECR commands or API calls\. If you are using Docker tools with Amazon ECR, then for Docker versions 1\.12\.0 and greater, you may see the error message `TOOMANYREQUESTS: Rate exceeded`\. For versions of Docker below 1\.12\.0, you may see the error `Unknown: Rate exceeded`\.
@@ -34,7 +19,7 @@ To handle throttling errors, implement a retry function with incremental backoff
 You may receive the following error when attempting to perform an action with Amazon ECR:
 
 ```
-$ aws ecr get-login 
+$ aws ecr get-login-password 
 A client error (AccessDeniedException) occurred when calling the GetAuthorizationToken operation: 
     User: arn:aws:iam::account-number:user/username is not authorized to perform: 
     ecr:GetAuthorizationToken on resource: *

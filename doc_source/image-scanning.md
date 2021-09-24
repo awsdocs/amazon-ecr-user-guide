@@ -15,7 +15,7 @@ For troubleshooting details for some common issues when scanning images, see [Tr
 
 ## Configuring a repository to scan on push<a name="scanning-repository"></a>
 
-You can configure the image scan settings either for a new repository during creation or for an existing repository\. When **scan on push** is enabled, images are scanned after being pushed to a repository\. If **scan on push** is disabled on a repository, then you must manually start each image scan to get the scan results\.
+You can configure the image scan settings either for a new repository during creation or for an existing repository\. When **scan on push** is enabled, images are scanned after being pushed to a repository\. If **scan on push** is disabled on a repository, then you must manually start each image scan to get the scan results\. An image that has been scanned on push can still be manually scanned once per 24 hours\.
 
 **Topics**
 + [Creating a new repository to scan on push](#scanning-new-repository)
@@ -25,7 +25,7 @@ You can configure the image scan settings either for a new repository during cre
 
 When a new repository is configured to **scan on push**, all new images pushed to the repository will be scanned\. Results from the last completed image scan can then be retrieved\. For more information, see [Retrieving image scan findings](#describe-scan-findings)\.
 
-For AWS Management Console steps, see [Creating a repository](repository-create.md)\.
+For AWS Management Console steps, see [Creating a private repository](repository-create.md)\.
 
 #### To create a repository configured for scan on push \(AWS CLI\)<a name="scanning-repo-cli"></a>
 
@@ -49,7 +49,7 @@ Use the following command to create a new repository with image **scan on push**
 
 Your existing repositories can be configured to scan images when you push them to a repository\. This setting will apply to future image pushes\. Results from the last completed image scan can then be retrieved\. For more information, see [Retrieving image scan findings](#describe-scan-findings)\.
 
-For AWS Management Console steps, see [Editing a repository](repository-edit.md)\.
+For AWS Management Console steps, see [Editing a private repository](repository-edit.md)\.
 
 #### To edit the settings of an existing repository \(AWS CLI\)<a name="scanning-existing-repo-cli"></a>
 

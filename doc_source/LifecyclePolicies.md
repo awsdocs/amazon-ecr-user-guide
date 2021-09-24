@@ -1,14 +1,50 @@
 # Lifecycle policies<a name="LifecyclePolicies"></a>
 
-Amazon ECR lifecycle policies enable you to specify the lifecycle management of images in a repository\. A lifecycle policy is a set of one or more rules, where each rule defines an action for Amazon ECR\. The actions apply to images that contain tags prefixed with the given strings\. This allows the automation of cleaning up unused images, for example expiring images based on age or count\. You should expect that after creating a lifecycle policy the affected images are expired within 24 hours\.
+Amazon ECR lifecycle policies provide more control over the lifecycle management of images in a private repository\. A lifecycle policy contains one or more rules, where each rule defines an action for Amazon ECR\. This provides a way to automate the cleaning up of unused images, for example expiring images based on age or count\. You should expect that after creating a lifecycle policy, the affected images are expired within 24 hours\.
 
 **Topics**
++ [How lifecycle policies work](#lifecycle-policy-howitworks)
 + [Lifecycle policy template](#lifecycle_policy_syntax)
 + [Lifecycle policy parameters](#lifecycle_policy_parameters)
-+ [Lifecycle policy evaluation rules](#lp_evaluation_rules)
 + [Creating a lifecycle policy preview](lpp_creation.md)
 + [Creating a lifecycle policy](lp_creation.md)
 + [Examples of lifecycle policies](lifecycle_policy_examples.md)
+
+## How lifecycle policies work<a name="lifecycle-policy-howitworks"></a>
+
+A lifecycle policy consists of one or more rules that determine which images in a repository should be expired\. When considering the use of lifecycle policies, it's important to use the lifecycle policy preview to confirm which images the lifecycle policy expires before applying it to a repository\. Once a lifecycle policy is applied to a repository, you should expect that the affected images will expire within 24 hours\.
+
+The following diagram shows the lifecycle policy workflow\.
+
+![\[Diagram showing architecture of an Amazon ECS environment using the Fargate launch type.\]](http://docs.aws.amazon.com/AmazonECR/latest/userguide/images/lifecycle-policy.png)
+
+1. Create one or more test rules\.
+
+1. Save the test rules and run the preview\.
+
+1. The lifecycle policy evaluator goes through all of the rules and marks the images that each rule affects\.
+
+1. The lifecycle policy evaluator then applies the rules, based on rule priority, and displays which images in the repository are set to be expired\.
+
+1. Review the results of the test, ensuring that the images that are marked to be expired are what you intended\.
+
+1. Apply the test rules as the lifecycle policy for the repository\.
+
+1. Once the lifecycle policy is created, the affected images are expired within 24 hours\.
+
+### Lifecycle policy evaluation rules<a name="lp_evaluation_rules"></a>
+
+The lifecycle policy evaluator is responsible for parsing the plaintext JSON of the lifecycle policy, evaluating all rules, and then applying those rules based on rule priority to the images in the repository\. The following explains the logic of the lifecycle policy evaluator in more detail\. For examples, see [Examples of lifecycle policies](lifecycle_policy_examples.md)\.
++ All rules are evaluated at the same time, regardless of rule priority\. After all rules are evaluated, they are then applied based on rule priority\.
++ An image is expired by exactly one or zero rules\.
++ An image that matches the tagging requirements of a rule cannot be expired by a rule with a lower priority\.
++ Rules can never mark images that are marked by higher priority rules, but can still identify them as if they haven't been expired\.
++ The set of rules must contain a unique set of tag prefixes\.
++ Only one rule is allowed to select untagged images\.
++ Expiration is always ordered by `pushed_at_time`, and always expires older images before newer ones\.
++ When using the `tagPrefixList`, an image is successfully matched if *all* of the tags in the `tagPrefixList` value are matched against any of the image's tags\.
++ With `countType = imageCountMoreThan`, images are sorted from youngest to oldest based on `pushed_at_time` and then all images greater than the specified count are expired\.
++ With `countType = sinceImagePushed`, all images whose `pushed_at_time` is older than the specified number of days based on `countNumber` are expired\.
 
 ## Lifecycle policy template<a name="lifecycle_policy_syntax"></a>
 
@@ -57,7 +93,7 @@ Lifecycle policies are split into the following parts:
 `rulePriority`  
 Type: integer  
 Required: yes  
-Sets the order in which rules are evaluated, lowest to highest\. A lifecycle policy rule with a priority of `1` will be acted upon first, a rule with priority of `2` will be next, and so on\. When you add rules to a lifecycle policy, you must give them each a unique value for `rulePriority`\. Values do not need to be sequential across rules in a policy\. A rule with a `tagStatus` value of `any` must have the highest value for `rulePriority` and be evaluated last\.
+Sets the order in which rules are applied, lowest to highest\. A lifecycle policy rule with a priority of `1` will be applied first, a rule with priority of `2` will be next, and so on\. When you add rules to a lifecycle policy, you must give them each a unique value for `rulePriority`\. Values do not need to be sequential across rules in a policy\. A rule with a `tagStatus` value of `any` must have the highest value for `rulePriority` and be evaluated last\.
 
 ### Description<a name="lp_description"></a>
 
@@ -71,7 +107,7 @@ Required: no
 `tagStatus`  
 Type: string  
 Required: yes  
-Determines whether the lifecycle policy rule that you are adding specifies a tag for an image\. Acceptable options are `tagged`, `untagged`, or `any`\. If you specify `any`, then all images have the rule applied to them\. If you specify `tagged`, then you must also specify a `tagPrefixList` value\. If you specify `untagged`, then you must omit `tagPrefixList`\.
+Determines whether the lifecycle policy rule that you are adding specifies a tag for an image\. Acceptable options are `tagged`, `untagged`, or `any`\. If you specify `any`, then all images have the rule evaluated against them\. If you specify `tagged`, then you must also specify a `tagPrefixList` value\. If you specify `untagged`, then you must omit `tagPrefixList`\.
 
 ### Tag prefix list<a name="lp_tag_prefix_list"></a>
 
@@ -110,16 +146,3 @@ If the `countType` used is `imageCountMoreThan`, then the value is the maximum n
 Type: string  
 Required: yes  
 Specify an action type\. The supported value is `expire`\.
-
-## Lifecycle policy evaluation rules<a name="lp_evaluation_rules"></a>
-
-The lifecycle policy evaluator is responsible for parsing the plaintext JSON and applying it to the images in the specified repository\. The following rules should be noted when creating a lifecycle policy:
-+ An image is expired by exactly one or zero rules\.
-+ An image that matches the tagging requirements of a rule cannot be expired by a rule with a lower priority\.
-+ Rules can never mark images that are marked by higher priority rules, but can still identify them as if they haven't been expired\.
-+ The set of rules must contain a unique set of tag prefixes\.
-+ Only one rule is allowed to select untagged images\.
-+ Expiration is always ordered by `pushed_at_time`, and always expires older images before newer ones\.
-+ When using the `tagPrefixList`, an image is successfully matched if *all* of the tags in the `tagPrefixList` value are matched against any of the image's tags\.
-+ With `countType = imageCountMoreThan`, images are sorted from youngest to oldest based on `pushed_at_time` and then all images greater than the specified count are expired\.
-+ With `countType = sinceImagePushed`, all images whose `pushed_at_time` is older than the specified number of days based on `countNumber` are expired\.

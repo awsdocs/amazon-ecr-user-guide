@@ -4,10 +4,10 @@ Amazon Elastic Container Registry \(Amazon ECR\) provides API operations to crea
 
 **Topics**
 + [Repository concepts](#repository-concepts)
-+ [Creating a repository](repository-create.md)
++ [Creating a private repository](repository-create.md)
 + [Viewing repository information](repository-info.md)
-+ [Editing a repository](repository-edit.md)
-+ [Deleting a repository](repository-delete.md)
++ [Editing a private repository](repository-edit.md)
++ [Deleting a private repository](repository-delete.md)
 + [Repository policies](repository-policies.md)
 + [Tagging an Amazon ECR repository](ecr-using-tags.md)
 

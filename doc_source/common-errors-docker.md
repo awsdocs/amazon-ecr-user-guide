@@ -42,7 +42,7 @@ Your client has encountered a network or disk error
 There are times when you may receive an `HTTP 403 (Forbidden)` error, or the error message `no basic auth credentials` from the docker push or docker pull commands, even if you have successfully authenticated to Docker using the aws ecr get\-login\-password command\. The following are some known causes of this issue:
 
 You have authenticated to a different region  
-Authentication requests are tied to specific regions, and cannot be used across regions\. For example, if you obtain an authorization token from US West \(Oregon\), you cannot use it to authenticate against your repositories in US East \(N\. Virginia\)\. To resolve the issue, ensure that you have retrieved an authentication token from the same Region your repository exists in\.
+Authentication requests are tied to specific regions, and cannot be used across regions\. For example, if you obtain an authorization token from US West \(Oregon\), you cannot use it to authenticate against your repositories in US East \(N\. Virginia\)\. To resolve the issue, ensure that you have retrieved an authentication token from the same Region your repository exists in\. For more information, see [Private registry authentication](registry_auth.md)\.
 
 You have authenticated to push to a repository you don't have permissions for  
 You do not have the necessary permissions to push to the repository\. For more information, see [Repository policies](repository-policies.md)\.

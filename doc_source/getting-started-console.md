@@ -24,12 +24,12 @@ In this section of the wizard, you use the Docker CLI to tag an existing local i
 
 1. Select the repository you created and choose **View push commands** to view the steps to push an image to your new repository\.
 
-1. Run the login command that authenticates your Docker client to your registry by pasting the command from the console into a terminal window\. This command provides an authorization token that is valid for 12 hours\.
+1. Run the login command that authenticates your Docker client to your registry by using the command from the console in a terminal window\. This command provides an authorization token that is valid for 12 hours\.
 
-1. \(Optional\) If you have a Dockerfile for the image to push, build the image and tag it for your new repository\. Pasting the docker build command from the console into a terminal window\. Make sure that you are in the same directory as your Dockerfile\.
+1. \(Optional\) If you have a Dockerfile for the image to push, build the image and tag it for your new repository\. Using the docker build command from the console in a terminal window\. Make sure that you are in the same directory as your Dockerfile\.
 
 1. Tag the image with your Amazon ECR registry URI and your new repository by pasting the docker tag command from the console into a terminal window\. The console command assumes that your image was built from a Dockerfile in the previous step\. If you did not build your image from a Dockerfile, replace the first instance of `repository:latest` with the image ID or image name of your local image to push\.
 
-1. Push the newly tagged image to your repository by pasting the docker push command into a terminal window\.
+1. Push the newly tagged image to your repository by using the docker push command in a terminal window\.
 
 1. Choose **Close**\.

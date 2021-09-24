@@ -5,7 +5,7 @@ After you created a repository, you can view its information in the AWS Manageme
 + Whether an image is tagged
 + The tags for the image
 + The SHA digest for the images
-+ The size of the images in MiB
++ The size of the images in MB
 + When the image was pushed to the repository
 
 **Note**  
