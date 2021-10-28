@@ -1,6 +1,6 @@
 # Tagging an Amazon ECR repository<a name="ecr-using-tags"></a>
 
-To help you manage your Amazon ECR repositories, you can optionally assign your own metadata to each repository in the form of *tags*\. This topic describes tags and shows you how to create them\.
+To help you manage your Amazon ECR repositories, you can optionally assign your own metadata to each repository in the form of *tags*\. This topic describes tags and shows you how to create them\. To be clear, this page is about AWS resource tags, not Docker image tags.
 
 **Topics**
 + [Tag basics](#tag-basics)
