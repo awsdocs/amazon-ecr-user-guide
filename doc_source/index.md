@@ -16,7 +16,7 @@ Amazon's trademarks and trade dress may not be used in
 ## Contents
 + [What is Amazon Elastic Container Registry?](what-is-ecr.md)
 + [Setting up with Amazon ECR](get-set-up-for-amazon-ecr.md)
-+ [Getting started with Amazon ECR using the AWS Management Console](getting-started-console.md)
++ [Getting started with Amazon ECR using the AWSManagement Console](getting-started-console.md)
 + [Using Amazon ECR with the AWS CLI](getting-started-cli.md)
 + [Amazon ECR private registries](Registries.md)
    + [Private registry authentication](registry_auth.md)

@@ -2,7 +2,7 @@
 
 You can add or update the permissions policy for your registry by using the following steps\. You can add multiple policy statements per registry\. For example policies, see [Private registry policy examples](registry-permissions-examples.md)\.
 
-**To configure a permissions policy for a private registry \(AWS Management Console\)**
+**To configure a permissions policy for a private registry \(AWSManagement Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 

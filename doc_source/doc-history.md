@@ -22,4 +22,4 @@ The following table describes the important changes to the documentation since t
 |  Amazon ECR Name Change  | Amazon Elastic Container Registry is renamed \(previously Amazon EC2 Container Registry\)\. | 21 Nov 2017 | 
 |  Lifecycle Policies  |  Amazon ECR lifecycle policies enable you to specify the lifecycle management of images in a repository\. For more information, see [Lifecycle policies](LifecyclePolicies.md)\.  | 11 Oct 2017 | 
 |  Amazon ECR support for Docker image manifest 2, schema 2  |  Amazon ECR now supports Docker Image Manifest V2 Schema 2 \(used with Docker version 1\.10 and newer\)\. For more information, see [Container image manifest formats](image-manifest-formats.md)\.  | 27 Jan 2017 | 
-|  Amazon ECR General Availability  |  Amazon Elastic Container Registry \(Amazon ECR\) is a managed AWS Docker registry service that is secure, scalable, and reliable\.  | 21 Dec 2015 | 
+|  Amazon ECR General Availability  |  \(\) is a managed AWS Docker registry service that is secure, scalable, and reliable\.  | 21 Dec 2015 | 

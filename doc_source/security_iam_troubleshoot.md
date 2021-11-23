@@ -11,7 +11,7 @@ Use the following information to help you diagnose and fix common issues that yo
 
 ## I Am Not Authorized to Perform an Action in Amazon ECR<a name="security_iam_troubleshoot-no-permissions"></a>
 
-If the AWS Management Console tells you that you're not authorized to perform an action, then you must contact your administrator for assistance\. Your administrator is the person that provided you with your user name and password\.
+If the AWSManagement Console tells you that you're not authorized to perform an action, then you must contact your administrator for assistance\. Your administrator is the person that provided you with your user name and password\.
 
 The following example error occurs when the `mateojackson` IAM user tries to use the console to view details about a repository but does not have `ecr:DescribeRepositories` permissions\.
 
@@ -58,7 +58,7 @@ You can create a role that users in other accounts or people outside of your org
 
 To learn more, consult the following:
 + To learn whether Amazon ECR supports these features, see [How Amazon Elastic Container Registry Works with IAM](security_iam_service-with-iam.md)\.
-+ To learn how to provide access to your resources across AWS accounts that you own, see [Providing access to an IAM user in another AWS account that you own](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_aws-accounts.html) in the *IAM User Guide*\.
-+ To learn how to provide access to your resources to third\-party AWS accounts, see [Providing access to AWS accounts owned by third parties](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html) in the *IAM User Guide*\.
++ To learn how to provide access to your resources across AWSaccounts that you own, see [Providing access to an IAM user in another AWSaccount that you own](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_aws-accounts.html) in the *IAM User Guide*\.
++ To learn how to provide access to your resources to third\-party AWSaccounts, see [Providing access to AWSaccounts owned by third parties](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html) in the *IAM User Guide*\.
 + To learn how to provide access through identity federation, see [Providing access to externally authenticated users \(identity federation\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_federated-users.html) in the *IAM User Guide*\.
 + To learn the difference between using roles and resource\-based policies for cross\-account access, see [How IAM roles differ from resource\-based policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_compare-resource-policies.html) in the *IAM User Guide*\.

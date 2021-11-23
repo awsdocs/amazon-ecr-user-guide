@@ -25,7 +25,7 @@ You can configure the image scan settings either for a new repository during cre
 
 When a new repository is configured to **scan on push**, all new images pushed to the repository will be scanned\. Results from the last completed image scan can then be retrieved\. For more information, see [Retrieving image scan findings](#describe-scan-findings)\.
 
-For AWS Management Console steps, see [Creating a private repository](repository-create.md)\.
+For AWSManagement Console steps, see [Creating a private repository](repository-create.md)\.
 
 #### To create a repository configured for scan on push \(AWS CLI\)<a name="scanning-repo-cli"></a>
 
@@ -49,7 +49,7 @@ Use the following command to create a new repository with image **scan on push**
 
 Your existing repositories can be configured to scan images when you push them to a repository\. This setting will apply to future image pushes\. Results from the last completed image scan can then be retrieved\. For more information, see [Retrieving image scan findings](#describe-scan-findings)\.
 
-For AWS Management Console steps, see [Editing a private repository](repository-edit.md)\.
+For AWSManagement Console steps, see [Editing a private repository](repository-edit.md)\.
 
 #### To edit the settings of an existing repository \(AWS CLI\)<a name="scanning-existing-repo-cli"></a>
 
@@ -79,7 +79,7 @@ For troubleshooting details for some common issues when scanning images, see [Tr
 
 ### To start a manual scan of an image \(console\)<a name="manual-scan-console"></a>
 
-Use the following steps to start a manual image scan using the AWS Management Console\.
+Use the following steps to start a manual image scan using the AWSManagement Console\.
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
@@ -133,7 +133,7 @@ For troubleshooting details for some common issues when scanning images, see [Tr
 
 ### To retrieve image scan findings \(console\)<a name="describe-scan-findings-console"></a>
 
-Use the following steps to retrieve image scan findings using the AWS Management Console\.
+Use the following steps to retrieve image scan findings using the AWSManagement Console\.
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 

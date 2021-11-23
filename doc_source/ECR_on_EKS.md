@@ -84,10 +84,10 @@ Before you begin, ensure the following steps have been completed\.
    helm get manifest ecr-chart-demo
    ```
 
-1. \(Optional\) See your Helm chart running in your Amazon EKS pod\.
+1. \(Optional\) See the installed Helm chart configmap\.
 
    ```
-   kubectl get pods --all-namespaces
+   kubectl get configmap helm-test-chart-configmap
    ```
 
 1. When you are finished, you can remove the chart release from your cluster\.

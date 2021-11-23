@@ -1,6 +1,6 @@
 # What is Amazon Elastic Container Registry?<a name="what-is-ecr"></a>
 
-Amazon Elastic Container Registry \(Amazon ECR\) is an AWS managed container image registry service that is secure, scalable, and reliable\. Amazon ECR supports private container image repositories with resource\-based permissions using AWS IAM\. This is so that specified users or Amazon EC2 instances can access your container repositories and images\. You can use your preferred CLI to push, pull, and manage Docker images, Open Container Initiative \(OCI\) images, and OCI compatible artifacts\.
+Amazon Elastic Container Registry \(Amazon ECR\) is an AWS managed container image registry service that is secure, scalable, and reliable\. Amazon ECR supports private repositories with resource\-based permissions using AWS IAM\. This is so that specified users or Amazon EC2 instances can access your container repositories and images\. You can use your preferred CLI to push, pull, and manage Docker images, Open Container Initiative \(OCI\) images, and OCI compatible artifacts\.
 
 **Note**  
 Amazon ECR supports public container image repositories as well\. For more information, see [What is Amazon ECR Public](https://docs.aws.amazon.com/AmazonECR/latest/public/what-is-ecr.html) in the *Amazon ECR Public User Guide*\.
@@ -12,13 +12,13 @@ The AWS container services team maintains a public roadmap on GitHub\. It contai
 Amazon ECR contains the following components:
 
 Registry  
-An Amazon ECR registry is provided to each AWS account; you can create image repositories in your registry and store images in them\. For more information, see [Amazon ECR private registries](Registries.md)\.
+An Amazon ECR private registry is provided to each AWS account; you can create one or more repositories in your registry and store images in them\. For more information, see [Amazon ECR private registries](Registries.md)\.
 
 Authorization token  
 Your client must authenticate to Amazon ECR registries as an AWS user before it can push and pull images\. For more information, see [Private registry authentication](registry_auth.md)\.
 
 Repository  
-An Amazon ECR image repository contains your Docker images, Open Container Initiative \(OCI\) images, and OCI compatible artifacts\. For more information, see [Amazon ECR private repositories](Repositories.md)\.
+An Amazon ECR repository contains your Docker images, Open Container Initiative \(OCI\) images, and OCI compatible artifacts\. For more information, see [Amazon ECR private repositories](Repositories.md)\.
 
 Repository policy  
 You can control access to your repositories and the images within them with repository policies\. For more information, see [Repository policies](repository-policies.md)\.

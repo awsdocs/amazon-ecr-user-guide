@@ -1,6 +1,6 @@
 # Private registry authentication<a name="registry_auth"></a>
 
-You can use the AWS Management Console, the AWS CLI, or the AWS SDKs to create and manage private repositories\. You can also use those methods to perform some actions on images, such as listing or deleting them\. These clients use standard AWS authentication methods\. Even though you can use the Amazon ECR API to push and pull images, you're more likely to use the Docker CLI or a language\-specific Docker library\.
+You can use the AWSManagement Console, the AWS CLI, or the AWS SDKs to create and manage private repositories\. You can also use those methods to perform some actions on images, such as listing or deleting them\. These clients use standard AWS authentication methods\. Even though you can use the Amazon ECR API to push and pull images, you're more likely to use the Docker CLI or a language\-specific Docker library\.
 
 The Docker CLI doesn't support native IAM authentication methods\. Additional steps must be taken so that Amazon ECR can authenticate and authorize Docker push and pull requests\.
 

@@ -1,6 +1,6 @@
 # Setting a repository policy statement<a name="set-repository-policy"></a>
 
-You can add an access policy statement to a repository in the AWS Management Console by following the steps below\. You can add multiple policy statements per repository\. For example policies, see [Repository policy examples](repository-policy-examples.md)\.
+You can add an access policy statement to a repository in the AWSManagement Console by following the steps below\. You can add multiple policy statements per repository\. For example policies, see [Repository policy examples](repository-policy-examples.md)\.
 
 **Important**  
 Amazon ECR requires that users have permission to make calls to the `ecr:GetAuthorizationToken` API through an IAM policy before they can authenticate to a registry and push or pull any images from any Amazon ECR repository\. Amazon ECR provides several managed IAM policies to control user access at varying levels; for more information, see [Amazon Elastic Container Registry Identity\-Based Policy Examples](security_iam_id-based-policy-examples.md)\.
@@ -33,7 +33,7 @@ If you don't see the **Permissions** option in the navigation pane, ensure that 
 The account you are granting permissions to must have the Region you are creating the repository policy in enabled, otherwise an error will occur\.
    + For **IAM Entities**, select the roles or users under your AWS account to apply the statement to\.
 **Note**  
-For more complicated repository policies that are not currently supported in the AWS Management Console, you can apply the policy with the [https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html](https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html) AWS CLI command\.
+For more complicated repository policies that are not currently supported in the AWSManagement Console, you can apply the policy with the [https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html](https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html) AWS CLI command\.
 
 1. For **Actions**, choose the scope of the Amazon ECR API operations that the policy statement should apply to from the list of individual API operations\.
 

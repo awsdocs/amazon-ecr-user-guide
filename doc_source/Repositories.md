@@ -1,6 +1,6 @@
 # Amazon ECR private repositories<a name="Repositories"></a>
 
-Amazon Elastic Container Registry \(Amazon ECR\) provides API operations to create, monitor, and delete image repositories and set permissions that control who can access them\. You can perform the same actions in the **Repositories** section of the Amazon ECR console\. Amazon ECR also integrates with the Docker CLI, so that you push and pull images from your development environments to your repositories\.
+\(\) provides API operations to create, monitor, and delete image repositories and set permissions that control who can access them\. You can perform the same actions in the **Repositories** section of the Amazon ECR console\. Amazon ECR also integrates with the Docker CLI, so that you push and pull images from your development environments to your repositories\.
 
 **Topics**
 + [Repository concepts](#repository-concepts)

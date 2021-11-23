@@ -16,7 +16,7 @@ Amazon ECS tasks hosted on Fargate don't require the Amazon ECS interface VPC en
 + Amazon ECS tasks hosted on Fargate that pull container images from Amazon ECR that also use the `awslogs` log driver to send log information to CloudWatch Logs require the CloudWatch Logs VPC endpoint\. For more information, see [Create the CloudWatch Logs endpoint](#ecr-setting-up-cloudwatch-logs)\.
 + The security group attached to the VPC endpoint must allow incoming connections on port 443 from the private subnet of the VPC\.
 + VPC endpoints currently don't support cross\-Region requests\. Ensure that you create your VPC endpoints in the same Region where you plan to issue your API calls to Amazon ECR\.
-+ VPC endpoints only support AWS provided DNS through Amazon Route 53 \. If you want to use your own DNS, you can use conditional DNS forwarding\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
++ VPC endpoints only support AWS provided DNS through Amazon Route53\. If you want to use your own DNS, you can use conditional DNS forwarding\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
 + If your containers have existing connections to Amazon S3, their connections might be briefly interrupted when you add the Amazon S3 gateway endpoint\. If you want to avoid this interruption, create a new VPC that uses the Amazon S3 gateway endpoint and then migrate your Amazon ECS cluster and its containers into the new VPC\.
 
 ### Considerations for Windows images<a name="ecr-vpc-endpoint-windows-considerations"></a>
@@ -99,7 +99,7 @@ The following table describes the Amazon S3 bucket policy permissions needed by 
 
 | Permission | Description | 
 | --- | --- | 
-| arn:aws:s3:::prod\-region\-starport\-layer\-bucket/\* | Provides access to the Amazon S3 bucket containing the layers for each Docker image\. Represents the Region identifier for an AWS Region supported by Amazon ECR, such as us\-east\-2 for the US East \(Ohio\) Region\. | 
+|  `arn:aws:s3:::prod-region-starport-layer-bucket/*`  |  Provides access to the Amazon S3 bucket containing the layers for each Docker image\. Represents the Region identifier for an AWS Region supported by Amazon ECR, such as `us-east-2` for the US East \(Ohio\) Region\.  | 
 
 #### Example<a name="ecr-minimum-s3-perms-example"></a>
 
@@ -200,7 +200,7 @@ The following endpoint policy example combines the two previous examples into a 
 			"Action": [
 				"ecr:BatchGetImage",
 				"ecr:GetDownloadUrlForLayer",
-                           "ecr:GetAuthorizationToken"
+                          "ecr:GetAuthorizationToken"
 			],
 			"Resource": "*"
 		}

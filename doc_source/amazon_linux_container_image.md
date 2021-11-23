@@ -22,7 +22,7 @@ The get\-login\-password command is available in the AWS CLI starting with versi
    Login succeeded
    ```
 
-1. Pull the Amazon Linux container image using the docker pull command\. To view the Amazon Linux container image on the Amazon ECR Public Gallery, see [Amazon ECR Public Gallery \- amazonlinux](https://gallery.ecr.aws/amazonlinux/amazonlinux)\.
+1. Pull the Amazon Linux container image using the docker pull command\. To view the Amazon Linux container image on the Public Gallery, see [Public Gallery \- amazonlinux](https://gallery.ecr.aws/amazonlinux/amazonlinux)\.
 
    ```
    docker pull public.ecr.aws/amazonlinux/amazonlinux:latest

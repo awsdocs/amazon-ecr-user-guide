@@ -176,7 +176,7 @@ Now that you have an image to push to Amazon ECR, you must create a repository t
 aws ecr create-repository \
     --repository-name hello-world \
     --image-scanning-configuration scanOnPush=true \
-    --region us-east-1
+    --region region
 ```
 
 ## Step 4: Push an image to Amazon ECR<a name="cli-push-image"></a>
@@ -206,19 +206,19 @@ After those prerequisites are met, you can push your image to your newly created
 1. Tag the image to push to your repository\.
 
    ```
-   docker tag hello-world:latest aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest
+   docker tag hello-world:latest aws_account_id.dkr.ecr.region.amazonaws.com/hello-world:latest
    ```
 
 1. Push the image\.
 
    ```
-   docker push aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world:latest
+   docker push aws_account_id.dkr.ecr.region.amazonaws.com/hello-world:latest
    ```
 
    Output:
 
    ```
-   The push refers to a repository [aws_account_id.dkr.ecr.us-east-1.amazonaws.com/hello-world] (len: 1)
+   The push refers to a repository [aws_account_id.dkr.ecr.region.amazonaws.com/hello-world] (len: 1)
    e9ae3c220b23: Pushed
    a6785352b25c: Pushed
    0998bf8fb9e9: Pushed
@@ -259,6 +259,7 @@ If you decide that you no longer need or want an image in one of your repositori
 aws ecr batch-delete-image \
       --repository-name hello-world \
       --image-ids imageTag=latest
+      --region region
 ```
 
 Output:
@@ -283,4 +284,5 @@ If you decide that you no longer need or want an entire repository of images, yo
 aws ecr delete-repository \
       --repository-name hello-world \
       --force
+      --region region
 ```

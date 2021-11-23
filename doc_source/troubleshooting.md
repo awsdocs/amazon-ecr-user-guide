@@ -1,6 +1,6 @@
 # Amazon ECR troubleshooting<a name="troubleshooting"></a>
 
-This chapter helps you find diagnostic information for Amazon Elastic Container Registry \(Amazon ECR\), and provides troubleshooting steps for common issues and error messages\.
+This chapter helps you find diagnostic information for \(\), and provides troubleshooting steps for common issues and error messages\.
 
 **Topics**
 + [Enabling Docker debug output](#debug)

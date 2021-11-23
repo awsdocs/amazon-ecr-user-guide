@@ -101,3 +101,5 @@ For more information about using your Amazon ECR hosted Helm charts with Amazon 
        ]
    }
    ```
+
+1. \(Optional\) For additional steps, install the Helm configmap and get started with Amazon EKS\. For more information, see [Installing a Helm chart hosted on Amazon ECR with Amazon EKS](ECR_on_EKS.md#using-helm-charts-eks)\.
