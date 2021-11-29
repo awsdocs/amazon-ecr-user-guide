@@ -1,3 +1,7 @@
 # Private registry settings<a name="registry-settings"></a>
 
-Amazon ECR uses **registry settings** to configure features at the registry level\. The private registry settings are configured separately for each Region\. Currently, the only registry setting is the replication setting, which is used to configure cross\-Region and cross\-account replication of the images in your repositories\. For more information, see [Private image replication](replication.md)\.
+Amazon ECR uses private registry settings to configure features at the registry level\. The private registry settings are configured separately for each Region\. You can use private registry settings to configure the following features\.
++ **Registry permissions**—You can use your registry permissions policy to grant permissions to an AWS principal to the replication and pull through cache features\. For more information, see [Private registry permissions](registry-permissions.md)\.
++ **Pull through cache rules**—You can create pull through cache rules to cache images from an external public registry in your Amazon ECR private registry\. For more information, see [Using pull through cache rules](pull-through-cache.md)\.
++ **Replication**—You can configure repositories for either cross\-Region or cross\-account replication\. For more information, see [Private image replication](replication.md)
++ **Scanning configuration**—By default, your registry is enabled for basic scanning\. You may enable enhanced scanning which provides an automated, continuous scanning mode that scans for both operating system and programing language package vulnerabilities\. For more information, see [Image scanning](image-scanning.md)\.

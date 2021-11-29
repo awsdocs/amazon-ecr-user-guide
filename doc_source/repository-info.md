@@ -1,6 +1,6 @@
 # Viewing repository information<a name="repository-info"></a>
 
-After you created a repository, you can view its information in the AWSManagement Console:
+After you created a repository, you can view its information in the AWS Management Console:
 + Which images are stored in a repository
 + Whether an image is tagged
 + The tags for the image
@@ -9,9 +9,9 @@ After you created a repository, you can view its information in the AWSManagemen
 + When the image was pushed to the repository
 
 **Note**  
-Starting with Docker version 1\.9, the Docker client compresses image layers before pushing them to a V2 Docker registry\. The output of the docker images command shows the uncompressed image size\. Therefore, keep in mind that Docker might return a larger image than the image shown in the AWSManagement Console\.
+Starting with Docker version 1\.9, the Docker client compresses image layers before pushing them to a V2 Docker registry\. The output of the docker images command shows the uncompressed image size\. Therefore, keep in mind that Docker might return a larger image than the image shown in the AWS Management Console\.
 
-**To view repository information \(AWSManagement Console\)**
+**To view repository information \(AWS Management Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 

@@ -1,4 +1,4 @@
-# Getting started with Amazon ECR using the AWSManagement Console<a name="getting-started-console"></a>
+# Getting started with Amazon ECR using the AWS Management Console<a name="getting-started-console"></a>
 
 Get started with Amazon ECR by creating a repository in the Amazon ECR console\. The Amazon ECR console guides you through the process to get started creating your first repository\.
 

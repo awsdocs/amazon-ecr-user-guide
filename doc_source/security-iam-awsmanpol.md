@@ -6,6 +6,7 @@ Amazon ECR provides several managed policies that you can attach to IAM users or
 + [`AmazonEC2ContainerRegistryFullAccess`](#security-iam-awsmanpol-AmazonEC2ContainerRegistryFullAccess)
 + [`AmazonEC2ContainerRegistryPowerUser`](#security-iam-awsmanpol-AmazonEC2ContainerRegistryPowerUser)
 + [`AmazonEC2ContainerRegistryReadOnly`](#security-iam-awsmanpol-AmazonEC2ContainerRegistryReadOnly)
++ [`AWSECRPullThroughCache_ServiceRolePolicy`](#security-iam-awsmanpol-AWSECRPullThroughCache_ServiceRolePolicy)
 + [`ECRReplicationServiceRolePolicy`](#security-iam-awsmanpol-ECRReplicationServiceRolePolicy)
 + [Amazon ECR updates to AWS managed policies](#security-iam-awsmanpol-updates)
 
@@ -121,9 +122,13 @@ The `AmazonEC2ContainerRegistryReadOnly` policy is as follows\.
 }
 ```
 
+## `AWSECRPullThroughCache_ServiceRolePolicy`<a name="security-iam-awsmanpol-AWSECRPullThroughCache_ServiceRolePolicy"></a>
+
+You can't attach the `AWSECRPullThroughCache_ServiceRolePolicy` managed IAM policy to your IAM entities\. This policy is attached to a service\-linked role that allows Amazon ECR to push images to your repositories through the pull through cache workflow\. For more information, see [Using service\-linked roles for Amazon ECR](using-service-linked-roles.md)\.
+
 ## `ECRReplicationServiceRolePolicy`<a name="security-iam-awsmanpol-ECRReplicationServiceRolePolicy"></a>
 
-You can't attach `ECRReplicationServiceRolePolicy` to your IAM entities\. This policy is attached to a service\-linked role that allows Amazon ECR to perform actions on your behalf\. For more information, see [Using service\-linked roles for Amazon ECR](using-service-linked-roles.md)\.
+You can't attach the `ECRReplicationServiceRolePolicy` managed IAM policy to your IAM entities\. This policy is attached to a service\-linked role that allows Amazon ECR to perform actions on your behalf\. For more information, see [Using service\-linked roles for Amazon ECR](using-service-linked-roles.md)\.
 
 ## Amazon ECR updates to AWS managed policies<a name="security-iam-awsmanpol-updates"></a>
 
@@ -134,7 +139,8 @@ View details about updates to AWS managed policies for Amazon ECR since the time
 
 | Change | Description | Date | 
 | --- | --- | --- | 
-|  Amazon ECR started tracking changes  |  Amazon ECR started tracking changes for AWS managed policies\.  | June 24, 2021 | 
+|  [AWSECRPullThroughCache\_ServiceRolePolicy](#security-iam-awsmanpol-AWSECRPullThroughCache_ServiceRolePolicy) – New policy  |  Amazon ECR added a new policy\. This policy is associated with the `AWSServiceRoleForECRPullThroughCache` service\-linked role for the pull through cache feature\.  | November 29, 2021 | 
+|  [ECRReplicationServiceRolePolicy](#security-iam-awsmanpol-ECRReplicationServiceRolePolicy) – New policy  |  Amazon ECR added a new policy\. This policy is associated with the `AWSServiceRoleForECRReplication` service\-linked role for the replication feature\.  | December 4, 2020 | 
 |  [AmazonEC2ContainerRegistryFullAccess](#security-iam-awsmanpol-AmazonEC2ContainerRegistryFullAccess) – Update to an existing policy  |  Amazon ECR added new permissions to the `AmazonEC2ContainerRegistryFullAccess` policy\. These permissions allow principals to create the Amazon ECR service\-linked role\.  | December 4, 2020 | 
 |  [AmazonEC2ContainerRegistryReadOnly](#security-iam-awsmanpol-AmazonEC2ContainerRegistryReadOnly) – Update to an existing policy  |  Amazon ECR added new permissions to the `AmazonEC2ContainerRegistryReadOnly` policy which allow principals to read lifecycle policies, list tags, and describe the scan findings for images\.  | December 10, 2019 | 
 |  [AmazonEC2ContainerRegistryPowerUser](#security-iam-awsmanpol-AmazonEC2ContainerRegistryPowerUser) – Update to an existing policy  |  Amazon ECR added new permissions to the `AmazonEC2ContainerRegistryPowerUser` policy\. They allow principals to read lifecycle policies, list tags, and describe the scan findings for images\.  | December 10, 2019 | 
@@ -144,3 +150,4 @@ View details about updates to AWS managed policies for Amazon ECR since the time
 |  [AmazonEC2ContainerRegistryReadOnly](#security-iam-awsmanpol-AmazonEC2ContainerRegistryReadOnly) – New policy  |  Amazon ECR added a new policy which grants grants read\-only permissions to Amazon ECR\. These permissions include the ability to list repositories and images within the repositories\. They also include the ability to pull images from Amazon ECR with the Docker CLI\.  | December 21, 2015 | 
 |  [AmazonEC2ContainerRegistryPowerUser](#security-iam-awsmanpol-AmazonEC2ContainerRegistryPowerUser) – New policy  |  Amazon ECR added a new policy which grants administrative permissions that allow IAM users to read and write to repositories but doesn't allow them to delete repositories or change the policy documents that are applied to them\.  | December 21, 2015 | 
 |  [AmazonEC2ContainerRegistryFullAccess](#security-iam-awsmanpol-AmazonEC2ContainerRegistryFullAccess) – New policy  |  Amazon ECR added a new policy\. This policy grants full access to Amazon ECR\.  | December 21, 2015 | 
+|  Amazon ECR started tracking changes  |  Amazon ECR started tracking changes for AWS managed policies\.  | June 24, 2021 | 

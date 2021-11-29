@@ -28,7 +28,7 @@ If you signed up for AWS but have not created an IAM user for yourself, you can 
 
 **To create an administrator user for yourself and add the user to an administrators group \(console\)**
 
-1. Sign in to the [IAM console](https://console.aws.amazon.com/iam/) as the account owner by choosing **Root user** and entering your AWSaccount email address\. On the next page, enter your password\.
+1. Sign in to the [IAM console](https://console.aws.amazon.com/iam/) as the account owner by choosing **Root user** and entering your AWS account email address\. On the next page, enter your password\.
 **Note**  
 We strongly recommend that you adhere to the best practice of using the **Administrator** IAM user that follows and securely lock away the root user credentials\. Sign in as the root user only to perform a few [account and service management tasks](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)\.
 
@@ -36,7 +36,7 @@ We strongly recommend that you adhere to the best practice of using the **Admini
 
 1. For **User name**, enter **Administrator**\.
 
-1. Select the check box next to **AWSManagement Console access**\. Then select **Custom password**, and then enter your new password in the text box\.
+1. Select the check box next to **AWS Management Console access**\. Then select **Custom password**, and then enter your new password in the text box\.
 
 1. \(Optional\) By default, AWS requires the new user to create a new password when first signing in\. You can clear the check box next to **User must create a new password at next sign\-in** to allow the new user to reset their password after they sign in\.
 
@@ -62,7 +62,7 @@ You must activate IAM user and role access to Billing before you can use the `Ad
 
 1. Choose **Next: Review** to see the list of group memberships to be added to the new user\. When you are ready to proceed, choose **Create user**\.
 
-You can use this same process to create more groups and users and to give your users access to your AWSaccount resources\. To learn about using policies that restrict user permissions to specific AWS resources, see [Access management](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) and [Example policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_examples.html)\.
+You can use this same process to create more groups and users and to give your users access to your AWS account resources\. To learn about using policies that restrict user permissions to specific AWS resources, see [Access management](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) and [Example policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_examples.html)\.
 
 To sign in as this new IAM user, sign out of the AWS console, then use the following URL, where *your\_aws\_account\_id* is your AWS account number without the hyphens \(for example, if your AWS account number is `1234-5678-9012`, your AWS account ID is `123456789012`\):
 

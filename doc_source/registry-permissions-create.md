@@ -2,21 +2,27 @@
 
 You can add or update the permissions policy for your registry by using the following steps\. You can add multiple policy statements per registry\. For example policies, see [Private registry policy examples](registry-permissions-examples.md)\.
 
-**To configure a permissions policy for a private registry \(AWSManagement Console\)**
+**Topics**
++ [Private registry permissions for replication](#registry-permissions-create-replication)
++ [Private registry permissions for pull through cache](#registry-permissions-create-pullthroughcache)
+
+## Private registry permissions for replication<a name="registry-permissions-create-replication"></a>
+
+### To configure a permissions policy for replication \(AWS Management Console\)<a name="registry-permissions-create-console"></a>
+
+**To configure a replication permissions policy for a private registry \(AWS Management Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 
 1. From the navigation bar, choose the Region to configure your registry policy in\.
 
-1. In the navigation pane, choose **Registries**\.
+1. In the navigation pane, choose **Private registry**, **Registry permissions**\.
 
-1. On the **Registries** page, select your **Private** registry and choose **Permissions**\.
-
-1. On the **Private registry permissions** page, choose **Generate statement**\.
+1. On the **Registry permissions** page, choose **Generate statement**\.
 
 1. Complete the following steps to define your policy statement using the policy generator\.
 
-   1. For **Policy type**, choose **Cross\-account policy**\.
+   1. For **Policy type**, choose **Cross account policy**\.
 
    1. For **Statement ID**, enter a unique statement ID\. This field is used as the `Sid` on the registry policy\.
 
@@ -25,6 +31,8 @@ You can add or update the permissions policy for your registry by using the foll
 1. Expand the **Preview policy statement** section to review the registry permissions policy statement\.
 
 1. After the policy statement is confirmed, choose **Add to policy** to save the policy to your registry\.
+
+### To configure a permissions policy for replication \(AWS CLI\)<a name="registry-permissions-create-cli"></a>
 
 **To configure a permissions policy for a private registry \(AWS CLI\)**
 
@@ -66,3 +74,29 @@ You can add or update the permissions policy for your registry by using the foll
    aws ecr get-registry-policy \
          --region us-west-2
    ```
+
+## Private registry permissions for pull through cache<a name="registry-permissions-create-pullthroughcache"></a>
+
+Amazon ECR private registry permissions may be used to scope the permissions of individual IAM entities to use pull through cache\. If an IAM entity has more permissions granted by an IAM policy than the registry permissions policy is granting, the IAM policy takes precedence\.
+
+**To create a private registry permissions policy \(AWS Management Console\)**
+
+1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
+
+1. From the navigation bar, choose the Region to configure your private registry permissions statement in\.
+
+1. In the navigation pane, choose **Private registry**, **Registry permissions**\.
+
+1. On the **Registry permissions** page, choose **Generate statement**\.
+
+1. For each pull through cache permissions policy statement you want to create, do the following\.
+
+   1. For **Policy type**, choose **Pull through cache policy**\.
+
+   1. For **Statement id**, provide a name for the pull through cache statement policy\.
+
+   1. For **IAM entities**, specify the IAM users, groups, or roles to include in the policy\.
+
+   1. For **Repository namespace**, select the pull through cache rule to associate the policy with\.
+
+   1. For **Repository names**, specify the repository base name to apply the rule for\. For example, if you want to specify the Amazon Linux repository on Amazon ECR Public, the repository name would be `amazonlinux`\.

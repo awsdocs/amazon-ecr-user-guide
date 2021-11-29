@@ -38,9 +38,12 @@ The following event is sent when each image push is completed\. For more informa
 }
 ```
 
-**Event for a completed image scan**
+**Event for a completed image scan \(basic scanning\)**
 
-The following event is sent when each image scan is completed\. The `finding-severity-counts` parameter will only return a value for a severity level if one exists\. For example, if the image contains no findings at `CRITICAL` level, then no critical count is returned\. For more information, see [Image scanning](image-scanning.md)\.
+When basic scanning is enabled for your registry, the following event is sent when each image scan is completed\. The `finding-severity-counts` parameter will only return a value for a severity level if one exists\. For example, if the image contains no findings at `CRITICAL` level, then no critical count is returned\. For more information, see [Basic scanning](image-scanning-basic.md)\.
+
+**Note**  
+For details about events that Amazon Inspector emits when enhanced scanning is enabled, see [EventBridge events](image-scanning-enhanced.md#image-scanning-enhanced-events)\.
 
 ```
 {
@@ -64,6 +67,47 @@ The following event is sent when each image scan is completed\. The `finding-sev
         "image-digest": "sha256:7f5b2640fe6fb4f46592dfd3410c4a79dac4f89e4782432e0378abcd1234",
         "image-tags": []
     }
+}
+```
+
+**Event for a change notification on a resource with enhanced scanning enabled \(enhanced scanning\)**
+
+When enhanced scanning is enabled for your registry, the following event is sent by Amazon ECR when there is a change with a resource that has enhanced scanning enabled\. This includes new repositories being created, the scan frequency for a repository being changed, or when images are created or deleted in repositories with enhanced scanning enabled\. For more information, see [Image scanning](image-scanning.md)\. For more information, see [Image scanning](image-scanning.md)\.
+
+```
+{
+	"version": "0",
+	"id": "0c18352a-a4d4-6853-ef53-0ab8638973bf",
+	"detail-type": "ECR Scan Resource Change",
+	"source": "aws.ecr",
+	"account": "123456789012",
+	"time": "2021-10-14T20:53:46Z",
+	"region": "us-east-1",
+	"resources": [],
+	"detail": {
+		"action-type": "SCAN_FREQUENCY_CHANGE",
+		"repositories": [{
+				"repository-name": "repository-1",
+				"repository-arn": "arn:aws:ecr:us-east-1:123456789012:repository/repository-1",
+				"scan-frequency": "SCAN_ON_PUSH",
+				"previous-scan-frequency": "MANUAL"
+			},
+			{
+				"repository-name": "repository-2",
+				"repository-arn": "arn:aws:ecr:us-east-1:123456789012:repository/repository-2",
+				"scan-frequency": "CONTINUOUS_SCAN",
+				"previous-scan-frequency": "SCAN_ON_PUSH"
+			},
+			{
+				"repository-name": "repository-3",
+				"repository-arn": "arn:aws:ecr:us-east-1:123456789012:repository/repository-3",
+				"scan-frequency": "CONTINUOUS_SCAN",
+				"previous-scan-frequency": "SCAN_ON_PUSH"
+			}
+		],
+		"resource-type": "REPOSITORY",
+		"scan-type": "ENHANCED"
+	}
 }
 ```
 

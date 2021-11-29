@@ -20,7 +20,7 @@ We recommend that you devise a set of tag keys that meets your needs\. Using a c
 
 Tags don't have any semantic meaning to Amazon ECR and are interpreted strictly as a string of characters\. Also, tags are not automatically assigned to your resources\. You can edit tag keys and values, and you can remove tags from a resource at any time\. You can set the value of a tag to an empty string, but you can't set the value of a tag to null\. If you add a tag that has the same key as an existing tag on that resource, the new value overwrites the old value\. If you delete a resource, any tags for the resource are also deleted\.
 
-You can work with tags using the AWSManagement Console, the AWS CLI, and the Amazon ECR API\.
+You can work with tags using the AWS Management Console, the AWS CLI, and the Amazon ECR API\.
 
 If you're using AWS Identity and Access Management \(IAM\), you can control which users in your AWS account have permission to create, edit, or delete tags\.
 

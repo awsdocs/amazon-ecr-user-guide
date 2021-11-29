@@ -1,6 +1,6 @@
 # Amazon ECR service quotas<a name="service-quotas"></a>
 
-The following table provides the default service quotas for \(\)\.
+The following table provides the default service quotas for Amazon Elastic Container Registry \(Amazon ECR\)\.
 
 
 ****  
@@ -35,13 +35,13 @@ The layer part information mentioned in the following table is only applicable i
 
 \*\* The maximum layer size listed here is calculated by multiplying the maximum layer part size \(10 MiB\) by the maximum number of layer parts \(4,200\)\.
 
-## Managing your Amazon ECR service quotas in the AWSManagement Console<a name="service-quotas-console"></a>
+## Managing your Amazon ECR service quotas in the AWS Management Console<a name="service-quotas-console"></a>
 
 Amazon ECR has integrated with Service Quotas, an AWS service that enables you to view and manage your quotas from a central location\. For more information, see [What Is Service Quotas?](https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html) in the *Service Quotas User Guide*\.
 
 Service Quotas makes it easy to look up the value of all Amazon ECR service quotas\.
 
-**To view Amazon ECR service quotas \(AWSManagement Console\)**
+**To view Amazon ECR service quotas \(AWS Management Console\)**
 
 1. Open the Service Quotas console at [https://console\.aws\.amazon\.com/servicequotas/](https://console.aws.amazon.com/servicequotas/)\.
 
@@ -61,7 +61,7 @@ Amazon ECR provides CloudWatch usage metrics that correspond to the AWS service 
 
 Use the following steps to create a CloudWatch alarm based on one of the Amazon ECR API usage metrics\.
 
-**To create an alarm based on your Amazon ECR usage quotas \(AWSManagement Console\)**
+**To create an alarm based on your Amazon ECR usage quotas \(AWS Management Console\)**
 
 1. Open the Service Quotas console at [https://console\.aws\.amazon\.com/servicequotas/](https://console.aws.amazon.com/servicequotas/)\.
 
