@@ -258,7 +258,7 @@ If you decide that you no longer need or want an image in one of your repositori
 ```
 aws ecr batch-delete-image \
       --repository-name hello-world \
-      --image-ids imageTag=latest
+      --image-ids imageTag=latest \
       --region region
 ```
 
@@ -283,6 +283,6 @@ If you decide that you no longer need or want an entire repository of images, yo
 ```
 aws ecr delete-repository \
       --repository-name hello-world \
-      --force
+      --force \
       --region region
 ```

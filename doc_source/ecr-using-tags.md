@@ -1,6 +1,6 @@
 # Tagging an Amazon ECR repository<a name="ecr-using-tags"></a>
 
-To help you manage your Amazon ECR repositories, you can optionally assign your own metadata to each repository in the form of *tags*\. This topic describes tags and shows you how to create them\. To be clear, this page is about AWS resource tags, not Docker image tags.
+To help you manage your Amazon ECR repositories, you can optionally assign your own metadata to each repository in the form of AWS resource *tags*\. This topic describes AWS resource tags and shows you how to create them\.
 
 **Topics**
 + [Tag basics](#tag-basics)
@@ -14,7 +14,7 @@ To help you manage your Amazon ECR repositories, you can optionally assign your 
 
 A tag is a label that you assign to an AWS resource\. Each tag consists of a *key* and an optional *value*, both of which you define\.
 
-Tags enable you to categorize your AWS resources in different ways, for example, by purpose, owner, or environment\. This is useful when you have many resources of the same type—you can quickly identify a specific resource based on the tags you've assigned to it\. For example, you could define a set of tags for your account's Amazon ECR repositories that helps you track each repo's owner\.
+Tags enable you to categorize your AWS resources in different ways, for example, by purpose, owner, or environment\. This is useful when you have many resources of the same type—you can quickly identify a specific resource based on the tags you've assigned to it\. For example, you could define a set of tags for your account's Amazon ECR repositories that helps you track the owner of each repository\.
 
 We recommend that you devise a set of tag keys that meets your needs\. Using a consistent set of tag keys makes it easier for you to manage your resources\. You can search and filter the resources based on the tags you add\.
 
@@ -60,7 +60,7 @@ Using the Amazon ECR console, you can manage the tags associated with new or exi
 
 When you select a specific repository in the Amazon ECR console, you can view the tags by selecting **Tags** in the navigation pane\.
 
-**To add a tag to a repository**
+**To add a tag to a repository \(AWS Management Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 
@@ -76,7 +76,7 @@ When you select a specific repository in the Amazon ECR console, you can view th
 
 1. On the **Edit Tags** page, specify the key and value for each tag, and then choose **Save**\.
 
-**To delete a tag from an individual resource**
+**To delete a tag from an individual resource \(AWS Management Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 
@@ -108,33 +108,42 @@ The following examples show how to manage tags using the AWS CLI\.
 The following command tags an existing repository\.
 
 ```
-aws ecr tag-resource --resource-arn arn:aws:ecr:region:account_id:repository/repository_name --tags Key=stack,Value=dev
+aws ecr tag-resource \
+     --resource-arn arn:aws:ecr:region:account_id:repository/repository_name \
+     --tags Key=stack,Value=dev
 ```
 
 **Example 2: Tag an existing repository with multiple tags**  
 The following command tags an existing repository\.
 
 ```
-aws ecr tag-resource --resource-arn arn:aws:ecr:region:account_id:repository/repository_name --tags Key=key1,Value=value1 Key=key2,Value=value2 Key=key3,Value=value3
+aws ecr tag-resource \
+     --resource-arn arn:aws:ecr:region:account_id:repository/repository_name \
+     --tags Key=key1,Value=value1 Key=key2,Value=value2 Key=key3,Value=value3
 ```
 
 **Example 3: Untag an existing repository**  
 The following command deletes a tag from an existing repository\.
 
 ```
-aws ecr untag-resource --resource-arn arn:aws:ecr:region:account_id:repository/repository_name --tag-keys tag_key
+aws ecr untag-resource \
+     --resource-arn arn:aws:ecr:region:account_id:repository/repository_name \
+     --tag-keys tag_key
 ```
 
 **Example 4: List tags for a repository**  
 The following command lists the tags associated with an existing repository\.
 
 ```
-aws ecr list-tags-for-resource --resource-arn arn:aws:ecr:region:account_id:repository/repository_name
+aws ecr list-tags-for-resource \
+     --resource-arn arn:aws:ecr:region:account_id:repository/repository_name
 ```
 
 **Example 5: Create a repository and apply a tag**  
 The following command creates a repository named `test-repo` and adds a tag with key `team` and value `devs`\.
 
 ```
-aws ecr create-repository --repository-name test-repo --tags Key=team,Value=devs
+aws ecr create-repository \
+     --repository-name test-repo \
+     --tags Key=team,Value=devs
 ```
