@@ -18,5 +18,6 @@ The next step is to establish a baseline for normal Amazon ECR performance in yo
 + [Visualizing your service quotas and setting alarms](monitoring-quotas-alarms.md)
 + [Amazon ECR usage metrics](monitoring-usage.md)
 + [Amazon ECR usage reports](usage-reports.md)
++ [Amazon ECR repository metrics](ecr-repository-metrics.md)
 + [Amazon ECR events and EventBridge](ecr-eventbridge.md)
 + [Logging Amazon ECR actions with AWS CloudTrail](logging-using-cloudtrail.md)

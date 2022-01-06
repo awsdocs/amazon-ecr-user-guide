@@ -2,7 +2,7 @@
 
 You can configure a repository to be immutable to prevent image tags from being overwritten\. After the repository is configured for immutable tags, an `ImageTagAlreadyExistsException` error is returned if you attempt to push an image with a tag that is already in the repository\.
 
-You can use the AWS Management Console and AWS CLI tools to set image tag mutability for either a new repository during creation or for an existing repository at any time\. For console steps, see [Creating a private repository](repository-create.md) and [Editing a private repository](repository-edit.md)\.
+You can use the AWSManagement Console and AWS CLI tools to set image tag mutability for either a new repository during creation or for an existing repository at any time\. For console steps, see [Creating a private repository](repository-create.md) and [Editing a private repository](repository-edit.md)\.
 
 **To create a repository with immutable tags configured**
 

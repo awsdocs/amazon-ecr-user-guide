@@ -68,7 +68,7 @@ The account you are granting permissions to must have the Region you are creatin
 The following repository policy allows some IAM users to pull images \(*pull\-user\-1* and *pull\-user\-2*\) while providing full access to another \(*admin\-user*\)\.
 
 **Note**  
-For more complicated repository policies that are not currently supported in the AWS Management Console, you can apply the policy with the [https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html](https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html) AWS CLI command\.
+For more complicated repository policies that are not currently supported in the AWSManagement Console, you can apply the policy with the [https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html](https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html) AWS CLI command\.
 
 ```
 {
@@ -125,11 +125,11 @@ The following repository policy denies all users in all accounts the ability to 
 
 ## Example: Restricting access to specific IP addresses<a name="IAM_restrict_ip"></a>
 
-The following example grants permissions to any user to perform any Amazon ECR operations when applied to a repository\. However, the request must originate from the range of IP addresses specified in the condition\.
+The following example denies permissions to any user to perform any Amazon ECR operations when applied to a repository from a specific range of addresses\.
 
-The condition in this statement identifies the `54.240.143.*` range of allowed Internet Protocol version 4 \(IPv4\) IP addresses, with one exception: `54.240.143.188`\.
+The condition in this statement identifies the `54.240.143.*` range of allowed Internet Protocol version 4 \(IPv4\) IP addresses\.
 
-The `Condition` block uses the `IpAddress` and `NotIpAddress` conditions and the `aws:SourceIp` condition key, which is an AWS\-wide condition key\. For more information about these condition keys, see [AWS Global Condition Context Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html)\. The`aws:sourceIp` IPv4 values use the standard CIDR notation\. For more information, see [IP Address Condition Operators](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html#Conditions_IPAddress) in the *IAM User Guide*\.
+The `Condition` block uses the `NotIpAddress` conditions and the `aws:SourceIp` condition key, which is an AWS\-wide condition key\. For more information about these condition keys, see [AWS Global Condition Context Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html)\. The`aws:sourceIp` IPv4 values use the standard CIDR notation\. For more information, see [IP Address Condition Operators](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html#Conditions_IPAddress) in the *IAM User Guide*\.
 
 ```
 {
@@ -138,39 +138,15 @@ The `Condition` block uses the `IpAddress` and `NotIpAddress` conditions and the
     "Statement": [
         {
             "Sid": "IPAllow",
-            "Effect": "Allow",
+            "Effect": "Deny",
             "Principal": "*",
             "Action": "ecr:*",
             "Condition": {
                 "NotIpAddress": {
                     "aws:SourceIp": "54.240.143.188/32"
-                },
-                "IpAddress": {
-                    "aws:SourceIp": "54.240.143.0/24"
                 }
             }
         }
     ]
-}
-```
-
-## Example: Allow an AWS service<a name="IAM_service_linked"></a>
-
-The following repository policy allows AWS CodeBuild access to the Amazon ECR API actions necessary for integration with that service\. For more information, see [Amazon ECR sample for CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-ecr.html) in the *AWS CodeBuild User Guide*\.
-
-```
-{
-	"Version": "2012-10-17",
-	"Statement": [{
-		"Sid": "CodeBuildAccess",
-		"Effect": "Allow",
-		"Principal": {
-			"Service": "codebuild.amazonaws.com"
-		},
-		"Action": [
-			"ecr:BatchGetImage",
-			"ecr:GetDownloadUrlForLayer"
-		]
-	}]
 }
 ```

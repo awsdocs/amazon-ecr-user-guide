@@ -1,6 +1,6 @@
 # Private images<a name="images"></a>
 
-Amazon Elastic Container Registry \(Amazon ECR\) stores Docker images, Open Container Initiative \(OCI\) images, and OCI compatible artifacts in private repositories\. You can use the Docker CLI, or your preferred client, to push and pull images to and from your repositories\.
+\(\) stores Docker images, Open Container Initiative \(OCI\) images, and OCI compatible artifacts in private repositories\. You can use the Docker CLI, or your preferred client, to push and pull images to and from your repositories\.
 
 **Topics**
 + [Pushing an image](image-push.md)

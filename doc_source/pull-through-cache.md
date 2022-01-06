@@ -20,15 +20,15 @@ The following should be considered when using Amazon ECR pull through cache\.
 + Amazon ECR repositories created using the pull through cache workflow are treated like any other Amazon ECR repository\. All repository features, such as replication and image scanning are supported\.
 + When a new repository is created using a pull through cache rule, tag immutability is disabled by default\. If you manually enable tag immutability on the repository, Amazon ECR may not be able to update the cached images\.
 + When a new repository is created using a pull through cache rule, AWS KMS encryption is disabled by default\. If you want to use AWS KMS encryption, you can create the repository manually prior to the first image pull\.
-+ When an image is pulled using a pull through cache rule for the first time, if you've configured Amazon ECR to use an interface VPC endpoint using AWS PrivateLink then you need to create a public subnet in the same VPC, with a NAT gateway, and then route all outbound traffic to the internet from their private subnet to the NAT gateway in order for the pull to work\. Subsequent image pulls don't require this\. For more information, see [Scenario: Access the internet from a private subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#public-nat-internet-access) in the *Amazon Virtual Private Cloud User Guide*\.
++ When an image is pulled using a pull through cache rule for the first time, if you've configured Amazon ECR to use an interface VPC endpoint using AWSPrivateLink then you need to create a public subnet in the same VPC, with a NAT gateway, and then route all outbound traffic to the internet from their private subnet to the NAT gateway in order for the pull to work\. Subsequent image pulls don't require this\. For more information, see [Scenario: Access the internet from a private subnet](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#public-nat-internet-access) in the *Amazon Virtual Private Cloud User Guide*\.
 
 ## Creating a pull through cache rule<a name="pull-through-cache-creating-rule"></a>
 
 You create a pull through cache rule for each external public registry containing images you want to cache in your Amazon ECR private registry\.
 
-### To create a pull through cache rule \(AWS Management Console\)<a name="pull-through-cache-creating-rule-console"></a>
+### To create a pull through cache rule \(AWSManagement Console\)<a name="pull-through-cache-creating-rule-console"></a>
 
-**To create a pull through cache rule \(AWS Management Console\)**
+**To create a pull through cache rule \(AWSManagement Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 
@@ -76,7 +76,7 @@ Use the following AWS CLI commands to create a pull through cache rule for priva
 After a pull through cache rule is created for an external public registry, simply pull the remote images using your Amazon ECR repository URI and the images are cached locally\. The following table shows the formats for the three supported public registries\.
 
 **Note**  
-The following examples use the default Amazon ECR repository namespace values that the AWS Management Console uses\. Ensure that you use the Amazon ECR private repository URI that you've configured\.
+The following examples use the default Amazon ECR repository namespace values that the AWSManagement Console uses\. Ensure that you use the Amazon ECR private repository URI that you've configured\.
 
 ### Amazon ECR Public<a name="pull-through-cache-working-ecrpublic"></a>
 
@@ -84,7 +84,7 @@ The following examples use the default Amazon ECR repository namespace values th
 docker pull aws_account_id.dkr.ecr.region.amazonaws.com/ecr-public/repository_name/image_name:tag
 ```
 
-### Quay<a name="pull-through-cache-working-ecrpublic"></a>
+### Quay<a name="pull-through-cache-working-quay"></a>
 
 ```
 docker pull aws_account_id.dkr.ecr.region.amazonaws.com/quay/repository_name/image_name:tag
@@ -94,7 +94,7 @@ docker pull aws_account_id.dkr.ecr.region.amazonaws.com/quay/repository_name/ima
 
 Amazon ECR private registry permissions may be used to scope the permissions of individual IAM entities to use pull through cache\. If an IAM entity has more permissions granted by an IAM policy than the registry permissions policy is granting, the IAM policy takes precedence\.
 
-**To create a private registry permissions policy \(AWS Management Console\)**
+**To create a private registry permissions policy \(AWSManagement Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 
@@ -120,9 +120,9 @@ Amazon ECR private registry permissions may be used to scope the permissions of 
 
 You can delete a pull through cache rule to stop the caching behavior\. Deleting a pull through cache rule doesn't have any effect on the repositories or images that were cached, it only stops future caching behavior\.
 
-### To delete a pull through cache rule \(AWS Management Console\)<a name="pull-through-cache-deleting-rule-console"></a>
+### To delete a pull through cache rule \(AWSManagement Console\)<a name="pull-through-cache-deleting-rule-console"></a>
 
-**To delete a pull through cache rule \(AWS Management Console\)**
+**To delete a pull through cache rule \(AWSManagement Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 

@@ -2,7 +2,7 @@
 
 A lifecycle policy preview provides a way see the impact of a lifecycle policy on an image repository before you apply it\. It is considered best practice to do a preview before applying a lifecycle policy to a repository\. The following procedure shows you how to create a lifecycle policy preview\.
 
-**To create a lifecycle policy preview \(AWS Management Console\)**
+**To create a lifecycle policy preview \(AWSManagement Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 

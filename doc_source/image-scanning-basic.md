@@ -12,7 +12,7 @@ For troubleshooting details for some common issues when scanning images, see [Tr
 
 By default, Amazon ECR enables basic scanning on all private registries\. As a result, unless you've changed the scanning settings on your private registry there should be no need to enable basic scanning\. You may use the following steps to verify that basic scanning is enabled and define one or more scan on push filters\.
 
-**To enable basic scanning for your private registry \(AWS Management Console\)**
+**To enable basic scanning for your private registry \(AWSManagement Console\)**
 
 The scanning configuration is defined at the private registry level on a per\-Region basis\.
 
@@ -24,7 +24,7 @@ The scanning configuration is defined at the private registry level on a per\-Re
 
 1. On the **Scanning configuration** page, For **Scan type** choose **Basic scanning**\.
 
-1. By default all of your repositories are set for **Manual** scanning\. You can optionally enable scan on push by specifying **Scan on push filters**\. You can set scan on push for all repositories or individual repositories\.
+1. By default all of your repositories are set for **Manual** scanning\. You can optionally enable scan on push by specifying **Scan on push filters**\. You can set scan on push for all repositories or individual repositories\. For more information, see [Using filters](image-scanning.md#image-scanning-filters)\.
 
 ## Manually scanning an image<a name="manual-scan"></a>
 
@@ -34,7 +34,7 @@ For troubleshooting details for some common issues when scanning images, see [Tr
 
 ### To start a manual scan of an image \(console\)<a name="manual-scan-console"></a>
 
-Use the following steps to start a manual image scan using the AWS Management Console\.
+Use the following steps to start a manual image scan using the AWSManagement Console\.
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
@@ -88,7 +88,7 @@ For troubleshooting details for some common issues when scanning images, see [Tr
 
 ### To retrieve image scan findings \(console\)<a name="describe-scan-findings-console"></a>
 
-Use the following steps to retrieve image scan findings using the AWS Management Console\.
+Use the following steps to retrieve image scan findings using the AWSManagement Console\.
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 

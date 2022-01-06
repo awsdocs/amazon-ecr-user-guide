@@ -20,7 +20,7 @@ We recommend that you devise a set of tag keys that meets your needs\. Using a c
 
 Tags don't have any semantic meaning to Amazon ECR and are interpreted strictly as a string of characters\. Also, tags are not automatically assigned to your resources\. You can edit tag keys and values, and you can remove tags from a resource at any time\. You can set the value of a tag to an empty string, but you can't set the value of a tag to null\. If you add a tag that has the same key as an existing tag on that resource, the new value overwrites the old value\. If you delete a resource, any tags for the resource are also deleted\.
 
-You can work with tags using the AWS Management Console, the AWS CLI, and the Amazon ECR API\.
+You can work with tags using the AWSManagement Console, the AWS CLI, and the Amazon ECR API\.
 
 If you're using AWS Identity and Access Management \(IAM\), you can control which users in your AWS account have permission to create, edit, or delete tags\.
 
@@ -60,7 +60,7 @@ Using the Amazon ECR console, you can manage the tags associated with new or exi
 
 When you select a specific repository in the Amazon ECR console, you can view the tags by selecting **Tags** in the navigation pane\.
 
-**To add a tag to a repository \(AWS Management Console\)**
+**To add a tag to a repository \(AWSManagement Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 
@@ -76,7 +76,7 @@ When you select a specific repository in the Amazon ECR console, you can view th
 
 1. On the **Edit Tags** page, specify the key and value for each tag, and then choose **Save**\.
 
-**To delete a tag from an individual resource \(AWS Management Console\)**
+**To delete a tag from an individual resource \(AWSManagement Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 

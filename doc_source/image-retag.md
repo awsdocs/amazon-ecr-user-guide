@@ -6,10 +6,10 @@ With Docker Image Manifest V2 Schema 2 images, you can use the `--image-tag` opt
 
 **To retag an image with the AWS CLI**
 
-1. Use the batch\-get\-image command to get the image manifest for the image to retag and write it to an environment variable\. In this example, the manifest for an image with the tag, *latest*, in the repository, *amazonlinux*, is written to the environment variable, *MANIFEST*\.
+1. Use the batch\-get\-image command to get the image manifest for the image to retag and write it to a file\. In this example, the manifest for an image with the tag, *latest*, in the repository, *amazonlinux*, is written to an environment variable named *MANIFEST*\.
 
    ```
-   MANIFEST=$(aws ecr batch-get-image --repository-name amazonlinux --image-ids imageTag=latest --query 'images[].imageManifest' --output text)
+   MANIFEST=$(aws ecr batch-get-image --repository-name amazonlinux --image-ids imageTag=latest --output json | jq --raw-output '.images[0].imageManifest')
    ```
 
 1. Use the `--image-tag` option of the put\-image command to put the image manifest to Amazon ECR with a new tag\. In this example, the image is tagged as *2017\.03*\.
@@ -33,7 +33,7 @@ If the `--image-tag` option isn't available in your version of the AWS CLI, upgr
        "imageDetails": [
            {
                "imageSizeInBytes": 98755613,
-               "imageDigest": "sha256:8d00af8f076eb15a33019c2a3e7f1f655375681c4e5be157a2685dfe6f247227",
+               "imageDigest": "sha256:8d00af8f076eb15a33019c2a3e7f1f655375681c4e5be157a26EXAMPLE",
                "imageTags": [
                    "latest",
                    "2017.03"

@@ -31,7 +31,7 @@ You must configure permissions to allow an IAM entity \(for example a user, grou
 
 ## Creating a service\-linked role for Amazon ECR<a name="slr-pullthroughcache-create"></a>
 
-You don't need to manually create the Amazon ECR service\-linked role for pull through cache\. When you create a pull through cache rule for your private registry in the AWS Management Console, the AWS CLI, or the AWS API, Amazon ECR creates the service\-linked role for you\. 
+You don't need to manually create the Amazon ECR service\-linked role for pull through cache\. When you create a pull through cache rule for your private registry in the AWSManagement Console, the AWS CLI, or the AWS API, Amazon ECR creates the service\-linked role for you\. 
 
 If you delete this service\-linked role and need to create it again, you can use the same process to recreate the role in your account\. When you create a pull through cache rule for your private registry, Amazon ECR creates the service\-linked role for you again if it doesn't already exist\.
 

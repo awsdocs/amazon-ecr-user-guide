@@ -2,7 +2,7 @@
 
 Replication settings are configured separately for each Region\. Use the following steps to configure replication for your private registry\.
 
-**To configure registry replication settings \(AWS Management Console\)**
+**To configure registry replication settings \(AWSManagement Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 

@@ -1,6 +1,6 @@
 # Repository policies<a name="repository-policies"></a>
 
-Amazon ECR uses resource\-based permissions to control access to repositories\. Resource\-based permissions let you specify which IAM users or roles have access to a repository and what actions they can perform on it\. By default, only the repository owner has access to a repository\. You can apply a policy document that allow additional permissions to your repository\.
+Amazon ECR uses resource\-based permissions to control access to repositories\. Resource\-based permissions let you specify which IAM users or roles have access to a repository and what actions they can perform on it\. By default, only the AWS account that created the repository has access to a repository\. You can apply a policy document that allow additional permissions to your repository\.
 
 ## Repository policies vs IAM policies<a name="repository-policy-vs-iam-policy"></a>
 

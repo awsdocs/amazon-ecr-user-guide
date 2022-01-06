@@ -72,7 +72,7 @@ The contents of your lifecycle policy is evaluated before being associated with 
 ```
 
 **Note**  
-The `tagPrefixList` parameter is only used if `tagStatus` is `tagged`\. The `countUnit` parameter is only used if `countType` is `sinceImagePushed`\. The `countNumber` parameter is only used if `countType` is set to `imageCountMoreThan`\.
+The `tagPrefixList` parameter is only used if `tagStatus` is `tagged`\. The `countUnit` parameter is only used if `countType` is `sinceImagePushed`\.
 
 ## Lifecycle policy parameters<a name="lifecycle_policy_parameters"></a>
 

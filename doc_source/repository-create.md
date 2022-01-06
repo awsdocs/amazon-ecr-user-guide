@@ -1,8 +1,8 @@
 # Creating a private repository<a name="repository-create"></a>
 
-Your container images are stored in Amazon ECR repositories\. Use the following steps to create a private repository\.
+Your container images are stored in Amazon ECR repositories\. Use the following steps to create a private repository using the AWSManagement Console\. For steps to create a repository using the AWS CLI, see [Step 3: Create a repository](getting-started-cli.md#cli-create-repository)\.
 
-**To create a repository \(AWS Management Console\)**
+**To create a repository \(AWSManagement Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
@@ -20,7 +20,7 @@ The name must start with a letter and can only contain lowercase letters, number
 
 1. For **Scan on push**, choose the image scanning setting for the repository\. Repositories that are configured to scan on push start an image scan whenever an image is pushed\. If you want to start an image scan at a different time, you need to manually start the image scans\. For more information, see [Image scanning](image-scanning.md)\.
 
-1. For **KMS encryption**, choose whether to enable encryption of the images in the repository using AWS Key Management Service\. By default, when KMS encryption is enabled, Amazon ECR uses an AWS managed key \(KMS key\) with the alias `aws/ecr`\. This key is created in your account the first time that you create a repository with KMS encryption enabled\. For more information, see [Encryption at rest](encryption-at-rest.md)\.
+1. For **KMS encryption**, choose whether to enable encryption of the images in the repository using AWS Key Management Service\. By default, when KMS encryption is enabled, Amazon ECR uses an managed key \(KMS key\) with the alias `aws/ecr`\. This key is created in your account the first time that you create a repository with KMS encryption enabled\. For more information, see [Encryption at rest](encryption-at-rest.md)\.
 
 1. When KMS encryption is enabled, select **Customer encryption settings \(advanced\)** to choose your own KMS key\. The KMS key must be in the same Region as the cluster\. Choose **Create an AWS KMS key** to navigate to the AWS KMS console to create your own key\.
 

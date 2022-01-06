@@ -2,7 +2,7 @@
 
 The replication status of an individual container image can be viewed by querying using either the image tag or image digest\.
 
-**Checking replication status \(AWS Management Console\)**
+**Checking replication status \(AWSManagement Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 

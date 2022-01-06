@@ -8,9 +8,9 @@ You can add or update the permissions policy for your registry by using the foll
 
 ## Private registry permissions for replication<a name="registry-permissions-create-replication"></a>
 
-### To configure a permissions policy for replication \(AWS Management Console\)<a name="registry-permissions-create-console"></a>
+### To configure a permissions policy for replication \(AWSManagement Console\)<a name="registry-permissions-create-console"></a>
 
-**To configure a replication permissions policy for a private registry \(AWS Management Console\)**
+**To configure a replication permissions policy for a private registry \(AWSManagement Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 
@@ -79,7 +79,7 @@ You can add or update the permissions policy for your registry by using the foll
 
 Amazon ECR private registry permissions may be used to scope the permissions of individual IAM entities to use pull through cache\. If an IAM entity has more permissions granted by an IAM policy than the registry permissions policy is granting, the IAM policy takes precedence\.
 
-**To create a private registry permissions policy \(AWS Management Console\)**
+**To create a private registry permissions policy \(AWSManagement Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 
