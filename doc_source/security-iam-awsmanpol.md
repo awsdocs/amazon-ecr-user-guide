@@ -35,6 +35,20 @@ The `AmazonEC2ContainerRegistryFullAccess` policy is as follows\.
                 "cloudtrail:LookupEvents"
             ],
             "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateServiceLinkedRole"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:AWSServiceName": [
+                        "replication.ecr.amazonaws.com"
+                    ]
+                }
+            }
         }
     ]
 }
