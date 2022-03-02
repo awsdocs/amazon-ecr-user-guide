@@ -6,13 +6,7 @@ For more information about using your Amazon ECR hosted Helm charts with Amazon 
 
 **To push a Helm chart to an Amazon ECR repository**
 
-1. Install the latest version of the Helm client\. These steps were written using Helm version `3.7.0`\. For more information, see [Installing Helm](https://helm.sh/docs/intro/install/)\.
-
-1. Currently, OCI support is considered experimental\. In order to use the commands in these steps, you must enable OCI support in the Helm client\.
-
-   ```
-   export HELM_EXPERIMENTAL_OCI=1
-   ```
+1. Install the latest version of the Helm client\. These steps were written using Helm version `3.8.0`\. For more information, see [Installing Helm](https://helm.sh/docs/intro/install/)\.
 
 1. Use the following steps to create a test Helm chart\. For more information, see [Helm Docs \- Getting Started](https://helm.sh/docs/chart_template_guide/getting_started/)\.
 
@@ -40,7 +34,7 @@ For more information about using your Amazon ECR hosted Helm charts with Amazon 
 1. Package the chart\. The output will contain the filename of the packaged chart which you use when pushing the Helm chart\.
 
    ```
-   cd ..
+   cd ../..
    helm package helm-test-chart
    ```
 
