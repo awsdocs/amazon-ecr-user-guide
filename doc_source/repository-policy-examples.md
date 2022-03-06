@@ -143,7 +143,7 @@ The `Condition` block uses the `NotIpAddress` conditions and the `aws:SourceIp` 
             "Action": "ecr:*",
             "Condition": {
                 "NotIpAddress": {
-                    "aws:SourceIp": "54.240.143.188/32"
+                    "aws:SourceIp": "54.240.143.0/24"
                 }
             }
         }
