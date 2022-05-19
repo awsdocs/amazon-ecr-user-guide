@@ -6,7 +6,7 @@ Amazon ECR uses **registry settings** to configure private image replication at 
 Enabling cross\-Region replication for your registry makes copies of the repositories in one or more destination Regions\. Only images pushed to a repository after cross\-Region replication is configured are copied\.
 
 **Cross\-account replication**  
-Enabling cross\-account replication for your registry makes copies of the repositories in the destination account and Regions you specify\. For cross\-account replication to occur, the destination account must configure a registry permissions policy to allow replication from your registry to occur\. For more information, see [Private registry permissions](registry-permissions.md)\.
+Enabling cross\-account replication for your registry makes copies of the repositories in the destination account and Regions you specify\. Only images pushed to a repository after cross\-account replication is configured are copied\. For cross\-account replication to occur, the destination account must configure a registry permissions policy to allow replication from your registry to occur\. For more information, see [Private registry permissions](registry-permissions.md)\.
 
 **Topics**
 + [Considerations for private image replication](#replication-considerations)
