@@ -12,7 +12,7 @@ The AWS container services team maintains a public roadmap on GitHub\. It contai
 Amazon ECR contains the following components:
 
 Registry  
-An Amazon ECR private registry is provided to each AWS account; you can create one or more repositories in your registry and store images in them\. For more information, see [Amazon ECR private registries](Registries.md)\.
+An Amazon ECR private registry is provided to each AWS account; you can create one or more repositories in your registry and store images in them\. For more information, see [Amazon ECR private registry](Registries.md)\.
 
 Authorization token  
 Your client must authenticate to Amazon ECR registries as an AWS user before it can push and pull images\. For more information, see [Private registry authentication](registry_auth.md)\.
@@ -21,7 +21,7 @@ Repository
 An Amazon ECR repository contains your Docker images, Open Container Initiative \(OCI\) images, and OCI compatible artifacts\. For more information, see [Amazon ECR private repositories](Repositories.md)\.
 
 Repository policy  
-You can control access to your repositories and the images within them with repository policies\. For more information, see [Repository policies](repository-policies.md)\.
+You can control access to your repositories and the images within them with repository policies\. For more information, see [Private repository policies](repository-policies.md)\.
 
 Image  
 You can push and pull container images to your repositories\. You can use these images locally on your development system, or you can use them in Amazon ECS task definitions and Amazon EKS pod specifications\. For more information, see [Using Amazon ECR images with Amazon ECS](ECR_on_ECS.md) and [Using Amazon ECR Images with Amazon EKS](ECR_on_EKS.md)\.
@@ -32,6 +32,7 @@ Amazon ECR provides the following features:
 + Lifecycle policies help with managing the lifecycle of the images in your repositories\. You define rules that result in the cleaning up of unused images\. You can test rules before applying them to your repository\. For more information, see [Lifecycle policies](LifecyclePolicies.md)\.
 + Image scanning helps in identifying software vulnerabilities in your container images\. Each repository can be configured to **scan on push**\. This ensures that each new image pushed to the repository is scanned\. You can then retrieve the results of the image scan\. For more information, see [Image scanning](image-scanning.md)\.
 + Cross\-Region and cross\-account replication makes it easier for you to have your images where you need them\. This is configured as a registry setting and is on a per\-Region basis\. For more information, see [Private registry settings](registry-settings.md)\.
++ Pull through cache rules provide a way to cache repositories in remote public registries in your private Amazon ECR registry\. Using a pull through cache rule, Amazon ECR will periodically reach out to the remote registry to ensure the cached image in your Amazon ECR private registry is up to date\. For more information, see [Using pull through cache rules](pull-through-cache.md)\.
 
 ## How to get started with Amazon ECR<a name="ecr-get-started"></a>
 

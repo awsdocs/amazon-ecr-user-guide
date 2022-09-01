@@ -2,7 +2,10 @@
 
 A lifecycle policy allows you to create a set of rules that expire unused repository images\. The following procedure shows you how to create a lifecycle policy\. You should expect that after creating a lifecycle policy, the affected images are expired within 24 hours\.
 
-## To create a lifecycle policy \(AWSManagement Console\)<a name="lp-creation-console"></a>
+**Important**  
+It is considered best practice to create a lifecycle policy preview to ensure that the images affected by your lifecycle policy rules are what you intend\. For more information, see [Creating a lifecycle policy preview](lpp_creation.md)\.
+
+## To create a lifecycle policy \(AWS Management Console\)<a name="lp-creation-console"></a>
 
 **To create a lifecycle policy using the console**
 
@@ -10,13 +13,17 @@ A lifecycle policy allows you to create a set of rules that expire unused reposi
 
 1. From the navigation bar, choose the Region that contains the repository for which to create a lifecycle policy\.
 
-1. In the navigation pane, choose **Repositories** and select a repository\.
+1. In the navigation pane, choose **Repositories**\.
 
-1. On the **Repositories: *repository\_name*** page, in the navigation pane choose **Lifecycle Policy**\.
+1. On the **Repositories** page, on the **Private** tab, select a repository to view the repository image list\.
 
-1. On the **Repositories: *repository\_name*: Lifecycle policy** page, choose **Create rule**\.
+1. On the repository image list view, in the left navigation pane, choose **Lifecycle Policy**\.
+**Note**  
+If you don't see the **Lifecycle Policy** option in the navigation pane, ensure that you are in the repository image list view\.
 
-1. Enter the following details for your lifecycle policy rule:
+1. On the repository lifecycle policy page, choose **Create rule**\.
+
+1. Enter the following details for your lifecycle policy rule\.
 
    1. For **Rule priority**, type a number for the rule priority\.
 
@@ -28,7 +35,9 @@ A lifecycle policy allows you to create a set of rules that expire unused reposi
 
    1. For **Match criteria**, choose values for **Since image pushed** or **Image count more than** \(if applicable\)\.
 
-1. Choose **Save**\.
+   1. Choose **Save**\.
+
+1. Create additional lifecycle policy rules by repeating steps 5–7\.
 
 ## To create a lifecycle policy \(AWS CLI\)<a name="lp-creation-cli"></a>
 

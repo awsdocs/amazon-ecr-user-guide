@@ -1,11 +1,12 @@
 # Troubleshooting errors with Docker commands when using Amazon ECR<a name="common-errors-docker"></a>
 
+In some cases, running a Docker command against Amazon ECR may result in an error message\. Some common error messages and potential solutions are explained below\.
+
 **Topics**
 + [Error: "Filesystem Verification Failed" or "404: Image Not Found" when pulling an image from an Amazon ECR repository](#error-filesystem-verification-failed)
 + [Error: "Filesystem Layer Verification Failed" when pulling images from Amazon ECR](#error-filesystem-layer-verification)
++ [Errors when pulling using a pull through cache rule](#error-pullthroughcache)
 + [HTTP 403 Errors or "no basic auth credentials" error when pushing to repository](#error-403)
-
-In some cases, running a Docker command against Amazon ECR may result in an error message\. Some common error messages and potential solutions are explained below\. 
 
 ## Error: "Filesystem Verification Failed" or "404: Image Not Found" when pulling an image from an Amazon ECR repository<a name="error-filesystem-verification-failed"></a>
 
@@ -37,6 +38,26 @@ This error can occur in a small percentage of cases when using a Docker version 
 Your client has encountered a network or disk error  
  A full disk or a network issue may prevent one or more layers from downloading, as discussed earlier about the `Filesystem verification failed` message\. Follow the recommendations above to ensure that your filesystem is not full, and that you have enabled access to Amazon S3 from within your network\.
 
+## Errors when pulling using a pull through cache rule<a name="error-pullthroughcache"></a>
+
+When pulling an upstream image using a pull through cache rule, the following are the most common errors you may receive\.
+
+Repository does not exist  
+An error indicating that the repository doesn't exist is most often caused by either the repository not existing in your Amazon ECR private registry or the `ecr:CreateRepository` permission not being granted to the IAM principal pulling the upstream image\. To resolve this error, you should verify that the repository URI in your pull command is correct, the required IAM permissions are granted to the IAM principal pulling the upstream image, or that the repository for the upstream image to be pushed to is created in your Amazon ECR private registry before doing the upstream image pull\. For more information about the required IAM permissions, see [Required IAM permissions](pull-through-cache.md#pull-through-cache-iam)  
+The following is an example of this error\.  
+
+```
+Error response from daemon: repository 111122223333.dkr.ecr.us-east-1.amazonaws.com/ecr-public/amazonlinux/amazonlinux not found: name unknown: The repository with name 'ecr-public/amazonlinux/amazonlinux' does not exist in the registry with id '111122223333'
+```
+
+Requested image not found  
+An error indicating that the image can't be found is most often caused by either the image not existing in the upstream registry or the `ecr:BatchImportUpstreamImage` permission not being granted to the IAM principal pulling the upstream image but the repository already being created in your Amazon ECR private registry\. To resolve this error, you should verify the upstream image and image tag name is correct and that it exists and the required IAM permissions are granted to the IAM principal pulling the upstream image\. For more information about the required IAM permissions, see [Required IAM permissions](pull-through-cache.md#pull-through-cache-iam)\.  
+The following is an example of this error\.  
+
+```
+Error response from daemon: manifest for 111122223333.dkr.ecr.us-east-1.amazonaws.com/ecr-public/amazonlinux/amazonlinux:latest not found: manifest unknown: Requested image not found
+```
+
 ## HTTP 403 Errors or "no basic auth credentials" error when pushing to repository<a name="error-403"></a>
 
 There are times when you may receive an `HTTP 403 (Forbidden)` error, or the error message `no basic auth credentials` from the docker push or docker pull commands, even if you have successfully authenticated to Docker using the aws ecr get\-login\-password command\. The following are some known causes of this issue:
@@ -45,7 +66,7 @@ You have authenticated to a different region
 Authentication requests are tied to specific regions, and cannot be used across regions\. For example, if you obtain an authorization token from US West \(Oregon\), you cannot use it to authenticate against your repositories in US East \(N\. Virginia\)\. To resolve the issue, ensure that you have retrieved an authentication token from the same Region your repository exists in\. For more information, see [Private registry authentication](registry_auth.md)\.
 
 You have authenticated to push to a repository you don't have permissions for  
-You do not have the necessary permissions to push to the repository\. For more information, see [Repository policies](repository-policies.md)\.
+You do not have the necessary permissions to push to the repository\. For more information, see [Private repository policies](repository-policies.md)\.
 
 Your token has expired  
 The default authorization token expiration period for tokens obtained using the `GetAuthorizationToken` operation is 12 hours\.

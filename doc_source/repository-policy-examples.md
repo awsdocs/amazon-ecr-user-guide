@@ -1,4 +1,4 @@
-# Repository policy examples<a name="repository-policy-examples"></a>
+# Private repository policy examples<a name="repository-policy-examples"></a>
 
 The following examples show policy statements that you could use to control the permissions that authenticated users have to Amazon ECR repositories\.
 
@@ -68,7 +68,7 @@ The account you are granting permissions to must have the Region you are creatin
 The following repository policy allows some IAM users to pull images \(*pull\-user\-1* and *pull\-user\-2*\) while providing full access to another \(*admin\-user*\)\.
 
 **Note**  
-For more complicated repository policies that are not currently supported in the AWSManagement Console, you can apply the policy with the [https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html](https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html) AWS CLI command\.
+For more complicated repository policies that are not currently supported in the AWS Management Console, you can apply the policy with the [https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html](https://docs.aws.amazon.com/cli/latest/reference/ecr/set-repository-policy.html) AWS CLI command\.
 
 ```
 {
@@ -148,5 +148,36 @@ The `Condition` block uses the `NotIpAddress` conditions and the `aws:SourceIp` 
             }
         }
     ]
+}
+```
+
+## Example: Allow an AWS service<a name="IAM_service_linked"></a>
+
+The following repository policy allows AWS CodeBuild access to the Amazon ECR API actions necessary for integration with that service\. When using the following example, you should use the `aws:SourceArn` and `aws:SourceAccount` condition keys to scope which resources can assume these permissions\. For more information, see [Amazon ECR sample for CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-ecr.html) in the *AWS CodeBuild User Guide*\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Sid":"CodeBuildAccess",
+         "Effect":"Allow",
+         "Principal":{
+            "Service":"codebuild.amazonaws.com"
+         },
+         "Action":[
+            "ecr:BatchGetImage",
+            "ecr:GetDownloadUrlForLayer"
+         ],
+         "Condition":{
+            "ArnLike":{
+               "aws:SourceArn":"arn:aws:codebuild:region:123456789012:project/project-name"
+            },
+            "StringEquals":{
+               "aws:SourceAccount":"123456789012"
+            }
+         }
+      }
+   ]
 }
 ```

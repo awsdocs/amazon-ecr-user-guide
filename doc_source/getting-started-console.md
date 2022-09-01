@@ -1,4 +1,4 @@
-# Getting started with Amazon ECR using the AWSManagement Console<a name="getting-started-console"></a>
+# Getting started with Amazon ECR using the AWS Management Console<a name="getting-started-console"></a>
 
 Get started with Amazon ECR by creating a repository in the Amazon ECR console\. The Amazon ECR console guides you through the process to get started creating your first repository\.
 
@@ -12,9 +12,17 @@ A repository is where you store your Docker or Open Container Initiative \(OCI\)
 
 1. Choose **Get Started**\.
 
+1. For **Visibility settings**, choose **Private**\.
+
+1. For **Repository name**, specify a name for the repository\.
+
 1. For **Tag immutability**, choose the tag mutability setting for the repository\. Repositories configured with immutable tags will prevent image tags from being overwritten\. For more information, see [Image tag mutability](image-tag-mutability.md)\.
 
-1. For **Scan on push**, choose the image scanning setting for the repository\. Repositories configured to scan on push will start an image scan whenever an image is pushed, otherwise image scans need to be started manually\. For more information, see [Image scanning](image-scanning.md)\.
+1. For **Scan on push**, choose the image scanning setting for the repository\. Repositories configured to scan on push will start an image scan whenever an image is pushed, otherwise image scans need to be started manually\.
+**Important**  
+Configuring image scanning at the repository level has been deprecated in favor of configuring it at the registry level\. For more information, see [Image scanning](image-scanning.md)\.
+
+1. For **KMS encryption**, choose whether to enable server\-side encryption using AWS KMS keys stored in the AWS Key Management Service service\. For more information about this feature, see [Encryption at rest](encryption-at-rest.md)\.
 
 1. Choose **Create repository**\.
 

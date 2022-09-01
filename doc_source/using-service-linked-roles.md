@@ -15,4 +15,4 @@ For information about other services that support service\-linked roles, see [AW
 
 ## Supported Regions for Amazon ECR service\-linked roles<a name="slr-regions"></a>
 
-Amazon ECR supports using service\-linked roles in all of the Regions where the service is available\. For more information, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html)\.
+Amazon ECR supports using service\-linked roles in all of the Regions where the Amazon ECR service is available\. For more information about Amazon ECR Region availability, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html)\.

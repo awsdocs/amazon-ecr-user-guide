@@ -4,7 +4,7 @@ Amazon ECR provides basic scanning type which uses the Common Vulnerabilities an
 
 Amazon ECR uses the severity for a CVE from the upstream distribution source if available, otherwise we use the Common Vulnerability Scoring System \(CVSS\) score\. The CVSS score can be used to obtain the NVD vulnerability severity rating\. For more information, see [NVD Vulnerability Severity Ratings](https://nvd.nist.gov/vuln-metrics/cvss)\. 
 
-You can manually scan container images stored in Amazon ECR\. Or, alternatively, you can configure your repositories to scan images when you push them to a repository\. The last completed image scan findings can be retrieved for each image\. Amazon ECR sends an event to Amazon EventBridge \(formerly called CloudWatch Events\) when an image scan is completed\. For more information, see [Amazon ECR events and EventBridge](ecr-eventbridge.md)\.
+When basic scanning is used, you may specify scan on push filters to specify which repositories are set to do an image scan when new images are pushed\. Any repositories not matching a scan on push filter will be set to the **manual** scan frequency which means to perform a scan, you must manually trigger the scan\. The last completed image scan findings can be retrieved for each image\. Amazon ECR sends an event to Amazon EventBridge \(formerly called CloudWatch Events\) when an image scan is completed\. For more information, see [Amazon ECR events and EventBridge](ecr-eventbridge.md)\.
 
 For troubleshooting details for some common issues when scanning images, see [Troubleshooting image scanning issues](image-scanning-troubleshooting.md)\.
 
@@ -12,7 +12,7 @@ For troubleshooting details for some common issues when scanning images, see [Tr
 
 By default, Amazon ECR enables basic scanning on all private registries\. As a result, unless you've changed the scanning settings on your private registry there should be no need to enable basic scanning\. You may use the following steps to verify that basic scanning is enabled and define one or more scan on push filters\.
 
-**To enable basic scanning for your private registry \(AWSManagement Console\)**
+**To enable basic scanning for your private registry \(AWS Management Console\)**
 
 The scanning configuration is defined at the private registry level on a per\-Region basis\.
 
@@ -34,7 +34,7 @@ For troubleshooting details for some common issues when scanning images, see [Tr
 
 ### To start a manual scan of an image \(console\)<a name="manual-scan-console"></a>
 
-Use the following steps to start a manual image scan using the AWSManagement Console\.
+Use the following steps to start a manual image scan using the AWS Management Console\.
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
@@ -88,7 +88,7 @@ For troubleshooting details for some common issues when scanning images, see [Tr
 
 ### To retrieve image scan findings \(console\)<a name="describe-scan-findings-console"></a>
 
-Use the following steps to retrieve image scan findings using the AWSManagement Console\.
+Use the following steps to retrieve image scan findings using the AWS Management Console\.
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 

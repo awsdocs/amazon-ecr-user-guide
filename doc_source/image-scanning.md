@@ -6,11 +6,13 @@ Amazon ECR image scanning helps in identifying software vulnerabilities in your 
 
 ## Using filters<a name="image-scanning-filters"></a>
 
-When an image scanning type is configured, you may specify that all repositories be scanned or you can specify filters to scope which repositories are scanned\. Image scan filters are supported for both the basic and enhanced scanning types\.
+When an image scanning is configured for your private registry, you may specify that all repositories be scanned or you can specify filters to scope which repositories are scanned\. 
 
-When a filter is specified, a filter with no wildcard will match all repository names that contain the filter\. A filter with a wildcard \(`*`\) matches on any repository name where the wildcard replaces zero or more characters in the repository name\.
+When **basic** scanning is used, you may specify scan on push filters to specify which repositories are set to do an image scan when new images are pushed\. Any repositories not matching a basic scanning scan on push filter will be set to the **manual** scan frequency which means to perform a scan, you must manually trigger the scan\. 
 
-The following table provides examples where repository names are expressed on the horizontal axis and example filters are specified on the vertical axis\.
+When **enhanced** scanning is used, you may specify separate filters for scan on push and continuous scanning\. Any repositories not matching an enhanced scanning filter will have scanning disabled\. If you are using enhanced scanning and specify separate filters for scan on push and continuous scanning where multiple filters match the same repository, then Amazon ECR enforces the continuous scanning filter over the scan on push filter for that repository\.
+
+When a filter is specified, a filter with no wildcard will match all repository names that contain the filter\. A filter with a wildcard \(`*`\) matches on any repository name where the wildcard replaces zero or more characters in the repository name\. The following table provides examples where repository names are expressed on the horizontal axis and example filters are specified on the vertical axis\.
 
 
 |  |  prod  |  repo\-prod  |  prod\-repo  |  repo\-prod\-repo  |  prodrepo  | 

@@ -1,6 +1,6 @@
 # Private registry authentication<a name="registry_auth"></a>
 
-You can use the AWSManagement Console, the AWS CLI, or the AWS SDKs to create and manage private repositories\. You can also use those methods to perform some actions on images, such as listing or deleting them\. These clients use standard AWS authentication methods\. Even though you can use the Amazon ECR API to push and pull images, you're more likely to use the Docker CLI or a language\-specific Docker library\.
+You can use the AWS Management Console, the AWS CLI, or the AWS SDKs to create and manage private repositories\. You can also use those methods to perform some actions on images, such as listing or deleting them\. These clients use standard AWS authentication methods\. Even though you can use the Amazon ECR API to push and pull images, you're more likely to use the Docker CLI or a language\-specific Docker library\.
 
 The Docker CLI doesn't support native IAM authentication methods\. Additional steps must be taken so that Amazon ECR can authenticate and authorize Docker push and pull requests\.
 
@@ -17,7 +17,7 @@ The Amazon ECR Docker credential helper doesn't support multi\-factor authentica
 
 An authorization token's permission scope matches that of the IAM principal used to retrieve the authentication token\. An authentication token is used to access any Amazon ECR registry that your IAM principal has access to and is valid for 12 hours\. To obtain an authorization token, you must use the [GetAuthorizationToken](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) API operation to retrieve a base64\-encoded authorization token containing the username `AWS` and an encoded password\. The AWS CLI `get-login-password` command simplifies this by retrieving and decoding the authorization token which you can then pipe into a docker login command to authenticate\.
 
-### To authenticate Docker to an Amazon ECR private registry with get\-login\-password<a name="get-login-password"></a>
+### To authenticate Docker to an Amazon ECR private registry with the CLI<a name="get-login-password"></a>
 
 To authenticate Docker to an Amazon ECR registry with get\-login\-password, run the aws ecr get\-login\-password command\. When passing the authentication token to the docker login command, use the value `AWS` for the username and specify the Amazon ECR registry URI you want to authenticate to\. If authenticating to multiple registries, you must repeat the command for each registry\.
 **Important**  

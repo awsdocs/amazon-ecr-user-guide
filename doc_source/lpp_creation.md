@@ -2,21 +2,23 @@
 
 A lifecycle policy preview provides a way see the impact of a lifecycle policy on an image repository before you apply it\. It is considered best practice to do a preview before applying a lifecycle policy to a repository\. The following procedure shows you how to create a lifecycle policy preview\.
 
-**To create a lifecycle policy preview \(AWSManagement Console\)**
+**To create a lifecycle policy preview \(AWS Management Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
 1. From the navigation bar, choose the Region that contains the repository on which to perform a lifecycle policy preview\.
 
-1. In the navigation pane, choose **Repositories** and select a repository\.
+1. In the navigation pane, choose **Repositories**\.
 
-1. On the **Repositories: *repository\_name*** page, in the navigation pane choose **Lifecycle Policy**\.
+1. On the **Repositories** page, on the **Private** tab, select a repository to view the repository image list\.
+
+1. On the repository image list view, in the left navigation pane, choose **Lifecycle Policy**\.
 **Note**  
 If you don't see the **Lifecycle Policy** option in the navigation pane, ensure that you are in the repository image list view\.
 
-1. On the **Repositories: *repository\_name*: Lifecycle policy** page, choose **Edit test rules**, **Create rule**\.
+1. On the repository lifecycle policy page, choose **Edit test rules**, **Create rule**\.
 
-1. Enter the following details for your lifecycle policy rule:
+1. Enter the following details for each test lifecycle policy rule\.
 
    1. For **Rule priority**, type a number for the rule priority\.
 
@@ -28,9 +30,9 @@ If you don't see the **Lifecycle Policy** option in the navigation pane, ensure 
 
    1. For **Match criteria**, choose values for **Since image pushed** or **Image count more than** \(if applicable\)\.
 
-1. Choose **Save**\.
+   1. Choose **Save**\.
 
-1. Create additional lifecycle policy rules by repeating steps 5–7\.
+1. Create additional test lifecycle policy rules by repeating steps 5–7\.
 
 1. To run the lifecycle policy preview, choose **Save and run test**\.
 

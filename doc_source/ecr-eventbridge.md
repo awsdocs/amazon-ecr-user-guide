@@ -72,7 +72,7 @@ For details about events that Amazon Inspector emits when enhanced scanning is e
 
 **Event for a change notification on a resource with enhanced scanning enabled \(enhanced scanning\)**
 
-When enhanced scanning is enabled for your registry, the following event is sent by Amazon ECR when there is a change with a resource that has enhanced scanning enabled\. This includes new repositories being created, the scan frequency for a repository being changed, or when images are created or deleted in repositories with enhanced scanning enabled\. For more information, see [Image scanning](image-scanning.md)\. For more information, see [Image scanning](image-scanning.md)\.
+When enhanced scanning is enabled for your registry, the following event is sent by Amazon ECR when there is a change with a resource that has enhanced scanning enabled\. This includes new repositories being created, the scan frequency for a repository being changed, or when images are created or deleted in repositories with enhanced scanning enabled\. For more information, see [Image scanning](image-scanning.md)\.
 
 ```
 {

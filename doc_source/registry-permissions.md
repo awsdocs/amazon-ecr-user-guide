@@ -1,10 +1,14 @@
 # Private registry permissions<a name="registry-permissions"></a>
 
-Amazon ECR uses a **registry policy** to grant permissions to an AWS principal to use the replication and pull through cache features\.
+Amazon ECR uses a **registry policy** to grant permissions to an AWS principal at the private registry level\. These permissions are used to scope access to the replication and pull through cache features\.
 
-The cross account policy type is used to grant permissions to an AWS principal, allowing the replication of the repositories from a source registry to your registry\. By default, you have permission to configure cross\-Region replication within your own registry\. You only need to configure the registry policy if you're granting another account permission to replicate contents to your registry\.
+Amazon ECR only enforces the following permissions at the private registry level\. If any additional actions are added to the registry policy, an error will occur\.
++ `ecr:ReplicateImage` – Grants permission to another account, referred to as the source registry, to replicate its images to your registry\. This is only used for cross\-account replication\.
++ `ecr:BatchImportUpstreamImage` – Grants permission to retrieve the external image and import it to your private registry\.
++ `ecr:CreateRepository` – Grants permission to create a repository in a private registry\. This permission is required if the repository storing either the replicated or cached images doesn't already exist in the private registry\.
 
-A registry policy must grant permission for the `ecr:ReplicateImage` API action\. This API is an internal Amazon ECR API that can replicate images between Regions or accounts\. You can also grant permission for the `ecr:CreateRepository` permission, which allows Amazon ECR to create repositories in your registry if they don't exist already\. If the `ecr:CreateRepository` permission isn't provided, a repository with the same name as the source repository must be created manually in your registry\. If neither is done, replication fails\. Any failed CreateRepository or ReplicateImage API actions show up in CloudTrail\.
+**Note**  
+While it is possible to add the `ecr:*` action to a private registry permissions policy, it is considered best practice to only add the specific actions required based on the feature you're using rather than use a wildcard\.
 
 **Topics**
 + [Setting a private registry permission statement](registry-permissions-create.md)

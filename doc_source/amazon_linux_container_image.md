@@ -10,7 +10,7 @@ The Amazon Linux container image is available on Amazon ECR Public and on [Docke
 
 1. Authenticate your Docker client to the Amazon Linux Public registry\. Authentication tokens are valid for 12 hours\. For more information, see [Private registry authentication](registry_auth.md)\.
 **Note**  
-The get\-login\-password command is available in the AWS CLI starting with version `1.17.10`\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) in the *AWS Command Line Interface User Guide*\.
+The ecr\-public commands are available in the AWS CLI starting with version `1.18.1.187`, however we recommend using the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) in the *AWS Command Line Interface User Guide*\.
 
    ```
    aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
@@ -22,7 +22,7 @@ The get\-login\-password command is available in the AWS CLI starting with versi
    Login succeeded
    ```
 
-1. Pull the Amazon Linux container image using the docker pull command\. To view the Amazon Linux container image on the Public Gallery, see [Public Gallery \- amazonlinux](https://gallery.ecr.aws/amazonlinux/amazonlinux)\.
+1. Pull the Amazon Linux container image using the docker pull command\. To view the Amazon Linux container image on the Amazon ECR Public Gallery, see [Amazon ECR Public Gallery \- amazonlinux](https://gallery.ecr.aws/amazonlinux/amazonlinux)\.
 
    ```
    docker pull public.ecr.aws/amazonlinux/amazonlinux:latest

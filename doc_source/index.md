@@ -4,21 +4,21 @@
 *****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
-Amazon's trademarks and trade dress may not be used in 
-     connection with any product or service that is not Amazon's, 
-     in any manner that is likely to cause confusion among customers, 
-     or in any manner that disparages or discredits Amazon. All other 
-     trademarks not owned by Amazon are the property of their respective
-     owners, who may or may not be affiliated with, connected to, or 
-     sponsored by Amazon.
+Amazon's trademarks and trade dress may not be used in
+connection with any product or service that is not Amazon's,
+in any manner that is likely to cause confusion among customers,
+or in any manner that disparages or discredits Amazon. All other
+trademarks not owned by Amazon are the property of their respective
+owners, who may or may not be affiliated with, connected to, or
+sponsored by Amazon.
 
 -----
 ## Contents
 + [What is Amazon Elastic Container Registry?](what-is-ecr.md)
 + [Setting up with Amazon ECR](get-set-up-for-amazon-ecr.md)
-+ [Getting started with Amazon ECR using the AWSManagement Console](getting-started-console.md)
++ [Getting started with Amazon ECR using the AWS Management Console](getting-started-console.md)
 + [Using Amazon ECR with the AWS CLI](getting-started-cli.md)
-+ [Amazon ECR private registries](Registries.md)
++ [Amazon ECR private registry](Registries.md)
    + [Private registry authentication](registry_auth.md)
    + [Private registry settings](registry-settings.md)
    + [Private registry permissions](registry-permissions.md)
@@ -27,14 +27,14 @@ Amazon's trademarks and trade dress may not be used in
       + [Private registry policy examples](registry-permissions-examples.md)
 + [Amazon ECR private repositories](Repositories.md)
    + [Creating a private repository](repository-create.md)
-   + [Viewing repository information](repository-info.md)
+   + [Viewing private repository details](repository-info.md)
    + [Editing a private repository](repository-edit.md)
    + [Deleting a private repository](repository-delete.md)
-   + [Repository policies](repository-policies.md)
-      + [Setting a repository policy statement](set-repository-policy.md)
-      + [Deleting a repository policy statement](delete-repository-policy.md)
-      + [Repository policy examples](repository-policy-examples.md)
-   + [Tagging an Amazon ECR repository](ecr-using-tags.md)
+   + [Private repository policies](repository-policies.md)
+      + [Setting a private repository policy statement](set-repository-policy.md)
+      + [Deleting a private repository policy statement](delete-repository-policy.md)
+      + [Private repository policy examples](repository-policy-examples.md)
+   + [Tagging a private repository](ecr-using-tags.md)
 + [Private images](images.md)
    + [Pushing an image](image-push.md)
       + [Pushing a Docker image](docker-push-ecr-image.md)
@@ -68,6 +68,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Using service-linked roles for Amazon ECR](using-service-linked-roles.md)
          + [Amazon ECR service-linked role for replication](slr-replication.md)
          + [Amazon ECR service-linked role for pull through cache](slr-pullthroughcache.md)
+      + [Cross-service confused deputy prevention](cross-service-confused-deputy-prevention.md)
       + [Amazon Elastic Container Registry Identity-Based Policy Examples](security_iam_id-based-policy-examples.md)
       + [Using Tag-Based Access Control](ecr-supported-iam-actions-tagging.md)
       + [Troubleshooting Amazon Elastic Container Registry Identity and Access](security_iam_troubleshoot.md)

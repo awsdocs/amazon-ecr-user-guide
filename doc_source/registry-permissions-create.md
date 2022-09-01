@@ -8,9 +8,13 @@ You can add or update the permissions policy for your registry by using the foll
 
 ## Private registry permissions for replication<a name="registry-permissions-create-replication"></a>
 
-### To configure a permissions policy for replication \(AWSManagement Console\)<a name="registry-permissions-create-console"></a>
+The cross account policy type is used to grant permissions to an AWS principal, allowing the replication of the repositories from a source registry to your registry\. By default, you have permission to configure cross\-Region replication within your own registry\. You only need to configure the registry policy if you're granting another account permission to replicate contents to your registry\.
 
-**To configure a replication permissions policy for a private registry \(AWSManagement Console\)**
+A registry policy must grant permission for the `ecr:ReplicateImage` API action\. This API is an internal Amazon ECR API that can replicate images between Regions or accounts\. You can also grant permission for the `ecr:CreateRepository` permission, which allows Amazon ECR to create repositories in your registry if they don't exist already\. If the `ecr:CreateRepository` permission isn't provided, a repository with the same name as the source repository must be created manually in your registry\. If neither is done, replication fails\. Any failed CreateRepository or ReplicateImage API actions show up in CloudTrail\.
+
+### To configure a permissions policy for replication \(AWS Management Console\)<a name="registry-permissions-create-console"></a>
+
+**To configure a replication permissions policy for a private registry \(AWS Management Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 
@@ -79,7 +83,7 @@ You can add or update the permissions policy for your registry by using the foll
 
 Amazon ECR private registry permissions may be used to scope the permissions of individual IAM entities to use pull through cache\. If an IAM entity has more permissions granted by an IAM policy than the registry permissions policy is granting, the IAM policy takes precedence\.
 
-**To create a private registry permissions policy \(AWSManagement Console\)**
+**To create a private registry permissions policy \(AWS Management Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/](https://console.aws.amazon.com/ecr/)\.
 

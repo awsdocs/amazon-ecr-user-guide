@@ -2,7 +2,7 @@
 
 Replication settings are configured separately for each Region\. Use the following steps to configure replication for your private registry\.
 
-**To configure registry replication settings \(AWSManagement Console\)**
+**To configure registry replication settings \(AWS Management Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 
@@ -28,7 +28,7 @@ For cross\-account replication to occur, the destination account must configure 
 
 **To configure registry replication settings \(AWS CLI\)**
 
-1. Create a JSON file containing the replication rules to define for your registry\. A replication configuration may contain up to 10 rules, with up to 25 unique destinations across all rules and 100 filters per rule\. To configure cross\-Region replication within your own account, you specify your own account ID\. For more examples, see [Private image replication examples](registry-settings-examples.md)\.
+1. Create a JSON file containing the replication rules to define for your registry\. A replication configuration may contain up to 10 rules, with up to 25 unique destinations across all rules and 100 filters per each rule\. To configure cross\-Region replication within your own account, you specify your own account ID\. For more examples, see [Private image replication examples](registry-settings-examples.md)\.
 
    ```
    {

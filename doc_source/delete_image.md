@@ -4,7 +4,7 @@ If you're finished using an image, you can delete it from your repository\. If y
 
 As an alternative to deleting images manually, you can create repository lifecycle policies which provide more control over the lifecycle management of images in your repositories\. Lifecycle policies automate this process for you\. For more information, see [Lifecycle policies](LifecyclePolicies.md)\.
 
-**To delete an image \(AWSManagement Console\)**
+**To delete an image \(AWS Management Console\)**
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 

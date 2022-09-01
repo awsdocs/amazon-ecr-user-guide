@@ -83,7 +83,7 @@ In this section, you create a Docker image of a simple web application, and test
 1. Edit the `Dockerfile` you just created and add the following content\.
 
    ```
-   FROM ubuntu:18.04
+   FROM public.ecr.aws/docker/library/ubuntu:18.04
    
    # Install dependencies
    RUN apt-get update && \
@@ -156,7 +156,7 @@ The `get-login-password` is the preferred method for authenticating to an Amazon
 
 When passing the Amazon ECR authorization token to the docker login command, use the value `AWS` for the username and specify the Amazon ECR registry URI you want to authenticate to\. If authenticating to multiple registries, you must repeat the command for each registry\.
 **Important**  
-If you receive an error, install or upgrade to the latest version of the AWS CLI\. For more information, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) in the *AWS Command Line Interface User Guide*\.
+If you receive an error or the get\-login\-password command is unavailable, ensure you are using the latest version of the AWS CLI\. For more information on installing or upgrading to the latest version of the AWS CLI, see [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) in the *AWS Command Line Interface User Guide*\.
 + [get\-login\-password](https://docs.aws.amazon.com/cli/latest/reference/ecr/get-login-password.html) \(AWS CLI\)
 
   ```

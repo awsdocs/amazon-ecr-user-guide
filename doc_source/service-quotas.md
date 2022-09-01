@@ -1,47 +1,16 @@
 # Amazon ECR service quotas<a name="service-quotas"></a>
 
-The following table provides the default service quotas for \(\)\.
+The following table provides the default service quotas for Amazon Elastic Container Registry \(Amazon ECR\)\.
 
-
-****  
-
-| Service quota | Description | Default quota value | Adjustable | 
-| --- | --- | --- | --- | 
-|  Registered repositories  |  The maximum number of repositories that you can create per Region\.  |  10,000  |  Yes  | 
-|  Image per repository  |  The maximum number of images per repository\.  |  10,000  |  Yes  | 
-
-The following table provides the default rate quotas for each of the Amazon ECR API actions involved with the image push and image pull actions\.
-
-
-****  
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 
-The following table provides other quotas for Amazon ECR and Docker images that cannot be changed\.
-
-**Note**  
-The layer part information mentioned in the following table is only applicable if you are calling the Amazon ECR API actions directly to initiate multipart uploads for image push operations\. This is a rare action\. We recommend that you use the Docker CLI to pull, tag, and push images\.
-
-
-| Service quota | Description | Quota value | Adjustable | 
-| --- | --- | --- | --- | 
-|  Layer parts  |  The maximum number of layer parts\. This is only applicable if you are using Amazon ECR API actions directly to initiate multipart uploads for image push operations\.  |  4,200  |  No  | 
-|  Maximum layer size  |  The maximum size \(MiB\) of a layer\. \*\*  |  42,000  |  No  | 
-|  Minimum layer part size  |  The minimum size \(MiB\) of a layer part\. This is only applicable if you are using Amazon ECR API actions directly to initiate multipart uploads for image push operations\.  |  5  |  No  | 
-|  Maximum layer part size  |  The maximum size \(MiB\) of a layer part\. This is only applicable if you are using Amazon ECR API actions directly to initiate multipart uploads for image push operations\.  |  10  |  No  | 
-|  Tags per image  |  The maximum number of tags per image\.  |  1,000  |  No  | 
-|  Lifecycle policy length  |  The maximum number of characters in a lifecycle policy\.  |  30,720  |  No  | 
-|  Rules per lifecycle policy  |  The maximum number of rules in a lifecycle policy\.  |  50  |  No  | 
-|  Rate of image scans  |  The maximum number of image scans per image, per 24 hours\.  |  1  |  No  | 
-
-\*\* The maximum layer size listed here is calculated by multiplying the maximum layer part size \(10 MiB\) by the maximum number of layer parts \(4,200\)\.
-
-## Managing your Amazon ECR service quotas in the AWSManagement Console<a name="service-quotas-console"></a>
+## Managing your Amazon ECR service quotas in the AWS Management Console<a name="service-quotas-console"></a>
 
 Amazon ECR has integrated with Service Quotas, an AWS service that enables you to view and manage your quotas from a central location\. For more information, see [What Is Service Quotas?](https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html) in the *Service Quotas User Guide*\.
 
 Service Quotas makes it easy to look up the value of all Amazon ECR service quotas\.
 
-**To view Amazon ECR service quotas \(AWSManagement Console\)**
+**To view Amazon ECR service quotas \(AWS Management Console\)**
 
 1. Open the Service Quotas console at [https://console\.aws\.amazon\.com/servicequotas/](https://console.aws.amazon.com/servicequotas/)\.
 
@@ -61,7 +30,7 @@ Amazon ECR provides CloudWatch usage metrics that correspond to the AWS service 
 
 Use the following steps to create a CloudWatch alarm based on one of the Amazon ECR API usage metrics\.
 
-**To create an alarm based on your Amazon ECR usage quotas \(AWSManagement Console\)**
+**To create an alarm based on your Amazon ECR usage quotas \(AWS Management Console\)**
 
 1. Open the Service Quotas console at [https://console\.aws\.amazon\.com/servicequotas/](https://console.aws.amazon.com/servicequotas/)\.
 

@@ -7,10 +7,15 @@ With enhanced scanning, you can choose which repositories are configured for aut
 ## Considerations for enhanced scanning<a name="image-scanning-enhanced-considerations"></a>
 
 The following should be considered when enabling Amazon ECR enhanced scanning\.
++ Enhanced scanning isn't supported in the following Regions:
+  + Asia Pacific \(Osaka\) \(`ap-northeast-3`\)
+  + Asia Pacific \(Jakarta\) \(`ap-southeast-3`\)
+  + Africa \(Cape Town\) \(`af-south-1`\)
 + Amazon Inspector supports scanning for specific operating systems\. For a full list, see [Supported operating systems \- Amazon ECR scanning](https://docs.aws.amazon.com/inspector/latest/user/supported.html#supported-os) in the *Amazon Inspector User Guide*\.
 + Amazon Inspector uses a service\-linked IAM role, which provides the permissions needed to provide enhanced scanning for your repositories\. The service\-linked IAM role is created automatically by Amazon Inspector when enhanced scanning is enabled for your private registry\. For more information, see [Using service\-linked roles for Amazon Inspector](https://docs.aws.amazon.com/inspector/latest/user/using-service-linked-roles.html) in the *Amazon Inspector User Guide*\.
-+ When your private registry has enhanced scanning enabled, all repositories matching the scan filters are scanned using enhanced scanning only\. Any repositories that don't match a filter will have a `Manual` scan frequency, but won't be scanned\. Manual scans using enhanced scanning isn't supported\. For more information, see [Using filters](image-scanning.md#image-scanning-filters)\.
-+ When continuous scanning is enabled for a repository, if an image hasn't been updated in the past 30 days based on the image push timestamp, then continuous scanning is suspended for that image\. Images with suspended scanning will show a scan status of: `SCAN_ELIGIBILITY_EXPIRED`\.
++ When your private registry has enhanced scanning enabled, all repositories matching the scan filters are scanned using enhanced scanning only\. Any repositories that don't match a filter will have an `Off` scan frequency and won't be scanned\. Manual scans using enhanced scanning aren't supported\. For more information, see [Using filters](image-scanning.md#image-scanning-filters)\.
++ If you specify separate filters for scan on push and continuous scanning where multiple filters match the same repository, then Amazon ECR enforces the continuous scanning filter over the scan on push filter for that repository\.
++ When continuous scanning is enabled for a repository, if an image hasn't been updated in the past 30 days based on the image push timestamp, then continuous scanning is suspended for that image\. Images with suspended scanning will show a scan status of `SCAN_ELIGIBILITY_EXPIRED`\.
 + When enhanced scanning is enabled, Amazon ECR sends an event to EventBridge when the scan frequency for a repository is changed\. Amazon Inspector emits events to EventBridge when an initial scan is completed and when an image scan finding is created, updated, or closed\.
 
 ## Required IAM permissions<a name="image-scanning-enhanced-iam"></a>
@@ -52,9 +57,9 @@ The following IAM policy grants the required permissions for enabling and using 
 
 ## Enabling enhanced scanning<a name="image-scanning-enhanced-enabling"></a>
 
-### To enable enhanced scanning \(AWSManagement Console\)<a name="image-scanning-enhanced-enabling-console"></a>
+### To enable enhanced scanning \(AWS Management Console\)<a name="image-scanning-enhanced-enabling-console"></a>
 
-**To enable enhanced scanning for your private registry \(AWSManagement Console\)**
+**To enable enhanced scanning for your private registry \(AWS Management Console\)**
 
 The scanning configuration is defined at the private registry level on a per\-Region basis\.
 
@@ -104,6 +109,18 @@ Use the following AWS CLI command to enable enhanced scanning for your private r
        --rules '[{"repositoryFilters" : [{"filter":"prod","filterType" : "WILDCARD"}],"scanFrequency" : "CONTINUOUS_SCAN"},{"repositoryFilters" : [{"filter":"*","filterType" : "WILDCARD"}],"scanFrequency" : "SCAN_ON_PUSH"}]' \
        --region us-west-2
   ```
+
+## Changing the enhanced scanning duration<a name="image-scanning-enhanced-duration"></a>
+
+Amazon Inspector supports configuring the duration that your private repositories are continuously monitored for\. By default, when enhanced scanning is enabled for your Amazon ECR private registry, the Amazon Inspector service continually monitors your repositories until either the image is deleted or enhanced scanning is disabled\. The duration that Amazon Inspector scans your images can be changed using the Amazon Inspector settings\. The available scan durations are **Lifetime \(default\)**, **180 days**, and **30 days**\. When the scan duration for a repository elapses, the scan status of `SCAN_ELIGIBILITY_EXPIRED` is displayed when listing your scan vulnerabilities\. For more information, see [Changing the Amazon ECR automated re\-scan duration](https://docs.aws.amazon.com/inspector/latest/user/enable-disable-scanning-ecr.html#scan-duration-setting) in the *Amazon Inspector User Guide*\.
+
+**To change the enhanced scanning duration setting**
+
+1. Open the Amazon Inspector console at [https://console\.aws\.amazon\.com/inspector/v2/home](https://console.aws.amazon.com/inspector/v2/home)\.
+
+1. In the left navigation, expand **Settings** and then choose **General**\.
+
+1. On the **Settings** page, under **ECR re\-scan duration** choose a setting, then choose **Save**\.
 
 ## EventBridge events<a name="image-scanning-enhanced-events"></a>
 
@@ -179,7 +196,7 @@ Example output:
     ],
     "detail": {
         "scan-status": "INITIAL_SCAN_COMPLETE",
-        "repository-name": "arn:aws:ecr:us-east-2:809632081692:repository/amazon/amazon-ecs-sample",
+        "repository-name": "arn:aws:ecr:us-east-2:123456789012:repository/amazon/amazon-ecs-sample",
         "finding-severity-counts": {
             "CRITICAL": 7,
             "HIGH": 61,
@@ -320,9 +337,9 @@ You can retrieve the scan findings for the last completed image scan\. The findi
 
 For troubleshooting details for some common issues when scanning images, see [Troubleshooting image scanning issues](image-scanning-troubleshooting.md)\.
 
-### To retrieve image scan findings \(AWSManagement Console\)<a name="image-scanning-enhanced-describe-scan-findings-console"></a>
+### To retrieve image scan findings \(AWS Management Console\)<a name="image-scanning-enhanced-describe-scan-findings-console"></a>
 
-Use the following steps to retrieve image scan findings using the AWSManagement Console\.
+Use the following steps to retrieve image scan findings using the AWS Management Console\.
 
 1. Open the Amazon ECR console at [https://console\.aws\.amazon\.com/ecr/repositories](https://console.aws.amazon.com/ecr/repositories)\.
 

@@ -6,4 +6,4 @@ Use Cost Explorer to view charts of your usage and costs\. You can view data fro
 
 The metering data in your Cost and Usage Reports shows usage across all of your Amazon ECR repositories\. For more information, see [Tagging your resources for billing](ecr-using-tags.md#tag-resources-for-billing)\.
 
-For more information about creating an AWS Cost and Usage Report, see [AWS Cost and Usage Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage.html) in the *AWS Billing and Cost Management User Guide*\.
+For more information about creating an AWS Cost and Usage Report, see [AWS Cost and Usage Report](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage.html) in the *AWS Billing User Guide*\.

@@ -6,7 +6,7 @@ For more information about using your Amazon ECR hosted Helm charts with Amazon 
 
 **To push a Helm chart to an Amazon ECR repository**
 
-1. Install the latest version of the Helm client\. These steps were written using Helm version `3.8.0`\. For more information, see [Installing Helm](https://helm.sh/docs/intro/install/)\.
+1. Install the latest version of the Helm client\. These steps were written using Helm version `3.8.2`\. For more information, see [Installing Helm](https://helm.sh/docs/intro/install/)\.
 
 1. Use the following steps to create a test Helm chart\. For more information, see [Helm Docs \- Getting Started](https://helm.sh/docs/chart_template_guide/getting_started/)\.
 
@@ -44,7 +44,7 @@ For more information about using your Amazon ECR hosted Helm charts with Amazon 
    Successfully packaged chart and saved it to: /Users/username/helm-test-chart-0.1.0.tgz
    ```
 
-1. Create a repository to store your Helm chart\. The name of your repository should match the name you use the Helm chart in step 3\. For more information, see [Creating a private repository](repository-create.md)\.
+1. Create a repository to store your Helm chart\. The name of your repository should match the name you used when creating the Helm chart in step 2\. For more information, see [Creating a private repository](repository-create.md)\.
 
    ```
    aws ecr create-repository \

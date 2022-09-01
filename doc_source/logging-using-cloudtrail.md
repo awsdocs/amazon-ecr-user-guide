@@ -4,6 +4,8 @@ Amazon ECR is integrated with AWS CloudTrail, a service that provides a record o
 + All API calls, including calls from the Amazon ECR console
 + All actions taken due to the encryption settings on your repositories
 + All actions taken due to lifecycle policy rules, including both successful and unsuccessful actions
+**Important**  
+Due to the size limitations of individual CloudTrail events, for lifecycle policy actions where 10 or more images are expired Amazon ECR sends multiple events to CloudTrail\. Additionally, Amazon ECR includes a maximum of 100 tags per image\.
 
 When a trail is created, you can enable continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for Amazon ECR\. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in **Event history**\. Using this information, you can determine the request that was made to Amazon ECR, the originating IP address, who made the request, when it was made, and additional details\. 
 
@@ -288,6 +290,9 @@ When pulling an image, if you don't already have the image locally, you will als
 #### Example: Image lifecycle policy action<a name="cloudtrail-examples-lcp"></a>
 
 The following example shows a CloudTrail log entry that demonstrates when an image is expired due to a lifecycle policy rule\. This event type can be located by filtering for `PolicyExecutionEvent` for the event name field\.
+
+**Important**  
+Due to the size limitations of individual CloudTrail events, for lifecycle policy actions where 10 or more images are expired Amazon ECR sends multiple events to CloudTrail\. Additionally, Amazon ECR includes a maximum of 100 tags per image\.
 
 ```
 {

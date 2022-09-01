@@ -118,17 +118,17 @@ To enable cross\-account access, you can specify an entire account or IAM entiti
 
 The Amazon ECR service supports only one type of resource\-based policy called a *repository policy*, which is attached to a *repository*\. This policy defines which principal entities \(accounts, users, roles, and federated users\) can perform actions on the repository\.
 
-To learn how to attach a resource\-based policy to a repository, see [Repository policies](repository-policies.md)\.
+To learn how to attach a resource\-based policy to a repository, see [Private repository policies](repository-policies.md)\.
 
 ### Examples<a name="security_iam_service-with-iam-resource-based-policies-examples"></a>
 
 
 
-To view examples of Amazon ECR resource\-based policies, see [Repository policy examples](repository-policy-examples.md),
+To view examples of Amazon ECR resource\-based policies, see [Private repository policy examples](repository-policy-examples.md),
 
 ## Authorization Based on Amazon ECR Tags<a name="security_iam_service-with-iam-tags"></a>
 
-You can attach tags to Amazon ECR resources or pass tags in a request to Amazon ECR\. To control access based on tags, you provide tag information in the [condition element](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) of a policy using the `ecr:ResourceTag/key-name`, `aws:RequestTag/key-name`, or `aws:TagKeys` condition keys\. For more information about tagging Amazon ECR resources, see [Tagging an Amazon ECR repository](ecr-using-tags.md)\.
+You can attach tags to Amazon ECR resources or pass tags in a request to Amazon ECR\. To control access based on tags, you provide tag information in the [condition element](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) of a policy using the `ecr:ResourceTag/key-name`, `aws:RequestTag/key-name`, or `aws:TagKeys` condition keys\. For more information about tagging Amazon ECR resources, see [Tagging a private repository](ecr-using-tags.md)\.
 
 To view an example identity\-based policy for limiting access to a resource based on the tags on that resource, see [Using Tag\-Based Access Control](ecr-supported-iam-actions-tagging.md)\.
 
@@ -138,7 +138,7 @@ An [IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) is
 
 ### Using Temporary Credentials with Amazon ECR<a name="security_iam_service-with-iam-roles-tempcreds"></a>
 
-You can use temporary credentials to sign in with federation, assume an IAM role, or to assume a cross\-account role\. You obtain temporary security credentials by calling AWSSTS API operations such as [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) or [GetFederationToken](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetFederationToken.html)\. 
+You can use temporary credentials to sign in with federation, assume an IAM role, or to assume a cross\-account role\. You obtain temporary security credentials by calling AWS STS API operations such as [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) or [GetFederationToken](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetFederationToken.html)\. 
 
 Amazon ECR supports using temporary credentials\. 
 

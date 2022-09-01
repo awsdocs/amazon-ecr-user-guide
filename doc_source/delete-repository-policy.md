@@ -1,4 +1,4 @@
-# Deleting a repository policy statement<a name="delete-repository-policy"></a>
+# Deleting a private repository policy statement<a name="delete-repository-policy"></a>
 
 If you no longer want an existing repository policy statement to apply to a repository, you can delete it\.
 

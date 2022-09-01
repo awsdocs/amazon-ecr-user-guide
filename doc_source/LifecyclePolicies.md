@@ -1,22 +1,14 @@
 # Lifecycle policies<a name="LifecyclePolicies"></a>
 
-Amazon ECR lifecycle policies provide more control over the lifecycle management of images in a private repository\. A lifecycle policy contains one or more rules, where each rule defines an action for Amazon ECR\. This provides a way to automate the cleaning up of unused images, for example expiring images based on age or count\. You should expect that after creating a lifecycle policy, the affected images are expired within 24 hours\.
-
-**Topics**
-+ [How lifecycle policies work](#lifecycle-policy-howitworks)
-+ [Lifecycle policy template](#lifecycle_policy_syntax)
-+ [Lifecycle policy parameters](#lifecycle_policy_parameters)
-+ [Creating a lifecycle policy preview](lpp_creation.md)
-+ [Creating a lifecycle policy](lp_creation.md)
-+ [Examples of lifecycle policies](lifecycle_policy_examples.md)
+Amazon ECR lifecycle policies provide more control over the lifecycle management of images in a private repository\. A lifecycle policy contains one or more rules, where each rule defines an action for Amazon ECR\. This provides a way to automate the cleaning up of your container images by expiring images based on age or count\. You should expect that after creating a lifecycle policy, the affected images are expired within 24 hours\. When Amazon ECR performs an action based on a lifecycle policy, this is captured as an event in AWS CloudTrail\. For more information, see [Logging Amazon ECR actions with AWS CloudTrail](logging-using-cloudtrail.md)\.
 
 ## How lifecycle policies work<a name="lifecycle-policy-howitworks"></a>
 
-A lifecycle policy consists of one or more rules that determine which images in a repository should be expired\. When considering the use of lifecycle policies, it's important to use the lifecycle policy preview to confirm which images the lifecycle policy expires before applying it to a repository\. Once a lifecycle policy is applied to a repository, you should expect that the affected images will expire within 24 hours\.
+A lifecycle policy consists of one or more rules that determine which images in a repository should be expired\. When considering the use of lifecycle policies, it's important to use the lifecycle policy preview to confirm which images the lifecycle policy expires before applying it to a repository\. Once a lifecycle policy is applied to a repository, you should expect that the affected images will expire within 24 hours\. When Amazon ECR performs an action based on a lifecycle policy, this is captured as an event in AWS CloudTrail\. For more information, see [Logging Amazon ECR actions with AWS CloudTrail](logging-using-cloudtrail.md)\.
 
 The following diagram shows the lifecycle policy workflow\.
 
-![\[Diagram showing architecture of an Amazon ECS environment using the Fargate launch type.\]](http://docs.aws.amazon.com/AmazonECR/latest/userguide/images/lifecycle-policy.png)
+![\[Diagram showing the process for evaluating and applying a lifecycle policy.\]](http://docs.aws.amazon.com/AmazonECR/latest/userguide/images/lifecycle-policy.png)
 
 1. Create one or more test rules\.
 

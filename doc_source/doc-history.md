@@ -5,7 +5,8 @@ The following table describes the important changes to the documentation since t
 
 | Change | Description | Date | 
 | --- | --- | --- | 
-|  Amazon ECR sends repository pull count metrics to Amazon CloudWatch  |  Amazon ECR sends repository pull count metrics to Amazon CloudWatch\., see [Amazon ECR repository metrics](ecr-repository-metrics.md)\.  |  6 January 2022  | 
+|  Amazon ECR enhanced scanning duration support  |  Amazon Inspector added support for setting the duration that your repositories are monitored for when enhanced scanning is enabled\. For more information, see [Changing the enhanced scanning duration](image-scanning-enhanced.md#image-scanning-enhanced-duration)\.  |  28 June 2022  | 
+|  Amazon ECR sends repository pull count metrics to Amazon CloudWatch  |  Amazon ECR sends repository pull count metrics to Amazon CloudWatch\. For more information, see [Amazon ECR repository metrics](ecr-repository-metrics.md)\.  |  6 January 2022  | 
 |  Expanded replication support  |  Amazon ECR added support for filtering which repositories are replicated\. For more information, see [Private image replication](replication.md)\.  |  21 September 2021  | 
 |  AWS managed policies for Amazon ECR  |  Amazon ECR added documentation of AWS managed policies\. For more information, see [AWS managed policies for Amazon Elastic Container Registry](security-iam-awsmanpol.md)\.  | 24 June 2021 | 
 |  Cross\-Region and cross\-account replication  |  Amazon ECR added support for configuring replication settings for your private registry\. For more information, see [Private registry settings](registry-settings.md)\.  |  8 December 2020  | 
@@ -19,8 +20,8 @@ The following table describes the important changes to the documentation since t
 |  VPC Endpoint Policy  |  Added support for setting an IAM policy on the Amazon ECR interface VPC endpoints\. For more information, see [Create an endpoint policy for your Amazon ECR VPC endpoints](vpc-endpoints.md#ecr-vpc-endpoint-policy)\.  |  26 Sept 2019  | 
 |  Image Tag Mutability  |  Added support for configuring a repository to be immutable to prevent image tags from being overwritten\. For more information, see [Image tag mutability](image-tag-mutability.md)\.  |  25 July 2019  | 
 |  Interface VPC Endpoints \(AWS PrivateLink\)  |  Added support for configuring interface VPC endpoints powered by AWS PrivateLink\. This allows you to create a private connection between your VPC and Amazon ECR without requiring access over the internet, through a NAT instance, a VPN connection, or AWS Direct Connect\. For more information, see [Amazon ECR interface VPC endpoints \(AWS PrivateLink\)](vpc-endpoints.md)\.  |  25 Jan 2019  | 
-|  Resource tagging  |  Amazon ECR added support for adding metadata tags to your repositories\. For more information, see [Tagging an Amazon ECR repository](ecr-using-tags.md)\.  |  18 Dec 2018  | 
+|  Resource tagging  |  Amazon ECR added support for adding metadata tags to your repositories\. For more information, see [Tagging a private repository](ecr-using-tags.md)\.  |  18 Dec 2018  | 
 |  Amazon ECR Name Change  | Amazon Elastic Container Registry is renamed \(previously Amazon EC2 Container Registry\)\. | 21 Nov 2017 | 
 |  Lifecycle Policies  |  Amazon ECR lifecycle policies enable you to specify the lifecycle management of images in a repository\. For more information, see [Lifecycle policies](LifecyclePolicies.md)\.  | 11 Oct 2017 | 
 |  Amazon ECR support for Docker image manifest 2, schema 2  |  Amazon ECR now supports Docker Image Manifest V2 Schema 2 \(used with Docker version 1\.10 and newer\)\. For more information, see [Container image manifest formats](image-manifest-formats.md)\.  | 27 Jan 2017 | 
-|  Amazon ECR General Availability  |  \(\) is a managed AWS Docker registry service that is secure, scalable, and reliable\.  | 21 Dec 2015 | 
+|  Amazon ECR General Availability  |  Amazon Elastic Container Registry \(Amazon ECR\) is a managed AWS Docker registry service that is secure, scalable, and reliable\.  | 21 Dec 2015 | 
