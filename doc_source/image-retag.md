@@ -9,7 +9,7 @@ With Docker Image Manifest V2 Schema 2 images, you can use the `--image-tag` opt
 1. Use the batch\-get\-image command to get the image manifest for the image to retag and write it to a file\. In this example, the manifest for an image with the tag, *latest*, in the repository, *amazonlinux*, is written to an environment variable named *MANIFEST*\.
 
    ```
-   MANIFEST=$(aws ecr batch-get-image --repository-name amazonlinux --image-ids imageTag=latest --output json | jq --raw-output --join-output '.images[0].imageManifest')
+   MANIFEST=$(aws ecr batch-get-image --repository-name amazonlinux --image-ids imageTag=latest --query images[].imageManifest --output text)
    ```
 
 1. Use the `--image-tag` option of the put\-image command to put the image manifest to Amazon ECR with a new tag\. In this example, the image is tagged as *2017\.03*\.
