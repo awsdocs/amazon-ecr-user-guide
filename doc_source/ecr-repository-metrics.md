@@ -9,7 +9,7 @@ Amazon ECR sends repository pull count metrics to Amazon CloudWatch\. Amazon ECR
 
 ## Enabling CloudWatch metrics<a name="enable_cloudwatch"></a>
 
-Amazon ECR sends repository metrics automatically for all repositories\. There is no need to take any manual steps\.
+Amazon ECR sends repository metrics automatically for private repositories (metrics for public repositories are not currently published)\. There is no need to take any manual steps\.
 
 ## Available metrics and dimensions<a name="available_cloudwatch_metrics"></a>
 
